@@ -8,15 +8,15 @@ Install all packages:
 yarn
 ```
 
-### Server
+### API
 
-#### Create certs
+** Create certs **
 
 ```
 bash scripts/certs.sh
 ```
 
-#### Create .env
+** Create .env **
 
 ```
 cp apps/api/.env.template apps/api/.env
@@ -24,7 +24,7 @@ cp apps/api/.env.template apps/api/.env
 
 and edit apps/api/.env to your needs!
 
-#### Pull prisma
+** Pull prisma **
 
 Development:
 
