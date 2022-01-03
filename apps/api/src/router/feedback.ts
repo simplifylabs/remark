@@ -1,5 +1,5 @@
-import feedbackController from "@controller/feedback/";
-import RateLimiter from "@middleware/ratelimit";
+import feedbackController from "@api/controller/feedback/";
+import RateLimiter from "@api/middleware/ratelimit";
 import { Router } from "express";
 
 const router = Router();

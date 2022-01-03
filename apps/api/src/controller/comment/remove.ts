@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { Joi, prefabs, validate } from "@middleware/validation";
-import prisma from "@util/prisma";
-import access from "@middleware/access";
+import { Joi, prefabs, validate } from "@api/middleware/validation";
+import prisma from "@api/util/prisma";
+import access from "@api/middleware/access";
 
 const removeComment = async (req: Request, res: Response) => {
   const post = await prisma.post.findUnique({

@@ -1,10 +1,10 @@
-import forgotController from "@controller/auth/forgot";
-import keyController from "@controller/auth/key";
-import loginController from "@controller/auth/login";
-import refreshController from "@controller/auth/refresh";
-import registerController from "@controller/auth/register";
-import resetController from "@controller/auth/reset";
-import RateLimiter from "@middleware/ratelimit";
+import forgotController from "@api/controller/auth/forgot";
+import keyController from "@api/controller/auth/key";
+import loginController from "@api/controller/auth/login";
+import refreshController from "@api/controller/auth/refresh";
+import registerController from "@api/controller/auth/register";
+import resetController from "@api/controller/auth/reset";
+import RateLimiter from "@api/middleware/ratelimit";
 import { Router } from "express";
 
 const router = Router();

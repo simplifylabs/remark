@@ -1,8 +1,8 @@
-import prisma from "@util/prisma";
-import { generateAccessToken, generateRefreshToken } from "@util/auth";
-import { comparePasswords } from "@util/hash";
+import prisma from "@api/util/prisma";
+import { generateAccessToken, generateRefreshToken } from "@api/util/auth";
+import { comparePasswords } from "@api/util/hash";
 import { Request, Response } from "express";
-import { Joi, prefabs, validate } from "@middleware/validation";
+import { Joi, prefabs, validate } from "@api/middleware/validation";
 
 const loginController = async (req: Request, res: Response) => {
   const user = await prisma.user.findFirst({

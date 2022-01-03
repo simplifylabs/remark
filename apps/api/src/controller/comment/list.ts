@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { Joi, prefabs, validate } from "@middleware/validation";
-import { filter } from "@util/url";
-import prisma, { comment } from "@util/prisma";
+import { Joi, prefabs, validate } from "@api/middleware/validation";
+import { filter } from "@api/util/url";
+import prisma, { comment } from "@api/util/prisma";
 
 const listComments = async (req: Request, res: Response) => {
   const decoded = decodeURIComponent(String(req.query.url) || "");

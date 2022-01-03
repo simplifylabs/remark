@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { Joi, prefabs, validate } from "@middleware/validation";
-import { filter } from "@util/url";
-import access from "@middleware/access";
+import { Joi, prefabs, validate } from "@api/middleware/validation";
+import { filter } from "@api/util/url";
+import access from "@api/middleware/access";
 import sanitize from "sanitize-html";
-import prisma, { comment } from "@util/prisma";
+import prisma, { comment } from "@api/util/prisma";
 
 const createComment = async (req: Request, res: Response) => {
   try {

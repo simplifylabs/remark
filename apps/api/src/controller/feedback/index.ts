@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { validate, Joi } from "@middleware/validation";
-import prisma from "@util/prisma";
+import { validate, Joi } from "@api/middleware/validation";
+import prisma from "@api/util/prisma";
 
 const meUser = async (req: Request, res: Response) => {
   try {

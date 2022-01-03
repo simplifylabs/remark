@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { Joi, prefabs, validate } from "@middleware/validation";
-import { filter } from "@util/url";
-import prisma, { comment } from "@util/prisma";
+import { Joi, prefabs, validate } from "@api/middleware/validation";
+import { filter } from "@api/util/url";
+import prisma, { comment } from "@api/util/prisma";
 
 const singleComments = async (req: Request, res: Response) => {
   // Using any to be able to easily overwrite the replies

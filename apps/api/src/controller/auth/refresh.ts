@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { validate, Joi, prefabs } from "@middleware/validation";
+import { validate, Joi, prefabs } from "@api/middleware/validation";
 import {
   generateAccessToken,
   generateRefreshToken,
   verifyRefreshToken,
-} from "@util/auth";
-import prisma from "@util/prisma";
+} from "@api/util/auth";
+import prisma from "@api/util/prisma";
 
 const refreshController = async (req: Request, res: Response) => {
   const refreshToken = req.body.refreshToken;

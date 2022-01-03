@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import access from "@middleware/access";
-import prisma from "@util/prisma";
+import access from "@api/middleware/access";
+import prisma from "@api/util/prisma";
 
 const meUser = async (req: Request, res: Response) => {
   const user = await prisma.user.findUnique({

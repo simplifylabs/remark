@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { hash } from "@util/hash";
-import { generateAccessToken, generateRefreshToken } from "@util/auth";
-import { validate, Joi, prefabs } from "@middleware/validation";
+import { hash } from "@api/util/hash";
+import { generateAccessToken, generateRefreshToken } from "@api/util/auth";
+import { validate, Joi, prefabs } from "@api/middleware/validation";
 import sanitize from "sanitize-html";
-import prisma from "@util/prisma";
+import prisma from "@api/util/prisma";
 
 const registerController = async (req: Request, res: Response) => {
   try {

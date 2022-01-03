@@ -1,4 +1,4 @@
-import { getValidationMessage } from "@middleware/validation";
+import { getValidationMessage } from "@api/middleware/validation";
 import { Request, Response } from "express";
 import { ValidationError } from "express-validation";
 

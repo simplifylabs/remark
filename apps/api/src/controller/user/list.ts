@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import prisma from "@util/prisma";
+import prisma from "@api/util/prisma";
 
 const listUsers = async (req: Request, res: Response) => {
   if (!req.query.q) return res.status(200).json({ list: [] });

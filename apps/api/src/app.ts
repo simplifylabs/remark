@@ -1,15 +1,15 @@
 require('module-alias/register');
-require('@util/logger')();
-require('@util/dotenv')();
+require('@api/util/logger')();
+require('@api/util/dotenv')();
 
 import express from 'express';
 import cookies from 'cookie-parser';
-import cors from '@middleware/cors';
-import error from '@middleware/error';
-import auth from '@router/auth';
-import comment from '@router/comment';
-import user from '@router/user';
-import feedback from '@router/feedback';
+import cors from '@api/middleware/cors';
+import error from '@api/middleware/error';
+import auth from '@api/router/auth';
+import comment from '@api/router/comment';
+import user from '@api/router/user';
+import feedback from '@api/router/feedback';
 
 (async () => {
   const app = express();

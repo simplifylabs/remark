@@ -1,10 +1,10 @@
-import createController from "@controller/comment/create";
-import listController from "@controller/comment/list";
-import removeController from "@controller/comment/remove";
-import singleController from "@controller/comment/single";
-import urlController from "@controller/comment/url";
-import voteController from "@controller/comment/vote";
-import RateLimiter from "@middleware/ratelimit";
+import createController from "@api/controller/comment/create";
+import listController from "@api/controller/comment/list";
+import removeController from "@api/controller/comment/remove";
+import singleController from "@api/controller/comment/single";
+import urlController from "@api/controller/comment/url";
+import voteController from "@api/controller/comment/vote";
+import RateLimiter from "@api/middleware/ratelimit";
 import { Router } from "express";
 
 const router = Router();

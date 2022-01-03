@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { Joi, prefabs, validate } from "@middleware/validation";
-import prisma from "@util/prisma";
+import { Joi, prefabs, validate } from "@api/middleware/validation";
+import prisma from "@api/util/prisma";
 
 const commentUrl = async (req: Request, res: Response) => {
   const comment = await prisma.post.findUnique({

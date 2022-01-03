@@ -1,7 +1,7 @@
-import listController from "@controller/user/list";
-import meController from "@controller/user/me";
-import updateController from "@controller/user/update";
-import RateLimiter from "@middleware/ratelimit";
+import listController from "@api/controller/user/list";
+import meController from "@api/controller/user/me";
+import updateController from "@api/controller/user/update";
+import RateLimiter from "@api/middleware/ratelimit";
 import { Router } from "express";
 
 const router = Router();

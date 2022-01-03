@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { Joi, prefabs, validate } from "@middleware/validation";
+import { Joi, prefabs, validate } from "@api/middleware/validation";
 import { randomBytes } from "crypto";
-import { sendResetEmail } from "@util/email";
-import prisma from "@util/prisma";
+import { sendResetEmail } from "@api/util/email";
+import prisma from "@api/util/prisma";
 
 const forgotPassword = async (req: Request, res: Response) => {
   const user = await prisma.user.findFirst({

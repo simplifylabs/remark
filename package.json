@@ -53,7 +53,6 @@
     "@api/router": "dist/apps/api/router",
     "@api/controller": "dist/apps/api/controller",
     "@api/util": "dist/apps/api/util",
-    "@api/model": "dist/apps/api/model",
     "@api/middleware": "dist/apps/api/middleware"
   }
 }
