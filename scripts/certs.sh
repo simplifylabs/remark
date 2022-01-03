@@ -1,5 +1,5 @@
 #!/bin/bash
-# keys.sh
+# certs.sh
 
 # Colors
 FgGreen='\e[32m'
@@ -11,15 +11,12 @@ printf "${FgBlue}[INFO]:${FgWhite} Creating certs...\n"
 echo
 
 # Prepare
-rm -rf .certs/ && mkdir .certs
+rm -rf ../.certs/ && mkdir ../.certs
 
 # Private Key 
-ssh-keygen -t rsa -b 4096 -m PEM -f .certs/private.pem
+openssl genrsa -out ../.certs/private.pem 2048
 printf "${FgGreen}[SUCCESS]:${FgWhite} Created .certs/private.pem\n" 
 
 # Public Key
-openssl rsa -in .certs/private.pem -pubout -outform PEM -out .certs/public.pem
+openssl rsa -in ../.certs/private.pem -outform PEM -pubout -out ../.certs/public.pem
 printf "${FgGreen}[SUCCESS]:${FgWhite} Created .certs/public.pem\n" 
-
-# Remove unused file
-rm .certs/private.pem.pub

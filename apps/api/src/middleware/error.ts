@@ -1,8 +1,10 @@
 import { getValidationMessage } from "@api/middleware/validation";
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { ValidationError } from "express-validation";
 
-function error(err: Error, _1: Request, res: Response) {
+// Error catcher for express
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function error(err: Error, _1: Request, res: Response, _2: NextFunction) {
   if (err instanceof ValidationError) {
     const message = getValidationMessage(err);
 
