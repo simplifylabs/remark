@@ -40,6 +40,6 @@ npm run prisma:prod
 
 ## Prequerities
 
-1. Node [(nodejs.org)](https://nodejs.org/en/)
+1. Node ([nodejs.org](https://nodejs.org/en/))
 2. Yarn (`npm i -g yarn`)
 3. NX Cli (`npm i -g @nrwl/cli`)
