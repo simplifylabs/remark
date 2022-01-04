@@ -1,12 +1,7 @@
 import { User } from "@prisma/client";
 import fs from "fs";
 import path from "path";
-import { sign, verify } from "jsonwebtoken";
-
-interface IPayload {
-  user: { id: string };
-  typ: "Bearer" | "RT";
-}
+import { sign, verify, JwtPayload } from "jsonwebtoken";
 
 const rootPath = path.join(__dirname, "..", "..", "..");
 const publicPath = path.join(rootPath, ".certs", "public.pem");
@@ -30,7 +25,7 @@ export function generateAccessToken(user: User) {
     {
       user: { id: user.id },
       typ: "Bearer",
-    } as IPayload,
+    } as JwtPayload,
     privateKey,
     {
       expiresIn: "15m",
@@ -52,15 +47,25 @@ export function generateRefreshToken(user: User) {
   });
 }
 
-export async function verifyAccessToken(accessToken: string) {
-  const verified: IPayload = verify(accessToken, publicKey, {
+export async function verifyAccessToken(
+  accessToken: string
+): Promise<JwtPayload> {
+  const verified: string | JwtPayload = verify(accessToken, publicKey, {
     issuer: "Remark",
     audience: process.env.HOST,
   });
+
+  // Payload will never be a string
+  // @ts-ignore
   return verified;
 }
 
-export async function verifyRefreshToken(refreshToken: string) {
-  const verified: IPayload = verify(refreshToken, publicKey);
+export async function verifyRefreshToken(
+  refreshToken: string
+): Promise<JwtPayload> {
+  const verified: string | JwtPayload = verify(refreshToken, publicKey);
+
+  // Payload will never be a string
+  // @ts-ignore
   return verified;
 }

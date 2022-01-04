@@ -1,18 +1,16 @@
-import { user } from "@cribber/db";
 import * as supertest from "supertest";
-import { createServer } from "../server";
-import { randomString } from "../util/random";
+import { server } from "../app";
 
 describe("API Functionality", () => {
-  let app: any;
+  let app: typeof server;
   let request;
 
-  const username = `test-${randomString(10)}`;
+  const username = `test-${Math.random().toString(16)}`;
   let accessToken = "";
   let fingerprint = "";
 
   beforeAll(() => {
-    app = createServer();
+    app = server;
     request = supertest(app);
   });
 
@@ -44,7 +42,6 @@ describe("API Functionality", () => {
   it("should verify successfully", async () => {
     const u = await user.findFirst({
       where: { username: username },
-
       select: { verification_token: true },
     });
 
