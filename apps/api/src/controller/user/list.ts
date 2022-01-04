@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { user } from "@api/util/prisma";
+import { user } from "@db";
 
 const listUsers = async (req: Request, res: Response) => {
   if (!req.query.q) return res.status(200).json({ list: [] });

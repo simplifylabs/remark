@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
 import access from "@api/middleware/access";
-import { user } from "@api/util/prisma";
+import { user } from "@db";
 
 const voteComment = async (req: Request, res: Response) => {
   let vote = await vote.findFirst({

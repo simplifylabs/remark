@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import access from "@api/middleware/access";
-import { user } from "@api/util/prisma";
+import { user } from "@db";
 
 const meUser = async (req: Request, res: Response) => {
   const user = await user.findUnique({

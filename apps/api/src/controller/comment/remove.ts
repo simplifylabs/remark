@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
-import { user } from "@api/util/prisma";
+import { user } from "@db";
 import access from "@api/middleware/access";
 
 const removeComment = async (req: Request, res: Response) => {

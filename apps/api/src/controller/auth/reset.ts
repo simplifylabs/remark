@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
 import { generateAccessToken, generateRefreshToken } from "@api/util/auth";
 import { hash } from "@api/util/hash";
-import { user } from "@api/util/prisma";
+import { user } from "@db";
 
 async function resetPassword(req: Request, res: Response) {
   const user = await user.findFirst({

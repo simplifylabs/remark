@@ -3,7 +3,7 @@ import { hash } from "@api/util/hash";
 import { generateAccessToken, generateRefreshToken } from "@api/util/auth";
 import { validate, Joi, prefabs } from "@api/middleware/validation";
 import sanitize from "sanitize-html";
-import { user } from "@api/util/prisma";
+import { user } from "@db";
 
 const registerController = async (req: Request, res: Response) => {
   try {

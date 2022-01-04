@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
 import { randomBytes } from "crypto";
 import { sendResetEmail } from "@api/util/email";
-import { user } from "@api/util/prisma";
+import { user } from "@db";
 
 const forgotPassword = async (req: Request, res: Response) => {
   const user = await user.findFirst({

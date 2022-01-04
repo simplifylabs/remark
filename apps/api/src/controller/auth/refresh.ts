@@ -5,7 +5,7 @@ import {
   generateRefreshToken,
   verifyRefreshToken,
 } from "@api/util/auth";
-import { user } from "@api/util/prisma";
+import { user } from "@db";
 
 const refreshController = async (req: Request, res: Response) => {
   const refreshToken = req.body.refreshToken;

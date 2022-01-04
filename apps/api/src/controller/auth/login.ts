@@ -1,4 +1,4 @@
-import { user } from "@api/util/prisma";
+import { user } from "@db";
 import { generateAccessToken, generateRefreshToken } from "@api/util/auth";
 import { comparePasswords } from "@api/util/hash";
 import { Request, Response } from "express";

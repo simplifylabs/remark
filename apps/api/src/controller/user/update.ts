@@ -1,4 +1,4 @@
-import { user } from "@api/util/prisma";
+import { user } from "@db";
 import sanitize from "sanitize-html";
 import access from "@api/middleware/access";
 import { Request, Response } from "express";

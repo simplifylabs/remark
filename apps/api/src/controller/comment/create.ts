@@ -3,7 +3,7 @@ import { Joi, prefabs, validate } from "@api/middleware/validation";
 import { filter } from "@api/util/url";
 import access from "@api/middleware/access";
 import sanitize from "sanitize-html";
-import { url, comment } from "@api/util/prisma";
+import { url, comment } from "@db";
 
 const createComment = async (req: Request, res: Response) => {
   try {
