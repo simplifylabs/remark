@@ -2,10 +2,10 @@ import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
 import { randomBytes } from "crypto";
 import { sendResetEmail } from "@api/util/email";
-import prisma from "@api/util/prisma";
+import { user } from "@api/util/prisma";
 
 const forgotPassword = async (req: Request, res: Response) => {
-  const user = await prisma.user.findFirst({
+  const user = await user.findFirst({
     where: { email: req.body.email },
   });
 
@@ -15,7 +15,7 @@ const forgotPassword = async (req: Request, res: Response) => {
   const expires = new Date();
   expires.setHours(expires.getHours() + 1);
 
-  await prisma.user.update({
+  await user.update({
     where: {
       id: user.id,
     },

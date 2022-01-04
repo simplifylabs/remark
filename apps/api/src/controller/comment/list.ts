@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
 import { filter } from "@api/util/url";
-import prisma, { comment } from "@api/util/prisma";
+import { user }, { comment } from "@api/util/prisma";
 
 const listComments = async (req: Request, res: Response) => {
   const decoded = decodeURIComponent(String(req.query.url) || "");
@@ -11,13 +11,13 @@ const listComments = async (req: Request, res: Response) => {
     return res.status(500).json({ error: "INTERNAL_SERVER_ERROR" });
 
   const result = await prisma.$transaction([
-    prisma.post.count({
+    post.count({
       where: { url: { filtered: filtered.url } },
     }),
-    prisma.post.count({
+    post.count({
       where: { url: { filtered: filtered.url }, replyId: null },
     }),
-    prisma.post.findMany({
+    post.findMany({
       where: { url: { filtered: filtered.url }, replyId: null },
       skip: Number(req.query.page) * 20,
       take: 20,

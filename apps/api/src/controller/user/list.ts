@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import prisma from "@api/util/prisma";
+import { user } from "@api/util/prisma";
 
 const listUsers = async (req: Request, res: Response) => {
   if (!req.query.q) return res.status(200).json({ list: [] });
 
-  const users = await prisma.user.findMany({
+  const users = await user.findMany({
     where: {
       username: {
         contains: String(req.query.q),

@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
 import { filter } from "@api/util/url";
-import prisma, { comment } from "@api/util/prisma";
+import { user }, { comment } from "@api/util/prisma";
 
 const singleComments = async (req: Request, res: Response) => {
   // Using any to be able to easily overwrite the replies
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const post: any = await prisma.post.findUnique({
+  const post: any = await post.findUnique({
     where: { id: String(req.params.id) },
     select: {
       ...comment,
@@ -33,7 +33,7 @@ const singleComments = async (req: Request, res: Response) => {
   if (post.replyId) {
     // Using any to be able to easily overwrite the replies
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const parent: any = await prisma.post.findUnique({
+    const parent: any = await post.findUnique({
       where: { id: post.replyId },
       select: {
         ...comment,

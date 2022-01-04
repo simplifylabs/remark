@@ -5,14 +5,14 @@ import {
   generateRefreshToken,
   verifyRefreshToken,
 } from "@api/util/auth";
-import prisma from "@api/util/prisma";
+import { user } from "@api/util/prisma";
 
 const refreshController = async (req: Request, res: Response) => {
   const refreshToken = req.body.refreshToken;
 
   try {
     const verified = await verifyRefreshToken(refreshToken);
-    const user = await prisma.user.findFirst({
+    const user = await user.findFirst({
       where: { id: verified.user.id },
     });
 

@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
 import access from "@api/middleware/access";
-import prisma from "@api/util/prisma";
+import { user } from "@api/util/prisma";
 
 const voteComment = async (req: Request, res: Response) => {
-  let vote = await prisma.vote.findFirst({
+  let vote = await vote.findFirst({
     where: { userId: req.user.id, postId: req.params.id },
     select: { id: true, type: true },
   });
@@ -15,7 +15,7 @@ const voteComment = async (req: Request, res: Response) => {
 
   let data = {};
   if (type == "CREATED" || !vote) {
-    vote = await prisma.vote.create({
+    vote = await vote.create({
       data: {
         userId: req.user.id,
         postId: req.params.id,
@@ -26,14 +26,14 @@ const voteComment = async (req: Request, res: Response) => {
     if (req.body.type === "UP") data = { upvotes: { increment: 1 } };
     else data = { downvotes: { increment: 1 } };
   } else if (type == "DELETED") {
-    await prisma.vote.delete({
+    await vote.delete({
       where: { id: vote.id },
     });
 
     if (req.body.type === "UP") data = { upvotes: { decrement: 1 } };
     else data = { downvotes: { decrement: 1 } };
   } else {
-    await prisma.vote.update({
+    await vote.update({
       where: { id: vote.id },
       data: {
         type: req.body.type,
@@ -45,7 +45,7 @@ const voteComment = async (req: Request, res: Response) => {
     else data = { upvotes: { decrement: 1 }, downvotes: { increment: 1 } };
   }
 
-  await prisma.post.update({
+  await post.update({
     where: {
       id: req.params.id,
     },

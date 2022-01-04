@@ -1,4 +1,4 @@
-import prisma from "@api/util/prisma";
+import { user } from "@api/util/prisma";
 import sanitize from "sanitize-html";
 import access from "@api/middleware/access";
 import { Request, Response } from "express";
@@ -16,13 +16,13 @@ const updateController = async (req: Request, res: Response) => {
 
   if (or.length < 1) return res.status(403).json({ error: "UPDATE_MISSING" });
 
-  const existing = await prisma.user.findFirst({
+  const existing = await user.findFirst({
     where: {
       OR: or,
     },
   });
 
-  const me = await prisma.user.findUnique({
+  const me = await user.findUnique({
     where: {
       id: req.user.id,
     },
@@ -44,7 +44,7 @@ const updateController = async (req: Request, res: Response) => {
   if (username) update.username = username;
   if (email) update.email = email;
 
-  await prisma.user.update({
+  await user.update({
     where: {
       id: req.user.id,
     },

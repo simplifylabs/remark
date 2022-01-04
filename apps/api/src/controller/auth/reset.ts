@@ -2,10 +2,10 @@ import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
 import { generateAccessToken, generateRefreshToken } from "@api/util/auth";
 import { hash } from "@api/util/hash";
-import prisma from "@api/util/prisma";
+import { user } from "@api/util/prisma";
 
 async function resetPassword(req: Request, res: Response) {
-  const user = await prisma.user.findFirst({
+  const user = await user.findFirst({
     where: {
       resetToken: req.body.token,
     },
@@ -20,7 +20,7 @@ async function resetPassword(req: Request, res: Response) {
     return res.status(403).json({ error: "TOKEN_EXPIRED" });
 
   const hashed = await hash(req.body.password);
-  await prisma.user.update({
+  await user.update({
     where: {
       id: user.id,
     },
