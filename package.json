@@ -63,6 +63,7 @@
     "typescript": "~4.4.3"
   },
   "_moduleAliases": {
+    "@db": "libs/db/src/index",
     "@api/router": "dist/apps/api/router",
     "@api/controller": "dist/apps/api/controller",
     "@api/util": "dist/apps/api/util",

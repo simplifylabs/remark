@@ -15,7 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@remark/db": ["libs/db/src/index.ts"]
+      "@db": ["libs/db/src/index.ts"],
+      "@api/router/*": ["apps/api/src/router/*"],
+      "@api/controller/*": ["apps/api/src/controller/*"],
+      "@api/util/*": ["apps/api/src/util/*"],
+      "@api/middleware/*": ["apps/api/src/middleware/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

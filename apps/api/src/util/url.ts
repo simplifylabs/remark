@@ -12,7 +12,7 @@ interface IFilterResult {
   share: string;
 }
 
-const allowQueries: string[] = ["q", "query", "search", "s"];
+const allowedQueries: string[] = ["q", "query", "search", "s"];
 
 export function filter(str: string): IFilterResult | IFilterError {
   try {
@@ -54,7 +54,7 @@ function filterSearch(input: URLSearchParams) {
   const result: URLSearchParams = new URLSearchParams();
 
   input.forEach((value, key) => {
-    if (allowQueries.includes(key)) result.append(key, value);
+    if (allowedQueries.includes(key)) result.append(key, value);
   });
 
   return result;

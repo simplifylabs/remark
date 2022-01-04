@@ -3,7 +3,7 @@ import access from "@api/middleware/access";
 import { user } from "@db";
 
 const meUser = async (req: Request, res: Response) => {
-  const user = await user.findUnique({
+  const me = await user.findUnique({
     where: {
       id: req.user.id,
     },
@@ -14,8 +14,8 @@ const meUser = async (req: Request, res: Response) => {
     },
   });
 
-  if (!user) return res.status(403).json({ error: "USER_NOT_FOUND" });
-  res.status(200).json(user);
+  if (!me) return res.status(403).json({ error: "USER_NOT_FOUND" });
+  res.status(200).json(me);
 };
 
 export default [access(), meUser];

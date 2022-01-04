@@ -1,16 +1,16 @@
 import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
-import { user } from "@db";
+import { post } from "@db";
 import access from "@api/middleware/access";
 
 const removeComment = async (req: Request, res: Response) => {
-  const post = await post.findUnique({
+  const comment = await post.findUnique({
     where: { id: req.params.id },
     select: { authorId: true },
   });
 
-  if (!post) return res.status(404).json({ error: "POST_NOT_FOUND" });
-  if (post.authorId !== req.user.id)
+  if (!comment) return res.status(404).json({ error: "POST_NOT_FOUND" });
+  if (comment.authorId !== req.user.id)
     return res.status(403).json({ error: "ACCESS_FORBIDDEN" });
 
   try {

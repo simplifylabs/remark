@@ -9,14 +9,5 @@
     {
       "path": "./tsconfig.spec.json"
     }
-  ],
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@api/router/*": ["./src/router/*"],
-      "@api/controller/*": ["./src/controller/*"],
-      "@api/util/*": ["./src/util/*"],
-      "@api/middleware/*": ["./src/middleware/*"]
-    }
-  }
+  ]
 }

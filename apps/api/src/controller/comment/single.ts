@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
 import { filter } from "@api/util/url";
-import { user }, { comment } from "@db";
+import { post, commentSelect } from "@db";
 
 const singleComments = async (req: Request, res: Response) => {
   // Using any to be able to easily overwrite the replies
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const post: any = await post.findUnique({
+  const comment: any = await post.findUnique({
     where: { id: String(req.params.id) },
     select: {
-      ...comment,
+      ...commentSelect,
       replies: false,
       replyId: true,
       shareURL: true,
@@ -17,7 +17,7 @@ const singleComments = async (req: Request, res: Response) => {
     },
   });
 
-  if (!post) return res.status(404).json({ error: "POST_NOT_FOUND" });
+  if (!comment) return res.status(404).json({ error: "POST_NOT_FOUND" });
 
   if (req.query.url && typeof req.query.url == "string") {
     const decoded = decodeURIComponent(String(req.query.url) || "");
@@ -26,15 +26,15 @@ const singleComments = async (req: Request, res: Response) => {
     if (filtered.error)
       return res.status(500).json({ error: "INTERNAL_SERVER_ERROR" });
 
-    if (post.url.filtered !== filtered.url)
+    if (comment.url.filtered !== filtered.url)
       return res.status(400).json({ error: "INVALID_URL" });
   }
 
-  if (post.replyId) {
+  if (comment.replyId) {
     // Using any to be able to easily overwrite the replies
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const parent: any = await post.findUnique({
-      where: { id: post.replyId },
+    const parent: any = await comment.findUnique({
+      where: { id: comment.replyId },
       select: {
         ...comment,
         replies: false,
@@ -44,14 +44,12 @@ const singleComments = async (req: Request, res: Response) => {
 
     if (!parent) return res.status(404).json({ error: "POST_NOT_FOUND" });
 
-    parent.replies = [post];
+    parent.replies = [comment];
     return res.status(200).json({ comment: parent });
-  } else {
-    post.replies = [];
-  }
+  } else comment.replies = [];
 
-  delete post.url;
-  res.status(200).json({ comment: post });
+  delete comment.url;
+  res.status(200).json({ comment });
 };
 
 export default [

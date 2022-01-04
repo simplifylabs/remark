@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
 import { filter } from "@api/util/url";
-import { user }, { comment } from "@db";
+import { post, comment, prisma } from "@db";
 
 const listComments = async (req: Request, res: Response) => {
   const decoded = decodeURIComponent(String(req.query.url) || "");
