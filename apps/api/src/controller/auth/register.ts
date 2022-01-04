@@ -3,14 +3,14 @@ import { hash } from "@api/util/hash";
 import { generateAccessToken, generateRefreshToken } from "@api/util/auth";
 import { validate, Joi, prefabs } from "@api/middleware/validation";
 import sanitize from "sanitize-html";
-import { user } from "@db";
+import { User } from "@db";
 
 const registerController = async (req: Request, res: Response) => {
   try {
     const email = sanitize(req.body.email);
     const username = sanitize(req.body.username);
 
-    const existing = await user.findFirst({
+    const existing = await User.findFirst({
       where: {
         OR: [{ email }, { username }],
       },
@@ -24,7 +24,7 @@ const registerController = async (req: Request, res: Response) => {
 
     const hashedPw = await hash(req.body.password);
 
-    const user = await user.create({
+    const user = await User.create({
       data: {
         username,
         email,

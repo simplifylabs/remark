@@ -1,9 +1,9 @@
-import { user } from "@db";
+import { User } from "@db";
 import sanitize from "sanitize-html";
 import access from "@api/middleware/access";
 import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
-import { User } from "@prisma/client";
+import { User as UserType } from "@prisma/client";
 import { UpdateQuery } from "mongoose";
 
 const updateController = async (req: Request, res: Response) => {
@@ -16,13 +16,13 @@ const updateController = async (req: Request, res: Response) => {
 
   if (or.length < 1) return res.status(403).json({ error: "UPDATE_MISSING" });
 
-  const existing = await user.findFirst({
+  const existing = await User.findFirst({
     where: {
       OR: or,
     },
   });
 
-  const me = await user.findUnique({
+  const me = await User.findUnique({
     where: {
       id: req.user.id,
     },
@@ -39,12 +39,12 @@ const updateController = async (req: Request, res: Response) => {
       return res.status(403).json({ error: "USERNAME_NOT_AVAILABLE" });
   }
 
-  const update: UpdateQuery<User> = {};
+  const update: UpdateQuery<UserType> = {};
 
   if (username) update.username = username;
   if (email) update.email = email;
 
-  await user.update({
+  await User.update({
     where: {
       id: req.user.id,
     },

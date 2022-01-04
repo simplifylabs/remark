@@ -13,7 +13,7 @@ yarn
 **Create certs**
 
 ```
-bash scripts/certs.sh
+yarn certs
 ```
 
 **Create .env**
@@ -37,3 +37,9 @@ Production:
 ```bash
 npm run prisma:prod
 ```
+
+## Prequerities
+
+1. [Node](https://nodejs.org/en/)
+2. Yarn `npm i -g yarn`
+3. NX Cli `npm i -g @nrwl/cli`

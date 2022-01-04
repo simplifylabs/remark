@@ -1,12 +1,15 @@
 import dotenv from "dotenv";
 import fs from "fs";
+import path from "path";
+
+const envPath = path.join(__dirname, "..", ".env");
 
 export default function loadEnv() {
-  if (exists() && validate()) dotenv.config();
+  if (exists() && validate()) dotenv.config({ path: envPath });
 }
 
 function exists(): boolean {
-  if (!fs.existsSync(".env")) {
+  if (!fs.existsSync(envPath)) {
     console.error(".env doesn't exist! Use .env.template to create it.");
     process.exit(1);
   }
@@ -14,8 +17,8 @@ function exists(): boolean {
 }
 
 function validate(): boolean {
-  const parsed = dotenv.parse(fs.readFileSync(".env"));
-  const template = dotenv.parse(fs.readFileSync(".env.template"));
+  const parsed = dotenv.parse(fs.readFileSync(envPath));
+  const template = dotenv.parse(fs.readFileSync(`${envPath}.template`));
 
   const missing: string[] = [];
   Object.keys(template).forEach((key) => {

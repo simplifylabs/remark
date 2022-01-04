@@ -1,11 +1,11 @@
-import { user } from "@db";
+import { User } from "@db";
 import { generateAccessToken, generateRefreshToken } from "@api/util/auth";
 import { comparePasswords } from "@api/util/hash";
 import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
 
 const loginController = async (req: Request, res: Response) => {
-  const user = await user.findFirst({
+  const user = await User.findFirst({
     where: {
       email: req.body.email,
     },

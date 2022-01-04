@@ -2,10 +2,10 @@ import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
 import { generateAccessToken, generateRefreshToken } from "@api/util/auth";
 import { hash } from "@api/util/hash";
-import { user } from "@db";
+import { User } from "@db";
 
 async function resetPassword(req: Request, res: Response) {
-  const user = await user.findFirst({
+  const user = await User.findFirst({
     where: {
       resetToken: req.body.token,
     },
@@ -20,7 +20,7 @@ async function resetPassword(req: Request, res: Response) {
     return res.status(403).json({ error: "TOKEN_EXPIRED" });
 
   const hashed = await hash(req.body.password);
-  await user.update({
+  await User.update({
     where: {
       id: user.id,
     },

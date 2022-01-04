@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
 import { filter } from "@api/util/url";
-import { post, commentSelect } from "@db";
+import { Post, commentSelect } from "@db";
 
 const singleComments = async (req: Request, res: Response) => {
   // Using any to be able to easily overwrite the replies
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const comment: any = await post.findUnique({
+  const comment: any = await Post.findUnique({
     where: { id: String(req.params.id) },
     select: {
       ...commentSelect,
@@ -33,7 +33,7 @@ const singleComments = async (req: Request, res: Response) => {
   if (comment.replyId) {
     // Using any to be able to easily overwrite the replies
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const parent: any = await comment.findUnique({
+    const parent: any = await Post.findUnique({
       where: { id: comment.replyId },
       select: {
         ...comment,

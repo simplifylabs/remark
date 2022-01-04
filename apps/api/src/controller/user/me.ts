@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import access from "@api/middleware/access";
-import { user } from "@db";
+import { User } from "@db";
 
 const meUser = async (req: Request, res: Response) => {
-  const me = await user.findUnique({
+  const user = await User.findUnique({
     where: {
       id: req.user.id,
     },
@@ -14,8 +14,8 @@ const meUser = async (req: Request, res: Response) => {
     },
   });
 
-  if (!me) return res.status(403).json({ error: "USER_NOT_FOUND" });
-  res.status(200).json(me);
+  if (!user) return res.status(403).json({ error: "USER_NOT_FOUND" });
+  res.status(200).json(user);
 };
 
 export default [access(), meUser];

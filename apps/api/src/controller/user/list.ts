@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { user } from "@db";
+import { User } from "@db";
 
 const listUsers = async (req: Request, res: Response) => {
   if (!req.query.q) return res.status(200).json({ list: [] });
 
-  const users = await user.findMany({
+  const users = await User.findMany({
     where: {
       username: {
         contains: String(req.query.q),

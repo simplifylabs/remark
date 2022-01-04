@@ -3,12 +3,12 @@ import { Joi, prefabs, validate } from "@api/middleware/validation";
 import { filter } from "@api/util/url";
 import access from "@api/middleware/access";
 import sanitize from "sanitize-html";
-import { url, comment } from "@db";
+import { Url, Post, commentSelect } from "@db";
 
 const createComment = async (req: Request, res: Response) => {
   try {
     if (req.body.replyTo) {
-      const reply = await post.findUnique({
+      const reply = await Post.findUnique({
         where: { id: req.body.replyTo },
         select: { id: true, replyId: true },
       });
@@ -23,14 +23,13 @@ const createComment = async (req: Request, res: Response) => {
     if (filtered.error)
       return res.status(500).json({ error: "INTERNAL_SERVER_ERROR" });
 
-    let url = await url.findUnique({
+    let url = await Url.findUnique({
       where: { filtered: filtered.url },
     });
 
-    if (!url)
-      url = await url.create({ data: { filtered: filtered.url } });
+    if (!url) url = await Url.create({ data: { filtered: filtered.url } });
 
-    const post = await post.create({
+    const comment = await Post.create({
       data: {
         authorId: req.user.id,
         originalURL: filtered.original,
@@ -40,17 +39,17 @@ const createComment = async (req: Request, res: Response) => {
         comment: text,
       },
       select: {
-        ...comment,
+        ...commentSelect,
         replies: true,
         replyId: true,
         shareURL: true,
       },
     });
 
-    const shareURL = post.shareURL.replace("%25REMARK_ID%25", post.id);
-    await post.update({ where: { id: post.id }, data: { shareURL } });
+    const shareURL = comment.shareURL.replace("%25REMARK_ID%25", comment.id);
+    await Post.update({ where: { id: comment.id }, data: { shareURL } });
 
-    res.status(200).json(post);
+    res.status(200).json(comment);
   } catch (e) {
     console.log(e);
     res.status(500).json({ error: "INTERNAL_SERVER_ERROR" });

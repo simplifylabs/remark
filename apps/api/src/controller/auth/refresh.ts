@@ -5,14 +5,14 @@ import {
   generateRefreshToken,
   verifyRefreshToken,
 } from "@api/util/auth";
-import { user } from "@db";
+import { User } from "@db";
 
 const refreshController = async (req: Request, res: Response) => {
   const refreshToken = req.body.refreshToken;
 
   try {
     const verified = await verifyRefreshToken(refreshToken);
-    const user = await user.findFirst({
+    const user = await User.findFirst({
       where: { id: verified.user.id },
     });
 

@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
-import { post } from "@db";
+import { Post } from "@db";
 import access from "@api/middleware/access";
 
 const removeComment = async (req: Request, res: Response) => {
-  const comment = await post.findUnique({
+  const comment = await Post.findUnique({
     where: { id: req.params.id },
     select: { authorId: true },
   });
@@ -14,7 +14,7 @@ const removeComment = async (req: Request, res: Response) => {
     return res.status(403).json({ error: "ACCESS_FORBIDDEN" });
 
   try {
-    await post.delete({ where: { id: req.params.id } });
+    await Post.delete({ where: { id: req.params.id } });
     res.status(200).json({});
   } catch (e) {
     console.log(e);

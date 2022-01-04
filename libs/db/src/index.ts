@@ -2,11 +2,11 @@ import { PrismaClient } from "@prisma/client";
 
 const client = new PrismaClient();
 
-export const user = client.user;
-export const post = client.post;
-export const url = client.url;
-export const vote = client.vote;
-export const feedback = client.feedback;
+export const User = client.user;
+export const Post = client.post;
+export const Url = client.url;
+export const Vote = client.vote;
+export const Feedback = client.feedback;
 
 export const commentSelect = {
   id: true,

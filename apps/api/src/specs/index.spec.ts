@@ -39,19 +39,6 @@ describe("API Functionality", () => {
     expect(res.body.error).toBe("NOT_VERIFIED");
   });
 
-  it("should verify successfully", async () => {
-    const u = await user.findFirst({
-      where: { username: username },
-      select: { verification_token: true },
-    });
-
-    const res = await request.post("/auth/verify").send({
-      verificationToken: u.verification_token,
-    });
-
-    expect(res.status).toBe(200);
-  });
-
   it("should login successfully", async () => {
     const res = await request.post("/auth/login").send({
       username: username,

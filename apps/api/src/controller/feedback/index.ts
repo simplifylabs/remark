@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { validate, Joi } from "@api/middleware/validation";
-import { feedback } from "@db";
+import { Feedback } from "@db";
 
 const meUser = async (req: Request, res: Response) => {
   try {
-    await feedback.create({
+    await Feedback.create({
       data: {
         statements: req.body.statements,
         comment: req.body.comment,

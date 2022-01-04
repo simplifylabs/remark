@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
-import { post } from "@db";
+import { Post } from "@db";
 
 const commentUrl = async (req: Request, res: Response) => {
-  const comment = await post.findUnique({
+  const comment = await Post.findUnique({
     where: { id: req.params.id },
   });
 

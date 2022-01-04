@@ -2,10 +2,10 @@ import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
 import { randomBytes } from "crypto";
 import { sendResetEmail } from "@api/util/email";
-import { user } from "@db";
+import { User } from "@db";
 
 const forgotPassword = async (req: Request, res: Response) => {
-  const user = await user.findFirst({
+  const user = await User.findFirst({
     where: { email: req.body.email },
   });
 
@@ -15,7 +15,7 @@ const forgotPassword = async (req: Request, res: Response) => {
   const expires = new Date();
   expires.setHours(expires.getHours() + 1);
 
-  await user.update({
+  await User.update({
     where: {
       id: user.id,
     },
