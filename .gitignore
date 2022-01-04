@@ -1,6 +1,9 @@
 # enviroment files
 **/.env
 
+# certs
+.certs/
+
 # compiled output
 /dist
 **/dist/
