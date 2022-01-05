@@ -1,12 +1,20 @@
 # Build/Run Remark
 
+## Prequerities
+
+1. Node ([nodejs.org](https://nodejs.org/en/))
+2. Yarn (`npm i -g yarn`)
+3. NX Cli (`npm i -g @nrwl/cli`)
+
+## Global Setup
+
 Install all packages:
 
 ```bash
 yarn
 ```
 
-## API
+## API Setup
 
 ### Create certs
 
@@ -29,12 +37,6 @@ and edit .env and apps/api/.env to your needs!
 npm run prisma:dev
 ```
 
-# Prequerities
-
-1. Node ([nodejs.org](https://nodejs.org/en/))
-2. Yarn (`npm i -g yarn`)
-3. NX Cli (`npm i -g @nrwl/cli`)
-
 ## Contributing
 
-If you want to contribute, follow [CONTRIBUTING.md](CONTRIBUTING.md)
+If you want to contribute, follow [CONTRIBUTING.md](CONTRIBUTING.md).
