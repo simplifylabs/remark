@@ -20,8 +20,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: npm i
-      - run: npm run lint
+      - run: yarn 
+      - run: yarn lint 
       - name: Shutdown Ubuntu MySQL
         run: sudo service mysql stop
       - name: Setup MySQL
@@ -34,7 +34,7 @@ jobs:
           mysql user: 'remark'
           mysql password: 'remark'
       - name: Generate Keys
-        run: cd scripts && ./certs.sh
+        run: yarn certs 
       - name: Run API-Tests
         run: npm run api:test
         env:
