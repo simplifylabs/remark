@@ -2,16 +2,17 @@
 
 If you want to run any Remark application locally, follow these steps:
 
-1. Make sure all Prequerities are installed
-2. Follow [General Setup](SETUP.md#General-Setup)
+1. Make sure all Prequerities are installed.
+2. Follow [General Setup](SETUP.md#General-Setup).
 3. Follow [API](SETUP.md#API-Setup), [Web](SETUP.md#Web-Setup), [Browser](SETIP.md#Browser-Setup) and/or [CDN](SETIP.md#CDN-Setup) - depending on your needs!
-4. Want to contribute? Check [CONTRIBUTING.md](CONTRIBUTING.md)
+4. Want to contribute? Check [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Prequerities
 
-1. Node ([nodejs.org](https://nodejs.org/en/))
-2. Yarn (`npm i -g yarn`)
-3. NX Cli (`npm i -g @nrwl/cli`)
+1. Node ([nodejs.org](https://nodejs.org/en/download/))
+2. MySQL ([mysql.com](https://www.mysql.com/de/downloads/))
+3. Yarn (`npm i -g yarn`)
+4. NX Cli (`npm i -g @nrwl/cli`)
 
 ## General Setup
 
@@ -40,6 +41,12 @@ cp .env.template .env
 
 and Edit .env to your needs.
 
+5. Pull prisma
+
+```bash
+npm run prisma:dev
+```
+
 ## API Setup
 
 ### Create certs
@@ -56,12 +63,6 @@ cp apps/api/.env.template apps/api/.env
 ```
 
 and edit .env and apps/api/.env to your needs!
-
-### Pull prisma
-
-```bash
-npm run prisma:dev
-```
 
 ## Contributing
 
