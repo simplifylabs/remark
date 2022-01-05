@@ -9,7 +9,7 @@ Before opening an issue, please read this document first.
 
 Before you create a new issue yourself, check [open issues](https://github.com/simplifylabs/remark/issues) to see if the issue or feature request has already been filed.
 
-If you cannot find an existing issue that describes your bug or feature, create a new issue following ["Creating an Issue"](https://github.com/simplifylabs/remark/blob/main/CONTRIBUTING.md#Creating an Issue).
+If you cannot find an existing issue that describes your bug or feature, create a new issue following ["Creating an Issue"](https://github.com/simplifylabs/remark/blob/main/CONTRIBUTING.md#Creating-an-Issue).
 
 ### Reactions
 
