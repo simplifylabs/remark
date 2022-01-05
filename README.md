@@ -28,11 +28,17 @@ Replies, Mentions, Upvotes and Downvotes - we have everything you need! Thanks t
 
 You could possibly comment anywhere you want! Even on sites that don't have a comment system. And the best of it - you can do all of that with just one account!
 
+<br />
+
 ---
+
+<br />
 
 # Contribute
 
 Every contribution is welcome! Please commit any pull requests against the `main` branch. Learn more about how to contribute by reading the [`CONTRIBUTING.md`](CONTRIBUTING.md) file.
+
+<br />
 
 # Development Setup
 
