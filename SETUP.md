@@ -18,7 +18,7 @@ If you want to run any Remark application locally, follow these steps:
 
 1. Star & Fork the repository
 
-![Fork](https://imgur.com/GeR5OCY)
+![Fork](https://imgur.com/GeR5OCY.png)
 
 2. Clone your fork
 
@@ -39,7 +39,7 @@ yarn
 cp .env.template .env
 ```
 
-and Edit .env to your needs.
+and edit .env to your needs.
 
 5. Pull prisma
 
@@ -47,23 +47,22 @@ and Edit .env to your needs.
 npm run prisma:dev
 ```
 
+## Contributing
+
+If you want to contribute, follow [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## API Setup
 
-### Create certs
+1. Create certs
 
 ```
 yarn certs
 ```
 
-### Create .env
+2. Create .env
 
 ```
-cp .env.template .env
 cp apps/api/.env.template apps/api/.env
 ```
 
-and edit .env and apps/api/.env to your needs!
-
-## Contributing
-
-If you want to contribute, follow [CONTRIBUTING.md](CONTRIBUTING.md).
+and edit apps/api/.env to your needs.
