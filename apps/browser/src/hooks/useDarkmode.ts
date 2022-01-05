@@ -1,4 +1,4 @@
-import Darkmode from "@util/darkmode";
+import Darkmode from "@browser/util/darkmode";
 import { useEffect, useState } from "react";
 
 export default function useDarkmode() {

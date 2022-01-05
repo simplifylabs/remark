@@ -1,5 +1,5 @@
-import App from "@util/app";
-import { EventListener } from "@util/events";
+import App from "@browser/util/app";
+import { EventListener } from "@browser/util/events";
 type ITab = chrome.tabs.Tab;
 
 export default class Tab {

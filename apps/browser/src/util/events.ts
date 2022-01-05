@@ -1,10 +1,10 @@
-import { fetchComments } from "@actions/comment";
-import { setIsOnline } from "@actions/connection";
-import { checkLoggedIn } from "@actions/user";
-import { store } from "@state/index";
-import { Snackbar, Toast } from "@util/dialog";
-import Render from "@util/render";
-import Tab from "@util/tab";
+import { fetchComments } from "@browser/actions/comment";
+import { setIsOnline } from "@browser/actions/connection";
+import { checkLoggedIn } from "@browser/actions/user";
+import { store } from "@browser/state/index";
+import { Snackbar, Toast } from "@browser/util/dialog";
+import Render from "@browser/util/render";
+import Tab from "@browser/util/tab";
 
 // These types are used in other files
 export type EventListener = (...args: any[]) => void;

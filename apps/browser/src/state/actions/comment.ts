@@ -1,9 +1,9 @@
-import API, { Error } from "@util/api";
+import API, { Error } from "@browser/util/api";
 import query from "query-string";
 import { Dispatch } from "redux";
-import { Toast } from "@util/dialog";
+import { Toast } from "@browser/util/dialog";
 import { SHOW_SIDEBAR } from "./render";
-import { IComment } from "@state/reducers/commentReducer";
+import { IComment } from "@browser/state/reducers/commentReducer";
 
 export const SET_TYPING = "SET_TYPING";
 export const SET_SHARED = "SET_SHARED";

@@ -1,6 +1,6 @@
-import App from "@util/app";
-import Tab from "@util/tab";
-import User from "@util/user";
+import App from "@browser/util/app";
+import Tab from "@browser/util/tab";
+import User from "@browser/util/user";
 
 if (App.isDev()) require("crx-hotreload");
 

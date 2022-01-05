@@ -1,4 +1,4 @@
-import API, { Error, Res } from "@util/api";
+import API, { Error, Res } from "@browser/util/api";
 import Storage from "./storage";
 import Tab from "./tab";
 

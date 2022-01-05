@@ -1,4 +1,4 @@
-import Storage from "@util/storage";
+import Storage from "@browser/util/storage";
 
 type IListener = (to: boolean) => void;
 

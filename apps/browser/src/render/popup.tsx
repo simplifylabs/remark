@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { useAutoDarkmode } from "@hooks/useDarkmode";
+import { useAutoDarkmode } from "@browser/hooks/useDarkmode";
 import Home from "../popup/Home";
 import Settings from "../popup/Settings";
 import "../styles/popup.css";

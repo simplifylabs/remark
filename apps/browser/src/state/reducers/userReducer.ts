@@ -1,5 +1,5 @@
 import { AnyAction } from "redux";
-import { SET_LOGGED_IN, SET_ID } from "@actions/user";
+import { SET_LOGGED_IN, SET_ID } from "@browser/actions/user";
 
 export interface UserState {
   id: string;

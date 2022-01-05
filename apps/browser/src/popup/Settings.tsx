@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Title from "@components/Title";
-import Switch from "@components/Switch";
+import Title from "@browser/components/Title";
+import Switch from "@browser/components/Switch";
 import { ChevronLeftIcon } from "@heroicons/react/solid";
-import Darkmode from "@util/darkmode";
-import useDarkmode from "@hooks/useDarkmode";
-import Domain from "@util/domain";
-import User from "@util/user";
+import Darkmode from "@browser/util/darkmode";
+import useDarkmode from "@browser/hooks/useDarkmode";
+import Domain from "@browser/util/domain";
+import User from "@browser/util/user";
 
 interface IProps {
   back: () => void;

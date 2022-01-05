@@ -1,8 +1,8 @@
 import React from "react";
-import Fab from "@components/Fab";
-import Sidebar from "@components/Sidebar";
-import { DialogWrapper } from "@components/Dialog";
-import { connect, IRootState } from "@state/index";
+import Fab from "@browser/components/Fab";
+import Sidebar from "@browser/components/Sidebar";
+import { DialogWrapper } from "@browser/components/Dialog";
+import { connect, IRootState } from "@browser/state/index";
 
 interface IProps {
   rendered: boolean;

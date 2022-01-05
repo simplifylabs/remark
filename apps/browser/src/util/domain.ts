@@ -1,6 +1,6 @@
-import App from "@util/app";
-import Storage from "@util/storage";
-import Tab from "@util/tab";
+import App from "@browser/util/app";
+import Storage from "@browser/util/storage";
+import Tab from "@browser/util/tab";
 
 interface IBlockedResponse {
   disabled?: boolean;

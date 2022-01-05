@@ -5,7 +5,7 @@ import {
   HIDE_SIDEBAR,
   SHOW_SIDEBAR,
   DISABLE_RENDER,
-} from "@actions/render";
+} from "@browser/actions/render";
 import { AnyAction } from "redux";
 
 export interface RenderState {

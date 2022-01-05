@@ -1,10 +1,10 @@
-import {} from "@actions/dialog";
+import {} from "@browser/actions/dialog";
 import { AnyAction } from "redux";
 import {
   SET_IS_ONLINE,
   SET_CLIENT_ONLINE,
   SET_SERVER_ONLINE,
-} from "@actions/connection";
+} from "@browser/actions/connection";
 
 export interface ConnectionState {
   online: boolean;

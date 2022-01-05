@@ -1,20 +1,20 @@
 import React, { MutableRefObject, Fragment, useState } from "react";
-import { Server } from "@util/api";
-import { Toast, Modal } from "@util/dialog";
+import { Server } from "@browser/util/api";
+import { Toast, Modal } from "@browser/util/dialog";
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/solid";
 import { AnnotationIcon, ShareIcon, TrashIcon } from "@heroicons/react/outline";
-import { connect, IRootState } from "@state/index";
-import { IComment, IAuthor } from "@reducers/commentReducer";
+import { connect, IRootState } from "@browser/state/index";
+import { IComment, IAuthor } from "@browser/reducers/commentReducer";
 import {
   fetchComments,
   removeComment,
   voteComment,
   setReplying,
   setTyping,
-} from "@actions/comment";
+} from "@browser/actions/comment";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Loader from "@components/Loader";
-import App from "@util/app";
+import Loader from "@browser/components/Loader";
+import App from "@browser/util/app";
 
 interface ICommentsProps {
   input: MutableRefObject<HTMLTextAreaElement>;

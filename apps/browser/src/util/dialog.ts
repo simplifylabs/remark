@@ -4,9 +4,9 @@ import {
   removeModal,
   showModal,
   showSnackbar,
-} from "@actions/dialog";
+} from "@browser/actions/dialog";
 
-import Registry from "@state/registry";
+import Registry from "@browser/state/registry";
 
 export type level = "SUCCESS" | "ERROR";
 

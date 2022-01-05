@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { CogIcon } from "@heroicons/react/outline";
-import Title from "@components/Title";
-import Switch from "@components/Switch";
-import Domain from "@util/domain";
-import Tab from "@util/tab";
-import App from "@util/app";
-import User from "@util/user";
+import Title from "@browser/components/Title";
+import Switch from "@browser/components/Switch";
+import Domain from "@browser/util/domain";
+import Tab from "@browser/util/tab";
+import App from "@browser/util/app";
+import User from "@browser/util/user";
 
 interface IProps {
   settings: () => void;

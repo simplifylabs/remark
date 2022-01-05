@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { SET_TYPING } from "@actions/comment";
+import { SET_TYPING } from "@browser/actions/comment";
 
 export const SHOW_FAB = "SHOW_FAB";
 export const HIDE_FAB = "HIDE_FAB";

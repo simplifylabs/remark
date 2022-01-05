@@ -8,7 +8,7 @@ import {
   ADD_COMMENT_LIST,
   REMOVE_COMMENT,
   UPDATE_COMMENT,
-} from "@actions/comment";
+} from "@browser/actions/comment";
 
 export interface IComment {
   id: string;

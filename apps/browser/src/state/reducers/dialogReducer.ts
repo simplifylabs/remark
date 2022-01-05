@@ -6,7 +6,7 @@ import {
   HIDE_SNACKBAR,
   REMOVE_SNACKBAR,
   REMOVE_MODAL,
-} from "@actions/dialog";
+} from "@browser/actions/dialog";
 import { AnyAction } from "redux";
 
 export interface DialogState {

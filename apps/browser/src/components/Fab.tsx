@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { XIcon, PaperAirplaneIcon } from "@heroicons/react/solid";
-import { connect, IRootState } from "@state/index";
-import { showSidebar, hideSidebar } from "@actions/render";
-import Render from "@util/render";
+import { connect, IRootState } from "@browser/state/index";
+import { showSidebar, hideSidebar } from "@browser/actions/render";
+import Render from "@browser/util/render";
 
 interface IProps {
   showen: boolean;

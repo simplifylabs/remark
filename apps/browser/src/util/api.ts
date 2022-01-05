@@ -1,6 +1,6 @@
-import { Toast } from "@util/dialog";
-import Tab from "@util/tab";
-import User from "@util/user";
+import { Toast } from "@browser/util/dialog";
+import Tab from "@browser/util/tab";
+import User from "@browser/util/user";
 
 export interface Res {
   status: number;

@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Render from "@util/render";
-import Events from "@util/events";
-import Launcher from "@components/Launcher";
-import Registry from "@state/registry";
-import { store, Provider } from "@state/index";
-import "@styles/injected.css";
+import Render from "@browser/util/render";
+import Events from "@browser/util/events";
+import Launcher from "@browser/components/Launcher";
+import Registry from "@browser/state/registry";
+import { store, Provider } from "@browser/state/index";
+import "@browser/styles/injected.css";
 
 Events.listen();
 

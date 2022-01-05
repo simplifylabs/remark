@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState, MutableRefObject } from "react";
-import Darkmode from "@util/darkmode";
-import App from "@util/app";
-import API from "@util/api";
-import Render from "@util/render";
-import Comments from "@components/Comments";
+import Darkmode from "@browser/util/darkmode";
+import App from "@browser/util/app";
+import API from "@browser/util/api";
+import Render from "@browser/util/render";
+import Comments from "@browser/components/Comments";
 import { MentionsInput, Mention } from "react-mentions";
-import { connect, IRootState } from "@state/index";
-import { hideSidebar } from "@actions/render";
-import { setTyping, postComment } from "@actions/comment";
-import { IReply } from "@state/reducers/commentReducer";
+import { connect, IRootState } from "@browser/state/index";
+import { hideSidebar } from "@browser/actions/render";
+import { setTyping, postComment } from "@browser/actions/comment";
+import { IReply } from "@browser/state/reducers/commentReducer";
 
 interface ISidebarProps {
   showen: boolean;

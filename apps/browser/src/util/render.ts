@@ -1,5 +1,5 @@
-import { hideFab, showFab } from "@actions/render";
-import { store } from "@state/index";
+import { hideFab, showFab } from "@browser/actions/render";
+import { store } from "@browser/state/index";
 import Domain from "./domain";
 import { EventListener, IEventList } from "./events";
 
