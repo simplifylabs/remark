@@ -5,8 +5,8 @@ import env from "@api/util/env";
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   auth: {
-    user: env("EMAIL_USER"),
-    pass: env("EMAIL_PASS"),
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
   },
 });
 
@@ -17,6 +17,8 @@ export async function sendResetEmail(
   username: string,
   link: string
 ) {
+  if (!process.env.EMAIL_USER) return;
+
   const info = await transporter.sendMail({
     from: `Remark <${env("EMAIL_USER")}>`,
     to: email,
