@@ -19,10 +19,11 @@ yarn certs
 **Create .env**
 
 ```
+cp .env.template .env
 cp apps/api/.env.template apps/api/.env
 ```
 
-and edit apps/api/.env to your needs!
+and edit .env and apps/api/.env to your needs!
 
 **Pull prisma**
 

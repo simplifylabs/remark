@@ -21,7 +21,7 @@ const meUser = async (req: Request, res: Response) => {
 export default [
   validate({
     body: Joi.object({
-      statements: Joi.array().items(Joi.string().max(200)).required(),
+      statements: Joi.array().items(Joi.string().max(200)).max(10).required(),
       comment: Joi.string().max(3000).optional(),
     }),
   }),

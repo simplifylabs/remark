@@ -1,0 +1,43 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm i
+      - run: npm run lint
+      - name: Shutdown Ubuntu MySQL
+        run: sudo service mysql stop
+      - name: Setup MySQL
+        uses: mirromutth/mysql-action@v1.1
+        with:
+          character set server: 'utf8' 
+          collation server: 'utf8_general_ci'
+          mysql version: '8.0' 
+          mysql database: 'remark'
+          mysql user: 'remark'
+          mysql password: 'remark'
+      - name: Generate Keys
+        run: cd scripts && ./certs.sh
+      - name: Run API-Tests
+        run: npm run api:test
+        env:
+          NODE_ENV: development
+          PORT: 5050
+          DATABASE_URL: mysql://remark:remark@localhost:3306/remark

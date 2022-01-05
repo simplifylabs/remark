@@ -25,13 +25,13 @@ const forgotPassword = async (req: Request, res: Response) => {
     },
   });
 
-  res.status(200).json({});
-
-  sendResetEmail(
+  await sendResetEmail(
     user.email,
     user.username,
     `${process.env.HOST}/auth/reset?token=${token}`
   );
+
+  res.status(200).json({});
 };
 
 export default [
