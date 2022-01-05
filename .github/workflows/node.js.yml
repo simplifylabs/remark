@@ -36,7 +36,7 @@ jobs:
       - name: Generate Keys
         run: yarn certs 
       - name: Run API-Tests
-        run: npm run api:test
+        run: yarn test
         env:
           NODE_ENV: development
           PORT: 5050
