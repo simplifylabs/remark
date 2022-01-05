@@ -43,9 +43,9 @@ yarn
 cp .env.template .env
 ```
 
-and edit .env to your needs.
+5. Edit .env to your needs
 
-5. Pull prisma
+6. Pull prisma
 
 ```bash
 npm run prisma:dev
@@ -67,7 +67,7 @@ yarn certs
 cp apps/api/.env.template apps/api/.env
 ```
 
-and edit apps/api/.env to your needs.
+3. Edit apps/api/.env to your needs.
 
 <br />
 
