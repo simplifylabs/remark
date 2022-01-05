@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand: 99, 102, 241;
+    --brand-light: 104, 117, 237;
+    --brand-100: 224, 231, 255;
+    --brand-700: 67, 56, 202;
+
+    --bg-light: 240, 245, 251;
+    --bg-dark: 40, 44, 52;
+  }
+
+  * {
+    @apply m-0 p-0 text-base font-inter;
+  }
+
+  body {
+    @apply bg-background-light dark:bg-background-dark;
+  }
+
+  [type="text"],
+  [type="email"] {
+    @apply form-input border-gray-200 rounded-md shadow-sm bg-white dark:bg-white/10 dark:text-white dark:border-gray-700 focus:caret-brand text-black py-[0.6rem] outline-none focus:ring-brand dark:focus:ring-brand;
+  }
+
+  button {
+    @apply outline-none font-medium cursor-pointer select-none focus:outline-none;
+  }
+
+  .fade {
+    @apply transition-all duration-150 ease-in-out;
+  }
+
+  .link {
+    @apply text-brand dark:text-brand hover:text-gray-700 dark:hover:text-gray-400 cursor-pointer fade;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand text-white hover:bg-brand-light;
+  }
+
+  .btn-secondary {
+    @apply btn bg-brand/10 text-brand hover:shadow-sm;
+  }
+
+  .btn-outline {
+    @apply btn border-gray-300 hover:border-gray-400 focus:border-gray-400 dark:border-gray-700 border-2 text-gray-700 dark:text-gray-300 hover:shadow-sm;
+  }
+
+  .btn-disabled {
+    @apply btn bg-black/10 dark:bg-white/10 text-gray-500 dark:text-gray-400;
+  }
+
+  .btn {
+    @apply flex flex-row justify-center items-center gap-2 px-7 py-2.5 rounded-md select-none cursor-pointer fade;
+  }
+
+  .text-default {
+    @apply text-black dark:text-white;
+  }
+
+  a {
+    @apply link;
+  }
+
+  .toggle:checked + label {
+    @apply bg-brand;
+  }
+}

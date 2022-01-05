@@ -15,11 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@db": ["libs/db/src/index.ts"],
-      "@api/router/*": ["apps/api/src/router/*"],
       "@api/controller/*": ["apps/api/src/controller/*"],
+      "@api/middleware/*": ["apps/api/src/middleware/*"],
+      "@api/router/*": ["apps/api/src/router/*"],
       "@api/util/*": ["apps/api/src/util/*"],
-      "@api/middleware/*": ["apps/api/src/middleware/*"]
+      "@db": ["libs/db/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

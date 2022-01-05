@@ -1,0 +1,48 @@
+{
+  "manifest_version": 2,
+  "name": "Remark",
+  "short_name": "Remark",
+  "version": "0.0.1",
+  "description": "Uncensored Comments, anywhere.",
+  "author": "Simplify Software",
+  "homepage_url": "https://getremark.com/",
+  "icons": {
+    "64": "assets/icon/64.png",
+    "128": "assets/icon/128.png",
+    "256": "assets/icon/256.png"
+  },
+  "web_accessible_resources": [
+    "assets/*.png",
+    "assets/*.svg",
+    "assets/icon/*.png"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["render/injected.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "scripts": ["scripts/background.js"]
+  },
+  "browser_action": {
+    "default_title": "Create Remark",
+    "default_popup": "html/popup.html"
+  },
+  "externally_connectable": {
+    "matches": ["*://*.getremark.com/*", "*://localhost/*"]
+  },
+  "permissions": [
+    "http://*/*",
+    "https://*/*",
+    "tabs",
+    "storage",
+    "unlimitedStorage",
+    "notifications",
+    "idle",
+    "webRequest",
+    "webRequestBlocking"
+  ],
+  "optional_permissions": []
+}
