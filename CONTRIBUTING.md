@@ -31,6 +31,8 @@ These are the steps to create an issue:
 
 ## Creating a Pull Request
 
+> Not sure how to setup Remark locally? Check [SETUP.md](SETUP.md).
+
 Checklist for creating a PR:
 
 - [ ] The PR is commited against the `main` branch.
