@@ -32,14 +32,16 @@ You could possibly comment anywhere you want! Even on sites that don't have a co
 
 ---
 
+# Developement
+
 <br />
 
-# Contribute
+## Contribute
 
 Every contribution is welcome! Please commit any pull requests against the `main` branch. Learn more about how to contribute by reading the [`CONTRIBUTING.md`](CONTRIBUTING.md) file.
 
 <br />
 
-# Development Setup
+## Setup
 
 If you want to setup Remark locally, follow the [`SETUP.md`](SETUP.md) file.
