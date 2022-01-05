@@ -11,9 +11,9 @@ module.exports = function (_, env) {
     mode: env.mode == "production" ? "production" : "development",
     devtool: env.mode == "production" ? "source-map" : "inline-source-map",
     entry: {
-      "render/popup": "./src/render/popup.tsx",
-      "render/injected": "./src/render/injected.tsx",
-      "scripts/background": "./src/scripts/background.ts",
+      "render/popup": "apps/browser/src/render/popup.tsx",
+      "render/injected": "apps/browser/src/render/injected.tsx",
+      "scripts/background": "apps/browser/src/scripts/background.ts",
     },
     resolve: {
       extensions: [".tsx", ".ts", ".js"],
@@ -101,11 +101,11 @@ module.exports = function (_, env) {
       }),
       // new CopyWebpackPlugin({
       //   patterns: [
-      //     "./apps/browser/src/manifest.json",
+      //     "apps/browser/src/manifest.json",
       //     { from: "./apps/browser/assets", to: "assets" },
       //   ],
       // }),
-      env.mode == "production" && new BundleAnalyzerPlugin(),
+      // env.mode == "production" && new BundleAnalyzerPlugin(),
     ].filter((p) => p !== false),
   };
 };

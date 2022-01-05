@@ -1,6 +1,7 @@
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
+    "esModuleInterop": true,
     "outDir": "../dist/out-tsc/tools",
     "rootDir": ".",
     "module": "commonjs",

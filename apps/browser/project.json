@@ -4,46 +4,9 @@
   "sourceRoot": "apps/browser/src",
   "tags": [],
   "targets": {
-    "build": {
-      "executor": "@nrwl/web:webpack",
-      "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
-      "options": {
-        "outputPath": "dist/apps/browser",
-        "compiler": "babel",
-        "baseHref": "/",
-        "main": "apps/browser/src/main.ts",
-        "polyfills": "apps/browser/src/polyfills.ts",
-        "tsConfig": "apps/browser/tsconfig.json",
-        "webpackConfig": "apps/browser/webpack.config.js"
-      },
-      "configurations": {
-        "production": {
-          "fileReplacements": [
-            {
-              "replace": "apps/browser/src/environments/environment.ts",
-              "with": "apps/browser/src/environments/environment.prod.ts"
-            }
-          ],
-          "optimization": true,
-          "outputHashing": "all",
-          "sourceMap": false,
-          "namedChunks": false,
-          "extractLicenses": true,
-          "vendorChunk": false
-        }
-      }
-    },
     "serve": {
-      "executor": "@nrwl/web:dev-server",
-      "options": {
-        "buildTarget": "browser:build"
-      },
-      "configurations": {
-        "production": {
-          "buildTarget": "browser:build:production"
-        }
-      }
+      "executor": "./tools/executors/webpack:webpack",
+      "options": {}
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",

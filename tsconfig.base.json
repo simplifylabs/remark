@@ -19,6 +19,15 @@
       "@api/middleware/*": ["apps/api/src/middleware/*"],
       "@api/router/*": ["apps/api/src/router/*"],
       "@api/util/*": ["apps/api/src/util/*"],
+      "@browser/state/*": ["apps/browser/src/state/*"],
+      "@browser/actions/*": ["apps/browser/src/state/actions/*"],
+      "@browser/reducers/*": ["apps/browser/src/state/reducers/*"],
+      "@browser/components/*": ["apps/browser/src/components/*"],
+      "@browser/hooks/*": ["apps/browser/src/hooks/*"],
+      "@browser/pages/*": ["apps/browser/src/pages/*"],
+      "@browser/render/*": ["apps/browser/src/render/*"],
+      "@browser/styles/*": ["apps/browser/src/styles/*"],
+      "@browser/util/*": ["apps/browser/src/util/*"],
       "@db": ["libs/db/src/index.ts"]
     }
   },
