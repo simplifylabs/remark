@@ -15,7 +15,7 @@ export function env(key: string) {
   return process.env[key];
 }
 
-export function loadEnv() {
+export function load() {
   dotenv.config({ path: globalEnv });
   dotenv.config({ path: localEnv });
 }
