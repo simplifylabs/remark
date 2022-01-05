@@ -7,6 +7,8 @@ If you want to run any Remark application locally, follow these steps:
 3. Follow [API](SETUP.md#API-Setup), [Web](SETUP.md#Web-Setup), [Browser](SETIP.md#Browser-Setup) and/or [CDN](SETIP.md#CDN-Setup) - depending on your needs!
 4. Want to contribute? Check [CONTRIBUTING.md](CONTRIBUTING.md).
 
+<br />
+
 ## Prequerities
 
 1. Node ([nodejs.org](https://nodejs.org/en/download/))
