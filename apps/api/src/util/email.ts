@@ -1,5 +1,4 @@
 import fs from "fs";
-import path from "path";
 import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
@@ -10,10 +9,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const resetEmail = fs.readFileSync(
-  path.join(__dirname, "email", "reset.html"),
-  "utf-8"
-);
+const resetEmail = fs.readFileSync("./apps/api/email/reset.html", "utf-8");
 
 export async function sendResetEmail(
   email: string,

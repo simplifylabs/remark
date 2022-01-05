@@ -36,8 +36,10 @@ app.use((_, res) => {
 });
 
 // Start the server
-app.listen(process.env.PORT, () => {
-  console.info(`Remark API is listening on port ${process.env.PORT}`);
-});
+if (process.env.NODE_ENV !== "test") {
+  app.listen(process.env.PORT, () => {
+    console.info(`Remark API is listening on port ${process.env.PORT}`);
+  });
+}
 
 export const server = app;

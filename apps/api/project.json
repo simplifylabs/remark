@@ -10,7 +10,7 @@
         "outputPath": "apps/api/dist/",
         "main": "apps/api/src/app.ts",
         "tsConfig": "apps/api/tsconfig.app.json",
-        "assets": ["apps/api/src/email/"]
+        "assets": []
       },
       "configurations": {
         "production": {
@@ -38,6 +38,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/apps/api"],
       "options": {
+        "outputPath": "apps/api/dist/",
         "jestConfig": "apps/api/jest.config.js",
         "passWithNoTests": true
       }

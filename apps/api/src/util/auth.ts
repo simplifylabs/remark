@@ -1,11 +1,9 @@
+import { sign, verify, JwtPayload } from "jsonwebtoken";
 import { User } from "@prisma/client";
 import fs from "fs";
-import path from "path";
-import { sign, verify, JwtPayload } from "jsonwebtoken";
 
-const rootPath = path.join(__dirname, "..", "..", "..");
-const publicPath = path.join(rootPath, ".certs", "public.pem");
-const privatePath = path.join(rootPath, ".certs", "private.pem");
+const publicPath = "./.certs/public.pem";
+const privatePath = "./.certs/private.pem";
 
 if (!fs.existsSync(privatePath)) {
   console.error("Private key not set. Make sure .certs/private.pem exists!");

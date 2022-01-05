@@ -1,15 +1,15 @@
 import dotenv from "dotenv";
 import fs from "fs";
-import path from "path";
-
-const envPath = path.join(__dirname, "..", ".env");
 
 export default function loadEnv() {
-  if (exists() && validate()) dotenv.config({ path: envPath });
+  if (exists() && validate()) {
+    dotenv.config({ path: "./apps/api/.env" });
+    if (process.env.JEST_WORKER_ID) process.env.NODE_ENV = "test";
+  }
 }
 
 function exists(): boolean {
-  if (!fs.existsSync(envPath)) {
+  if (!fs.existsSync("./apps/api/.env")) {
     console.error(".env doesn't exist! Use .env.template to create it.");
     process.exit(1);
   }
@@ -17,8 +17,8 @@ function exists(): boolean {
 }
 
 function validate(): boolean {
-  const parsed = dotenv.parse(fs.readFileSync(envPath));
-  const template = dotenv.parse(fs.readFileSync(`${envPath}.template`));
+  const parsed = dotenv.parse(fs.readFileSync("./apps/api/.env"));
+  const template = dotenv.parse(fs.readFileSync("./apps/api/.env.template"));
 
   const missing: string[] = [];
   Object.keys(template).forEach((key) => {
