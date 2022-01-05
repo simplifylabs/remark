@@ -63,7 +63,11 @@ cp apps/api/.env.template apps/api/.env
 
 and edit apps/api/.env to your needs.
 
+<br />
+
 ---
+
+<br />
 
 ## Contributing
 
