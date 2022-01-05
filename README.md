@@ -1,4 +1,6 @@
-# Remark
+<p align="center">
+  <h1>Remark</h1>
+</p>
 
 ## Installation
 
