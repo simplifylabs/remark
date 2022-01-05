@@ -7,16 +7,5 @@
     "jsx": "react"
   },
   "exclude": ["**/*.spec.ts", "**/*.test.ts"],
-  "include": ["**/*.ts", "**/*.tsx"],
-  "paths": {
-    "@state/*": ["state/*"],
-    "@actions/*": ["state/actions/*"],
-    "@reducers/*": ["state/reducers/*"],
-    "@components/*": ["components/*"],
-    "@hooks/*": ["hooks/*"],
-    "@pages/*": ["pages/*"],
-    "@render/*": ["render/*"],
-    "@styles/*": ["styles/*"],
-    "@util/*": ["util/*"]
-  }
+  "include": ["**/*.ts", "**/*.tsx"]
 }
