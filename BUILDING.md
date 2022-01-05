@@ -37,4 +37,4 @@ npm run prisma:dev
 
 ## Contributing
 
-If you want to contribute, follow [CONTRIBUTE.md](CONTRIBUTE.md)
+If you want to contribute, follow [CONTRIBUTING.md](CONTRIBUTING.md)
