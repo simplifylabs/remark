@@ -1,4 +1,11 @@
-# Build/Run Remark
+# Remark Setup
+
+If you want to run any Remark application locally, follow these steps:
+
+1. Make sure all Prequerities are installed
+2. Follow [General Setup](SETUP.md#General-Setup)
+3. Follow [API](SETUP.md#API-Setup), [Web](SETUP.md#Web-Setup), [Browser](SETIP.md#Browser-Setup) and/or [CDN](SETIP.md#CDN-Setup) - depending on your needs!
+4. Want to contribute? Check [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Prequerities
 
@@ -6,13 +13,32 @@
 2. Yarn (`npm i -g yarn`)
 3. NX Cli (`npm i -g @nrwl/cli`)
 
-## Global Setup
+## General Setup
 
-Install all packages:
+1. Star & Fork the repository
+
+![Fork](https://imgur.com/GeR5OCY)
+
+2. Clone your fork
+
+```bash
+git clone git@github.com:USERNAME/remark.git
+cd remark
+```
+
+3. Install all dependencies
 
 ```bash
 yarn
 ```
+
+4. Create global .env from template
+
+```bash
+cp .env.template .env
+```
+
+and Edit .env to your needs.
 
 ## API Setup
 

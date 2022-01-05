@@ -29,4 +29,12 @@ These are the steps to create an issue:
 5. Check if there is any other useful information, not mentioned yet.
 6. Submit!
 
+## Creating a Pull Request
+
+Checklist for creating a PR:
+
+- [ ] The PR is commited against the `main` branch.
+- [ ] I did not commit any trash.
+- [ ] I mentioned all relevant Issues.
+
 ## Thank You! ❤️
