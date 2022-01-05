@@ -1,6 +1,9 @@
 <h1 align="center">Remark</h1>
 <p align="center">Uncensored comments, anywhere.</p>
 
+![Example](https://imgur.com/JsNeGCv.png)
+
+<br />
 <!-- TODO: Update href's -->
 <p align="center">
   <a href="https://chrome.google.com/webstore/detail/remark/x" target="_blank"><img src="https://imgur.com/3C4iKO0.png" width="64" height="64"></a>
@@ -11,6 +14,7 @@
   <a href="https://chrome.google.com/webstore/detail/remark/x" target="_blank"><img src="https://imgur.com/z8yjLZ2.png" width="64" height="64"></a>
   <a href="https://addons.mozilla.org/firefox/addon/remark/" target="_blank"><img src="https://imgur.com/MQYBSrD.png" width="64" height="64"></a>
 </p>
+<br />
 
 ## Uncensored
 
@@ -24,11 +28,19 @@ Replies, Mentions, Upvotes and Downvotes - we have everything you need! Thanks t
 
 You could possibly comment anywhere you want! Even on sites that don't have a comment system. And the best of it - you can do all of that with just one account!
 
+<br />
+
+---
+
+<br />
+
 # Contribute
 
 Every contribution is welcome! Please commit any pull requests against the `main` branch. Learn more about how to contribute by reading the [`CONTRIBUTING.md`](CONTRIBUTING.md) file.
 
-# Installation
+# Build
+
+If you want to run/build any Remark app, follow the [`BUILDING.md`](BUILDING.md) file.
 
 Install all packages:
 
