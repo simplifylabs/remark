@@ -61,7 +61,6 @@
     "eslint-config-prettier": "8.1.0",
     "jest": "27.2.3",
     "module-alias": "^2.2.2",
-    "nx": "^13.4.3",
     "prettier": "^2.3.1",
     "prisma": "^3.7.0",
     "run-script-os": "^1.1.6",
