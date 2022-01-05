@@ -1,5 +1,6 @@
 import { sign, verify, JwtPayload } from "jsonwebtoken";
 import { User } from "@prisma/client";
+import { env } from "@api/util/env";
 import fs from "fs";
 
 const publicPath = "./.certs/public.pem";
@@ -29,7 +30,7 @@ export function generateAccessToken(user: User) {
       expiresIn: "15m",
       issuer: "Remark",
       subject: user.id.toString(),
-      audience: process.env.HOST,
+      audience: env("HOST"),
       algorithm: "RS256",
     }
   );
@@ -40,7 +41,7 @@ export function generateRefreshToken(user: User) {
     expiresIn: "10y",
     issuer: "Remark",
     subject: user.id.toString(),
-    audience: process.env.HOST,
+    audience: env("HOST"),
     algorithm: "RS256",
   });
 }
@@ -50,7 +51,7 @@ export async function verifyAccessToken(
 ): Promise<JwtPayload> {
   const verified: string | JwtPayload = verify(accessToken, publicKey, {
     issuer: "Remark",
-    audience: process.env.HOST,
+    audience: env("HOST"),
   });
 
   // Payload will never be a string

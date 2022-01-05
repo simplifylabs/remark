@@ -1,11 +1,12 @@
 import fs from "fs";
 import nodemailer from "nodemailer";
+import env from "@api/util/env";
 
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    user: env("EMAIL_USER"),
+    pass: env("EMAIL_PASS"),
   },
 });
 
@@ -17,7 +18,7 @@ export async function sendResetEmail(
   link: string
 ) {
   const info = await transporter.sendMail({
-    from: `Remark <${process.env.EMAIL_USER}>`,
+    from: `Remark <${env("EMAIL_USER")}>`,
     to: email,
     subject: "Remark - Reset your password.",
     html: resetEmail.replace(/%LINK%/g, link).replace(/%USERNAME%/g, username),

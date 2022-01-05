@@ -1,9 +1,10 @@
 require("module-alias/register");
+require("@api/util/env").load();
 require("@api/util/logger")();
-require("@api/util/dotenv")();
 
 import express from "express";
 import cookies from "cookie-parser";
+import env from "@api/util/env";
 import cors from "@api/middleware/cors";
 import error from "@api/middleware/error";
 import auth from "@api/router/auth";
@@ -37,8 +38,8 @@ app.use((_, res) => {
 
 // Start the server
 if (process.env.JEST_WORKER_ID == undefined) {
-  app.listen(process.env.PORT, () => {
-    console.info(`Remark API is listening on port ${process.env.PORT}`);
+  app.listen(env("PORT"), () => {
+    console.info(`Remark API is listening on port ${env("PORT")}`);
   });
 }
 

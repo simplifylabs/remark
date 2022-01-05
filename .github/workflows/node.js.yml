@@ -41,3 +41,6 @@ jobs:
           NODE_ENV: development
           PORT: 5050
           DATABASE_URL: mysql://remark:remark@localhost:3306/remark
+          HOST: http://localhost:3000
+          EMAIL_USER:  
+          EMAIL_PASS:  

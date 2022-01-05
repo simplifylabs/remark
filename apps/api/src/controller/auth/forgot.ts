@@ -3,6 +3,7 @@ import { Joi, prefabs, validate } from "@api/middleware/validation";
 import { randomBytes } from "crypto";
 import { sendResetEmail } from "@api/util/email";
 import { User } from "@db";
+import { env } from "@api/util/env";
 
 const forgotPassword = async (req: Request, res: Response) => {
   const user = await User.findFirst({
@@ -28,7 +29,7 @@ const forgotPassword = async (req: Request, res: Response) => {
   await sendResetEmail(
     user.email,
     user.username,
-    `${process.env.HOST}/auth/reset?token=${token}`
+    `${env("HOST")}/auth/reset?token=${token}`
   );
 
   res.status(200).json({});
