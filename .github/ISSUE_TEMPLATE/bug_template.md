@@ -13,14 +13,9 @@ When I do Foo, Bar happens...
 
 ### Expected Results / Possible Fix
 
-I expect the app to do Foobar...
-
-Maybe by adding Foobaz support...
+Maybe by adding Foo support...
 
 ### Give use some context
 
-<!-- the more context you provide, the better, thank you -->
-
 Any screenshots to share?
-
-Anything else you want to tell us, like your favorite cheese?
+Anything else you want to tell us?
