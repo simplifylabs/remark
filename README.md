@@ -34,13 +34,9 @@ You could possibly comment anywhere you want! Even on sites that don't have a co
 
 # Developement
 
-<br />
-
 ## Contribute
 
 Every contribution is welcome! Please commit any pull requests against the `main` branch. Learn more about how to contribute by reading the [`CONTRIBUTING.md`](CONTRIBUTING.md) file.
-
-<br />
 
 ## Setup
 
