@@ -2,7 +2,7 @@
 
 If you want to run any Remark application locally, follow these steps:
 
-1. Make sure all Prequerities are installed.
+1. Make sure all [General Setup](SETUP.md#Prequerities) are installed.
 2. Follow [General Setup](SETUP.md#General-Setup).
 3. Follow [API](SETUP.md#API-Setup), [Web](SETUP.md#Web-Setup), [Browser](SETIP.md#Browser-Setup) and/or [CDN](SETIP.md#CDN-Setup) - depending on your needs!
 4. Want to contribute? Check [CONTRIBUTING.md](CONTRIBUTING.md).
