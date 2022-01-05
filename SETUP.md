@@ -47,10 +47,6 @@ and edit .env to your needs.
 npm run prisma:dev
 ```
 
-## Contributing
-
-If you want to contribute, follow [CONTRIBUTING.md](CONTRIBUTING.md).
-
 ## API Setup
 
 1. Create certs
@@ -66,3 +62,9 @@ cp apps/api/.env.template apps/api/.env
 ```
 
 and edit apps/api/.env to your needs.
+
+---
+
+## Contributing
+
+If you want to contribute, follow [CONTRIBUTING.md](CONTRIBUTING.md).
