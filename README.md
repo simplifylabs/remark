@@ -28,11 +28,7 @@ Replies, Mentions, Upvotes and Downvotes - we have everything you need! Thanks t
 
 You could possibly comment anywhere you want! Even on sites that don't have a comment system. And the best of it - you can do all of that with just one account!
 
-<br />
-
 ---
-
-<br />
 
 # Contribute
 
