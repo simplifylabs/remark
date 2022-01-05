@@ -14,6 +14,8 @@ If you want to run any Remark application locally, follow these steps:
 3. Yarn (`npm i -g yarn`)
 4. NX Cli (`npm i -g @nrwl/cli`)
 
+<br />
+
 ## General Setup
 
 1. Star & Fork the repository
@@ -47,6 +49,8 @@ and edit .env to your needs.
 npm run prisma:dev
 ```
 
+<br />
+
 ## API Setup
 
 1. Create certs
@@ -62,10 +66,6 @@ cp apps/api/.env.template apps/api/.env
 ```
 
 and edit apps/api/.env to your needs.
-
-<br />
-
----
 
 <br />
 
