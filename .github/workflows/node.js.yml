@@ -9,17 +9,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x]
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 14.x
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          node-version: 14.x 
+          cache: 'yarn'
       - run: yarn 
       - run: yarn lint 
       - name: Shutdown Ubuntu MySQL
@@ -42,5 +38,3 @@ jobs:
           PORT: 5050
           DATABASE_URL: mysql://remark:remark@localhost:3306/remark
           HOST: http://localhost:3000
-          EMAIL_USER:  
-          EMAIL_PASS:  
