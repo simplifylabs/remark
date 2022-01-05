@@ -68,9 +68,3 @@ cp apps/api/.env.template apps/api/.env
 ```
 
 3. Edit apps/api/.env to your needs.
-
-<br />
-
-## Contributing
-
-If you want to contribute, follow [CONTRIBUTING.md](CONTRIBUTING.md).
