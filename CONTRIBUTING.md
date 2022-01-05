@@ -1,12 +1,14 @@
 # Contributing to Remark
 
 Thanks for you interest in contributing to [Remark](https://getremark.com/)!
+
 We appreciate every kind of contribution, be it a bug report, feature request or just feedback!
 Before opening an issue, please read this document first.
 
 ## Existing Issue
 
 Before you create a new issue yourself, check [open issues](https://github.com/simplifylabs/remark/issues) to see if the issue or feature request has already been filed.
+
 If you cannot find an existing issue that describes your bug or feature, create a new issue following ["Creating an Issue"](https://github.com/simplifylabs/remark/blob/main/CONTRIBUTING.md#Creating an Issue).
 
 ### Reactions
@@ -27,4 +29,4 @@ These are the steps to create an issue:
 5. Check if there is any other useful information, not mentioned yet.
 6. Submit!
 
-# Thank You! ❤️
+## Thank You! ❤️
