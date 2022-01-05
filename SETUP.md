@@ -67,4 +67,26 @@ yarn certs
 cp apps/api/.env.template apps/api/.env
 ```
 
+## Web Setup
+
+1. Create .env
+
+```
+cp apps/api/.env.template apps/api/.env
+```
+
+3. Edit apps/api/.env to your needs.
+
+## Browser Setup
+
+## CDN Setup
+
+> Depends on [API](SETUP.md#API)
+
+1. Create .env
+
+```
+cp apps/api/.env.template apps/api/.env
+```
+
 3. Edit apps/api/.env to your needs.
