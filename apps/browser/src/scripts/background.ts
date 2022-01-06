@@ -2,6 +2,9 @@ import App from "@browser/util/app";
 import Tab from "@browser/util/tab";
 import User from "@browser/util/user";
 
+// eslint-disable-next-line
+type Data = { [key: string]: any };
+
 if (App.isDev()) require("crx-hotreload");
 
 chrome.runtime.setUninstallURL(`${App.webUrl}uninstall`);
@@ -28,7 +31,7 @@ chrome.runtime.onMessageExternal.addListener((req, _, res) => {
   return true;
 });
 
-async function handleExternalRequest(req: any, res: (data: any) => void) {
+async function handleExternalRequest(req: Data, res: (data: Data) => void) {
   if (!req.type) res({ success: false });
   switch (req.type) {
     case "PING":
@@ -56,17 +59,21 @@ async function handleExternalRequest(req: any, res: (data: any) => void) {
       res(await User.me(true));
       break;
     case "CLOSE":
-      const result = await Tab.close(req.url);
-      setTimeout(() => Tab.reload(), 1000);
-      res({ success: result !== null });
+      res(await closeTab(req));
       break;
     default:
       res({ success: false });
   }
 }
 
-async function handleInternalRequest(req: any, res: (data: any) => void) {
-  switch (req) {
+async function closeTab(req: Data) {
+  const result = await Tab.close(req.url);
+  setTimeout(() => Tab.reload(), 1000);
+  return { success: result !== null };
+}
+
+async function handleInternalRequest(type: string, res: (data: Data) => void) {
+  switch (type) {
     case "LOGOUT":
       res(await User.logout(false, true));
       break;

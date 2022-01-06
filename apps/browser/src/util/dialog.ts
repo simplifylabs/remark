@@ -16,6 +16,7 @@ class ID {
   }
 }
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export class Snackbar {
   static success(text: string) {
     const id = ID.generate();
@@ -98,3 +99,4 @@ export class Modal {
     Registry.store.dispatch(removeModal(id) as any);
   }
 }
+/* eslint-enable @typescript-eslint/no-explicit-any */

@@ -2,6 +2,11 @@ import App from "@browser/util/app";
 import { EventListener } from "@browser/util/events";
 type ITab = chrome.tabs.Tab;
 
+type Data = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
+};
+
 export default class Tab {
   static events: EventListener[] = [];
 
@@ -9,7 +14,7 @@ export default class Tab {
     this.events.push(listener);
   }
 
-  static call(data: any) {
+  static call(data: Data) {
     this.events.forEach((func) => {
       func(data);
     });
@@ -39,7 +44,7 @@ export default class Tab {
     });
   }
 
-  static find(url: string): Promise<ITab> {
+  static async find(url: string): Promise<ITab> {
     return new Promise((res) => {
       chrome.tabs.query({ url: url }, (tabs) => {
         res(tabs[0]);
@@ -47,50 +52,39 @@ export default class Tab {
     });
   }
 
-  static reload(): Promise<void> {
-    return new Promise(async (res) => {
-      const tab = await this.getCurrent();
-      chrome.tabs.reload(tab.id);
-      res();
-    });
+  static async reload(): Promise<void> {
+    const tab = await this.getCurrent();
+    chrome.tabs.reload(tab.id);
   }
 
-  static close(url: string): Promise<void> {
-    return new Promise(async (res) => {
-      const count = await this.count();
-      if (count <= 1) return res(null);
-      const tab = await this.find(url);
-      chrome.tabs.remove(tab.id);
-      res();
-    });
+  static async close(url: string): Promise<void> {
+    const count = await this.count();
+    if (count <= 1) return;
+
+    const tab = await this.find(url);
+    chrome.tabs.remove(tab.id);
   }
 
-  static send(type: string, data: any = {}): Promise<void> {
-    return new Promise(async (res) => {
-      if (App.isInjected()) return this.call({ ...data, type: type });
+  static async send(type: string, data: Data = {}): Promise<void> {
+    if (App.isInjected()) {
+      this.call({ ...data, type: type });
+      return;
+    }
 
-      const tab = await Tab.getCurrent();
+    const tab = await Tab.getCurrent();
+    chrome.tabs.sendMessage(tab.id, { ...data, type: type });
+  }
+
+  static async sendAll(type: string, data: Data = {}): Promise<void> {
+    if (App.isInjected()) return this.call({ ...data, type: type });
+
+    const tabs = await Tab.getAll();
+    tabs.forEach((tab) => {
       chrome.tabs.sendMessage(tab.id, { ...data, type: type });
-      res();
     });
   }
 
-  static sendAll(type: string, data: any = {}): Promise<void> {
-    return new Promise(async (res) => {
-      if (App.isInjected()) return this.call({ ...data, type: type });
-
-      const tabs = await Tab.getAll();
-      tabs.forEach((tab) => {
-        chrome.tabs.sendMessage(tab.id, { ...data, type: type });
-      });
-      res();
-    });
-  }
-
-  static open(url: string): Promise<void> {
-    return new Promise(async (res) => {
-      chrome.tabs.create({ url: url });
-      res();
-    });
+  static async open(url: string): Promise<void> {
+    await chrome.tabs.create({ url: url });
   }
 }

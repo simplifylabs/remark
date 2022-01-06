@@ -5,8 +5,8 @@ import { EventListener, IEventList } from "./events";
 
 export default class Render {
   static events: IEventList = {};
-  static isRendered: boolean = false;
-  static isShowen: boolean = false;
+  static isRendered = false;
+  static isShowen = false;
 
   // Other known fab's
   static fabList: string[] = [
@@ -94,9 +94,11 @@ export default class Render {
 
     if (!disabled && !blocked && document.fullscreenElement == null) {
       if (!this.isRendered) return Render.call("render");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       store.dispatch(showFab() as any);
     } else {
       if (!this.isRendered) return;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       store.dispatch(hideFab() as any);
     }
   }

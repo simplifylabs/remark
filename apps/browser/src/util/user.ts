@@ -2,6 +2,11 @@ import API, { Error, Res } from "@browser/util/api";
 import Storage from "./storage";
 import Tab from "./tab";
 
+type Data = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
+};
+
 export default class User {
   static accessTokenCache = "";
   static refreshTokenCache = "";
@@ -20,7 +25,7 @@ export default class User {
     return this.refreshTokenCache;
   }
 
-  static setTokens(res: any) {
+  static setTokens(res: Data) {
     this.accessTokenCache = res.accessToken;
     this.refreshTokenCache = res.refreshToken;
 
@@ -48,7 +53,7 @@ export default class User {
     return res;
   }
 
-  static async me(fetchAvatar: boolean = false): Promise<Res> {
+  static async me(fetchAvatar = false): Promise<Res> {
     const res = await API.get(["user", "me"]);
     if (!res.success || !fetchAvatar) return res;
 
@@ -69,7 +74,7 @@ export default class User {
     return res.body.exists;
   }
 
-  static async logout(manual: boolean = false, background: boolean = false) {
+  static async logout(manual = false, background = false) {
     this.refreshTokenCache = "";
     this.accessTokenCache = "";
     if (background) return;
@@ -85,7 +90,7 @@ export default class User {
     return { success: false, logout: true };
   }
 
-  static async forgot(data: any) {
+  static async forgot(data: Data) {
     const res = await API.post(["auth", "forgot"], {
       email: data.email,
     });
@@ -93,7 +98,7 @@ export default class User {
     return res;
   }
 
-  static async reset(data: any) {
+  static async reset(data: Data) {
     if (data.password !== data.confirm)
       return Error.error("Passwords do not match");
 
@@ -111,7 +116,7 @@ export default class User {
     return res;
   }
 
-  static async update(data: any) {
+  static async update(data: Data) {
     const res: Res[] = [];
 
     if (data.changed.includes("AVATAR")) {
@@ -119,7 +124,7 @@ export default class User {
       res.push(avatar);
     }
 
-    const changes: any = {};
+    const changes: Data = {};
     if (data.changed.includes("USERNAME")) changes.username = data.username;
     if (data.changed.includes("EMAIL")) changes.email = data.email;
 
@@ -133,7 +138,7 @@ export default class User {
     return res[0];
   }
 
-  static async upload(avatar: any) {
+  static async upload(avatar: string) {
     const arr = avatar.split(",");
     const mime = arr[0].match(/:(.*?);/)[1];
     const bstr = atob(arr[1]);
@@ -153,7 +158,7 @@ export default class User {
     return res;
   }
 
-  static async login(data: any) {
+  static async login(data: Data) {
     const res = await API.post(["auth", "login"], {
       email: data.email,
       password: data.password,
@@ -168,7 +173,7 @@ export default class User {
     return res;
   }
 
-  static async register(data: any) {
+  static async register(data: Data) {
     if (data.password !== data.confirm)
       return Error.error("Passwords do not match");
 

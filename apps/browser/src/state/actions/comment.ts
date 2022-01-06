@@ -15,7 +15,7 @@ export const UPDATE_COMMENT = "UPDATE_COMMENT";
 export const SET_REPLYING = "SET_REPLYING";
 
 export const setTyping =
-  (to: boolean = true) =>
+  (to = true) =>
   async (dispatch: Dispatch) => {
     dispatch({
       type: SET_TYPING,
@@ -24,7 +24,7 @@ export const setTyping =
   };
 
 export const fetchComments =
-  (page: number = 0) =>
+  (page = 0) =>
   async (dispatch: Dispatch) => {
     const url = encodeURIComponent(window.location.href);
     let autoOpenSidebar = false;

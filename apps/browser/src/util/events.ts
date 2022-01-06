@@ -7,19 +7,25 @@ import Render from "@browser/util/render";
 import Tab from "@browser/util/tab";
 
 // These types are used in other files
+// eslint-disable-next-line
 export type EventListener = (...args: any[]) => void;
+
 export type IEventList = {
   [event: string]: EventListener[];
 };
 
+// eslint-disable-next-line
+type Data = { [key: string]: any };
+
 export default class Events {
   static async listen() {
     window.addEventListener("load", () => {
+      // eslint-disable-next-line
       store.dispatch(checkLoggedIn() as any);
       Render.checkBlocked();
     });
 
-    document.addEventListener("fullscreenchange", (event) => {
+    document.addEventListener("fullscreenchange", () => {
       Render.checkBlocked();
     });
 
@@ -42,22 +48,26 @@ export default class Events {
     Tab.listen(this.onMessage);
     chrome.runtime.onMessage.addListener(this.onMessage);
 
+    // eslint-disable-next-line
     store.dispatch(fetchComments(0) as any);
   }
 
-  static onMessage(data: any) {
+  static onMessage(data: Data) {
     if (!data || !data.type) return;
     switch (data.type) {
       case "blocked:update":
         Render.checkBlocked();
         break;
       case "auth:update":
+        // eslint-disable-next-line
         store.dispatch(checkLoggedIn() as any);
         break;
       case "server:offline":
+        // eslint-disable-next-line
         store.dispatch(setIsOnline(false) as any);
         break;
       case "server:online":
+        // eslint-disable-next-line
         store.dispatch(setIsOnline(true) as any);
         break;
       case "snackbar:success":
@@ -75,7 +85,8 @@ export default class Events {
     }
   }
 
-  static reply(event: MessageEvent, data: any) {
+  // eslint-disable-next-line
+  static reply(event: MessageEvent, data: Data) {
     if (!event.data || !event.data.type) return;
     window.postMessage({ ...data, type: `RE:${event.data.type}` }, "*");
   }

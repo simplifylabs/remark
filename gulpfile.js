@@ -2,11 +2,11 @@ const gulp = require("gulp"),
   gulpif = require("gulp-if"),
   jeditor = require("gulp-json-editor"),
   zip = require("gulp-zip"),
-  manifest = require("./src/manifest.json");
+  manifest = require("./apps/browser/src/manifest.json");
 
 function dist(browser, merge) {
   return gulp
-    .src("./build/**/*")
+    .src("./apps/browser/build/**/*")
     .pipe(gulpif(/^manifest.json$/, jeditor(merge)))
     .pipe(
       zip(`${manifest.name.toLowerCase()}-${browser}-${manifest.version}.zip`)

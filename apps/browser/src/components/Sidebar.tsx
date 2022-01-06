@@ -181,7 +181,7 @@ function Input(props: IInputProps) {
     <div className="w-[calc(100%-3.4rem)] h-auto">
       <MentionsInput
         inputRef={props.inputRef}
-        placeholder="Create Remark..."
+        placeholder="Create Remark2..."
         rows={1}
         className="remark"
         value={props.value}

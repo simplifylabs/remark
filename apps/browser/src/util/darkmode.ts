@@ -4,7 +4,7 @@ type IListener = (to: boolean) => void;
 
 export default class Darkmode {
   static listener: IListener[] = [];
-  static isDark: boolean = false;
+  static isDark = false;
 
   static onChange(listener: IListener) {
     this.listener.push(listener);

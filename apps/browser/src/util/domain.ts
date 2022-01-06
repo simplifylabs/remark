@@ -15,15 +15,13 @@ export default class Domain {
     return JSON.parse(list);
   }
 
-  static clearBlockedDomains(): Promise<void> {
-    return new Promise(async (res) => {
-      await Storage.set("blocked", "[]");
-      res();
-    });
+  static async clearBlockedDomains(): Promise<void> {
+    await Storage.set("blocked", "[]");
   }
 
   static async getCurrentDomain() {
-    let url;
+    let url: string;
+
     if (App.isInjected()) {
       url = window.location.href;
     } else {
@@ -45,19 +43,15 @@ export default class Domain {
   }
 
   static async setDomainBlocked(to: boolean): Promise<void> {
-    return new Promise(async (res) => {
-      const domain = await this.getCurrentDomain();
-      if (!domain) return res();
+    const domain = await this.getCurrentDomain();
+    if (!domain) return;
 
-      let blocked = await this.getBlockedDomains();
-      if (to && !blocked.includes(domain)) blocked.push(domain);
-      if (!to && blocked.includes(domain))
-        blocked = blocked.filter((entry) => entry !== domain);
+    let blocked = await this.getBlockedDomains();
+    if (to && !blocked.includes(domain)) blocked.push(domain);
+    if (!to && blocked.includes(domain))
+      blocked = blocked.filter((entry) => entry !== domain);
 
-      await Storage.set("blocked", JSON.stringify(blocked));
-
-      Tab.send("blocked:update");
-      res();
-    });
+    await Storage.set("blocked", JSON.stringify(blocked));
+    Tab.send("blocked:update");
   }
 }

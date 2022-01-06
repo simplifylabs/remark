@@ -45,17 +45,17 @@ module.exports = function (_, env) {
                   // sourceMap: false,
                   plugins: [
                     require("postcss-import"),
-                    require("postcss-nesting"),
+                    require("postcss-nested"),
                     require("tailwindcss")(
                       `${__dirname}/src/tailwind/injected.config.js`
                     ),
-                    // require("postcss-replace")({
-                    //   pattern: ".dark ",
-                    //   data: { replaceAll: "#remark-launcher.dark " },
-                    // }),
-                    // require("postcss-rem-to-pixel")({
-                    //   propList: ["*"],
-                    // }),
+                    require("postcss-replace")({
+                      pattern: ".dark ",
+                      data: { replaceAll: "#remark-launcher.dark " },
+                    }),
+                    require("postcss-rem-to-pixel")({
+                      propList: ["*"],
+                    }),
                     require("autoprefixer"),
                   ],
                 },

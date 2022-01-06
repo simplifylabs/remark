@@ -19,6 +19,7 @@ const initialState: DialogState = {
   modals: [],
 };
 
+/* eslint-disable no-var */
 export default (
   state: DialogState = initialState,
   action: AnyAction
@@ -59,3 +60,4 @@ export default (
       return { ...state };
   }
 };
+/* eslint-enable no-var */

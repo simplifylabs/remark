@@ -2,15 +2,17 @@ import { Toast } from "@browser/util/dialog";
 import Tab from "@browser/util/tab";
 import User from "@browser/util/user";
 
+// eslint-disable-next-line
+type Data = { [key: string]: any };
+
 export interface Res {
   status: number;
   success: boolean;
   resent: boolean;
   offline?: boolean;
   resend: () => Promise<Res>;
-  body: {
-    [key: string]: any;
-  };
+  body: Data;
+  // eslint-disable-next-line
   [key: string]: any;
 }
 
@@ -45,174 +47,140 @@ export class Server {
 class API {
   static async get(
     path: string | string[],
-    resent: boolean = false
+    resent = false
   ): Promise<Res | null> {
-    return new Promise(async resolve => {
-      const isCdn = Array.isArray(path) && path[0] === "CDN";
-      if (isCdn) (path as string[]).shift();
+    const isCdn = Array.isArray(path) && path[0] === "CDN";
+    if (isCdn) (path as string[]).shift();
 
-      if (Array.isArray(path)) path = path.join("/");
+    if (Array.isArray(path)) path = path.join("/");
 
-      const headers = new Headers();
-      headers.append("Accept", "application/json");
-      headers.append("Content-Type", "application/json");
+    const headers = new Headers();
+    headers.append("Accept", "application/json");
+    headers.append("Content-Type", "application/json");
 
-      const accessToken = await User.accessToken();
-      if (accessToken) headers.append("authorization", `Bearer ${accessToken}`);
+    const accessToken = await User.accessToken();
+    if (accessToken) headers.append("authorization", `Bearer ${accessToken}`);
 
-      try {
-        const res = await fetch(`${isCdn ? Server.cdn : Server.url}${path}`, {
-          headers: headers,
-          method: "GET",
-          credentials: "include",
-        });
+    try {
+      const res = await fetch(`${isCdn ? Server.cdn : Server.url}${path}`, {
+        headers: headers,
+        method: "GET",
+        credentials: "include",
+      });
 
-        const parsed = await this.parse(res, resent, () =>
-          this.get(path, true)
-        );
-
-        resolve(parsed);
-      } catch (e) {
-        const parsed = await this.parse(null, resent, () =>
-          this.get(path, true)
-        );
-        resolve(parsed);
-      }
-    });
+      return await this.parse(res, resent, () => this.get(path, true));
+    } catch (e) {
+      return await this.parse(null, resent, () => this.get(path, true));
+    }
   }
 
   static async delete(
     path: string | string[],
-    resent: boolean = false
+    resent = false
   ): Promise<Res | null> {
-    return new Promise(async resolve => {
-      const isCdn = Array.isArray(path) && path[0] === "CDN";
-      if (isCdn) (path as string[]).shift();
+    const isCdn = Array.isArray(path) && path[0] === "CDN";
+    if (isCdn) (path as string[]).shift();
 
-      if (Array.isArray(path)) path = path.join("/");
+    if (Array.isArray(path)) path = path.join("/");
 
-      const headers = new Headers();
-      headers.append("Accept", "application/json");
-      headers.append("Content-Type", "application/json");
+    const headers = new Headers();
+    headers.append("Accept", "application/json");
+    headers.append("Content-Type", "application/json");
 
-      const accessToken = await User.accessToken();
-      if (accessToken) headers.append("authorization", `Bearer ${accessToken}`);
+    const accessToken = await User.accessToken();
+    if (accessToken) headers.append("authorization", `Bearer ${accessToken}`);
 
-      try {
-        const res = await fetch(`${isCdn ? Server.cdn : Server.url}${path}`, {
-          headers: headers,
-          method: "DELETE",
-          credentials: "include",
-        });
+    try {
+      const res = await fetch(`${isCdn ? Server.cdn : Server.url}${path}`, {
+        headers: headers,
+        method: "DELETE",
+        credentials: "include",
+      });
 
-        const parsed = await this.parse(res, resent, () =>
-          this.delete(path, true)
-        );
-
-        resolve(parsed);
-      } catch (e) {
-        const parsed = await this.parse(null, resent, () =>
-          this.delete(path, true)
-        );
-        resolve(parsed);
-      }
-    });
+      return await this.parse(res, resent, () => this.delete(path, true));
+    } catch (e) {
+      return await this.parse(null, resent, () => this.delete(path, true));
+    }
   }
 
   static async post(
     path: string | string[],
-    data: any,
-    resent: boolean = false
+    data: Data,
+    resent = false
   ): Promise<Res | null> {
-    return new Promise(async resolve => {
-      const isCdn = Array.isArray(path) && path[0] === "CDN";
-      if (isCdn) (path as string[]).shift();
+    const isCdn = Array.isArray(path) && path[0] === "CDN";
+    if (isCdn) (path as string[]).shift();
 
-      if (Array.isArray(path)) path = path.join("/");
+    if (Array.isArray(path)) path = path.join("/");
 
-      const headers = new Headers();
-      headers.append("Accept", "application/json");
-      headers.append("Content-Type", "application/json");
+    const headers = new Headers();
+    headers.append("Accept", "application/json");
+    headers.append("Content-Type", "application/json");
 
-      const accessToken = await User.accessToken();
-      if (accessToken) headers.append("authorization", `Bearer ${accessToken}`);
+    const accessToken = await User.accessToken();
+    if (accessToken) headers.append("authorization", `Bearer ${accessToken}`);
 
-      try {
-        const res = await fetch(`${isCdn ? Server.cdn : Server.url}${path}`, {
-          headers: headers,
-          method: "POST",
-          credentials: "include",
-          body: typeof data === "object" ? JSON.stringify(data) : data,
-        });
+    try {
+      const res = await fetch(`${isCdn ? Server.cdn : Server.url}${path}`, {
+        headers: headers,
+        method: "POST",
+        credentials: "include",
+        body: typeof data === "object" ? JSON.stringify(data) : data,
+      });
 
-        const parsed = await this.parse(res, resent, () =>
-          this.post(path, data, true)
-        );
-
-        resolve(parsed);
-      } catch (e) {
-        const parsed = await this.parse(null, resent, () =>
-          this.post(path, data, true)
-        );
-        resolve(parsed);
-      }
-    });
+      return await this.parse(res, resent, () => this.post(path, data, true));
+    } catch (e) {
+      return await this.parse(null, resent, () => this.post(path, data, true));
+    }
   }
 
   static async file(
     path: string | string[],
+    // eslint-disable-next-line
     form: any,
-    resent: boolean = false
+    resent = false
   ): Promise<Res | null> {
-    return new Promise(async resolve => {
-      const isCdn = Array.isArray(path) && path[0] === "CDN";
-      if (isCdn) (path as string[]).shift();
+    const isCdn = Array.isArray(path) && path[0] === "CDN";
+    if (isCdn) (path as string[]).shift();
 
-      if (Array.isArray(path)) path = path.join("/");
+    if (Array.isArray(path)) path = path.join("/");
 
-      const headers = new Headers();
-      headers.append("Accept", "application/json");
+    const headers = new Headers();
+    headers.append("Accept", "application/json");
 
-      const accessToken = await User.accessToken();
-      if (accessToken) headers.append("authorization", `Bearer ${accessToken}`);
+    const accessToken = await User.accessToken();
+    if (accessToken) headers.append("authorization", `Bearer ${accessToken}`);
 
-      try {
-        const res = await fetch(`${isCdn ? Server.cdn : Server.url}${path}`, {
-          headers: headers,
-          method: "POST",
-          credentials: "include",
-          body: form,
-        });
+    try {
+      const res = await fetch(`${isCdn ? Server.cdn : Server.url}${path}`, {
+        headers: headers,
+        method: "POST",
+        credentials: "include",
+        body: form,
+      });
 
-        const parsed = await this.parse(res, resent, () =>
-          this.file(path, form, true)
-        );
-
-        resolve(parsed);
-      } catch (e) {
-        const parsed = await this.parse(null, resent, () =>
-          this.file(path, form, true)
-        );
-        resolve(parsed);
-      }
-    });
+      return await this.parse(res, resent, () => this.file(path, form, true));
+    } catch (e) {
+      return await this.parse(null, resent, () => this.file(path, form, true));
+    }
   }
 
   static async parse(
     raw: Response,
     resent: boolean,
     resend: () => Promise<Res>
-  ): Promise<any> {
+  ): Promise<Res> {
     if (raw === null) return await Error.parse(null);
-    const res: any = {};
 
-    res.body = await raw.json();
-    res.resent = resent;
-    res.resend = resend;
-    res.status = raw.status;
-    res.success = raw.status >= 200 && raw.status < 300;
+    const res: Res = {
+      body: await raw.json(),
+      status: raw.status,
+      success: raw.status >= 200 && raw.status < 300,
+      resent,
+      resend,
+    };
 
-    return await Error.parse(res as Res);
+    return await Error.parse(res);
   }
 }
 
@@ -262,14 +230,20 @@ export class Error {
       case "INVALID_REFRESH_TOKEN":
         return User.logout();
       case "ACCESS_TOKEN_INVALID":
-        if (res.resent) return User.logout();
-        const refresh = await User.refresh();
-        if (!refresh.success) return res;
-        const resent = await this.parse(await res.resend());
-        return resent;
+        return await this.refresh(res);
       default:
         return this.error("Something unexpected happened");
     }
+  }
+
+  static async refresh(res: Res) {
+    if (res.resent) return User.logout();
+
+    const refresh = await User.refresh();
+    if (!refresh.success) return res;
+
+    const resent = await this.parse(await res.resend());
+    return resent;
   }
 
   static success() {

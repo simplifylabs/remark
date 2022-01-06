@@ -52,6 +52,7 @@ const initialState: CommentState = {
   typing: false,
 };
 
+/* eslint-disable no-var */
 export default (
   state: CommentState = initialState,
   action: AnyAction
@@ -152,6 +153,7 @@ export default (
       return { ...state };
   }
 };
+/* eslint-enable no-var */
 
 function transform(list: IComment[], shared: IComment | null): IComment[] {
   list.forEach((r) => {
