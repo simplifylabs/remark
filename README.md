@@ -193,6 +193,9 @@ nx r browser:test
 nx r browser:lint
 ```
 
+---
+
 ## Contribute
 
 Every contribution is welcome! Please commit any pull requests against the `main` branch. Learn more about how to contribute by reading the [`CONTRIBUTING.md`](CONTRIBUTING.md) file.
+
