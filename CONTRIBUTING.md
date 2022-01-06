@@ -36,7 +36,7 @@ These are the steps to create an issue:
 Checklist for creating a PR:
 
 - [ ] The PR is commited against the `main` branch.
-- [ ] I did not commit any trash.
+- [ ] I did not commit any unwanted changes.
 - [ ] I mentioned all relevant Issues.
 
 ## Thank You! ❤️
