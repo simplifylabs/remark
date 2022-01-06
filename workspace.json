@@ -3,6 +3,8 @@
   "projects": {
     "api": "apps/api",
     "browser": "apps/browser",
-    "db": "libs/db"
+    "cdn": "apps/cdn",
+    "db": "libs/db",
+    "web": "apps/web"
   }
 }

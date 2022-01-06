@@ -1,5 +1,6 @@
 # enviroment files
 **/.env
+**/.env.local
 
 # certs
 .certs/
