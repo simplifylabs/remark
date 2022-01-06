@@ -31,7 +31,7 @@ These are the steps to create an issue:
 
 ## Creating a Pull Request
 
-> Not sure how to setup Remark locally? Check [SETUP.md](SETUP.md).
+> Not sure how to setup Remark locally? Check [README.md](README.md).
 
 Checklist for creating a PR:
 
