@@ -14,6 +14,9 @@
     "prisma:dev": "prisma migrate dev",
     "prisma:prod": "prisma migrate deploy"
   },
+  "resolutions": {
+    "glob-parent": "^6.0.1"
+  },
   "private": true,
   "dependencies": {
     "@prisma/client": "^3.7.0",
