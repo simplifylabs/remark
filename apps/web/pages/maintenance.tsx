@@ -9,7 +9,7 @@ export default function Maintance() {
     <div className="flex flex-col justify-center items-center w-screen h-screen">
       <div className="flex flex-col gap-1 px-8 text-left md:px-0">
         <h1 className="text-4xl font-extrabold md:text-5xl">
-          We'll be back soon!
+          We&apos;ll be back soon!
         </h1>
         <p className="mt-2 text-lg text-gray-700 md:text-xl">
           Our servers are currently under maintenance.

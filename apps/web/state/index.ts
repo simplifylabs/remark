@@ -10,7 +10,7 @@ const store = () => createStore(root, enhancer);
 export type IStore = ReturnType<typeof store>;
 export type IState = ReturnType<IStore["getState"]>;
 
-export const wrapper = createWrapper<Store<IState>>(store as any, {
+export const wrapper = createWrapper<Store<IState>>(store, {
   debug: false,
 });
 

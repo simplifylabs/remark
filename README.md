@@ -117,10 +117,10 @@ cp apps/api/.env.template apps/api/.env
 Commands:
 
 ```bash
-nx r api:serve
-nx r api:build
-nx r api:test
-nx r api:lint
+nx serve api
+nx build api
+nx test api
+nx lint api
 ```
 
 ## Web Setup
@@ -136,9 +136,9 @@ cp apps/web/.env.template apps/api/.env.local
 Commands:
 
 ```bash
-nx r web:serve
-nx r web:build
-nx r web:lint
+nx serve web
+nx build web
+nx lint web
 ```
 
 ## Browser Setup
@@ -148,7 +148,7 @@ nx r web:lint
 1. Build the extension
 
 ```bash
-nx r browser:server
+nx serve browser
 ```
 
 ### Chrome (or chromium based)
@@ -169,9 +169,9 @@ nx r browser:server
 Commands:
 
 ```bash
-nx r browser:serve
-nx r browser:build
-nx r browser:lint
+nx serve browser
+nx build browser
+nx lint browser
 ```
 
 ## CDN Setup
@@ -187,10 +187,9 @@ cp apps/cdn/.env.template apps/cdn/.env
 2. Edit `apps/cdn/.env` to your needs!
 
 ```bash
-nx r browser:serve
-nx r browser:build
-nx r browser:test
-nx r browser:lint
+nx serve cdn
+nx build cdn
+nx lint cdn
 ```
 
 ## Contribute

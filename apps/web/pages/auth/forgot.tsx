@@ -39,8 +39,8 @@ export default function Forgot() {
           titleClassName="text-4xl sm:text-5xl"
         />
         <p className="max-w-[23rem] text-lg text-gray-700 text-center">
-          We've just sent you an email including a reset link. Please check your
-          inbox!
+          We&apos;ve just sent you an email including a reset link. Please check
+          your inbox!
         </p>
       </div>
     );

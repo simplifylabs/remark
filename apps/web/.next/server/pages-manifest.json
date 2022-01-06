@@ -1,0 +1,18 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/en/500": "pages/en/500.html",
+  "/en/auth/reset": "pages/en/auth/reset.html",
+  "/en/auth/signin": "pages/en/auth/signin.html",
+  "/en/auth/signup": "pages/en/auth/signup.html",
+  "/en/maintenance": "pages/en/maintenance.html",
+  "/en/404": "pages/en/404.html",
+  "/en/privacy": "pages/en/privacy.html",
+  "/en/terms": "pages/en/terms.html",
+  "/en/uninstall": "pages/en/uninstall.html",
+  "/en/auth/forgot": "pages/en/auth/forgot.html",
+  "/en/share": "pages/en/share.html",
+  "/en": "pages/en.html",
+  "/en/profile": "pages/en/profile.html"
+}

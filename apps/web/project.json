@@ -9,7 +9,8 @@
       "defaultConfiguration": "production",
       "options": {
         "root": "apps/web",
-        "outputPath": "dist/apps/web"
+        "outputPath": "apps/web/dist/",
+        "nextConfig": "apps/web/next.config.js"
       },
       "configurations": {
         "production": {}
@@ -19,6 +20,7 @@
       "executor": "@nrwl/next:server",
       "options": {
         "buildTarget": "web:build",
+        "port": 3000,
         "dev": true
       },
       "configurations": {
@@ -32,7 +34,7 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/web/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/web/**/*.{ts,tsx}"]
       }
     }
   },

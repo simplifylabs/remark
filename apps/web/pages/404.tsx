@@ -21,7 +21,7 @@ export default function ErrorPage() {
           />
           <h1 className="mt-10 text-4xl font-medium">404 - Not found</h1>
           <h2 className="text-xl text-gray-500">
-            Unfortunately, This page doesn't exist.
+            Unfortunately, This page doesn&apos;t exist.
           </h2>
           <p className="mt-8 font-light text-gray-700">ERR_NOT_FOUND</p>
         </div>

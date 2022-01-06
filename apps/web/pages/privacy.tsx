@@ -72,23 +72,23 @@ export default function Privacy() {
           <p>
             Remark follows a standard procedure of using log files. These files
             log visitors when they visit websites. All hosting companies do this
-            and a part of hosting services' analytics. The information collected
-            by log files include internet protocol (IP) addresses, browser type,
-            Internet Service Provider (ISP), date and time stamp, referring/exit
-            pages, and possibly the number of clicks. These are not linked to
-            any information that is personally identifiable. The purpose of the
-            information is for analyzing trends, administering the site,
-            tracking users' movement on the website, and gathering demographic
-            information.
+            and a part of hosting services&apos; analytics. The information
+            collected by log files include internet protocol (IP) addresses,
+            browser type, Internet Service Provider (ISP), date and time stamp,
+            referring/exit pages, and possibly the number of clicks. These are
+            not linked to any information that is personally identifiable. The
+            purpose of the information is for analyzing trends, administering
+            the site, tracking users&apos; movement on the website, and
+            gathering demographic information.
           </p>
           <h2>Cookies and Web Beacons</h2>
           <p>
-            Like any other website, Remark uses 'cookies'. These cookies are
-            used to store information including visitors' preferences, and the
-            pages on the website that the visitor accessed or visited. The
-            information is used to optimize the users' experience by customizing
-            our web page content based on visitors' browser type and/or other
-            information.
+            Like any other website, Remark uses &apos;cookies&apos;. These
+            cookies are used to store information including visitors&apos;
+            preferences, and the pages on the website that the visitor accessed
+            or visited. The information is used to optimize the users&apos;
+            experience by customizing our web page content based on
+            visitors&apos; browser type and/or other information.
           </p>
           <p>
             For more general information on cookies, please read{" "}
@@ -107,10 +107,11 @@ export default function Privacy() {
             Third-party ad servers or ad networks uses technologies like
             cookies, JavaScript, or Web Beacons that are used in their
             respective advertisements and links that appear on Remark, which are
-            sent directly to users' browser. They automatically receive your IP
-            address when this occurs. These technologies are used to measure the
-            effectiveness of their advertising campaigns and/or to personalize
-            the advertising content that you see on websites that you visit.
+            sent directly to users&apos; browser. They automatically receive
+            your IP address when this occurs. These technologies are used to
+            measure the effectiveness of their advertising campaigns and/or to
+            personalize the advertising content that you see on websites that
+            you visit.
           </p>
 
           <p>
@@ -121,7 +122,7 @@ export default function Privacy() {
           <h2>Third Party Privacy Policies</h2>
 
           <p>
-            Remark's Privacy Policy does not apply to other advertisers or
+            Remark&apos;s Privacy Policy does not apply to other advertisers or
             websites. Thus, we are advising you to consult the respective
             Privacy Policies of these third-party ad servers for more detailed
             information. It may include their practices and instructions about
@@ -131,7 +132,7 @@ export default function Privacy() {
           <p>
             You can choose to disable cookies through your individual browser
             options. To know more detailed information about cookie management
-            with specific web browsers, it can be found at the browsers'
+            with specific web browsers, it can be found at the browser&apos;s
             respective websites.
           </p>
 
@@ -142,17 +143,17 @@ export default function Privacy() {
             right to:
           </p>
           <p>
-            Request that a business that collects a consumer's personal data
-            disclose the categories and specific pieces of personal data that a
-            business has collected about consumers.
+            Request that a business that collects a consumer&apos;s personal
+            data disclose the categories and specific pieces of personal data
+            that a business has collected about consumers.
           </p>
           <p>
             Request that a business delete any personal data about the consumer
             that a business has collected.
           </p>
           <p>
-            Request that a business that sells a consumer's personal data, not
-            sell the consumer's personal data.
+            Request that a business that sells a consumer&apos;s personal data,
+            not sell the consumer&apos;s personal data.
           </p>
           <p>
             If you make a request, we have one month to respond to you. If you
@@ -197,7 +198,7 @@ export default function Privacy() {
             If you make a request, we have one month to respond to you. If you
             would like to exercise any of these rights, please contact us.
           </p>
-          <h2>Children's Information</h2>
+          <h2>Children&apos;s Information</h2>
           <p>
             Another part of our priority is adding protection for children while
             using the internet. We encourage parents and guardians to observe,

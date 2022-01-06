@@ -9,7 +9,8 @@ function withOpacity(variable) {
 }
 
 module.exports = {
-  content: ["./components/**/*.tsx", "./pages/**/*.tsx"],
+  mode: "jit",
+  purge: ["apps/web/components/**/*.tsx", "apps/web/pages/**/*.tsx"],
   theme: {
     screens: {
       xs: "450px",
@@ -35,9 +36,6 @@ module.exports = {
         },
       },
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [require("@tailwindcss/forms"), require("@tailwindcss/typography")],
 };

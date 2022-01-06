@@ -38,7 +38,7 @@ export default function SignIn() {
       <div className="flex flex-col gap-3 justify-center items-center">
         <h1 className="text-5xl font-extrabold">Sign In</h1>
         <p className="text-lg text-gray-700">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link href="/auth/signup">
             <a className="text-lg">Sign Up</a>
           </Link>

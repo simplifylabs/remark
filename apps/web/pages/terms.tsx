@@ -85,13 +85,13 @@ export default function Terms() {
           </p>
           <h2>User Content</h2>
           <p>
-            <strong>User Content.</strong> "User Content" means any and all
-            information and content that a user submits to the Site. You are
-            exclusively responsible for your User Content. You bear all risks
-            associated with use of your User Content. You hereby certify that
-            your User Content does not violate our Acceptable Use Policy. You
-            may not represent or imply to others that your User Content is in
-            any way provided, sponsored or endorsed by Company. Because you
+            <strong>User Content.</strong> &quot;User Content&quot; means any
+            and all information and content that a user submits to the Site. You
+            are exclusively responsible for your User Content. You bear all
+            risks associated with use of your User Content. You hereby certify
+            that your User Content does not violate our Acceptable Use Policy.
+            You may not represent or imply to others that your User Content is
+            in any way provided, sponsored or endorsed by Company. Because you
             alone are responsible for your User Content, you may expose yourself
             to liability. Company is not obliged to backup any User Content that
             you post; also, your User Content may be deleted at any time without
@@ -110,17 +110,18 @@ export default function Terms() {
           </p>
           <p>
             <strong>Acceptable Use Policy.</strong> The following terms
-            constitute our "Acceptable Use Policy": You agree not to use the
-            Site to collect, upload, transmit, display, or distribute any User
-            Content (i) that violates any third-party right or any intellectual
-            property or proprietary right; (ii) that is unlawful, harassing,
-            abusive, tortious, threatening, harmful, invasive of another’s
-            privacy, vulgar, defamatory, false, intentionally misleading, trade
-            libelous, pornographic, obscene, patently offensive, promotes
-            racism, bigotry, hatred, or physical harm of any kind against any
-            group or individual; (iii) that is harmful to minors in any way; or
-            (iv) that is in violation of any law, regulation, or obligations or
-            restrictions imposed by any third party.
+            constitute our &quot;Acceptable Use Policy&quot;: You agree not to
+            use the Site to collect, upload, transmit, display, or distribute
+            any User Content (i) that violates any third-party right or any
+            intellectual property or proprietary right; (ii) that is unlawful,
+            harassing, abusive, tortious, threatening, harmful, invasive of
+            another’s privacy, vulgar, defamatory, false, intentionally
+            misleading, trade libelous, pornographic, obscene, patently
+            offensive, promotes racism, bigotry, hatred, or physical harm of any
+            kind against any group or individual; (iii) that is harmful to
+            minors in any way; or (iv) that is in violation of any law,
+            regulation, or obligations or restrictions imposed by any third
+            party.
           </p>
           <p>
             In addition, you agree not to: (i) upload, transmit, or distribute
@@ -205,11 +206,11 @@ export default function Terms() {
             or arises directly or indirectly out of, or that relates directly or
             indirectly to, the Site. If you are a California resident, you
             hereby waive California civil code section 1542 in connection with
-            the foregoing, which states: "a general release does not extend to
-            claims which the creditor does not know or suspect to exist in his
-            or her favor at the time of executing the release, which if known by
-            him or her must have materially affected his or her settlement with
-            the debtor."
+            the foregoing, which states: &quot;a general release does not extend
+            to claims which the creditor does not know or suspect to exist in
+            his or her favor at the time of executing the release, which if
+            known by him or her must have materially affected his or her
+            settlement with the debtor.&quot;
           </p>
           <p>
             <strong>Cookies and Web Beacons.</strong> Like any other website,
@@ -221,18 +222,19 @@ export default function Terms() {
           </p>
           <h2>Disclaimers</h2>
           <p>
-            The site is provided on an "as-is" and "as available" basis, and
-            company and our suppliers expressly disclaim any and all warranties
-            and conditions of any kind, whether express, implied, or statutory,
-            including all warranties or conditions of merchantability, fitness
-            for a particular purpose, title, quiet enjoyment, accuracy, or
-            non-infringement. We and our suppliers make not guarantee that the
-            site will meet your requirements, will be available on an
-            uninterrupted, timely, secure, or error-free basis, or will be
-            accurate, reliable, free of viruses or other harmful code, complete,
-            legal, or safe. If applicable law requires any warranties with
-            respect to the site, all such warranties are limited in duration to
-            ninety (90) days from the date of first use.
+            The site is provided on an &quot;as-is&quot; and &quot;as
+            available&quot; basis, and company and our suppliers expressly
+            disclaim any and all warranties and conditions of any kind, whether
+            express, implied, or statutory, including all warranties or
+            conditions of merchantability, fitness for a particular purpose,
+            title, quiet enjoyment, accuracy, or non-infringement. We and our
+            suppliers make not guarantee that the site will meet your
+            requirements, will be available on an uninterrupted, timely, secure,
+            or error-free basis, or will be accurate, reliable, free of viruses
+            or other harmful code, complete, legal, or safe. If applicable law
+            requires any warranties with respect to the site, all such
+            warranties are limited in duration to ninety (90) days from the date
+            of first use.
           </p>
           <p>
             Some jurisdictions do not allow the exclusion of implied warranties,
@@ -550,20 +552,21 @@ export default function Terms() {
             failure to exercise or enforce any right or provision of these Terms
             shall not operate as a waiver of such right or provision. The
             section titles in these Terms are for convenience only and have no
-            legal or contractual effect. The word "including" means "including
-            without limitation". If any provision of these Terms is held to be
-            invalid or unenforceable, the other provisions of these Terms will
-            be unimpaired and the invalid or unenforceable provision will be
-            deemed modified so that it is valid and enforceable to the maximum
-            extent permitted by law. Your relationship to Company is that of an
-            independent contractor, and neither party is an agent or partner of
-            the other. These Terms, and your rights and obligations herein, may
-            not be assigned, subcontracted, delegated, or otherwise transferred
-            by you without Company’s prior written consent, and any attempted
-            assignment, subcontract, delegation, or transfer in violation of the
-            foregoing will be null and void. Company may freely assign these
-            Terms. The terms and conditions set forth in these Terms shall be
-            binding upon assignees.
+            legal or contractual effect. The word &quot;including&quot; means
+            &quot;including without limitation&quot;. If any provision of these
+            Terms is held to be invalid or unenforceable, the other provisions
+            of these Terms will be unimpaired and the invalid or unenforceable
+            provision will be deemed modified so that it is valid and
+            enforceable to the maximum extent permitted by law. Your
+            relationship to Company is that of an independent contractor, and
+            neither party is an agent or partner of the other. These Terms, and
+            your rights and obligations herein, may not be assigned,
+            subcontracted, delegated, or otherwise transferred by you without
+            Company’s prior written consent, and any attempted assignment,
+            subcontract, delegation, or transfer in violation of the foregoing
+            will be null and void. Company may freely assign these Terms. The
+            terms and conditions set forth in these Terms shall be binding upon
+            assignees.
           </p>
           <p>
             <strong>Your Privacy.</strong> Please read our Privacy Policy.

@@ -45,8 +45,8 @@ export default function Share() {
       <div className="flex flex-col items-center text-center">
         <Title title="Not Installed" subtitle="Required Extension" primary />
         <p className="text-lg max-w-[80vw] sm:max-w-[30em] whitespace-pre-wrap break-words text-gray-700 mb-10">
-          It seems like Remark isn't installed in your browser. Please install
-          the Browser Extension to view the shared comment.
+          It seems like Remark isn&apos;t installed in your browser. Please
+          install the Browser Extension to view the shared comment.
         </p>
         <AddButton className="md:py-4" />
       </div>

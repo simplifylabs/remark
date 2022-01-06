@@ -27,7 +27,7 @@ export default function Feedback() {
     if (statements.length == 0 && !comment)
       return setError("Please select at least one option");
 
-    const data: any = {
+    const data: { [key: string]: any } = {
       statements,
     };
 

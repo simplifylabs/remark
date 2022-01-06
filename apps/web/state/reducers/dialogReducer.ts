@@ -14,6 +14,8 @@ const initialState: DialogState = {
   snackbars: [],
 };
 
+/* eslint-disable no-var  */
+// eslint-disable-next-line
 export default (
   state: DialogState = initialState,
   action: AnyAction
@@ -43,3 +45,4 @@ export default (
       return { ...state };
   }
 };
+/* eslint-enable no-var */

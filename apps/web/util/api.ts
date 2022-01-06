@@ -1,6 +1,12 @@
+interface Data {
+  // eslint-disable-next-line
+  [key: string]: any;
+}
+
 export interface Res {
   status: number;
   success: boolean;
+  // eslint-disable-next-line
   [key: string]: any;
 }
 
@@ -22,54 +28,46 @@ export class Server {
 
 class API {
   static async get(path: string | string[]): Promise<Res | null> {
-    return new Promise(async (resolve) => {
-      if (Array.isArray(path)) path = path.join("/");
+    if (Array.isArray(path)) path = path.join("/");
 
-      const headers = new Headers();
-      headers.append("Accept", "application/json");
-      headers.append("Content-Type", "application/json");
+    const headers = new Headers();
+    headers.append("Accept", "application/json");
+    headers.append("Content-Type", "application/json");
 
-      try {
-        const res = await fetch(Server.url + path, {
-          headers: headers,
-          method: "GET",
-          credentials: "include",
-        });
+    try {
+      const res = await fetch(Server.url + path, {
+        headers: headers,
+        method: "GET",
+        credentials: "include",
+      });
 
-        const parsed = await this.parse(res);
-
-        resolve(parsed);
-      } catch (e) {
-        console.error(e);
-        resolve(null);
-      }
-    });
+      return await this.parse(res);
+    } catch (e) {
+      console.error(e);
+      return null;
+    }
   }
 
-  static async post(path: string | string[], data: any): Promise<Res | null> {
-    return new Promise(async (resolve) => {
-      if (Array.isArray(path)) path = path.join("/");
+  static async post(path: string | string[], data: Data): Promise<Res | null> {
+    if (Array.isArray(path)) path = path.join("/");
 
-      const headers = new Headers();
-      headers.append("Accept", "application/json");
-      headers.append("Content-Type", "application/json");
+    const headers = new Headers();
+    headers.append("Accept", "application/json");
+    headers.append("Content-Type", "application/json");
 
-      try {
-        const res = await fetch(Server.url + path, {
-          headers: headers,
-          method: "POST",
-          credentials: "include",
-          body: typeof data === "object" ? JSON.stringify(data) : data,
-        });
+    try {
+      const res = await fetch(Server.url + path, {
+        headers: headers,
+        method: "POST",
+        credentials: "include",
+        body: typeof data === "object" ? JSON.stringify(data) : data,
+      });
 
-        const parsed = await this.parse(res);
-
-        resolve(parsed);
-      } catch (e) {
-        console.error(e);
-        resolve(null);
-      }
-    });
+      return await this.parse(res);
+    } catch (e) {
+      console.error(e);
+      return null;
+    }
   }
 
   static async parse(raw: Response) {
