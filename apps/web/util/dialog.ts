@@ -1,5 +1,5 @@
-import { hideSnackbar, showSnackbar } from "@actions/dialog";
-import Registry from "@registry";
+import { hideSnackbar, showSnackbar } from "@web/actions/dialog";
+import Registry from "@web/registry";
 
 export type level = "SUCCESS" | "ERROR";
 

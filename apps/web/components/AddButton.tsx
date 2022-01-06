@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import useExtension from "@hooks/useExtension";
-import Browser from "@util/browser";
-import Extension from "@util/extension";
+import useExtension from "@web/hooks/useExtension";
+import Browser from "@web/util/browser";
+import Extension from "@web/util/extension";
 
 interface IAddButtonProps {
   className?: string;

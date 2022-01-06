@@ -1,4 +1,4 @@
-import Browser, { BrowserType } from "@util/browser";
+import Browser, { BrowserType } from "@web/util/browser";
 
 export default class Extension {
   static firefoxUrl = `https://addons.mozilla.org/de/firefox/addon/${process.env.NEXT_PUBLIC_FIREFOX_STORE_ID}/`;

@@ -1,6 +1,6 @@
-import AddButton from "@components/AddButton";
-import LazyShow from "@components/LazyShow";
-import Logo from "@components/Logo";
+import AddButton from "@web/components/AddButton";
+import LazyShow from "@web/components/LazyShow";
+import Logo from "@web/components/Logo";
 import Link from "next/link";
 import { useRouter } from "next/router";
 

@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import { ThumbUpIcon, GlobeAltIcon, EyeIcon } from "@heroicons/react/outline";
-import Navigation from "@components/Navigation";
-import Footer from "@components/Footer";
-import Title from "@components/Title";
-import AddButton from "@components/AddButton";
-import LazyShow from "@components/LazyShow";
+import Navigation from "@web/components/Navigation";
+import Footer from "@web/components/Footer";
+import Title from "@web/components/Title";
+import AddButton from "@web/components/AddButton";
+import LazyShow from "@web/components/LazyShow";
 import Image from "next/image";
 import Link from "next/link";
-import Browser from "@util/browser";
-import Extension from "@util/extension";
-import useTitle from "@hooks/useTitle";
-import useMediaQuery from "@hooks/useMediaQuery";
+import Browser from "@web/util/browser";
+import Extension from "@web/util/extension";
+import useTitle from "@web/hooks/useTitle";
+import useMediaQuery from "@web/hooks/useMediaQuery";
 
 export default function Home() {
   useTitle("Uncensored Comments, anywhere. | Remark");

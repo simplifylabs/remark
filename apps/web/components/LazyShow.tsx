@@ -1,6 +1,6 @@
 import { useEffect, createRef } from "react";
 import { motion, useAnimation } from "framer-motion";
-import useOnScreen from "@hooks/useOnScreen";
+import useOnScreen from "@web/hooks/useOnScreen";
 
 interface ILazyShowProps {
   children: any;

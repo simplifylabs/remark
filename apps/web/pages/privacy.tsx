@@ -1,6 +1,6 @@
-import useTitle from "@hooks/useTitle";
-import Navigation from "@components/Navigation";
-import Footer from "@components/Footer";
+import useTitle from "@web/hooks/useTitle";
+import Navigation from "@web/components/Navigation";
+import Footer from "@web/components/Footer";
 
 export default function Privacy() {
   useTitle("Privacy Policy");

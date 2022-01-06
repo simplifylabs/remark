@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Toast } from "@util/dialog";
-import useExtension from "@hooks/useExtension";
-import useTitle from "@hooks/useTitle";
-import Loader from "@components/Loader";
-import Title from "@components/Title";
-import AddButton from "@components/AddButton";
-import API from "@util/api";
+import { Toast } from "@web/util/dialog";
+import useExtension from "@web/hooks/useExtension";
+import useTitle from "@web/hooks/useTitle";
+import Loader from "@web/components/Loader";
+import Title from "@web/components/Title";
+import AddButton from "@web/components/AddButton";
+import API from "@web/util/api";
 
 export default function Share() {
   useTitle("Share");

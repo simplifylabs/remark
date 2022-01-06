@@ -3,7 +3,7 @@ import {
   SHOW_SNACKBAR,
   HIDE_SNACKBAR,
   REMOVE_SNACKBAR,
-} from "@actions/dialog";
+} from "@web/actions/dialog";
 import { AnyAction } from "redux";
 
 export interface DialogState {

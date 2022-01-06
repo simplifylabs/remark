@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { level } from "@util/dialog";
+import { level } from "@web/util/dialog";
 
 export interface ISnackbarData {
   type: "SNACKBAR" | "TOAST";

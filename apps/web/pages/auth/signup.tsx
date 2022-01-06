@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import useTitle from "@hooks/useTitle";
-import useExtension from "@hooks/useExtension";
+import useTitle from "@web/hooks/useTitle";
+import useExtension from "@web/hooks/useExtension";
 import Link from "next/link";
-import Alert from "@components/Alert";
-import Input from "@components/Input";
+import Alert from "@web/components/Alert";
+import Input from "@web/components/Input";
 
 export default function SignUp() {
   useTitle("Sign Up");

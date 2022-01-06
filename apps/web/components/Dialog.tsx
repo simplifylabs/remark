@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { XIcon } from "@heroicons/react/solid";
-import { ISnackbar } from "@actions/dialog";
-import { connect, IState } from "@state";
-import { Snackbar, level } from "@util/dialog";
+import { ISnackbar } from "@web/actions/dialog";
+import { connect, IState } from "@web/state";
+import { Snackbar, level } from "@web/util/dialog";
 import { motion, useAnimation } from "framer-motion";
 
 interface IWrapperProps {

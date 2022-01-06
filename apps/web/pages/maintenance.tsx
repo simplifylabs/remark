@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import useTitle from "@hooks/useTitle";
+import useTitle from "@web/hooks/useTitle";
 
 export default function Maintance() {
   useTitle("We're Offline!");

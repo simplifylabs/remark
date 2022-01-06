@@ -1,5 +1,5 @@
-import DialogBox from "@components/Dialog";
-import Registry from "@registry";
+import DialogBox from "@web/components/Dialog";
+import Registry from "@web/registry";
 import Head from "next/head";
 import { useEffect } from "react";
 import { useStore } from "react-redux";

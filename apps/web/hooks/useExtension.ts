@@ -6,8 +6,8 @@ declare global {
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Extension from "@util/extension";
-import Browser, { BrowserType } from "@util/browser";
+import Extension from "@web/util/extension";
+import Browser, { BrowserType } from "@web/util/browser";
 
 interface Options {
   required: boolean;

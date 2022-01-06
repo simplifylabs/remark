@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useFilePicker } from "use-file-picker";
 import { PlusIcon, PencilIcon } from "@heroicons/react/outline";
-import { Server } from "@util/api";
-import useExtension from "@hooks/useExtension";
-import useTitle from "@hooks/useTitle";
-import Alert from "@components/Alert";
-import Input from "@components/Input";
-import Loader from "@components/Loader";
+import { Server } from "@web/util/api";
+import useExtension from "@web/hooks/useExtension";
+import useTitle from "@web/hooks/useTitle";
+import Alert from "@web/components/Alert";
+import Input from "@web/components/Input";
+import Loader from "@web/components/Loader";
 
 type Field = "AVATAR" | "USERNAME" | "EMAIL";
 

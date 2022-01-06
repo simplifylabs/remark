@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import AddButton from "@components/AddButton";
-import Navigation from "@components/Navigation";
-import Alert from "@components/Alert";
-import useTitle from "@hooks/useTitle";
-import API from "@util/api";
+import AddButton from "@web/components/AddButton";
+import Navigation from "@web/components/Navigation";
+import Alert from "@web/components/Alert";
+import useTitle from "@web/hooks/useTitle";
+import API from "@web/util/api";
 
 export default function Feedback() {
   useTitle("Feedback");

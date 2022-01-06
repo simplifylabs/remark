@@ -1,6 +1,6 @@
-import Footer from "@components/Footer";
+import Footer from "@web/components/Footer";
 import Image from "next/image";
-import useTitle from "@hooks/useTitle";
+import useTitle from "@web/hooks/useTitle";
 import { useRouter } from "next/router";
 
 export default function ErrorPage() {
