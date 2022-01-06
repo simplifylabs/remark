@@ -4,9 +4,21 @@
   "sourceRoot": "apps/browser/src",
   "tags": [],
   "targets": {
+    "build": {
+      "executor": "./tools/executors/webpack:build",
+      "options": {
+        "configPath": "apps/browser/webpack.config.js",
+        "mode": "production",
+        "watch": false
+      }
+    },
     "serve": {
-      "executor": "./tools/executors/webpack:webpack",
-      "options": {}
+      "executor": "./tools/executors/webpack:build",
+      "options": {
+        "configPath": "apps/browser/webpack.config.js",
+        "mode": "development",
+        "watch": true
+      }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",

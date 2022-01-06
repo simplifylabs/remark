@@ -1,38 +1,70 @@
 import { ExecutorContext } from "@nrwl/devkit";
-import { appRootPath } from "@nrwl/tao/src/utils/app-root";
-import * as webpack from "webpack";
-import * as fs from "fs";
-import * as path from "path";
+import webpack from "webpack";
+import path from "path";
 
-export interface EchoExecutorOptions {}
+export interface ExecutorOptions {
+  configPath: string;
+  mode: string;
+  watch: boolean;
+  env?: object;
+}
 
-export default async function echoExecutor(
-  options: EchoExecutorOptions,
+export default async function executor(
+  options: ExecutorOptions,
   context: ExecutorContext
 ) {
-  const config = fs.readFileSync("apps/browser/webpack.config.js", "utf8");
+  let env = { mode: options.mode };
+  if (options.env) env = { ...options.env, ...env };
+
   const webpackCompiler = webpack(
-    require(path.join(appRootPath, "apps/browser/webpack.config.js"))(
-      {},
-      { mode: "production" }
-    )
+    require(path.join(context.root, options.configPath))({}, env)
   );
 
-  const success = await new Promise<boolean>((res) => {
-    webpackCompiler.watch({}, (err, stats) => {
-      if (err) {
-        console.error(err);
-        res(false);
-      }
+  if (options.watch) {
+    const success = await new Promise<boolean>((res) => {
+      webpackCompiler.watch({}, (err, stats) => {
+        if (err) {
+          console.error(err);
+          res(false);
+        }
 
-      console.log(
-        stats.toString({
-          chunks: false,
-          colors: true,
-        })
-      );
+        console.log(
+          stats.toString({
+            assets: false,
+            modules: false,
+            chunks: false,
+            performance: false,
+            colors: true,
+          })
+        );
+      });
     });
-  });
 
-  return { success };
+    return { success };
+  } else {
+    const success = await new Promise<boolean>((res) => {
+      webpackCompiler.run((err, stats) => {
+        if (err) {
+          console.error(err);
+          res(false);
+        }
+
+        console.log(
+          stats.toString({
+            assets: false,
+            modules: false,
+            chunks: false,
+            performance: true,
+            colors: true,
+          })
+        );
+
+        webpackCompiler.close((err) => err && console.error(err));
+
+        res(true);
+      });
+    });
+
+    return { success };
+  }
 }

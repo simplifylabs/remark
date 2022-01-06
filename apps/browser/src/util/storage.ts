@@ -9,14 +9,14 @@ export default class Storage {
     return obj;
   }
 
-  static set(key: string, value: string): Promise<undefined> {
-    return new Promise(res => {
+  static set(key: string, value: string): Promise<void> {
+    return new Promise((res) => {
       chrome.storage.local.set(this.toObject(key, value), () => res());
     });
   }
 
   static get(key: string): Promise<string | undefined> {
-    return new Promise(res => {
+    return new Promise((res) => {
       chrome.storage.local.get(key, (data: IStorageObject) => {
         if (!data || !data[key]) res(undefined);
         res(data[key]);
@@ -24,14 +24,14 @@ export default class Storage {
     });
   }
 
-  static setSynced(key: string, value: string): Promise<undefined> {
-    return new Promise(res => {
+  static setSynced(key: string, value: string): Promise<void> {
+    return new Promise((res) => {
       chrome.storage.sync.set(this.toObject(key, value), () => res());
     });
   }
 
   static getSync(key: string): Promise<string> {
-    return new Promise<string>(res => {
+    return new Promise<string>((res) => {
       chrome.storage.sync.get(key, (data: IStorageObject) => {
         if (!data || !data[key]) res(undefined);
         res(data[key]);

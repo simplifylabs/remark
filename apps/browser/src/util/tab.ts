@@ -10,53 +10,53 @@ export default class Tab {
   }
 
   static call(data: any) {
-    this.events.forEach(func => {
+    this.events.forEach((func) => {
       func(data);
     });
   }
 
   static count(): Promise<number> {
-    return new Promise(res => {
-      chrome.tabs.query({ windowType: "normal" }, tabs => {
+    return new Promise((res) => {
+      chrome.tabs.query({ windowType: "normal" }, (tabs) => {
         res(tabs.length);
       });
     });
   }
 
   static getCurrent(): Promise<ITab> {
-    return new Promise(res => {
-      chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
+    return new Promise((res) => {
+      chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
         res(tabs[0]);
       });
     });
   }
 
   static getAll(): Promise<ITab[]> {
-    return new Promise(res => {
-      chrome.tabs.query({}, tabs => {
+    return new Promise((res) => {
+      chrome.tabs.query({}, (tabs) => {
         res(tabs);
       });
     });
   }
 
   static find(url: string): Promise<ITab> {
-    return new Promise(res => {
-      chrome.tabs.query({ url: url }, tabs => {
+    return new Promise((res) => {
+      chrome.tabs.query({ url: url }, (tabs) => {
         res(tabs[0]);
       });
     });
   }
 
-  static reload(): Promise<any> {
-    return new Promise(async res => {
+  static reload(): Promise<void> {
+    return new Promise(async (res) => {
       const tab = await this.getCurrent();
       chrome.tabs.reload(tab.id);
       res();
     });
   }
 
-  static close(url: string): Promise<any> {
-    return new Promise(async res => {
+  static close(url: string): Promise<void> {
+    return new Promise(async (res) => {
       const count = await this.count();
       if (count <= 1) return res(null);
       const tab = await this.find(url);
@@ -65,8 +65,8 @@ export default class Tab {
     });
   }
 
-  static send(type: string, data: any = {}): Promise<any> {
-    return new Promise(async res => {
+  static send(type: string, data: any = {}): Promise<void> {
+    return new Promise(async (res) => {
       if (App.isInjected()) return this.call({ ...data, type: type });
 
       const tab = await Tab.getCurrent();
@@ -75,20 +75,20 @@ export default class Tab {
     });
   }
 
-  static sendAll(type: string, data: any = {}): Promise<any> {
-    return new Promise(async res => {
+  static sendAll(type: string, data: any = {}): Promise<void> {
+    return new Promise(async (res) => {
       if (App.isInjected()) return this.call({ ...data, type: type });
 
       const tabs = await Tab.getAll();
-      tabs.forEach(tab => {
+      tabs.forEach((tab) => {
         chrome.tabs.sendMessage(tab.id, { ...data, type: type });
       });
       res();
     });
   }
 
-  static open(url: string): Promise<any> {
-    return new Promise(async res => {
+  static open(url: string): Promise<void> {
+    return new Promise(async (res) => {
       chrome.tabs.create({ url: url });
       res();
     });

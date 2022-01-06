@@ -42,21 +42,21 @@ module.exports = function (_, env) {
               loader: "postcss-loader",
               options: {
                 postcssOptions: {
-                  sourceMap: false,
+                  // sourceMap: false,
                   plugins: [
                     require("postcss-import"),
-                    require("autoprefixer"),
-                    require("postcss-nested"),
+                    require("postcss-nesting"),
                     require("tailwindcss")(
                       `${__dirname}/src/tailwind/injected.config.js`
                     ),
-                    require("postcss-replace")({
-                      pattern: ".dark ",
-                      data: { replaceAll: "#remark-launcher.dark " },
-                    }),
-                    require("postcss-rem-to-pixel")({
-                      propList: ["*"],
-                    }),
+                    // require("postcss-replace")({
+                    //   pattern: ".dark ",
+                    //   data: { replaceAll: "#remark-launcher.dark " },
+                    // }),
+                    // require("postcss-rem-to-pixel")({
+                    //   propList: ["*"],
+                    // }),
+                    require("autoprefixer"),
                   ],
                 },
               },
@@ -99,12 +99,15 @@ module.exports = function (_, env) {
         template: "apps/browser/src/html/popup.html",
         filename: "html/popup.html",
       }),
-      // new CopyWebpackPlugin({
-      //   patterns: [
-      //     "apps/browser/src/manifest.json",
-      //     { from: "./apps/browser/assets", to: "assets" },
-      //   ],
-      // }),
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: path.join(__dirname, "/src/manifest.json"),
+            to: "manifest.json",
+          },
+          { from: path.join(__dirname, "assets"), to: "assets" },
+        ],
+      }),
       // env.mode == "production" && new BundleAnalyzerPlugin(),
     ].filter((p) => p !== false),
   };

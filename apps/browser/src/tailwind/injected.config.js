@@ -7,8 +7,8 @@ function withOpacity(rgb) {
 }
 
 module.exports = {
-  mode: "jit",
-  purge: ["./src/**/*.tsx"],
+  important: "#remark-launcher",
+  content: ["./src/**/*.tsx"],
   darkMode: "class",
   theme: {
     fontFamily: {
@@ -35,9 +35,6 @@ module.exports = {
         "col-resize": "col-resize",
       },
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [require("@tailwindcss/forms")],
 };

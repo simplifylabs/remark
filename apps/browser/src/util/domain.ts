@@ -15,8 +15,8 @@ export default class Domain {
     return JSON.parse(list);
   }
 
-  static clearBlockedDomains(): Promise<undefined> {
-    return new Promise(async res => {
+  static clearBlockedDomains(): Promise<void> {
+    return new Promise(async (res) => {
       await Storage.set("blocked", "[]");
       res();
     });
@@ -44,15 +44,15 @@ export default class Domain {
     return { blocked: blocked.includes(domain) };
   }
 
-  static async setDomainBlocked(to: boolean): Promise<undefined> {
-    return new Promise(async res => {
+  static async setDomainBlocked(to: boolean): Promise<void> {
+    return new Promise(async (res) => {
       const domain = await this.getCurrentDomain();
       if (!domain) return res();
 
       let blocked = await this.getBlockedDomains();
       if (to && !blocked.includes(domain)) blocked.push(domain);
       if (!to && blocked.includes(domain))
-        blocked = blocked.filter(entry => entry !== domain);
+        blocked = blocked.filter((entry) => entry !== domain);
 
       await Storage.set("blocked", JSON.stringify(blocked));
 

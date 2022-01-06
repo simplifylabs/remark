@@ -7,8 +7,7 @@ function withOpacity(variable) {
 }
 
 module.exports = {
-  mode: "jit",
-  purge: ["./src/**/*.tsx"],
+  content: ["./src/**/*.tsx"],
   darkMode: "class",
   theme: {
     fontFamily: {

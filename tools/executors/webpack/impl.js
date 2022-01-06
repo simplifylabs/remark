@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,19 +46,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
-var app_root_1 = require("@nrwl/tao/src/utils/app-root");
-var webpack = require("webpack");
-var fs = require("fs");
-var path = require("path");
-function echoExecutor(options, context) {
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var webpack_1 = __importDefault(require("webpack"));
+var path_1 = __importDefault(require("path"));
+function executor(options, context) {
     return __awaiter(this, void 0, void 0, function () {
-        var config, webpackCompiler, success;
+        var env, webpackCompiler, success, success;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    config = fs.readFileSync("apps/browser/webpack.config.js", "utf8");
-                    webpackCompiler = webpack(require(path.join(app_root_1.appRootPath, "apps/browser/webpack.config.js"))({}, { mode: "production" }));
+                    env = { mode: options.mode };
+                    if (options.env)
+                        env = __assign(__assign({}, options.env), env);
+                    webpackCompiler = (0, webpack_1.default)(require(path_1.default.join(context.root, options.configPath))({}, env));
+                    if (!options.watch) return [3 /*break*/, 2];
                     return [4 /*yield*/, new Promise(function (res) {
                             webpackCompiler.watch({}, function (err, stats) {
                                 if (err) {
@@ -55,16 +70,40 @@ function echoExecutor(options, context) {
                                     res(false);
                                 }
                                 console.log(stats.toString({
+                                    assets: false,
+                                    modules: false,
                                     chunks: false,
-                                    colors: true
+                                    performance: false,
+                                    colors: true,
                                 }));
                             });
                         })];
                 case 1:
                     success = _a.sent();
                     return [2 /*return*/, { success: success }];
+                case 2: return [4 /*yield*/, new Promise(function (res) {
+                        webpackCompiler.run(function (err, stats) {
+                            if (err) {
+                                console.error(err);
+                                res(false);
+                            }
+                            console.log(stats.toString({
+                                assets: false,
+                                modules: false,
+                                chunks: false,
+                                performance: true,
+                                colors: true,
+                            }));
+                            webpackCompiler.close(function (err) { return err && console.error(err); });
+                            res(true);
+                        });
+                    })];
+                case 3:
+                    success = _a.sent();
+                    return [2 /*return*/, { success: success }];
             }
         });
     });
 }
-exports["default"] = echoExecutor;
+exports.default = executor;
+//# sourceMappingURL=impl.js.map

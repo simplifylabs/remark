@@ -2,5 +2,22 @@
   "$schema": "http://json-schema.org/schema",
   "type": "object",
   "cli": "nx",
-  "properties": {}
+  "properties": {
+    "configPath": {
+      "type": "string",
+      "description": "Path to webpack.config.js"
+    },
+    "mode": {
+      "type": "string",
+      "description": "Mode (development | production)"
+    },
+    "watch": {
+      "type": "boolean",
+      "description": "Watch Changes"
+    },
+    "env": {
+      "type": "object",
+      "description": "Passed env variables"
+    }
+  }
 }

@@ -1,9 +1,9 @@
 {
   "executors": {
-    "webpack": {
+    "build": {
       "implementation": "./impl",
       "schema": "./schema.json",
-      "description": "Executes vanilla webpack build"
+      "description": "Executes a webpack build with 100% custom config"
     }
   }
 }
