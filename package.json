@@ -1,7 +1,11 @@
 {
   "name": "remark",
   "version": "0.0.0",
-  "license": "MIT",
+  "license": "Apache-2.0",
+  "private": true,
+  "author": {
+    "name": "Simplify"
+  },
   "scripts": {
     "certs": "run-script-os",
     "certs:win32": "scripts/certs.bat",
@@ -19,10 +23,6 @@
     "dist:edge": "nx build browser && gulp dist:edge",
     "dist:opera": "nx build browser && gulp dist:opera"
   },
-  "resolutions": {
-    "glob-parent": "^6.0.1"
-  },
-  "private": true,
   "dependencies": {
     "@prisma/client": "^3.7.0",
     "@tailwindcss/forms": "0.4.0",
@@ -138,6 +138,9 @@
     "typescript": "^4.5.4",
     "webpack": "^5.65.0",
     "webpack-bundle-analyzer": "^4.5.0"
+  },
+  "resolutions": {
+    "glob-parent": "^6.0.1"
   },
   "_moduleAliases": {
     "@db": "libs/db/src/index",
