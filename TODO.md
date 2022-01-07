@@ -1,8 +1,5 @@
 # Todo:
 
-- Update License in package.json
-- Mention setting chrome id in installation
-- Justify Ratelimit
 - Transform mentions in comments
 - Style mention select
 - Darkmode button outlines

@@ -1,14 +1,13 @@
 import feedbackController from "@api/controller/feedback/";
-import RateLimiter from "@api/middleware/ratelimit";
+import limit from "@api/middleware/limit";
 import { Router } from "express";
 
 const router = Router();
 
 router.use(
-  RateLimiter({
-    maxRequest: 5,
-    key: "IP",
-    windowMs: 60 * 1000,
+  limit({
+    requests: 5,
+    per: "IP",
   })
 );
 

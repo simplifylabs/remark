@@ -4,16 +4,15 @@ import removeController from "@api/controller/comment/remove";
 import singleController from "@api/controller/comment/single";
 import urlController from "@api/controller/comment/url";
 import voteController from "@api/controller/comment/vote";
-import RateLimiter from "@api/middleware/ratelimit";
+import limit from "@api/middleware/limit";
 import { Router } from "express";
 
 const router = Router();
 
 router.use(
-  RateLimiter({
-    maxRequest: 300,
-    key: "IP",
-    windowMs: 60 * 1000,
+  limit({
+    requests: 300,
+    per: "IP",
   })
 );
 

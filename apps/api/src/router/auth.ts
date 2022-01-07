@@ -4,16 +4,15 @@ import loginController from "@api/controller/auth/login";
 import refreshController from "@api/controller/auth/refresh";
 import registerController from "@api/controller/auth/register";
 import resetController from "@api/controller/auth/reset";
-import RateLimiter from "@api/middleware/ratelimit";
+import limit from "@api/middleware/limit";
 import { Router } from "express";
 
 const router = Router();
 
 router.use(
-  RateLimiter({
-    maxRequest: 300,
-    key: "IP",
-    windowMs: 60 * 1000,
+  limit({
+    requests: 300,
+    per: "IP",
   })
 );
 

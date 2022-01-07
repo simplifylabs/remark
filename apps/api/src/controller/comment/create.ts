@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
 import { filter } from "@api/util/url";
 import access from "@api/middleware/access";
+import limit from "@api/middleware/limit";
 import sanitize from "sanitize-html";
 import { Url, Post, commentSelect } from "@db";
 
@@ -58,6 +59,7 @@ const createComment = async (req: Request, res: Response) => {
 
 export default [
   access(),
+  limit(10),
   validate({
     body: Joi.object({
       comment: prefabs.comment.required(),
