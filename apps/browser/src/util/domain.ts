@@ -26,7 +26,14 @@ export default class Domain {
       url = window.location.href;
     } else {
       const tab = await Tab.getCurrent();
-      if (!tab) return undefined;
+
+      if (
+        !tab ||
+        tab.url.startsWith("chrome://") ||
+        tab.url.startsWith("about:")
+      )
+        return undefined;
+
       url = tab.url;
     }
 

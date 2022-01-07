@@ -12,14 +12,15 @@ interface IProps {
 }
 
 export default function Home(props: IProps) {
-  const [blocked, setBlocked] = useState(false);
+  const [enabled, setEnabled] = useState(true);
   const [disabled, setDisabled] = useState(true);
   const [signedOut, setSignedOut] = useState(false);
 
   useEffect(() => {
     (async () => {
       let { blocked, disabled } = await Domain.isDomainBlocked();
-      setBlocked(blocked);
+
+      setEnabled(!blocked);
       setDisabled(disabled);
 
       const res = await User.isAuthenticated();
@@ -28,8 +29,8 @@ export default function Home(props: IProps) {
   }, []);
 
   function onToggle(to: boolean) {
-    Domain.setDomainBlocked(to);
-    setBlocked(to);
+    Domain.setDomainBlocked(!to);
+    setEnabled(to);
   }
 
   return (
@@ -51,8 +52,8 @@ export default function Home(props: IProps) {
         onClick={props.settings}
         className="absolute top-3 right-3 w-6 h-6 text-black opacity-30 transition-all cursor-pointer dark:text-white hover:opacity-60"
       />
-      <Title title="Domain" subtitle="Block" />
-      <Switch big disabled={disabled} checked={blocked} onChange={onToggle} />
+      <Title title="Domain" subtitle="Enable" />
+      <Switch big disabled={disabled} checked={enabled} onChange={onToggle} />
     </div>
   );
 }

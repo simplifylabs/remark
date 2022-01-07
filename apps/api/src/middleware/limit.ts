@@ -9,13 +9,14 @@ interface Options {
 }
 
 export default function limit(input: Options | number, interval?: number) {
-  const options = {
+  let options = {
     requests: typeof input == "number" ? input : input.requests,
     interval: 60000,
     per: "USER",
   };
 
   if (typeof interval == "number") options.interval = interval;
+  if (typeof input == "object") options = { ...options, ...input };
 
   return RateLimit({
     store: new RedisStore({}),

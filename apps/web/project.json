@@ -9,8 +9,7 @@
       "defaultConfiguration": "production",
       "options": {
         "root": "apps/web",
-        "outputPath": "apps/web/dist/",
-        "nextConfig": "apps/web/next.config.js"
+        "outputPath": "apps/web/dist/"
       },
       "configurations": {
         "production": {}

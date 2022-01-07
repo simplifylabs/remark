@@ -181,7 +181,7 @@ function Input(props: IInputProps) {
     <div className="w-[calc(100%-3.4rem)] h-auto">
       <MentionsInput
         inputRef={props.inputRef}
-        placeholder="Create Remark2..."
+        placeholder="Create Remark..."
         rows={1}
         className="remark"
         value={props.value}
@@ -210,8 +210,6 @@ function Input(props: IInputProps) {
             },
             input: {
               padding: 9,
-              border: "1px solid silver",
-              background: "#fff",
             },
           },
           suggestions: {
@@ -219,16 +217,17 @@ function Input(props: IInputProps) {
               backgroundColor: "white",
               border: "1px solid rgba(0,0,0,0.15)",
               fontSize: 14,
-              maxHeight: 100,
-              overflow: "auto",
+              maxHeight: 105,
+              overflow: "hidden",
               position: "absolute",
               bottom: 14,
+              borderRadius: 8,
             },
             item: {
               padding: "5px 15px",
               borderBottom: "1px solid rgba(0,0,0,0.15)",
               "&focused": {
-                backgroundColor: "#cee4e5",
+                backgroundColor: "rgba(0, 0, 0, 0.08)",
               },
             },
           },

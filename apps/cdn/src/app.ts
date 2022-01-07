@@ -29,7 +29,9 @@ if (process.env.NODE_ENV == "development") {
       `/avatar/${size}x${size}/*`,
       (req: express.Request, res: express.Response) => {
         res.sendFile(
-          path.resolve(`assets/default-${size}x${size}.${avatar.filetype}`)
+          path.resolve(
+            `apps/cdn/assets/default-${size}x${size}.${avatar.filetype}`
+          )
         );
       }
     );

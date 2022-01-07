@@ -1,4 +1,4 @@
-import React, { MutableRefObject, Fragment, useState } from "react";
+import React, { MutableRefObject, Fragment, useState, useEffect } from "react";
 import { Server } from "@browser/util/api";
 import { Toast, Modal } from "@browser/util/dialog";
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/solid";
@@ -161,7 +161,54 @@ interface ICommentProps extends IComment {
   vote: typeof voteComment;
 }
 
+interface IPart {
+  type: "TEXT" | "MENTION";
+  text: string;
+}
+
 function Comment(props: ICommentProps) {
+  const [comment, setComment] = useState<IPart[]>([]);
+
+  useEffect(() => {
+    const text = props.comment;
+
+    const mentions = [
+      ...text.matchAll(
+        /@\[[a-zA-Z0-9_.]*\]\([a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}\)/g
+      ),
+    ];
+
+    if (mentions.length == 0) return setComment([{ type: "TEXT", text }]);
+
+    const parts = [];
+
+    mentions.forEach((mention, index) => {
+      if (index == 0)
+        parts.push({ type: "TEXT", text: text.slice(0, mention.index) });
+
+      parts.push({
+        type: "MENTION",
+        text: "@" + mention[0].match(/\[(.*?)\]/)[1],
+      });
+
+      if (index < mentions.length - 1)
+        parts.push({
+          type: "TEXT",
+          text: text.slice(
+            mention.index + mention[0].length,
+            mentions[index + 1].index
+          ),
+        });
+      else
+        parts.push({
+          type: "TEXT",
+          text: text.slice(mention.index + mention[0].length, text.length),
+        });
+    });
+
+    setComment(parts);
+  }, []);
+
   return (
     <div
       className={`relative w-full flex flex-col items-end ${
@@ -190,7 +237,15 @@ function Comment(props: ICommentProps) {
               </small>
             </div>
             <p className="text-sm text-gray-800 dark:text-gray-100">
-              {props.comment}
+              {comment.map((part, index) => {
+                if (part.type == "MENTION")
+                  return (
+                    <span key={index} className="text-brand">
+                      {part.text}
+                    </span>
+                  );
+                return <span key={index}>{part.text}</span>;
+              })}
             </p>
           </div>
         </div>
