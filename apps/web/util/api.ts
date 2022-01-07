@@ -12,10 +12,10 @@ export interface Res {
 
 export class Server {
   static devUrl = "http://localhost:5050/";
-  static prodUrl = "https://api.getremark.com/";
+  static prodUrl = "https://api.remark.surf/";
 
   static devCDN = "http://localhost:5000/";
-  static prodCDN = "https://cdn.getremark.com/";
+  static prodCDN = "https://cdn.remark.surf/";
 
   static get url() {
     return process.env.NODE_ENV == "development" ? this.devUrl : this.prodUrl;

@@ -16,12 +16,12 @@ export default class App {
 
   static get webUrl(): string {
     if (this.isDev()) return "http://localhost:3000/";
-    return "https://www.getremark.com/";
+    return "https://www.remark.surf/";
   }
 
   static get webHost(): string {
     if (this.isDev()) return "*://localhost:/*";
-    return "*://*.getremark.com/*";
+    return "*://*.remark.surf/*";
   }
 
   static isInjected() {

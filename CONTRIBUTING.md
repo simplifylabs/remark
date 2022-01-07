@@ -1,6 +1,6 @@
 # Contributing to Remark
 
-Thanks for you interest in contributing to [Remark](https://getremark.com/)!
+Thanks for you interest in contributing to [Remark](https://remark.surf/)!
 
 We appreciate every kind of contribution, be it a bug report, feature request or just feedback!
 Before opening an issue, please read this document first.

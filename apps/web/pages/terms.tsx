@@ -12,7 +12,7 @@ export default function Terms() {
         <article className="prose">
           <h1>Terms of Service</h1>
           <p>
-            The Remark website located at https://getremark.com/ is a
+            The Remark website located at https://remark.surf/ is a
             copyrighted work belonging to Simplify Software. Certain features of
             the Site may be subject to additional guidelines, terms, or rules,
             which will be posted on the Site in connection with such features.

@@ -5,7 +5,7 @@
   "version": "0.0.1",
   "description": "Uncensored Comments, anywhere.",
   "author": "Simplify Software",
-  "homepage_url": "https://getremark.com/",
+  "homepage_url": "https://remark.surf/",
   "icons": {
     "64": "assets/icon/64.png",
     "128": "assets/icon/128.png",
@@ -31,7 +31,7 @@
     "default_popup": "html/popup.html"
   },
   "externally_connectable": {
-    "matches": ["*://*.getremark.com/*", "*://localhost/*"]
+    "matches": ["*://*.remark.surf/*", "*://localhost/*"]
   },
   "permissions": [
     "http://*/*",

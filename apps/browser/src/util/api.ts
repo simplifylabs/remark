@@ -20,10 +20,10 @@ export class Server {
   static isOnline = true;
 
   static devUrl = "http://localhost:5050/";
-  static prodUrl = "https://api.getremark.com/";
+  static prodUrl = "https://api.remark.surf/";
 
   static devCDN = "http://localhost:5000/";
-  static prodCDN = "https://cdn.getremark.com/";
+  static prodCDN = "https://cdn.remark.surf/";
 
   static notifyOnline() {
     this.isOnline = true;

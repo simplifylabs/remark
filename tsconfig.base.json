@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@db": ["libs/db/src/index.ts"],
       "@api/controller/*": ["apps/api/src/controller/*"],
       "@api/middleware/*": ["apps/api/src/middleware/*"],
       "@api/router/*": ["apps/api/src/router/*"],
@@ -30,7 +31,6 @@
       "@cdn/controller/*": ["apps/cdn/src/controller/*"],
       "@cdn/middleware/*": ["apps/cdn/src/middleware/*"],
       "@cdn/util/*": ["apps/cdn/src/util/*"],
-      "@db": ["libs/db/src/index.ts"],
       "@web/actions/*": ["apps/web/state/actions/*"],
       "@web/components/*": ["apps/web/components/*"],
       "@web/hooks/*": ["apps/web/hooks/*"],

@@ -37,7 +37,7 @@ export default function Layout(props: ILayoutProps) {
         <meta property="og:type" content="website" />
         <meta
           property="og:url"
-          content={`https://getremark.com/${router.pathname}`}
+          content={`https://remark.surf/${router.pathname}`}
         />
         <meta
           property="og:title"
@@ -50,12 +50,12 @@ export default function Layout(props: ILayoutProps) {
         <meta
           key="og:image"
           property="og:image"
-          content={`https://getremark.com/social.jpg`}
+          content={`https://remark.surf/social.jpg`}
         />
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://getremark.com/" />
+        <meta property="twitter:url" content="https://remark.surf/" />
         <meta
           property="twitter:title"
           content="Remark: Uncensored Comments, anywhere."
@@ -66,7 +66,7 @@ export default function Layout(props: ILayoutProps) {
         />
         <meta
           property="twitter:image"
-          content={`https://getremark.com/social.jpg`}
+          content={`https://remark.surf/social.jpg`}
         />
 
         {/* Favicon */}
