@@ -19,7 +19,7 @@
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
-      "js": ["render/injected.js"],
+      "js": ["scripts/injected.js"],
       "run_at": "document_end"
     }
   ],
@@ -28,7 +28,7 @@
   },
   "browser_action": {
     "default_title": "Create Remark",
-    "default_popup": "html/popup.html"
+    "default_popup": "assets/popup.html"
   },
   "externally_connectable": {
     "matches": ["*://*.remark.surf/*", "*://localhost/*"]

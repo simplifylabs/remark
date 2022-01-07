@@ -1,18 +1,18 @@
 const webpack = require("webpack");
 const path = require("path");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = function (_, env) {
   return {
     mode: env.mode == "production" ? "production" : "development",
     devtool: env.mode == "production" ? "source-map" : "inline-source-map",
     entry: {
-      "render/popup": "apps/browser/src/render/popup.tsx",
-      "render/injected": "apps/browser/src/render/injected.tsx",
+      "scripts/popup": "apps/browser/src/scripts/popup.tsx",
+      "scripts/injected": "apps/browser/src/scripts/injected.tsx",
       "scripts/background": "apps/browser/src/scripts/background.ts",
     },
     resolve: {
@@ -96,7 +96,7 @@ module.exports = function (_, env) {
         process: "process/browser",
       }),
       new HtmlWebpackPlugin({
-        template: "apps/browser/src/html/popup.html",
+        template: "apps/browser/assets/popup.html",
         filename: "html/popup.html",
       }),
       new CopyWebpackPlugin({

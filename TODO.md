@@ -7,7 +7,6 @@
 
 ## Optional:
 
-- Expand replies (Not required on list fetch)
 - Random classes (fix github etc.)
 - Switch to preact?
 - Add some intro
