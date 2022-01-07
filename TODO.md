@@ -1,10 +1,8 @@
 # Todo:
 
-- Style mention select
 - Darkmode button outlines
 - Color upvotes
 - Input in Darkmode (Google?)
-- Sign In from popup
 - Fix fab after logout
 
 ## Optional:

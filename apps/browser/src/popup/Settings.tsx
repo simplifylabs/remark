@@ -6,6 +6,8 @@ import Darkmode from "@browser/util/darkmode";
 import useDarkmode from "@browser/hooks/useDarkmode";
 import Domain from "@browser/util/domain";
 import User from "@browser/util/user";
+import Tab from "@browser/util/tab";
+import App from "@browser/util/app";
 
 interface IProps {
   back: () => void;
@@ -31,9 +33,12 @@ export default function Settings(props: IProps) {
   }
 
   function signOut() {
-    if (signedOut) return;
     setSignedOut(true);
     User.logout(true);
+  }
+
+  function signIn() {
+    Tab.open(`${App.webUrl}auth/signin`);
   }
 
   return (
@@ -73,14 +78,12 @@ export default function Settings(props: IProps) {
           </button>
         </Option>
         <Option>
-          <Label>Sign Out</Label>
+          <Label>{signedOut ? "Sign In" : "Sign Out"}</Label>
           <button
-            onClick={signOut}
-            className={`${
-              signedOut ? "btn-disabled" : "btn-primary"
-            } text-sm px-4 py-2`}
+            onClick={signedOut ? signIn : signOut}
+            className={`btn-primary text-sm px-4 py-2`}
           >
-            Sign Out
+            {signedOut ? "Sign In" : "Sign Out"}
           </button>
         </Option>
       </div>
