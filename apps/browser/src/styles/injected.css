@@ -26,9 +26,9 @@
   border: 0;
   border-style: none;
   border-width: medium;
-  border-color: inherit;
+  border-color: initial;
   border-bottom: 0;
-  border-bottom-color: inherit;
+  border-bottom-color: initial;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   border-bottom-style: none;
@@ -36,17 +36,17 @@
   border-collapse: separate;
   border-image: none;
   border-left: 0;
-  border-left-color: inherit;
+  border-left-color: initial;
   border-left-style: none;
   border-left-width: medium;
   border-radius: 0;
   border-right: 0;
-  border-right-color: inherit;
+  border-right-color: initial;
   border-right-style: none;
   border-right-width: medium;
   border-spacing: 0;
   border-top: 0;
-  border-top-color: inherit;
+  border-top-color: initial;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-top-style: none;
@@ -57,7 +57,7 @@
   caption-side: top;
   clear: none;
   clip: auto;
-  color: inherit;
+  color: initial;
   columns: auto;
   column-count: auto;
   column-fill: balance;
@@ -120,10 +120,10 @@
   right: auto;
   tab-size: 8;
   table-layout: auto;
-  text-align: inherit;
+  text-align: initial;
   text-align-last: auto;
   text-decoration: none;
-  text-decoration-color: inherit;
+  text-decoration-color: initial;
   text-decoration-line: none;
   text-decoration-style: solid;
   text-indent: 0;
@@ -146,9 +146,8 @@
   word-spacing: normal;
   line-height: 1.5rem;
   z-index: auto;
-
-  /* cursor: auto; */
-  /* display: inline; */
+  cursor: initial;
+  /* display: initial; */
 }
 
 #remark-launcher {
@@ -195,11 +194,11 @@
     }
 
     .btn-primary {
-      @apply btn bg-brand text-white hover:bg-brand-light focus:ring-brand focus:ring-2 focus:ring-offset-2 focus:ring-brand;
+      @apply btn bg-brand text-white hover:bg-brand-light;
     }
 
     .btn-secondary {
-      @apply btn bg-brand/20 text-brand hover:shadow-sm focus:ring-brand focus:ring-2 focus:ring-offset-2 focus:border-transparent;
+      @apply btn bg-brand/20 text-brand hover:shadow-sm;
     }
 
     .btn-outline {
@@ -237,6 +236,10 @@
     .fade {
       @apply transition-all duration-150 ease-in-out;
     }
+
+    .icon-white path {
+      color: white;
+    }
   }
 
   .thin-scrollbar::-webkit-scrollbar {
@@ -266,12 +269,8 @@
     @apply rounded-lg z-[1] pointer-events-none;
   }
 
-  .remark__control {
-    @apply !bg-white rounded-lg shadow-sm;
-  }
-
-  .remark--multiLine textarea {
-    @apply !bg-transparent border border-gray-300;
+  .remark__input {
+    @apply !bg-white rounded-lg shadow-sm border border-gray-300;
   }
 }
 
@@ -289,12 +288,15 @@
     background: rgba(255, 255, 255, 0.3);
   }
 
-  textarea,
-  input {
-    @apply !bg-background-form !text-white !border-gray-700;
+  .remark__input {
+    @apply !bg-black !border-gray-700 !text-white;
   }
 
-  .remark__control {
+  .remark__suggestions__list {
     @apply !bg-background-form;
+  }
+
+  .remark__suggestions__item--focused {
+    @apply !bg-white/10;
   }
 }

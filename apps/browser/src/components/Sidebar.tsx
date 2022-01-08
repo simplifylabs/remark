@@ -50,7 +50,9 @@ function SidebarComponent(props: ISidebarProps) {
     if (!textarea.current) return;
 
     textarea.current.addEventListener("keydown", keydown);
-    return () => textarea.current.removeEventListener("keydown", keydown);
+    return () =>
+      textarea.current &&
+      textarea.current.removeEventListener("keydown", keydown);
   }, [textarea.current, value]);
 
   useEffect(() => {
@@ -75,7 +77,7 @@ function SidebarComponent(props: ISidebarProps) {
 
     if (
       launcher.contains(target) ||
-      !target.classList.contains("remark__suggestions__item__display")
+      target.classList.contains("remark__suggestions__item__display")
     )
       return;
 
@@ -196,7 +198,7 @@ function Input(props: IInputProps) {
           },
           "&multiLine": {
             control: {
-              minHeight: 12,
+              minHeight: 42.75,
               maxHeight: 200,
               overflow: "auto",
               resize: "none",
@@ -204,12 +206,13 @@ function Input(props: IInputProps) {
             },
             highlighter: {
               maxHeight: 200,
-              padding: 9,
+              padding: "8.5px 12px",
+              /* The 1px invisible border is
+               * important for position  */
               border: "1px solid transparent",
-              color: "red !important",
             },
             input: {
-              padding: 9,
+              padding: "8.5px 12px",
             },
           },
           suggestions: {

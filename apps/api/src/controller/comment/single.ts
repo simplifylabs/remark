@@ -36,7 +36,7 @@ const singleComments = async (req: Request, res: Response) => {
     const parent: any = await Post.findUnique({
       where: { id: comment.replyId },
       select: {
-        ...comment,
+        ...commentSelect,
         replies: false,
         replyId: true,
       },

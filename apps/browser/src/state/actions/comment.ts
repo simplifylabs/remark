@@ -52,6 +52,7 @@ export const fetchComments =
         list: res.body.list,
         total: res.body.total,
         parents: res.body.parents,
+        votes: res.body.votes,
       });
     } else {
       dispatch({

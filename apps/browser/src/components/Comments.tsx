@@ -4,7 +4,7 @@ import { Toast, Modal } from "@browser/util/dialog";
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/solid";
 import { AnnotationIcon, ShareIcon, TrashIcon } from "@heroicons/react/outline";
 import { connect, IRootState } from "@browser/state/index";
-import { IComment, IAuthor } from "@browser/reducers/commentReducer";
+import { IComment, IVote, IAuthor } from "@browser/reducers/commentReducer";
 import {
   fetchComments,
   removeComment,
@@ -19,9 +19,11 @@ import App from "@browser/util/app";
 interface ICommentsProps {
   input: MutableRefObject<HTMLTextAreaElement>;
   setValue: (to: string) => void;
+  dark: boolean;
   online: boolean;
   client: boolean;
   list: IComment[];
+  votes: IVote[];
   page: number;
   parents: number;
   id: string;
@@ -113,7 +115,9 @@ function Comments(props: ICommentsProps) {
             <Fragment key={item.shared ? "SHARED" : item.id}>
               <Comment
                 myId={props.id}
+                dark={props.dark}
                 vote={props.vote}
+                votes={props.votes}
                 remove={remove}
                 reply={reply}
                 {...item}
@@ -121,7 +125,9 @@ function Comments(props: ICommentsProps) {
               {item.replies.map((r) => (
                 <Comment
                   myId={props.id}
+                  dark={props.dark}
                   vote={props.vote}
+                  votes={props.votes}
                   remove={remove}
                   reply={reply}
                   parent={item}
@@ -153,23 +159,34 @@ function timeSince(date: Date) {
   return Math.floor(seconds) + "s";
 }
 
-interface ICommentProps extends IComment {
-  myId: string;
-  parent?: IComment;
-  reply: (comment: IComment, parent?: IComment) => void;
-  remove: (id: string) => void;
-  vote: typeof voteComment;
-}
-
 interface IPart {
   type: "TEXT" | "MENTION";
   text: string;
 }
 
+interface ICommentProps extends IComment {
+  myId: string;
+  dark: boolean;
+  parent?: IComment;
+  reply: (comment: IComment, parent?: IComment) => void;
+  remove: (id: string) => void;
+  vote: typeof voteComment;
+  votes: IVote[];
+}
+
 function Comment(props: ICommentProps) {
   const [comment, setComment] = useState<IPart[]>([]);
+  const [vote, setVote] = useState<"UP" | "DOWN" | null>(null);
 
   useEffect(() => {
+    transformComment();
+  }, []);
+
+  useEffect(() => {
+    findVote();
+  }, [props.votes]);
+
+  function transformComment() {
     const text = props.comment;
 
     const mentions = [
@@ -207,7 +224,13 @@ function Comment(props: ICommentProps) {
     });
 
     setComment(parts);
-  }, []);
+  }
+
+  function findVote() {
+    const index = props.votes.findIndex((vote) => vote.post.id == props.id);
+    if (index == -1) return setVote(null);
+    setVote(props.votes[index].type);
+  }
 
   return (
     <div
@@ -223,7 +246,9 @@ function Comment(props: ICommentProps) {
       <div className="w-full bg-white dark:bg-background-card rounded-[0.75rem] flex flex-col items-center justify-center overflow-hidden shadow ">
         <div className="flex flex-row gap-3 justify-center items-start p-4 w-full">
           <img
-            src={`${Server.cdn}avatar/50x50/${props.author.id}`}
+            src={`${Server.cdn}avatar/50x50/${props.author.id}${
+              props.dark && "?dark=true"
+            }`}
             alt={`${props.author.username}´s Avatar`}
             className="min-w-[2rem] min-h-[2rem] rounded-full mt-1"
           />
@@ -253,14 +278,14 @@ function Comment(props: ICommentProps) {
           <div className="flex flex-row gap-2 items-center">
             <ChevronUpIcon
               onClick={() => props.vote(props.id, "UP")}
-              className="btn-icon"
+              className={`btn-icon ${vote == "UP" && "!text-brand"}`}
             />
-            <p className="text-gray-700 dark:text-gray-200">
+            <p className={`text-gray-700 dark:text-gray-200`}>
               {props.upvotes - props.downvotes}
             </p>
             <ChevronDownIcon
               onClick={() => props.vote(props.id, "DOWN")}
-              className="btn-icon"
+              className={`btn-icon ${vote == "DOWN" && "!text-brand"}`}
             />
           </div>
           <div className="flex flex-row gap-2 items-center">
@@ -299,9 +324,11 @@ function Comment(props: ICommentProps) {
 }
 
 const mapStateToProps = (state: IRootState) => ({
+  dark: state.render.dark,
   online: state.connection.online,
   client: state.connection.clientOn,
   list: state.comment.list,
+  votes: state.comment.votes,
   page: state.comment.page,
   parents: state.comment.parents,
   id: state.user.id,

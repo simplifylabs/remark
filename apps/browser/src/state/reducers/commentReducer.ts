@@ -32,8 +32,16 @@ export interface IReply {
   author: IAuthor;
 }
 
+export interface IVote {
+  post: {
+    id: string;
+  };
+  type: "UP" | "DOWN";
+}
+
 export interface CommentState {
   list: IComment[];
+  votes: IVote[];
   shared: IComment | null;
   replying: IReply | null;
   page: number;
@@ -44,6 +52,7 @@ export interface CommentState {
 
 const initialState: CommentState = {
   list: [],
+  votes: [],
   shared: null,
   replying: null,
   page: 0,
@@ -65,6 +74,7 @@ export default (
         ...state,
         page: 0,
         list: transform(action.list, state.shared),
+        votes: action.votes,
         total: action.total,
         parents: action.parents,
       };
@@ -175,6 +185,16 @@ function update(
   state: CommentState,
   { action, voteType, id }: AnyAction
 ): CommentState {
+  let votes: IVote[] = [...state.votes];
+
+  if (action == "CREATED") votes.push({ post: { id }, type: voteType });
+  else if (action == "DELETED") {
+    votes = votes.filter((vote) => vote.post.id != id);
+  } else if (action == "TOGGLED") {
+    let index = votes.findIndex((vote) => vote.post.id == id);
+    votes[index].type = voteType;
+  }
+
   let list = [...state.list];
   list = list.filter((c) => !c.shared);
   const index = list.findIndex((c) => c.id == id && !c.shared);
@@ -205,6 +225,7 @@ function update(
   return {
     ...state,
     shared,
+    votes,
     list: transform(list, shared),
   };
 }

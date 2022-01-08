@@ -150,6 +150,7 @@
     "@api/middleware": "dist/apps/api/middleware",
     "@cdn/config": "dist/apps/cdn/config",
     "@cdn/controller": "dist/apps/cdn/config",
+    "@cdn/rotuer": "dist/apps/cdn/router",
     "@cdn/util": "dist/apps/cdn/config",
     "@cdn/middleware": "dist/apps/cdn/middleware"
   }

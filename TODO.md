@@ -1,16 +1,9 @@
 # Todo:
 
-- Darkmode button outlines
-- Color upvotes
-- Input in Darkmode (Google?)
-- Fix fab after logout
-
-## Optional:
-
+- TAILWIND_MODE by default
 - Random classes (fix github etc.)
-- Switch to preact?
+- Smart show (+ Shortcut)
 - Add some intro
-- Smart show
 
 ## Broken Links:
 

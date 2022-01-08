@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { extname, resolve } from "path";
 import access from "@cdn/middleware/access";
+import limit from "@cdn/middleware/limit";
 import avatar from "@cdn/config/avatar.config";
 import multer from "multer";
 import sharp from "sharp";
@@ -72,4 +73,9 @@ const uploadAvatarController = async (req: Request, res: Response) => {
   res.status(200).json({});
 };
 
-export default [access, upload.single("image"), uploadAvatarController];
+export default [
+  access,
+  limit(10),
+  upload.single("image"),
+  uploadAvatarController,
+];

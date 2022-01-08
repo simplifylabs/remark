@@ -68,13 +68,13 @@ function FabComponent(props: IProps) {
       } bg-brand !cursor-pointer drop-shadow-fab flex justify-center items-center transform !transition-all !duration-200 remark-ignore`}
     >
       <div
-        className={`absolute top-0 right-0 transform translate-x-2 -translate-y-1 w-6 h-6 bg-red-500 text-white text-sm rounded-full justify-center items-center shadow-xl flex transition-all ${
+        className={`absolute top-0 right-0 transform translate-x-2 -translate-y-1 w-6 h-6 bg-red-500 rounded-full justify-center items-center shadow-xl flex transition-all ${
           props.total > 0 && !props.typing && !props.sidebar
             ? "opacity-1"
             : "opacity-0"
         }`}
       >
-        <label className="text-xs font-bold">
+        <label className="text-xs font-bold text-white">
           {props.total > 99 ? "!" : props.total}
         </label>
       </div>
@@ -88,7 +88,7 @@ function FabComponent(props: IProps) {
             //@ts-ignore
             "--tw-rotate": `90deg`,
           }}
-          className="w-5/12 text-white transition-all duration-200 transform !cursor-pointer remark-ignore opacity-[99]"
+          className="w-5/12 icon-white transition-all duration-200 transform !cursor-pointer remark-ignore opacity-[99]"
           shapeRendering="geometricPrecision"
         />
       ) : props.sidebar ? (
@@ -97,7 +97,7 @@ function FabComponent(props: IProps) {
             //@ts-ignore
             "--tw-rotate": `${hovering ? 90 : 0}deg`,
           }}
-          className="w-5/12 text-white transition-all duration-200 transform !cursor-pointer remark-ignore opacity-[99]"
+          className="w-5/12 icon-white transition-all duration-200 transform !cursor-pointer remark-ignore opacity-[99]"
           shapeRendering="geometricPrecision"
         />
       ) : (

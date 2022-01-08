@@ -1,4 +1,6 @@
 import Storage from "@browser/util/storage";
+import Registry from "@browser/state/registry";
+import { setDark, SET_DARK } from "@browser/actions/render";
 
 type IListener = (to: boolean) => void;
 
@@ -44,8 +46,13 @@ export default class Darkmode {
     const sidebar = document.querySelector("#remark-launcher");
     if (!sidebar) return;
 
-    if (this.isSiteDark()) sidebar.classList.add("dark");
-    else sidebar.classList.remove("dark");
+    if (this.isSiteDark()) {
+      sidebar.classList.add("dark");
+      Registry.dispatch(setDark(true));
+    } else {
+      sidebar.classList.remove("dark");
+      Registry.dispatch(setDark(false));
+    }
   }
 
   static isSiteDark() {

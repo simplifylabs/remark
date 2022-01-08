@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
+import { prisma, Post, Vote, commentSelect } from "@db";
+import { optionalAccess } from "@api/middleware/access";
 import { filter } from "@api/util/url";
-import { Post, prisma, commentSelect } from "@db";
 
 const listComments = async (req: Request, res: Response) => {
   const decoded = decodeURIComponent(String(req.query.url) || "");
@@ -10,7 +11,7 @@ const listComments = async (req: Request, res: Response) => {
   if (filtered.error)
     return res.status(500).json({ error: "INTERNAL_SERVER_ERROR" });
 
-  const result = await prisma.$transaction([
+  const transaction = [
     Post.count({
       where: { url: { filtered: filtered.url } },
     }),
@@ -33,16 +34,37 @@ const listComments = async (req: Request, res: Response) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       select: commentSelect as any,
     }),
-  ]);
+  ];
 
-  if (result.length != 3 || !result[0] || !result[1] || !result[2])
-    return res.status(200).json({ total: 0, list: [] });
-  return res
-    .status(200)
-    .json({ total: result[0], parents: result[1], list: result[2] });
+  if (req.user && req.query.page == "0")
+    transaction.push(
+      Vote.findMany({
+        where: {
+          userId: req.user.id,
+          post: { url: { filtered: filtered.url } },
+        },
+        select: {
+          type: true,
+          post: {
+            select: {
+              id: true,
+            },
+          },
+        },
+      })
+    );
+
+  const result = await prisma.$transaction(transaction);
+  res.status(200).json({
+    total: result[0] || 0,
+    parents: result[1] || 0,
+    list: result[2] || [],
+    votes: result.length == 4 ? result[3] : [],
+  });
 };
 
 export default [
+  optionalAccess,
   validate({
     query: Joi.object({
       page: prefabs.page.required(),

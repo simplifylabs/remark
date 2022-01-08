@@ -7,6 +7,7 @@ export const DISABLE_RENDER = "DISABLE_RENDER";
 export const TOGGLE_SIDEBAR = "TOGGLE_SIDEBAR";
 export const HIDE_SIDEBAR = "HIDE_SIDEBAR";
 export const SHOW_SIDEBAR = "SHOW_SIDEBAR";
+export const SET_DARK = "SET_DARK";
 
 export const showFab = () => async (dispatch: Dispatch) => {
   dispatch({
@@ -40,5 +41,12 @@ export const hideSidebar = () => async (dispatch: Dispatch) => {
 
   dispatch({
     type: HIDE_SIDEBAR,
+  });
+};
+
+export const setDark = (to: boolean) => async (dispatch: Dispatch) => {
+  dispatch({
+    type: SET_DARK,
+    to,
   });
 };

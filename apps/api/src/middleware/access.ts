@@ -25,4 +25,21 @@ async function access(req: Request, res: Response, next: NextFunction) {
   }
 }
 
+export async function optionalAccess(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  const accessToken = req.header("authorization")?.replace("Bearer ", "");
+  if (!accessToken) return next();
+
+  try {
+    const verified = await verifyAccessToken(accessToken);
+    req.user = verified.user;
+    next();
+  } catch (e) {
+    res.status(403).json({ error: "ACCESS_TOKEN_INVALID" });
+  }
+}
+
 export default () => access;

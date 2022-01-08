@@ -64,8 +64,8 @@ export default class User {
   static async hasAvatar(id: string): Promise<boolean> {
     const res = await API.get([
       "CDN",
-      "exists",
       "avatar",
+      "exists",
       "50x50",
       `${id}.jpg`,
     ]);
@@ -154,7 +154,7 @@ export default class User {
     const form = new FormData();
     form.append("image", file);
 
-    const res = await API.file(["CDN", "upload", "avatar"], form);
+    const res = await API.file(["CDN", "avatar", "upload"], form);
     return res;
   }
 

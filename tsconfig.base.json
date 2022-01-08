@@ -30,6 +30,7 @@
       "@cdn/config/*": ["apps/cdn/src/config/*"],
       "@cdn/controller/*": ["apps/cdn/src/controller/*"],
       "@cdn/middleware/*": ["apps/cdn/src/middleware/*"],
+      "@cdn/router/*": ["apps/cdn/src/router/*"],
       "@cdn/util/*": ["apps/cdn/src/util/*"],
       "@web/actions/*": ["apps/web/state/actions/*"],
       "@web/components/*": ["apps/web/components/*"],
