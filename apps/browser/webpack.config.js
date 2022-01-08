@@ -3,6 +3,7 @@ const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
@@ -35,8 +36,9 @@ module.exports = function (_, env) {
         {
           test: /injected.css$/i,
           include: path.resolve(__dirname, "src", "styles"),
+          sideEffects: true,
           use: [
-            "style-loader",
+            MiniCssExtractPlugin.loader,
             "css-loader",
             {
               loader: "postcss-loader",
@@ -45,7 +47,6 @@ module.exports = function (_, env) {
                   // sourceMap: false,
                   plugins: [
                     require("postcss-import"),
-                    require("postcss-nested"),
                     require("tailwindcss")(
                       `${__dirname}/src/tailwind/injected.config.js`
                     ),
@@ -90,14 +91,19 @@ module.exports = function (_, env) {
       path: path.join(__dirname, "build"),
     },
     plugins: [
-      new webpack.ProgressPlugin(),
       new CleanWebpackPlugin({}),
+      new webpack.ProgressPlugin(),
       new webpack.ProvidePlugin({
         process: "process/browser",
       }),
       new HtmlWebpackPlugin({
         template: "apps/browser/assets/popup.html",
         filename: "html/popup.html",
+      }),
+      new MiniCssExtractPlugin({
+        filename: "css/injected.css",
+        insert: () => null,
+        runtime: true,
       }),
       new CopyWebpackPlugin({
         patterns: [

@@ -14,7 +14,8 @@
   "web_accessible_resources": [
     "assets/*.png",
     "assets/*.svg",
-    "assets/icon/*.png"
+    "assets/icon/*.png",
+    "css/*.css"
   ],
   "content_scripts": [
     {

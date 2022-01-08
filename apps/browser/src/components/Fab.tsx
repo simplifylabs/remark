@@ -65,7 +65,7 @@ function FabComponent(props: IProps) {
           : "w-[57px] h-[57px]"
       } ${
         props.sidebar ? "rounded-lg" : "rounded-[50%]"
-      } bg-brand !cursor-pointer drop-shadow-fab flex justify-center items-center transform !transition-all !duration-200 remark-ignore`}
+      } bg-brand !cursor-pointer drop-shadow-fab flex justify-center items-center transform !transition-all !duration-200 remark-ignore pointer-events-auto`}
     >
       <div
         className={`absolute top-0 right-0 transform translate-x-2 -translate-y-1 w-6 h-6 bg-red-500 rounded-full justify-center items-center shadow-xl flex transition-all ${

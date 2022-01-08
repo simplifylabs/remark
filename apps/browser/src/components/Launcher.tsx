@@ -3,6 +3,7 @@ import Fab from "@browser/components/Fab";
 import Sidebar from "@browser/components/Sidebar";
 import { DialogWrapper } from "@browser/components/Dialog";
 import { connect, IRootState } from "@browser/state/index";
+import "@browser/styles/injected.css";
 
 interface IProps {
   rendered: boolean;

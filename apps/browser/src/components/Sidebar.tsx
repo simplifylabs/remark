@@ -88,8 +88,16 @@ function SidebarComponent(props: ISidebarProps) {
     if (e.key == "Enter" && !e.shiftKey) {
       e.preventDefault();
 
-      const suggestions = document.querySelector(".remark__suggestions");
-      if (suggestions) return;
+      const iframe: HTMLIFrameElement =
+        document.querySelector("#remark-launcher");
+
+      if (iframe) {
+        const suggestions = iframe.contentWindow.document.querySelector(
+          ".remark__suggestions__list"
+        );
+        if (suggestions) return;
+      }
+
       post();
     }
   }
@@ -108,7 +116,7 @@ function SidebarComponent(props: ISidebarProps) {
       }
     }
 
-    textarea.current.blur();
+    if (textarea.current) textarea.current.blur();
     props.post(modified, isReplying ? props.replying.commentId : null, () =>
       setValue("")
     );

@@ -43,21 +43,26 @@ export default class Darkmode {
   }
 
   static checkSidebar() {
-    const sidebar = document.querySelector("#remark-launcher");
-    if (!sidebar) return;
+    const launcher: HTMLIFrameElement =
+      document.querySelector("#remark-launcher");
+    if (!launcher) return;
 
     if (this.isSiteDark()) {
-      sidebar.classList.add("dark");
+      launcher.contentWindow.document.body.classList.add("dark");
       Registry.dispatch(setDark(true));
     } else {
-      sidebar.classList.remove("dark");
+      launcher.contentWindow.document.body.classList.remove("dark");
       Registry.dispatch(setDark(false));
     }
   }
 
   static isSiteDark() {
-    const body = this.isElementDark("body");
-    if (body !== null) return body;
+    const meta: HTMLMetaElement = document.querySelector(
+      `meta[name="color-scheme"]`
+    );
+
+    if (meta && meta.content == "dark") return true;
+    else if (meta && meta.content == "light") return false;
 
     return this.isElementDark("html");
   }

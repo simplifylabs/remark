@@ -1,302 +1,152 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-#remark-launcher,
-#remark-launcher * {
-  animation: none;
-  animation-delay: 0;
-  animation-direction: normal;
-  animation-duration: 0;
-  animation-fill-mode: none;
-  animation-iteration-count: 1;
-  animation-name: none;
-  animation-play-state: running;
-  animation-timing-function: ease;
-  backface-visibility: visible;
-  background: 0;
-  background-attachment: scroll;
-  background-clip: border-box;
-  background-color: transparent;
-  background-image: none;
-  background-origin: padding-box;
-  background-position: 0 0;
-  background-position-x: 0;
-  background-position-y: 0;
-  background-repeat: repeat;
-  background-size: auto auto;
-  border: 0;
-  border-style: none;
-  border-width: medium;
-  border-color: initial;
-  border-bottom: 0;
-  border-bottom-color: initial;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-style: none;
-  border-bottom-width: medium;
-  border-collapse: separate;
-  border-image: none;
-  border-left: 0;
-  border-left-color: initial;
-  border-left-style: none;
-  border-left-width: medium;
-  border-radius: 0;
-  border-right: 0;
-  border-right-color: initial;
-  border-right-style: none;
-  border-right-width: medium;
-  border-spacing: 0;
-  border-top: 0;
-  border-top-color: initial;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-top-style: none;
-  border-top-width: medium;
-  bottom: auto;
-  box-shadow: none;
-  box-sizing: content-box;
-  caption-side: top;
-  clear: none;
-  clip: auto;
-  color: initial;
-  columns: auto;
-  column-count: auto;
-  column-fill: balance;
-  column-gap: normal;
-  column-rule: medium none currentColor;
-  column-rule-color: currentColor;
-  column-rule-style: none;
-  column-rule-width: none;
-  column-span: 1;
-  column-width: auto;
-  content: normal;
-  counter-increment: none;
-  counter-reset: none;
-  direction: ltr;
-  empty-cells: show;
-  float: none;
-  font: normal;
-  font-family: "Inter", sans-serif;
-  font-size: medium;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: normal;
-  height: auto;
-  hyphens: none;
-  left: auto;
-  letter-spacing: normal;
-  list-style: none;
-  list-style-image: none;
-  list-style-position: outside;
-  list-style-type: disc;
-  margin: 0;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  max-height: none;
-  max-width: none;
-  min-height: 0;
-  min-width: 0;
-  opacity: 1;
-  orphans: 0;
-  outline: 0;
-  outline-color: invert;
-  outline-style: none;
-  outline-width: medium;
-  overflow: visible;
-  overflow-x: visible;
-  overflow-y: visible;
-  padding: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  page-break-after: auto;
-  page-break-before: auto;
-  page-break-inside: auto;
-  perspective: none;
-  perspective-origin: 50% 50%;
-  position: static;
-  right: auto;
-  tab-size: 8;
-  table-layout: auto;
-  text-align: initial;
-  text-align-last: auto;
-  text-decoration: none;
-  text-decoration-color: initial;
-  text-decoration-line: none;
-  text-decoration-style: solid;
-  text-indent: 0;
-  text-shadow: none;
-  text-transform: none;
-  top: auto;
-  transform: none;
-  transform-style: flat;
-  transition: none;
-  transition-delay: 0s;
-  transition-duration: 0s;
-  transition-property: none;
-  transition-timing-function: ease;
-  unicode-bidi: normal;
-  vertical-align: baseline;
-  visibility: visible;
-  white-space: normal;
-  widows: 0;
-  width: auto;
-  word-spacing: normal;
-  line-height: 1.5rem;
-  z-index: auto;
-  cursor: initial;
-  /* display: initial; */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+body,
+html,
+#app {
+  background-color: transparent !important;
 }
 
-#remark-launcher {
-  @import "tailwindcss/base";
-  @import "tailwindcss/components";
-  @import "tailwindcss/utilities";
-}
-
-#remark-launcher {
-  @layer base {
-    [type="text"],
-    [type="email"],
-    [type="url"],
-    [type="password"],
-    [type="number"],
-    [type="date"],
-    [type="datetime-local"],
-    [type="month"],
-    [type="search"],
-    [type="tel"],
-    [type="time"],
-    [type="week"],
-    [multiple],
-    textarea,
-    select {
-      @apply border-gray-200 rounded-lg shadow-sm focus:ring-brand bg-white focus:caret-brand text-black py-[0.6rem];
-    }
-
-    [type="checkbox"],
-    [type="radio"] {
-      @apply rounded border-gray-300 text-brand focus:ring-brand;
-    }
-
-    [type="submit"] {
-      @apply cursor-pointer;
-    }
-
-    button {
-      @apply outline-none font-medium cursor-pointer select-none focus:outline-none;
-    }
-
-    .link {
-      @apply text-brand hover:text-gray-700 cursor-pointer fade;
-    }
-
-    .btn-primary {
-      @apply btn bg-brand text-white hover:bg-brand-light;
-    }
-
-    .btn-secondary {
-      @apply btn bg-brand/20 text-brand hover:shadow-sm;
-    }
-
-    .btn-outline {
-      @apply btn border-gray-300 hover:border-gray-400 focus:border-gray-400 border-2 text-gray-700 hover:shadow-sm;
-    }
-
-    .btn-disabled {
-      @apply btn bg-black/10 text-gray-500;
-    }
-
-    .btn-icon {
-      @apply w-7 h-7 text-gray-700 bg-black bg-opacity-0 hover:!bg-opacity-5 p-1 cursor-pointer rounded-md transition-all;
-    }
-
-    .btn {
-      @apply flex flex-row justify-center items-center gap-2 px-7 py-2.5 rounded-md select-none cursor-pointer fade focus:outline-none;
-    }
-
-    .text-default {
-      @apply text-black;
-    }
-
-    a {
-      @apply link;
-    }
-
-    .toggle:checked + label {
-      @apply bg-brand;
-    }
-
-    .scroll-smooth {
-      scroll-behavior: smooth;
-    }
-
-    .fade {
-      @apply transition-all duration-150 ease-in-out;
-    }
-
-    .icon-white path {
-      color: white;
-    }
+@layer base {
+  [type="text"],
+  [type="email"],
+  [type="url"],
+  [type="password"],
+  [type="number"],
+  [type="date"],
+  [type="datetime-local"],
+  [type="month"],
+  [type="search"],
+  [type="tel"],
+  [type="time"],
+  [type="week"],
+  [multiple],
+  textarea,
+  select {
+    @apply border-gray-200 rounded-lg shadow-sm focus:ring-brand bg-white focus:caret-brand text-black py-[0.6rem];
   }
 
-  .thin-scrollbar::-webkit-scrollbar {
-    width: 6px;
-    background: rgba(0, 0, 0, 0);
+  [type="checkbox"],
+  [type="radio"] {
+    @apply rounded border-gray-300 text-brand focus:ring-brand;
   }
 
-  .thin-scrollbar::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.15);
-    border-radius: 20px;
+  [type="submit"] {
+    @apply cursor-pointer;
   }
 
-  .thin-scrollbar:hover::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.3);
+  button {
+    @apply outline-none font-medium cursor-pointer select-none focus:outline-none;
   }
 
-  .remark--multiLine,
-  .remark--multiLine * {
-    white-space: pre-wrap !important;
+  .link {
+    @apply text-brand hover:text-gray-700 cursor-pointer fade;
   }
 
-  .remark__mention {
-    @apply rounded-md z-[1] text-brand pointer-events-none;
+  .btn-primary {
+    @apply btn bg-brand text-white hover:bg-brand-light;
   }
 
-  .remark__highlighter {
-    @apply rounded-lg z-[1] pointer-events-none;
+  .btn-secondary {
+    @apply btn bg-brand/20 text-brand hover:shadow-sm;
   }
 
-  .remark__input {
-    @apply !bg-white rounded-lg shadow-sm border border-gray-300;
+  .btn-outline {
+    @apply btn border-gray-300 hover:border-gray-400 focus:border-gray-400 border-2 text-gray-700 hover:shadow-sm;
   }
-}
 
-#remark-launcher:is(.dark) {
+  .btn-disabled {
+    @apply btn bg-black/10 text-gray-500;
+  }
+
   .btn-icon {
-    @apply text-gray-200 bg-white bg-opacity-0;
+    @apply w-7 h-7 text-gray-700 bg-black bg-opacity-0 hover:!bg-opacity-5 p-1 cursor-pointer rounded-md transition-all;
   }
 
-  .thin-scrollbar::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
+  .btn {
+    @apply flex flex-row justify-center items-center gap-2 px-7 py-2.5 rounded-md select-none cursor-pointer fade focus:outline-none;
   }
 
-  .thin-scrollbar:hover::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
+  .text-default {
+    @apply text-black;
   }
 
-  .remark__input {
-    @apply !bg-black !border-gray-700 !text-white;
+  a {
+    @apply link;
   }
 
-  .remark__suggestions__list {
-    @apply !bg-background-form;
+  .toggle:checked + label {
+    @apply bg-brand;
   }
 
-  .remark__suggestions__item--focused {
-    @apply !bg-white/10;
+  .scroll-smooth {
+    scroll-behavior: smooth;
   }
+
+  .fade {
+    @apply transition-all duration-150 ease-in-out;
+  }
+
+  .icon-white path {
+    color: white;
+  }
+}
+
+.thin-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  background: rgba(0, 0, 0, 0);
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+}
+
+.thin-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.remark--multiLine,
+.remark--multiLine * {
+  white-space: pre-wrap !important;
+}
+
+.remark__mention {
+  @apply rounded-md z-[1] text-brand pointer-events-none;
+}
+
+.remark__highlighter {
+  @apply rounded-lg z-[1] pointer-events-none;
+}
+
+.remark__input {
+  @apply !bg-white rounded-lg shadow-sm border border-gray-300;
+}
+
+.dark .btn-icon {
+  @apply text-gray-200 bg-white bg-opacity-0;
+}
+
+.dark .thin-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+}
+
+.dark .thin-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.dark .remark__input {
+  @apply !bg-black !border-gray-700 !text-white;
+}
+
+.dark .remark__suggestions__list {
+  @apply !bg-background-form;
+}
+
+.dark .remark__suggestions__item--focused {
+  @apply !bg-white/10;
 }

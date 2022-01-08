@@ -1,7 +1,7 @@
 import { hideFab, showFab } from "@browser/actions/render";
+import { EventListener, IEventList } from "./events";
 import { store } from "@browser/state/index";
 import Domain from "./domain";
-import { EventListener, IEventList } from "./events";
 
 export default class Render {
   static events: IEventList = {};
@@ -77,16 +77,40 @@ export default class Render {
 
   static getWrapper(): Element | undefined {
     if (!this.allowed()) return;
+
     const current = document.querySelector("#remark-launcher");
-    if (current) return current;
+    if (current) return (current as HTMLIFrameElement).querySelector("#app");
+
     return this.injectWrapper();
   }
 
   static injectWrapper(): HTMLElement | undefined {
-    const wrapper = document.createElement("div");
+    const wrapper = document.createElement("iframe");
     wrapper.id = "remark-launcher";
+    wrapper.setAttribute(
+      "style",
+      "position: fixed !important; opacity: 1 !important; width: 100vw !important; height: 100vh !important; top: 0 !important; left: 0 !important; border: none !important; display: block !important; z-index: 2147483646 !important; background-color: transparent !important; color-scheme: light !important; pointer-events: auto !important;"
+    );
+
+    wrapper.src = "about: blank";
+    wrapper.frameBorder = "0";
+    // @ts-ignore
+    wrapper.allowTransparency = "true";
+
+    const app = document.createElement("div");
+    app.id = "app";
+
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.type = "text/css";
+    link.href = chrome.extension.getURL("css/injected.css");
+
     document.body.appendChild(wrapper);
-    return wrapper;
+    wrapper.contentWindow.document.body.appendChild(app);
+    wrapper.contentWindow.document.head.appendChild(link);
+    wrapper.contentWindow.document.body.style.backgroundColor = "transparent";
+
+    return app;
   }
 
   static async checkBlocked() {

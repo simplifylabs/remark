@@ -9,8 +9,7 @@ function withOpacity(variable) {
 }
 
 module.exports = {
-  mode: "jit",
-  purge: ["apps/web/components/**/*.tsx", "apps/web/pages/**/*.tsx"],
+  content: ["apps/web/components/**/*.tsx", "apps/web/pages/**/*.tsx"],
   theme: {
     screens: {
       xs: "450px",
