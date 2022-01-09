@@ -2,7 +2,7 @@
 name: Feature request
 about: Suggest an idea for this project
 title: "[FEATURE]: <your_feature>"
-labels: ":rocket: feature-request"
+labels: ":rocket: feature"
 ---
 
 <!-- Before submitting an issue, please read https://github.com/simplifylabs/remark/blob/main/CONTRIBUTING.md -->
