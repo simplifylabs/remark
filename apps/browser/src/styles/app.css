@@ -12,8 +12,8 @@
 
   --bg-light: 240, 245, 251;
   --bg-dark: 40, 44, 52;
-  --bg-form: 28, 30 33;
-  --bg-card: 28, 30 33;
+  --bg-form: 28, 30, 33;
+  --bg-card: 28, 30, 33;
 }
 
 @layer base {

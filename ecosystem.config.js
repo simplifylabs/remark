@@ -3,7 +3,7 @@ module.exports = {
     {
       name: "Remark API",
       cwd: "./",
-      script: "./apps/api/dist/main.js",
+      script: "./apps/api/dist/app.js",
       exec_mode: "cluster",
       instances: "max",
       env: {
@@ -13,7 +13,7 @@ module.exports = {
     {
       name: "Remark CDN",
       cwd: "./",
-      script: "./apps/cdn/dist/main.js",
+      script: "./apps/cdn/dist/app.js",
       exec_mode: "cluster",
       instances: "max",
       env: {

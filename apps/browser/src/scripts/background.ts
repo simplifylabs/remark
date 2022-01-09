@@ -1,93 +1,7 @@
 import App from "@browser/util/app";
 import Tab from "@browser/util/tab";
 import User from "@browser/util/user";
-
-function Policy(policy: string) {
-  // Allow empty policies
-  if (!policy) {
-    this.raw = "";
-    this.directives = {};
-    return this;
-  }
-
-  // With lowercase, nonce stops working
-  // policy = policy.toLowerCase();
-
-  this.raw = policy;
-  this.directives = {};
-
-  var directives = this.raw.split(";");
-  for (var i = 0; i < directives.length; ++i) {
-    var directive = directives[i].trim();
-    var tokens = directive.split(/\s+/);
-
-    var name = tokens[0];
-    if (!name) {
-      continue;
-    }
-    var values = tokens.slice(1, tokens.length);
-    this.directives[name] = values.join(" ");
-  }
-  return this;
-}
-
-Policy.prototype.get = function (directive) {
-  if (!this.directives[directive]) return "";
-  return this.directives[directive];
-};
-
-Policy.prototype.add = function (directive, value) {
-  if (!this.directives[directive]) {
-    this.directives[directive] = value;
-  } else {
-    this.directives[directive] += " " + value;
-  }
-  return this.directives[directive];
-};
-
-Policy.prototype.set = function (directive, value) {
-  if (!value) {
-    delete this.directives[directive];
-    return;
-  }
-  this.directives[directive] = value;
-  return this.directives[directive];
-};
-
-Policy.prototype.remove = function (directive, value) {
-  if (!this.directives[directive]) {
-    return;
-  } else {
-    var directiveValues = this.directives[directive].split(" ");
-    var index = directiveValues.indexOf(value);
-    if (index > -1) {
-      directiveValues.splice(index, 1);
-      this.directives[directive] = directiveValues.join(" ");
-    }
-  }
-};
-
-Policy.prototype.toString = Policy.prototype.string = function () {
-  var out = "";
-  for (var directive in this.directives) {
-    if (this.directives[directive]) {
-      out += directive + " " + this.directives[directive] + "; ";
-    }
-  }
-  return out.trim();
-};
-
-Policy.prototype.toPrettyString = Policy.prototype.prettyString = function () {
-  var out = "";
-  for (var directive in this.directives) {
-    if (this.directives[directive]) {
-      out += directive + "\n\t" + this.directives[directive] + ";\n";
-    }
-  }
-  return out.substring(0, out.length - 1);
-};
-
-module.exports = Policy;
+import Policy from "@browser/util/policy";
 
 // eslint-disable-next-line
 type Data = { [key: string]: any };
@@ -119,31 +33,16 @@ chrome.webRequest.onHeadersReceived.addListener(
       ) {
         const policy = new Policy(headers[i].value);
 
-        // if (
-        //   policy.get("script-src").includes("unsafe-inline") &&
-        //   policy.get("script-src").includes("nonce-")
-        // ) {
-        //   policy
-        //     .get("script-src")
-        //     .split(" ")
-        //     .forEach((entry) => {
-        //       if (entry.includes("nonce-")) policy.remove("script-src", entry);
-        //     });
-        // }
+        if (policy.get("style-src")) {
+          policy.add("style-src", "'self'");
+          policy.add("style-src", "'unsafe-inline'");
+          policy.add("style-src", "https://fonts.googleapis.com");
+        }
 
-        // if (policy.get("style-src")) {
-        //   policy.add("style-src", "'self'");
-        //   policy.add("style-src", "'unsafe-inline'");
-        //   policy.add("style-src", "https://fonts.googleapis.com");
-        // }
+        if (policy.get("font-src"))
+          policy.add("font-src", "https://fonts.gstatic.com");
 
-        // if (policy.get("font-src"))
-        //   policy.add("font-src", "https://fonts.gstatic.com");
-
-        // console.log(policy.toString());
-        console.log(headers[i].value);
         headers[i].value = policy.toString();
-        console.log(headers[i].value);
       }
     }
 

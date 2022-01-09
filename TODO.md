@@ -2,6 +2,7 @@
 
 - Smart show (+ Shortcut)
 - Add some intro
+- Fix inputRef error
 - Clean up
 
 ## Broken Links:

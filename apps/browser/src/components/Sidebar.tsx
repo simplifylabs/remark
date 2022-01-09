@@ -138,14 +138,14 @@ function SidebarComponent(props: ISidebarProps) {
           right: 0,
           bottom: 0,
           width: 350,
-          height: "calc(100%-30px)",
+          height: "calc(100% - 30px)",
           transition: "all 0.2s ease",
           opacity: `${opacity}`,
           margin: 15,
           transform: `translateX(${translateX})`,
         }}
       >
-        <div className="w-full h-full rounded-[20px] bg-black/5 dark:!bg-white/10 shadow-sidebar pb-14 pl-[2px] overflow-hidden">
+        <div className="w-full h-full rounded-[20px] bg-black/10 dark:bg-white/20 shadow-sidebar pb-14 pl-[2px] overflow-hidden">
           <Comments setValue={setValue} input={textarea} />
           <div className="flex absolute bottom-0 left-0 flex-row p-[0.72rem] w-full">
             {props.isLoggedIn ? (

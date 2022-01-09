@@ -28,7 +28,7 @@ export function filter(str: string): IFilterResult | IFilterError {
       const search = filterSearch(url.searchParams);
 
       const searchStr = search.toString();
-      if (searchStr) filteredSearch = `?${str}`;
+      if (searchStr) filteredSearch = `?${searchStr}`;
 
       search.append("remark", "%REMARK_ID%");
       shareSearch = `?${search.toString()}`;
