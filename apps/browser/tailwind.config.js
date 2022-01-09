@@ -1,8 +1,8 @@
-function withOpacity(variable) {
+function withOpacity(name) {
   return (data) => {
     if (data.opacityValue !== undefined)
-      return `rgba(var(${variable}), ${data.opacityValue})`;
-    return `rgb(var(${variable}))`;
+      return `rgba(var(${name}), ${data.opacityValue})`;
+    return `rgb(var(${name}))`;
   };
 }
 
@@ -18,6 +18,8 @@ module.exports = {
         background: {
           light: withOpacity("--bg-light"),
           dark: withOpacity("--bg-dark"),
+          form: withOpacity("--bg-form"),
+          card: withOpacity("--bg-card"),
         },
         brand: {
           100: withOpacity("--brand-100"),
@@ -26,10 +28,13 @@ module.exports = {
           DEFAULT: withOpacity("--brand"),
         },
       },
+      boxShadow: {
+        sidebar: "0 0 4px rgba(0, 0, 0, 0.15)",
+      },
+      cursor: {
+        "col-resize": "col-resize",
+      },
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [require("@tailwindcss/forms")({ strategy: "class" })],
 };

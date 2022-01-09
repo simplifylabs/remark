@@ -34,7 +34,7 @@ module.exports = function (_, env) {
           exclude: /node_modules/,
         },
         {
-          test: /injected.css$/i,
+          test: /app.css$/i,
           include: path.resolve(__dirname, "src", "styles"),
           sideEffects: true,
           use: [
@@ -47,37 +47,8 @@ module.exports = function (_, env) {
                   // sourceMap: false,
                   plugins: [
                     require("postcss-import"),
-                    require("tailwindcss")(
-                      `${__dirname}/src/tailwind/injected.config.js`
-                    ),
-                    require("postcss-replace")({
-                      pattern: ".dark ",
-                      data: { replaceAll: "#remark-launcher.dark " },
-                    }),
-                    require("postcss-rem-to-pixel")({
-                      propList: ["*"],
-                    }),
+                    require("tailwindcss")("apps/browser/tailwind.config.js"),
                     require("autoprefixer"),
-                  ],
-                },
-              },
-            },
-          ],
-        },
-        {
-          test: /popup.css/i,
-          include: path.resolve(__dirname, "src", "styles"),
-          use: [
-            "style-loader",
-            "css-loader",
-            {
-              loader: "postcss-loader",
-              options: {
-                postcssOptions: {
-                  plugins: [
-                    require("tailwindcss")(
-                      `${__dirname}/src/tailwind/popup.config.js`
-                    ),
                   ],
                 },
               },
@@ -101,7 +72,7 @@ module.exports = function (_, env) {
         filename: "html/popup.html",
       }),
       new MiniCssExtractPlugin({
-        filename: "css/injected.css",
+        filename: "css/app.css",
         insert: () => null,
         runtime: true,
       }),

@@ -91,7 +91,7 @@
   }
 
   .text-default {
-    @apply text-black;
+    @apply text-black dark:text-white;
   }
 
   a {

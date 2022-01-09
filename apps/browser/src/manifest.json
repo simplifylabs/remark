@@ -29,7 +29,7 @@
   },
   "browser_action": {
     "default_title": "Create Remark",
-    "default_popup": "assets/popup.html"
+    "default_popup": "html/popup.html"
   },
   "externally_connectable": {
     "matches": ["*://*.remark.surf/*", "*://localhost/*"]

@@ -4,6 +4,7 @@ import App from "@browser/util/app";
 import API from "@browser/util/api";
 import Render from "@browser/util/render";
 import Comments from "@browser/components/Comments";
+import Frame from "@browser/components/Frame";
 import { MentionsInput, Mention } from "react-mentions";
 import { connect, IRootState } from "@browser/state/index";
 import { hideSidebar } from "@browser/actions/render";
@@ -88,15 +89,10 @@ function SidebarComponent(props: ISidebarProps) {
     if (e.key == "Enter" && !e.shiftKey) {
       e.preventDefault();
 
-      const iframe: HTMLIFrameElement =
-        document.querySelector("#remark-launcher");
-
-      if (iframe) {
-        const suggestions = iframe.contentWindow.document.querySelector(
-          ".remark__suggestions__list"
-        );
-        if (suggestions) return;
-      }
+      const suggestions = Render.sidebarQuerySelector(
+        ".remark__suggestions__list"
+      );
+      if (suggestions) return;
 
       post();
     }
@@ -134,33 +130,42 @@ function SidebarComponent(props: ISidebarProps) {
 
   return (
     <>
-      <div
+      <Frame
+        id="sidebar"
         style={{
+          zIndex: 2147483646,
+          position: "fixed",
+          right: 0,
+          bottom: 0,
+          width: 350,
+          height: "calc(100%-30px)",
+          transition: "all 0.2s ease",
           opacity: `${opacity}`,
-          //@ts-ignore
-          "--tw-translate-x": `${translateX}`,
+          margin: 15,
+          transform: `translateX(${translateX})`,
         }}
-        className="fixed z-[2147483645] right-0 top-0 rounded-[20px] w-[350px] h-[calc(100vh-35px)] bg-black/5 dark:!bg-white/10 m-[17.5px] transform transition-all duration-200 opacity-0 shadow-sidebar pb-14 pl-[2px] overflow-hidden"
       >
-        <Comments setValue={setValue} input={textarea} />
-        <div className="flex absolute bottom-0 left-0 flex-row p-[0.77rem] w-full">
-          {props.isLoggedIn ? (
-            <Input
-              value={value}
-              set={setValue}
-              inputRef={textarea}
-              typing={props.typing}
-            />
-          ) : (
-            <button
-              onClick={signIn}
-              className="btn-disabled w-[calc(100%-3.4rem)] py-[0.6rem]"
-            >
-              Sign In
-            </button>
-          )}
+        <div className="w-full h-full rounded-[20px] bg-black/5 dark:!bg-white/10 shadow-sidebar pb-14 pl-[2px] overflow-hidden">
+          <Comments setValue={setValue} input={textarea} />
+          <div className="flex absolute bottom-0 left-0 flex-row p-[0.72rem] w-full">
+            {props.isLoggedIn ? (
+              <Input
+                value={value}
+                set={setValue}
+                inputRef={textarea}
+                typing={props.typing}
+              />
+            ) : (
+              <button
+                onClick={signIn}
+                className="btn-disabled w-[calc(100%-3.4rem)] py-[0.6rem]"
+              >
+                Sign In
+              </button>
+            )}
+          </div>
         </div>
-      </div>
+      </Frame>
     </>
   );
 }

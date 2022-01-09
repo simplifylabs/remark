@@ -43,17 +43,8 @@ export default class Darkmode {
   }
 
   static checkSidebar() {
-    const launcher: HTMLIFrameElement =
-      document.querySelector("#remark-launcher");
-    if (!launcher) return;
-
-    if (this.isSiteDark()) {
-      launcher.contentWindow.document.body.classList.add("dark");
-      Registry.dispatch(setDark(true));
-    } else {
-      launcher.contentWindow.document.body.classList.remove("dark");
-      Registry.dispatch(setDark(false));
-    }
+    if (this.isSiteDark()) Registry.dispatch(setDark(true));
+    else Registry.dispatch(setDark(false));
   }
 
   static isSiteDark() {

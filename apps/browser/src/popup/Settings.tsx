@@ -102,6 +102,8 @@ function Option(props: { children: any }) {
 
 function Label(props: { children: string }) {
   return (
-    <label className="text-gray-600 dark:text-gray-400">{props.children}</label>
+    <label className="text-base text-gray-600 dark:text-gray-400">
+      {props.children}
+    </label>
   );
 }

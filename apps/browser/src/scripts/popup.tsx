@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { useAutoDarkmode } from "@browser/hooks/useDarkmode";
-import Home from "../popup/Home";
-import Settings from "../popup/Settings";
-import "../styles/popup.css";
+import Home from "@browser/popup/Home";
+import Settings from "@browser/popup/Settings";
+import "@browser/styles/app.css";
 
 enum Page {
   Home,

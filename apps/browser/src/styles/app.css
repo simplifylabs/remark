@@ -4,13 +4,27 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-body,
-html,
-#app {
-  background-color: transparent !important;
+:root {
+  --brand: 99, 102, 241;
+  --brand-light: 104, 117, 237;
+  --brand-100: 224, 231, 255;
+  --brand-700: 67, 56, 202;
+
+  --bg-light: 240, 245, 251;
+  --bg-dark: 40, 44, 52;
+  --bg-form: 28, 30 33;
+  --bg-card: 28, 30 33;
 }
 
 @layer base {
+  * {
+    @apply font-inter;
+  }
+
+  #popup {
+    @apply bg-background-light dark:bg-background-dark dark:text-white;
+  }
+
   [type="text"],
   [type="email"],
   [type="url"],
@@ -63,7 +77,7 @@ html,
   }
 
   .btn-icon {
-    @apply w-7 h-7 text-gray-700 bg-black bg-opacity-0 hover:!bg-opacity-5 p-1 cursor-pointer rounded-md transition-all;
+    @apply w-7 h-7 text-gray-700 bg-black bg-opacity-0 hover:!bg-opacity-5 p-1 cursor-pointer rounded-md transition-all dark:text-gray-200 dark:bg-white dark:bg-opacity-0;
   }
 
   .btn {
@@ -76,6 +90,10 @@ html,
 
   a {
     @apply link;
+  }
+
+  .text-default {
+    @apply text-black dark:text-white;
   }
 
   .toggle:checked + label {
@@ -123,11 +141,7 @@ html,
 }
 
 .remark__input {
-  @apply !bg-white rounded-lg shadow-sm border border-gray-300;
-}
-
-.dark .btn-icon {
-  @apply text-gray-200 bg-white bg-opacity-0;
+  @apply !bg-white rounded-lg shadow-sm border border-gray-300 dark:!bg-black dark:!border-gray-700 dark:!text-white focus:ring-2 focus:ring-brand outline-none;
 }
 
 .dark .thin-scrollbar::-webkit-scrollbar-thumb {
@@ -139,14 +153,10 @@ html,
   background: rgba(255, 255, 255, 0.3);
 }
 
-.dark .remark__input {
-  @apply !bg-black !border-gray-700 !text-white;
+.remark__suggestions__list {
+  @apply dark:!bg-background-form;
 }
 
-.dark .remark__suggestions__list {
-  @apply !bg-background-form;
-}
-
-.dark .remark__suggestions__item--focused {
-  @apply !bg-white/10;
+.remark__suggestions__item--focused {
+  @apply dark:!bg-white/10;
 }

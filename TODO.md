@@ -1,9 +1,8 @@
 # Todo:
 
-- TAILWIND_MODE by default
-- Random classes (fix github etc.)
 - Smart show (+ Shortcut)
 - Add some intro
+- Clean up
 
 ## Broken Links:
 
