@@ -21,7 +21,8 @@
     "dist:chrome": "nx build browser && gulp dist:chrome",
     "dist:firefox": "nx build browser && gulp dist:firefox",
     "dist:edge": "nx build browser && gulp dist:edge",
-    "dist:opera": "nx build browser && gulp dist:opera"
+    "dist:opera": "nx build browser && gulp dist:opera",
+    "release": "release-it"
   },
   "dependencies": {
     "@prisma/client": "^3.7.0",
@@ -126,6 +127,7 @@
     "prisma": "^3.7.0",
     "query-string": "^7.0.1",
     "react-test-renderer": "17.0.2",
+    "release-it": "^14.12.1",
     "run-script-os": "^1.1.6",
     "rustywind": "^0.12.2",
     "style-loader": "^3.3.1",
