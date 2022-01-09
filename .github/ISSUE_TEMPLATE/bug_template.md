@@ -2,7 +2,7 @@
 name: Bug report
 about: Create a report to help us improve
 title: "[BUG]: <your_bug>"
-labels: bug
+labels: :X: bug
 ---
 
 <!-- Before submitting an issue, please read https://github.com/simplifylabs/remark/blob/main/CONTRIBUTING.md -->
