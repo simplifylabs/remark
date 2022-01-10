@@ -16,6 +16,9 @@
 # dependencies
 /node_modules
 
+# Uploads
+src/cdn/uploads/
+
 # IDEs and editors
 /.idea
 .project
