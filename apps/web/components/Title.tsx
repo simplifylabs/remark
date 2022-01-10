@@ -17,10 +17,10 @@ export default function Title(props: ITitleProps) {
     >
       {props.subtitle && (
         <p
-          className={`tracking-widest uppercase font-medium ${
+          className={`tracking-widest uppercase font-medium text-brand ${
             props.primary
-              ? "text-lg sm:text-xl md:text-2xl text-brand"
-              : "text-lg md:text-xl text-secondary"
+              ? "text-lg sm:text-xl md:text-2xl"
+              : "text-lg md:text-xl"
           } ${props.subClassName || ""}`}
         >
           {props.subtitle}

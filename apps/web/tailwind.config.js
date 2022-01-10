@@ -30,9 +30,6 @@ module.exports = {
           light: withOpacity("--brand-light"),
           DEFAULT: withOpacity("--brand"),
         },
-        secondary: {
-          DEFAULT: withOpacity("--secondary"),
-        },
       },
     },
   },
