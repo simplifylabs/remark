@@ -1,4 +1,4 @@
-import React, { MutableRefObject, Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Server } from "@browser/util/api";
 import { Toast, Modal } from "@browser/util/dialog";
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/solid";
@@ -17,7 +17,7 @@ import Loader from "@browser/components/Loader";
 import App from "@browser/util/app";
 
 interface ICommentsProps {
-  input: MutableRefObject<HTMLTextAreaElement>;
+  input: HTMLTextAreaElement;
   setValue: (to: string) => void;
   dark: boolean;
   online: boolean;
@@ -57,7 +57,7 @@ function Comments(props: ICommentsProps) {
   }
 
   function reply(comment: IComment, parent: IComment) {
-    if (!props.input || !props.input.current) return;
+    if (!props.input) return;
 
     props.reply(parent ? parent : comment);
     props.typing(true);
@@ -66,7 +66,7 @@ function Comments(props: ICommentsProps) {
     if (parent) props.setValue(`${getMention(parent.author)} ${mention} `);
     else props.setValue(`${mention} `);
 
-    props.input.current.focus();
+    props.input.focus();
   }
 
   function getMention(author: IAuthor) {

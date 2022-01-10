@@ -8,6 +8,8 @@ type Data = { [key: string]: any };
 
 if (App.isDev()) require("crx-hotreload");
 
+chrome.runtime.onUpdateAvailable;
+
 chrome.runtime.setUninstallURL(`${App.webUrl}uninstall`);
 
 chrome.runtime.onInstalled.addListener((details) => {

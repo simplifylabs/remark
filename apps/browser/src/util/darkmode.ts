@@ -55,6 +55,9 @@ export default class Darkmode {
     if (meta && meta.content == "dark") return true;
     else if (meta && meta.content == "light") return false;
 
+    const body = this.isElementDark("body");
+    if (body) return true;
+
     return this.isElementDark("html");
   }
 

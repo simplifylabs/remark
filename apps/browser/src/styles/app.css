@@ -154,7 +154,7 @@
 }
 
 .remark__suggestions__list {
-  @apply dark:!bg-background-form;
+  @apply dark:!bg-background-form dark:!text-white;
 }
 
 .remark__suggestions__item--focused {

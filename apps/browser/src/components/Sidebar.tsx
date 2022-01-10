@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, MutableRefObject } from "react";
+import React, { useEffect, useRef, useState, Ref } from "react";
 import Darkmode from "@browser/util/darkmode";
 import App from "@browser/util/app";
 import API from "@browser/util/api";
@@ -21,8 +21,7 @@ interface ISidebarProps {
 }
 
 function SidebarComponent(props: ISidebarProps) {
-  const textarea = useRef<HTMLTextAreaElement>();
-
+  const [textarea, setTextarea] = useState<HTMLTextAreaElement>();
   const [translateX, setTranslateX] = useState("0");
   const [value, setValue] = useState("");
   const [opacity, setOpacity] = useState(0);
@@ -48,13 +47,11 @@ function SidebarComponent(props: ISidebarProps) {
   }, [value, props.replying]);
 
   useEffect(() => {
-    if (!textarea.current) return;
+    if (!textarea) return;
 
-    textarea.current.addEventListener("keydown", keydown);
-    return () =>
-      textarea.current &&
-      textarea.current.removeEventListener("keydown", keydown);
-  }, [textarea.current, value]);
+    textarea.addEventListener("keydown", keydown);
+    return () => textarea && textarea.removeEventListener("keydown", keydown);
+  }, [textarea, value]);
 
   useEffect(() => {
     if (props.showen) {
@@ -112,7 +109,7 @@ function SidebarComponent(props: ISidebarProps) {
       }
     }
 
-    if (textarea.current) textarea.current.blur();
+    if (textarea) textarea.blur();
     props.post(modified, isReplying ? props.replying.commentId : null, () =>
       setValue("")
     );
@@ -152,7 +149,7 @@ function SidebarComponent(props: ISidebarProps) {
               <Input
                 value={value}
                 set={setValue}
-                inputRef={textarea}
+                inputRef={setTextarea}
                 typing={props.typing}
               />
             ) : (
@@ -171,7 +168,7 @@ function SidebarComponent(props: ISidebarProps) {
 }
 
 interface IInputProps {
-  inputRef: MutableRefObject<HTMLTextAreaElement>;
+  inputRef: Ref<HTMLTextAreaElement>;
   value: string;
   set: (value: string) => void;
   typing: (to: boolean) => void;

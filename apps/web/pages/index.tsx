@@ -37,7 +37,7 @@ function Hero() {
         className="min-h-screen flex flex-col justify-center items-center py-0 md:py-24 md:pt-[10rem] w-screen md:mb-[4rem]"
       >
         <Title
-          title="Comments, anywhere."
+          title="Comments,anywhere."
           subtitle="Uncensored & Better"
           primary
         />

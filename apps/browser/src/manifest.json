@@ -25,7 +25,8 @@
     }
   ],
   "background": {
-    "scripts": ["scripts/background.js"]
+    "scripts": ["scripts/background.js"],
+    "persistent": true
   },
   "browser_action": {
     "default_title": "Create Remark",
