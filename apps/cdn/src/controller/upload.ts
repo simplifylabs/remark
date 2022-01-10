@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { extname, resolve } from "path";
+import { extname, resolve, join } from "path";
 import access from "@cdn/middleware/access";
 import limit from "@cdn/middleware/limit";
 import avatar from "@cdn/config/avatar.config";
@@ -7,13 +7,14 @@ import multer from "multer";
 import sharp from "sharp";
 import fs from "fs";
 
-if (!fs.existsSync("uploads")) fs.mkdirSync("uploads");
-if (!fs.existsSync("uploads/temp")) fs.mkdirSync("uploads/temp");
-if (!fs.existsSync("uploads/avatars")) fs.mkdirSync("uploads/avatars");
-
-avatar.sizes.forEach((size) => {
-  if (!fs.existsSync(`uploads/avatars/${size}x${size}`))
-    fs.mkdirSync(`uploads/avatars/${size}x${size}`);
+[
+  "uploads",
+  "uploads/temp",
+  "uploads/avatars",
+  ...avatar.sizes.map((s) => `uploads/avatars/${s}x${s}`),
+].forEach((path) => {
+  if (fs.existsSync(join("apps/cdn", path))) return;
+  fs.mkdirSync(join("apps/cdn", path));
 });
 
 const storage = multer.diskStorage({
