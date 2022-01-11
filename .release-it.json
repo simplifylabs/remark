@@ -10,7 +10,6 @@
   "github": {
     "release": true,
     "releaseName": "v${version}",
-    "releaseNotes": "echo Test",
     "assets": ["dist/*.(zip)"],
     "web": false
   },
