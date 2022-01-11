@@ -22,7 +22,7 @@
     "dist:firefox": "nx build browser && gulp dist:firefox",
     "dist:edge": "nx build browser && gulp dist:edge",
     "dist:opera": "nx build browser && gulp dist:opera",
-    "release": "bash -c 'release-it'"
+    "release": "release-it"
   },
   "dependencies": {
     "@prisma/client": "^3.7.0",
