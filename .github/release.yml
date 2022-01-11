@@ -3,13 +3,18 @@
 changelog:
   exclude:
     labels:
-      - :ghost: Ignore in Release 
+      - ignore-for-release
     authors:
       - octocat
   categories:
-    - title: New Features 🎉
+    - title: Breaking Changes 🛠
       labels:
-        - :rocket: Feature
+        - Semver-Major
+        - breaking-change
+    - title: Exciting New Features 🎉
+      labels:
+        - Semver-Minor
+        - enhancement
     - title: Other Changes
       labels:
         - "*"
