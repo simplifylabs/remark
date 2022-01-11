@@ -1,6 +1,6 @@
 {
   "hooks": {
-    "before:github:release": "rm -rf dist/ && yarn dist"
+    "22222before:github:release": "rm -rf dist/ && yarn dist"
   },
   "git": {
     "commitMessage": "Release v${version}",
@@ -12,7 +12,7 @@
   "github": {
     "release": true,
     "releaseName": "v${version}",
-    "releaseNotes": "",
+    "releaseNotes": null,
     "assets": [],
     "web": true
   },
