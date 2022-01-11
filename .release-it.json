@@ -8,7 +8,9 @@
     "tagAnnotation": "v${version}",
     "tagName": "v${version}",
     "requireCleanWorkingDir": true,
-    "tag": true
+    "tag": true,
+    "commit": true,
+    "push": true
   },
   "github": {
     "release": true,
