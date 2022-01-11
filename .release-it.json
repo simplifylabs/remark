@@ -7,30 +7,14 @@
     "tagAnnotation": "v${version}",
     "tagName": "v${version}",
     "requireCleanWorkingDir": true,
-    "requireBranch": false,
-    "requireUpstream": true,
-    "requireCommits": false,
-    "addUntrackedFiles": false,
-    "commit": true,
-    "commitArgs": [],
-    "tag": true,
-    "tagMatch": null,
-    "tagArgs": [],
-    "push": true,
-    "pushArgs": ["--follow-tags"],
-    "pushRepo": ""
+    "tag": true
   },
   "github": {
     "release": true,
     "releaseName": "v${version}",
-    "assets": ["dist/*.(zip)"],
-    "autoGenerate": false,
-    "preRelease": false,
-    "draft": false,
-    "host": null,
-    "timeout": 0,
-    "proxy": null,
-    "skipChecks": false,
-    "web": true
+    "assets": []
+  },
+  "npm": {
+    "publish": false
   }
 }
