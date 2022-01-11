@@ -9,11 +9,9 @@
   },
   "github": {
     "release": true,
-    "autoGenerate": true,
     "releaseName": "v${version}",
-    "releaseNotes": "echo Test",
-    "assets": ["dist/*.(zip)"],
-    "web": false
+    "releaseNotes": "echo",
+    "web": true
   },
   "npm": {
     "publish": false
