@@ -14,7 +14,7 @@
   },
   "github": {
     "release": true,
-    "autoGenerate": "true",
+    "autoGenerate": true,
     "releaseName": "v${version}",
     "assets": ["dist/*.(zip)"],
     "web": false
