@@ -1,13 +1,5 @@
 changelog:
-  exclude:
-    labels:
-      - Ignore in Release 
-    authors:
-      - octocat
   categories:
-    - title: New Features
-      labels:
-        - Feature
     - title: Other Changes
       labels:
         - "*"
