@@ -4,6 +4,7 @@
   },
   "git": {
     "commitMessage": "Release v${version}",
+    "changelog": null,
     "tagAnnotation": "v${version}",
     "tagName": "v${version}",
     "requireCleanWorkingDir": true,
