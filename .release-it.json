@@ -9,6 +9,7 @@
   },
   "github": {
     "release": true,
+    "autoGenerate": true,
     "releaseName": "v${version}",
     "releaseNotes": "echo",
     "web": true
