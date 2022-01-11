@@ -6,7 +6,6 @@
     "commitMessage": "Release v${version}",
     "tagAnnotation": "v${version}",
     "tagName": "v${version}",
-    "changelog": "git log --pretty=format:\"* %s (%h)\" ${from}...${to}",
     "requireCleanWorkingDir": true,
     "requireBranch": false,
     "requireUpstream": true,
@@ -25,17 +24,13 @@
     "release": true,
     "releaseName": "v${version}",
     "assets": ["dist/*.(zip)"],
-    "autoGenerate": true,
+    "autoGenerate": false,
     "preRelease": false,
     "draft": false,
-    "tokenRef": "GITHUB_TOKEN",
     "host": null,
     "timeout": 0,
     "proxy": null,
     "skipChecks": false,
-    "web": false
-  },
-  "npm": {
-    "publish": false
+    "web": true
   }
 }
