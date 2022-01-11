@@ -1,7 +1,15 @@
 # Todo:
 
 - Smart show (+ Shortcut)
-- Add some intro
-- Fix inputRef error
+- Add some intro?
 - Clean up
-- Auto changelog?
+
+# Before release
+
+- Search for todo
+- Update action branch
+- Delete TODO
+- Delete .git
+- Re-Init
+- Push
+- Create release
