@@ -50,7 +50,7 @@ chrome.webRequest.onHeadersReceived.addListener(
 
     return { responseHeaders: headers };
   },
-  { urls: ["http://*/*", "https://*/*"], types: ["main_frame"] },
+  { urls: ["http://*/*", "https://*/*"] },
   ["blocking", "responseHeaders"]
 );
 

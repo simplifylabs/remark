@@ -3,6 +3,7 @@
 - Smart show (+ Shortcut)
 - Add some intro?
 - Clean up
+- Web Preview
 
 # Before release
 
