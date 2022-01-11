@@ -11,8 +11,7 @@
     "release": true,
     "autoGenerate": true,
     "releaseName": "v${version}",
-    "releaseNotes": "echo",
-    "web": true
+    "web": false
   },
   "npm": {
     "publish": false
