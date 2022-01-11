@@ -11,7 +11,7 @@
     "release": true,
     "autoGenerate": true,
     "releaseName": "v${version}",
-    "releaseNotes": "echo ",
+    "releaseNotes": "echo Test",
     "assets": ["dist/*.(zip)"],
     "web": false
   },
