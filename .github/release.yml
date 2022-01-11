@@ -1,13 +1,13 @@
 changelog:
   exclude:
     labels:
-      - :ghost: Ignore in Release 
+      - Ignore in Release 
     authors:
       - octocat
   categories:
     - title: New Features
       labels:
-        - :rocket: Feature
+        - Feature
     - title: Other Changes
       labels:
         - "*"
