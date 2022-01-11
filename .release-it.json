@@ -12,6 +12,7 @@
   "github": {
     "release": true,
     "releaseName": "v${version}",
+    "releaseNotes": "",
     "assets": [],
     "web": true
   },
