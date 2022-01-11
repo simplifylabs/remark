@@ -5,7 +5,7 @@ changelog:
     authors:
       - octocat
   categories:
-    - title: New Features 🎉
+    - title: New Features
       labels:
         - :rocket: Feature
     - title: Other Changes
