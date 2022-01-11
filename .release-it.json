@@ -14,10 +14,10 @@
   },
   "github": {
     "release": true,
+    "autoGenerate": "true",
     "releaseName": "v${version}",
-    "releaseNotes": null,
-    "assets": [],
-    "web": true
+    "assets": ["dist/*.(zip)"],
+    "web": false
   },
   "npm": {
     "publish": false
