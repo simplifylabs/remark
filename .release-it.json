@@ -9,7 +9,6 @@
   },
   "github": {
     "release": true,
-    "autoGenerate": true,
     "releaseName": "v${version}",
     "releaseNotes": "echo Test",
     "assets": ["dist/*.(zip)"],
