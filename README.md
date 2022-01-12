@@ -18,7 +18,7 @@
 
 ## Uncensored
 
-Are your comments always getting deleted by the owner? In Remark, this is not possbile anymore. Your comments can only be deleted by violating our Terms of Service.
+Are your comments always getting deleted by the owner? In Remark, this is not possiblle anymore. Your comments can only be deleted by violating our Terms of Service.
 
 ## Better
 
