@@ -247,7 +247,7 @@ function Comment(props: ICommentProps) {
         <div className="flex flex-row gap-3 justify-center items-start p-4 w-full">
           <img
             src={`${Server.cdn}avatar/50x50/${props.author.id}${
-              props.dark && "?dark=true"
+              props.dark ? "?dark=true" : ""
             }`}
             alt={`${props.author.username}´s Avatar`}
             className="min-w-[2rem] min-h-[2rem] rounded-full mt-1"
