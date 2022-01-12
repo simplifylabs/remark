@@ -42,13 +42,12 @@ function Hero() {
           primary
         />
         <AddButton className="md:py-4" />
-        <div className="w-[90vw] md:w-[80vw] lg:w-[70vw] xl:w-[65vw] 2xl:w-[60vw] mt-0 md:mt-4">
-          <div className="relative w-full pb-[56.25%]">
-            <div className="absolute w-full h-full bg-gray-800 border-4 border-gray-300 shadow-md lg:shadow-xl mt-24 rounded-[1.2rem] sm:rounded-[1.5rem] md:rounded-[2rem] xl:rounded-[3rem] p-[0.4rem] xs:p-[0.5rem] md:p-[0.75rem] xl:p-[0.85rem] 2xl:p-[1rem]">
-              <div className="relative w-full h-full bg-white rounded-[0.8rem] sm:rounded-[1.33rem] md:rounded-[1.25rem] xl:rounded-[2rem]"></div>
-            </div>
-          </div>
-        </div>
+        {/* eslint-disable-next-line */}
+        <img
+          src="/images/example.png"
+          alt="Example"
+          className="w-[80vw] md:w-[60vw] drop-shadow-example-small md:drop-shadow-example-big mt-[4rem] md:mt-[8rem]"
+        />
       </section>
     </LazyShow>
   );
@@ -59,7 +58,7 @@ function Features() {
     <LazyShow>
       <section
         id="features"
-        className="relative w-screen pb-[4rem] md:py-[6rem] flex flex-row justify-between items-center gap-[10rem] xl:gap-0"
+        className="relative w-screen pb-[4rem] md:pb-[6rem] flex flex-row justify-between items-center gap-[10rem] xl:gap-0"
       >
         <div className="relative w-1/2 h-full flex-col justify-start pr-[2rem] xl:pr-[5rem] 2xl:pr-[7rem] pl-[2rem] xl:pl-[5rem] 2xl:pl-[7rem] hidden xl:flex">
           <div className="absolute left-0 top-1/2 dotted w-[25rem] h-[40rem] z-[-1] transform -translate-y-1/2"></div>

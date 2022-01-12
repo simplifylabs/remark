@@ -19,6 +19,10 @@ module.exports = {
       inter: ["Inter", "sans-serif"],
       pacifico: ["Pacifico", "cursive"],
     },
+    dropShadow: {
+      "example-big": "0 10px 30px rgba(0, 0, 0, 0.3)",
+      "example-small": "0 5px 15px rgba(0, 0, 0, 0.3)",
+    },
     extend: {
       colors: {
         background: {

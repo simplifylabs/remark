@@ -36,7 +36,6 @@ app.use((_, res) => {
   });
 });
 
-// Start the server
 if (process.env.JEST_WORKER_ID == undefined) {
   app.listen(env("PORT"), () => {
     console.info(`Remark API is listening on port ${env("PORT")}`);
