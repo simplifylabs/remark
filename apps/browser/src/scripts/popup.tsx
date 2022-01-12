@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import { useAutoDarkmode } from "@browser/hooks/useDarkmode";
 import Home from "@browser/popup/Home";
 import Settings from "@browser/popup/Settings";
+import Darkmode from "@util/darkmode";
 import "@browser/styles/app.css";
 
 enum Page {
@@ -11,8 +11,11 @@ enum Page {
 }
 
 function Popup() {
-  useAutoDarkmode();
   const [page, setPage] = useState<Page>(Page.Home);
+
+  useEffect(() => {
+    Darkmode.read();
+  }, []);
 
   if (page == Page.Settings)
     return <Settings back={() => setPage(Page.Home)} />;

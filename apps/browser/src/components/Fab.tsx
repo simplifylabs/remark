@@ -20,9 +20,9 @@ function FabComponent(props: IProps) {
   const [hovering, setHovering] = useState<boolean>(false);
 
   useEffect(() => {
-    check();
+    checkSecondary();
 
-    const interval = setInterval(check, 5000);
+    const interval = setInterval(checkSecondary, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -37,7 +37,7 @@ function FabComponent(props: IProps) {
     else setScale(1);
   }, [props.sidebar]);
 
-  function check() {
+  function checkSecondary() {
     setSecondary(Render.fabExists());
   }
 

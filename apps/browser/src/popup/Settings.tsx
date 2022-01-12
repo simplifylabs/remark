@@ -3,7 +3,6 @@ import Title from "@browser/components/Title";
 import Switch from "@browser/components/Switch";
 import { ChevronLeftIcon } from "@heroicons/react/solid";
 import Darkmode from "@browser/util/darkmode";
-import useDarkmode from "@browser/hooks/useDarkmode";
 import Domain from "@browser/util/domain";
 import User from "@browser/util/user";
 import Tab from "@browser/util/tab";
@@ -17,7 +16,6 @@ export default function Settings(props: IProps) {
   const isDark = useDarkmode();
   const [cleared, setCleared] = useState(false);
   const [signedOut, setSignedOut] = useState(false);
-  // const [manually, setManually] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -57,15 +55,6 @@ export default function Settings(props: IProps) {
             onChange={(to: boolean) => Darkmode.toggle(to)}
           />
         </Option>
-        {/* 
-        <Option>
-          <Label>Manually Enable</Label>
-          <Switch
-            checked={manually}
-            onChange={(to: boolean) => setManually(to)}
-          />
-        </Option>
-        */}
         <Option>
           <Label>Clear Blocked</Label>
           <button
@@ -106,4 +95,19 @@ function Label(props: { children: string }) {
       {props.children}
     </label>
   );
+}
+
+function useDarkmode() {
+  const [isDark, setIsDark] = useState<boolean>(Darkmode.isDark);
+
+  useEffect(() => {
+    Darkmode.onChange(onChange);
+    return () => Darkmode.offChange(onChange);
+  }, []);
+
+  function onChange(to: boolean) {
+    setIsDark(to);
+  }
+
+  return isDark;
 }

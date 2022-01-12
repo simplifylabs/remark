@@ -1,9 +1,22 @@
 import { connect, Provider } from "react-redux";
-import { applyMiddleware, compose, createStore } from "redux";
+import { applyMiddleware, compose, createStore, combineReducers } from "redux";
 import thunk from "redux-thunk";
-import rootReducer from "./reducers";
+import render from "@browser/reducers/render";
+import dialog from "@browser/reducers/dialog";
+import connection from "@browser/reducers/connection";
+import comment from "@browser/reducers/comment";
+import user from "@browser/reducers/user";
 
-const enhancer = compose(applyMiddleware(thunk));
-export const store = createStore(rootReducer, enhancer);
+export const store = createStore(
+  combineReducers({
+    user,
+    connection,
+    render,
+    dialog,
+    comment,
+  }),
+  compose(applyMiddleware(thunk))
+);
+
 export type IRootState = ReturnType<typeof store.getState>;
 export { Provider, connect };
