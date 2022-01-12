@@ -37,7 +37,7 @@ function Hero() {
         className="min-h-screen flex flex-col justify-center items-center py-0 md:py-24 md:pt-[10rem] w-screen md:mb-[4rem]"
       >
         <Title
-          title="Comments,anywhere."
+          title="Comments, anywhere."
           subtitle="Uncensored & Better"
           primary
         />
@@ -97,7 +97,7 @@ function Features() {
           <div className="flex flex-col gap-12 items-start mt-16">
             <Feature
               title="Uncensored"
-              description="Are your comments always getting deleted by the owner? In Remark, this is not possbile anymore. Your comments can only be deleted by violating our Terms of Service."
+              description="Are your comments always getting deleted by the owner? In Remark, this is not possible anymore. Your comments can only be deleted by violating our Terms of Service."
             >
               <EyeIcon className="w-6 h-6" />
             </Feature>
