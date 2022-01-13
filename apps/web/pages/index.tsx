@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex overflow-y-auto overflow-x-hidden relative flex-col scroll-smooth">
+      <div className="relative flex flex-col overflow-x-hidden overflow-y-auto scroll-smooth">
         <Navigation />
         <Hero />
         <Features />
@@ -71,7 +71,7 @@ function Features() {
             <Comment
               image="person2.jpg"
               author="emiliagopp"
-              text="Loved @remark the very moment I used it!"
+              text="Loved @remark the very moment I started used it!"
             />
             <Comment
               image="person3.jpg"
@@ -93,7 +93,7 @@ function Features() {
             Yes, we only provide a comment system - but a better one! Having a
             uniform comment system has a lot of advantages, here are a few:
           </p>
-          <div className="flex flex-col gap-12 items-start mt-16">
+          <div className="flex flex-col items-start gap-12 mt-16">
             <Feature
               title="Uncensored"
               description="Are your comments always getting deleted by the owner? In Remark, this is not possible anymore. Your comments can only be deleted by violating our Terms of Service."
@@ -127,7 +127,7 @@ interface ICommentProps {
 
 function Comment(props: ICommentProps) {
   return (
-    <div className="flex flex-row gap-6 justify-start items-center p-5 w-full bg-white rounded-xl shadow-lg">
+    <div className="flex flex-row items-center justify-start w-full gap-6 p-5 bg-white shadow-lg rounded-xl">
       <Image
         src={`/images/${props.image}`}
         className="rounded-full"
@@ -135,7 +135,7 @@ function Comment(props: ICommentProps) {
         height={50}
         alt={props.author}
       />
-      <div className="flex flex-col justify-center items-start">
+      <div className="flex flex-col items-start justify-center">
         <p className="text-gray-500">@{props.author}</p>
         <p className="text-gray-800 2xl:text-lg text-md">{props.text}</p>
       </div>
@@ -151,11 +151,11 @@ interface IFeatureProps {
 
 function Feature(props: IFeatureProps) {
   return (
-    <div className="flex flex-row gap-5 items-start w-full">
-      <div className="flex justify-center items-center text-white rounded-md feature-icon bg-brand">
+    <div className="flex flex-row items-start w-full gap-5">
+      <div className="flex items-center justify-center text-white rounded-md feature-icon bg-brand">
         {props.children}
       </div>
-      <div className="flex-col gap-4 items-start w-auto">
+      <div className="flex-col items-start w-auto gap-4">
         <h3 className="text-xl font-medium text-gray-800">{props.title}</h3>
         <p className="text-gray-500 sm:text-lg text-md">{props.description}</p>
       </div>
@@ -258,7 +258,7 @@ function BrowserCard(props: IBrowserCardProps) {
     >
       {/*
       {current && (
-        <div className="flex absolute top-0 justify-center items-center w-full h-8 rounded-t-lg transform -translate-y-full bg-brand">
+        <div className="absolute top-0 flex items-center justify-center w-full h-8 transform -translate-y-full rounded-t-lg bg-brand">
           <label className="text-sm text-white">Current</label>
         </div>
       )}
@@ -297,7 +297,7 @@ function Contact() {
       id="contact"
       className="relative w-full py-[4rem] md:py-[5rem] flex flex-row px-10 bg-white gap-10 justify-evenly items-start mt-12 lg:mt-32"
     >
-      <div className="flex flex-col gap-10 justify-evenly items-start w-auto md:flex-row md:flex-wrap md:w-full xl:items-center">
+      <div className="flex flex-col items-start w-auto gap-10 justify-evenly md:flex-row md:flex-wrap md:w-full xl:items-center">
         <div className="flex flex-col items-start">
           <label className="text-sm text-gray-500 uppercase">
             Contact Info
