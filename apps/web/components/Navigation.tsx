@@ -43,6 +43,7 @@ export default function Navigation(props: INavigationProps) {
                   <a
                     href="https://github.com/simplifylabs/remark"
                     target="_blank"
+                    rel="noreferrer"
                     className="text-gray-800 sm:text-lg hover:text-gray-600 text-md"
                   >
                     GitHub
