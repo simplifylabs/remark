@@ -26,3 +26,7 @@ chrome.webRequest.onHeadersReceived.addListener(
   { urls: ["http://*/*", "https://*/*"] },
   ["blocking", "responseHeaders"]
 );
+
+chrome.browserAction.onClicked.addListener(() => {
+  // TODO
+});

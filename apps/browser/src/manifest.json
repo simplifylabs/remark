@@ -15,7 +15,8 @@
     "assets/*.png",
     "assets/*.svg",
     "assets/icon/*.png",
-    "css/*.css"
+    "css/*.css",
+    "html/*.html"
   ],
   "content_scripts": [
     {
@@ -29,8 +30,7 @@
     "persistent": true
   },
   "browser_action": {
-    "default_title": "Create Remark",
-    "default_popup": "html/popup.html"
+    "default_title": "Remark"
   },
   "externally_connectable": {
     "matches": ["*://*.remark.surf/*", "*://localhost/*"]
