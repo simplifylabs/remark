@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect, IRootState } from "@browser/state/index";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
 
 function Frame({ withMotion, children, dark, dispatch, ...props }) {
@@ -35,12 +35,6 @@ function Frame({ withMotion, children, dark, dispatch, ...props }) {
           createPortal(children, contentRef.contentWindow.document.body)}
       </motion.iframe>
     );
-  return (
-    <iframe {...props} ref={setContentRef} frameBorder="0">
-      {!loading &&
-        createPortal(children, contentRef.contentWindow.document.body)}
-    </iframe>
-  );
   return (
     <iframe {...props} ref={setContentRef} frameBorder="0">
       {!loading &&

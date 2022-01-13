@@ -18,5 +18,7 @@ export const store = createStore(
   compose(applyMiddleware(thunk))
 );
 
+// eslint-ignore-next-line
+export const dispatch = (data: any) => store.dispatch(data);
 export type IRootState = ReturnType<typeof store.getState>;
 export { Provider, connect };

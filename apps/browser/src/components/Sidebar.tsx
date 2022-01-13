@@ -1,15 +1,15 @@
-import React, { useEffect, useRef, useState, Ref } from "react";
-import Darkmode from "@browser/util/darkmode";
-import App from "@browser/util/app";
-import API from "@browser/util/api";
-import Render from "@browser/util/render";
-import Comments from "@browser/components/Comments";
-import Frame from "@browser/components/Frame";
+import React, { useEffect, useState, Ref } from "react";
 import { MentionsInput, Mention } from "react-mentions";
 import { connect, IRootState } from "@browser/state/index";
 import { hideSidebar } from "@browser/actions/render";
 import { setTyping, postComment } from "@browser/actions/comment";
-import { IReply } from "@browser/state/reducers/commentReducer";
+import { IReply } from "@browser/reducers/comment";
+import Darkmode from "@browser/util/darkmode";
+import App from "@browser/util/app";
+import API from "@browser/util/api";
+import Render from "@browser/util/render";
+import List from "@browser/components/List";
+import Frame from "@browser/components/Frame";
 
 interface ISidebarProps {
   showen: boolean;
@@ -143,7 +143,7 @@ function SidebarComponent(props: ISidebarProps) {
         }}
       >
         <div className="w-full h-full rounded-[20px] bg-black/10 dark:bg-white/20 shadow-sidebar pb-14 pl-[2px] overflow-hidden">
-          <Comments setValue={setValue} input={textarea} />
+          <List setValue={setValue} input={textarea} />
           <div className="flex absolute bottom-0 left-0 flex-row p-[0.72rem] w-full">
             {props.isLoggedIn ? (
               <Input

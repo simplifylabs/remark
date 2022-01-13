@@ -1,3 +1,4 @@
+import Registry from "@browser/state/registry";
 import {
   hideSnackbar,
   IButton,
@@ -5,7 +6,6 @@ import {
   showModal,
   showSnackbar,
 } from "@browser/actions/dialog";
-import Registry from "@browser/state/registry";
 
 export type level = "SUCCESS" | "ERROR";
 

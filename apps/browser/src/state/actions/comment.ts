@@ -1,9 +1,10 @@
-import API, { Error } from "@browser/util/api";
+import API from "@browser/util/api";
+import Error from "@browser/util/error";
 import query from "query-string";
 import { Dispatch } from "redux";
 import { Toast } from "@browser/util/dialog";
 import { SHOW_SIDEBAR } from "./render";
-import { IComment } from "@browser/reducers/comment";
+import { IAuthor } from "@browser/reducers/comment";
 
 export const SET_TYPING = "SET_TYPING";
 export const SET_SHARED = "SET_SHARED";
@@ -47,7 +48,7 @@ export const removeComment = (id: string) => async (dispatch: Dispatch) => {
 };
 
 export const setReplying =
-  (comment: IComment) => async (dispatch: Dispatch) => {
+  (comment: { id: string; author: IAuthor }) => async (dispatch: Dispatch) => {
     dispatch({
       type: SET_REPLYING,
       to: { commentId: comment.id, author: comment.author },

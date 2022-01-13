@@ -107,10 +107,30 @@
   .fade {
     @apply transition-all duration-150 ease-in-out;
   }
+}
 
-  .icon-white path {
-    color: white;
-  }
+.remark__mention {
+  @apply rounded-md z-[1] text-brand pointer-events-none;
+}
+
+.remark__highlighter {
+  @apply rounded-lg z-[1] pointer-events-none;
+}
+
+.remark__input {
+  @apply !bg-white rounded-lg shadow-sm border border-gray-300 dark:!bg-black dark:!border-gray-700 dark:!text-white focus:ring-2 focus:ring-brand outline-none;
+}
+
+.remark__suggestions__list {
+  @apply dark:!bg-background-form dark:!text-white;
+}
+
+.remark__suggestions__item--focused {
+  @apply dark:!bg-white/10;
+}
+
+.icon-white path {
+  color: white;
 }
 
 .thin-scrollbar::-webkit-scrollbar {
@@ -132,18 +152,6 @@
   white-space: pre-wrap !important;
 }
 
-.remark__mention {
-  @apply rounded-md z-[1] text-brand pointer-events-none;
-}
-
-.remark__highlighter {
-  @apply rounded-lg z-[1] pointer-events-none;
-}
-
-.remark__input {
-  @apply !bg-white rounded-lg shadow-sm border border-gray-300 dark:!bg-black dark:!border-gray-700 dark:!text-white focus:ring-2 focus:ring-brand outline-none;
-}
-
 .dark .thin-scrollbar::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.15);
   border-radius: 20px;
@@ -151,12 +159,4 @@
 
 .dark .thin-scrollbar:hover::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.3);
-}
-
-.remark__suggestions__list {
-  @apply dark:!bg-background-form dark:!text-white;
-}
-
-.remark__suggestions__item--focused {
-  @apply dark:!bg-white/10;
 }

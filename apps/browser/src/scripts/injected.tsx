@@ -6,7 +6,7 @@ import Launcher from "@browser/components/Launcher";
 import Registry from "@browser/state/registry";
 import { store, Provider } from "@browser/state/index";
 
-Events.listen();
+Events.listenInjected();
 
 Render.on("render", () => {
   if (!Render.allowed()) return;

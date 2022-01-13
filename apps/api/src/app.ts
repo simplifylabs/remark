@@ -14,21 +14,17 @@ import feedback from "@api/router/feedback";
 
 const app = express();
 
-// Global Middleware
 app.use(express.json());
 app.use(cookies());
 app.use(cors());
 
-// Routers
 app.use("/auth", auth);
 app.use("/comment", comment);
 app.use("/user", user);
 app.use("/feedback", feedback);
 
-// Error Handler
 app.use(error());
 
-// 404 Not Found
 app.use((_, res) => {
   res.status(404).json({
     error: "NOT_FOUND",

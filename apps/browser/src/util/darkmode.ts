@@ -1,6 +1,6 @@
 import Storage from "@browser/util/storage";
 import Registry from "@browser/state/registry";
-import { setDark, SET_DARK } from "@browser/actions/render";
+import { setDark } from "@browser/actions/render";
 
 type IListener = (to: boolean) => void;
 

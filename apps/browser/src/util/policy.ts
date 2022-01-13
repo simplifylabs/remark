@@ -75,4 +75,24 @@ export default class Policy {
 
     return out.substring(0, out.length - 1);
   }
+
+  static isPolicyHeader(name: string) {
+    name = name.toUpperCase();
+    return name == "CONTENT-SECURITY-POLICY" || name == "X-WEBKIT-CSP";
+  }
+
+  static updatePolicy(raw: string) {
+    const policy = new Policy(raw);
+
+    if (policy.get("style-src")) {
+      policy.add("style-src", "'self'");
+      policy.add("style-src", "'unsafe-inline'");
+      policy.add("style-src", "https://fonts.googleapis.com");
+    }
+
+    if (policy.get("font-src"))
+      policy.add("font-src", "https://fonts.gstatic.com");
+
+    return policy.toString();
+  }
 }

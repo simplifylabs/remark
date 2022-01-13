@@ -1,10 +1,16 @@
 import App from "@browser/util/app";
-import { EventListener } from "@browser/util/events";
 type ITab = chrome.tabs.Tab;
 
+// eslint-disable-next-line
 type Data = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
+};
+
+// eslint-disable-next-line
+export type EventListener = (...args: any[]) => void;
+
+export type IEventList = {
+  [event: string]: EventListener[];
 };
 
 export default class Tab {
@@ -86,5 +92,11 @@ export default class Tab {
 
   static async open(url: string): Promise<void> {
     await chrome.tabs.create({ url: url });
+  }
+
+  static async closeAndReload(url: string) {
+    const result = await Tab.close(url);
+    setTimeout(() => Tab.reload(), 1000);
+    return { success: result !== null };
   }
 }

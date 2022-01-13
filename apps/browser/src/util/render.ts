@@ -1,14 +1,20 @@
 import { hideFab, showFab } from "@browser/actions/render";
-import { EventListener, IEventList } from "./events";
-import { store } from "@browser/state/index";
-import Domain from "./domain";
+import Domain from "@browser/util/domain";
+import Registry from "@browser/state/registry";
+
+// eslint-disable-next-line
+export type EventListener = (...args: any[]) => void;
+
+export type IEventList = {
+  [event: string]: EventListener[];
+};
 
 export default class Render {
   static events: IEventList = {};
   static isRendered = false;
   static isShowen = false;
 
-  // Other known fab's
+  // Other known FAB's
   static fabList: string[] = [
     ".intercom-lightweight-app",
     ".chaport-launcher",
@@ -20,6 +26,21 @@ export default class Render {
     "#messenger-button",
     "#tidio-chat",
   ];
+
+  static fabStyle = `
+    position: absolute !important;
+    opacity: 1 !important;
+    width: 0px !important;
+    height: 0px !important;
+    top: 0 !important;
+    left: 0 !important;
+    border: none !important;
+    display: block !important;
+    z-index: 2147483646 !important;
+    background-color: transparent !important;
+    color-scheme: light !important;
+    padding: 0 !important;
+    margin: 0 !important;`;
 
   static on(event: string, listener: EventListener) {
     if (!this.events[event]) this.events[event] = [];
@@ -88,10 +109,7 @@ export default class Render {
     const launcher = document.createElement("div");
 
     launcher.id = "remark-launcher";
-    launcher.setAttribute(
-      "style",
-      "position: absolute !important; opacity: 1 !important; width: 0px !important; height: 0px !important; top: 0 !important; left: 0 !important; border: none !important; display: block !important; z-index: 2147483646 !important; background-color: transparent !important; color-scheme: light !important; padding: 0 !important; margin: 0 !important;"
-    );
+    launcher.setAttribute("style", this.fabStyle);
 
     document.body.appendChild(launcher);
     return launcher;
@@ -102,12 +120,10 @@ export default class Render {
 
     if (!disabled && !blocked && document.fullscreenElement == null) {
       if (!this.isRendered) return Render.call("render");
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      store.dispatch(showFab() as any);
+      Registry.dispatch(showFab());
     } else {
       if (!this.isRendered) return;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      store.dispatch(hideFab() as any);
+      Registry.dispatch(hideFab());
     }
   }
 
