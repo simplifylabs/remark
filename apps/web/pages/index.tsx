@@ -71,7 +71,7 @@ function Features() {
             <Comment
               image="person2.jpg"
               author="emiliagopp"
-              text="Loved @remark the very moment I started used it!"
+              text="Loved @remark the very moment I used it!"
             />
             <Comment
               image="person3.jpg"
