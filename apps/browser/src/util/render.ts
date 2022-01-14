@@ -11,7 +11,6 @@ export type IEventList = {
 
 export default class Render {
   static events: IEventList = {};
-  static isRendered = false;
   static isShowen = false;
 
   // Other known FAB's
@@ -118,13 +117,9 @@ export default class Render {
   static async checkBlocked() {
     const { blocked, disabled } = await Domain.isDomainBlocked();
 
-    if (!disabled && !blocked && document.fullscreenElement == null) {
-      if (!this.isRendered) return Render.call("render");
+    if (!disabled && !blocked && document.fullscreenElement == null)
       Registry.dispatch(showFab());
-    } else {
-      if (!this.isRendered) return;
-      Registry.dispatch(hideFab());
-    }
+    else Registry.dispatch(hideFab());
   }
 
   static sidebarQuerySelector(selector: string): Element | null {

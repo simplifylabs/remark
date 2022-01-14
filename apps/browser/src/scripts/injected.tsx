@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import Render from "@browser/util/render";
 import Events from "@browser/util/events";
@@ -8,10 +8,7 @@ import { store, Provider } from "@browser/state/index";
 
 Events.listenInjected();
 
-Render.on("render", () => {
-  if (!Render.allowed()) return;
-
-  Render.isRendered = true;
+if (Render.allowed()) {
   Registry.set(store);
 
   ReactDOM.render(
@@ -20,4 +17,4 @@ Render.on("render", () => {
     </Provider>,
     Render.getWrapper()
   );
-});
+}
