@@ -13,6 +13,7 @@
     "releaseNotes": "echo ",
     "tokenRef": "GITHUB_TOKEN",
     "assets": ["dist/*.(zip)"],
+    "autoGenerate": true,
     "web": false
   },
   "npm": {
