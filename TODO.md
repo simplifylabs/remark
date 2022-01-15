@@ -1,8 +1,8 @@
 # Todo:
 
-- Smart show (+ Shortcut)
+- Smart show
+- Shortcuts
 - Add some intro?
-- Clean up
 
 # Before release
 
