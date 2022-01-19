@@ -1,4 +1,9 @@
-import { hideFab, showFab } from "@browser/actions/render";
+import {
+  hideFab,
+  hideSidebar,
+  showFab,
+  showSidebar,
+} from "@browser/actions/render";
 import Domain from "@browser/util/domain";
 import Registry from "@browser/state/registry";
 
@@ -9,9 +14,14 @@ export type IEventList = {
   [event: string]: EventListener[];
 };
 
+interface IShowOptions {
+  action?: boolean;
+  toggle?: boolean;
+  force?: boolean;
+}
+
 export default class Render {
   static events: IEventList = {};
-  static isShowen = false;
 
   // Other known FAB's
   static fabList: string[] = [
@@ -114,12 +124,34 @@ export default class Render {
     return launcher;
   }
 
-  static async checkBlocked() {
+  static async checkShowen(options: IShowOptions = {}) {
     const { blocked, disabled } = await Domain.isDomainBlocked();
+    const state = Registry.store.getState();
 
-    if (!disabled && !blocked && document.fullscreenElement == null)
-      Registry.dispatch(showFab());
-    else Registry.dispatch(hideFab());
+    if (options.toggle) {
+      if (state.render.fab) return this.showFab(false);
+      if (options.action) this.showSidebar(true);
+      this.showFab(true);
+      return;
+    }
+
+    if (disabled || blocked || document.fullscreenElement != null)
+      return this.showFab(false);
+  }
+
+  static toggleSidebar() {
+    const state = Registry.store.getState();
+    this.showFab(true);
+    if (state.render.sidebar) this.showSidebar(false);
+    else this.showSidebar(true);
+  }
+
+  static showFab(showen: boolean) {
+    Registry.dispatch(showen ? showFab() : hideFab());
+  }
+
+  static showSidebar(showen: boolean) {
+    Registry.dispatch(showen ? showSidebar() : hideSidebar());
   }
 
   static sidebarQuerySelector(selector: string): Element | null {

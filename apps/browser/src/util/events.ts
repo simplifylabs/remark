@@ -16,11 +16,11 @@ export default class Events {
   static async listenInjected() {
     window.addEventListener("load", () => {
       dispatch(checkLoggedIn());
-      Render.checkBlocked();
+      Render.checkShowen();
     });
 
     document.addEventListener("fullscreenchange", () => {
-      Render.checkBlocked();
+      Render.checkShowen();
     });
 
     chrome.runtime.onMessage.addListener(this.onMessageInjected);
@@ -67,6 +67,17 @@ export default class Events {
     return { responseHeaders: headers };
   }
 
+  static async onCommand(command: string, tab: chrome.tabs.Tab) {
+    switch (command) {
+      case "toggle_button":
+        Tab.send("fab:toggle", {}, tab.id);
+        break;
+      case "toggle_sidebar":
+        Tab.send("sidebar:toggle", {}, tab.id);
+        break;
+    }
+  }
+
   static async onInternalMessage(type: string, res: (data: Data) => void) {
     switch (type) {
       case "LOGOUT":
@@ -86,8 +97,14 @@ export default class Events {
       case "server:online":
         dispatch(setIsOnline(true));
         break;
-      case "blocked:update":
-        Render.checkBlocked();
+      case "action:click":
+        Render.checkShowen({ toggle: true, action: true });
+        break;
+      case "fab:toggle":
+        Render.checkShowen({ toggle: true });
+        break;
+      case "sidebar:toggle":
+        Render.toggleSidebar();
         break;
       case "auth:update":
         dispatch(checkLoggedIn());

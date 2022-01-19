@@ -1,7 +1,6 @@
 # Todo:
 
 - Smart show
-- Shortcuts
 - Add some intro?
 
 # Before release

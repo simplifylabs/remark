@@ -71,14 +71,14 @@ export default class Tab {
     chrome.tabs.remove(tab.id);
   }
 
-  static async send(type: string, data: Data = {}): Promise<void> {
+  static async send(type: string, data: Data = {}, id?: number): Promise<void> {
     if (App.isInjected()) {
       this.call({ ...data, type: type });
       return;
     }
 
     const tab = await Tab.getCurrent();
-    chrome.tabs.sendMessage(tab.id, { ...data, type: type });
+    chrome.tabs.sendMessage(id ? id : tab.id, { ...data, type: type });
   }
 
   static async sendAll(type: string, data: Data = {}): Promise<void> {

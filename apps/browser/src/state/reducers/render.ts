@@ -10,15 +10,13 @@ import {
 import { AnyAction } from "redux";
 
 export interface RenderState {
-  rendered: boolean;
   fab: boolean;
   sidebar: boolean;
   dark: boolean;
 }
 
 const initialState: RenderState = {
-  rendered: true,
-  fab: true,
+  fab: false,
   sidebar: false,
   dark: false,
 };
@@ -31,21 +29,11 @@ export default (
     case SHOW_FAB:
       return {
         ...state,
-        rendered: true,
         fab: true,
-        sidebar: false,
       };
     case HIDE_FAB:
       return {
         ...state,
-        rendered: true,
-        fab: false,
-        sidebar: false,
-      };
-    case DISABLE_RENDER:
-      return {
-        ...state,
-        rendered: false,
         fab: false,
         sidebar: false,
       };

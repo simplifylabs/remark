@@ -1,10 +1,12 @@
 import App from "@browser/util/app";
 import Events from "@browser/util/events";
+import Tab from "@browser/util/tab";
 
 if (App.isDev()) require("crx-hotreload");
 
 chrome.runtime.setUninstallURL(`${App.webUrl}uninstall`);
 chrome.runtime.onInstalled.addListener(Events.onInstalled);
+chrome.commands.onCommand.addListener(Events.onCommand);
 
 chrome.runtime.onUpdateAvailable.addListener(() => {
   chrome.runtime.reload();
@@ -28,5 +30,5 @@ chrome.webRequest.onHeadersReceived.addListener(
 );
 
 chrome.browserAction.onClicked.addListener(() => {
-  // TODO
+  Tab.send("action:click");
 });

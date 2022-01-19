@@ -32,6 +32,20 @@
   "browser_action": {
     "default_title": "Remark"
   },
+  "commands": {
+    "toggle_button": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y"
+      },
+      "description": "Toggle the Remark Button"
+    },
+    "toggle_sidebar": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S"
+      },
+      "description": "Toggle the Remark Sidebar"
+    }
+  },
   "externally_connectable": {
     "matches": ["*://*.remark.surf/*", "*://localhost/*"]
   },

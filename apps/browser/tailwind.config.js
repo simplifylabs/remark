@@ -28,9 +28,6 @@ module.exports = {
           DEFAULT: withOpacity("--brand"),
         },
       },
-      boxShadow: {
-        sidebar: "0 0 4px rgba(0, 0, 0, 0.15)",
-      },
       cursor: {
         "col-resize": "col-resize",
       },

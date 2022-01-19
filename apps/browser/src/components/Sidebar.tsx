@@ -35,10 +35,8 @@ function SidebarComponent(props: ISidebarProps) {
   }, []);
 
   useEffect(() => {
-    setTimeout(() => {
-      setTranslateX(props.showen ? "0" : "120%");
-      setOpacity(props.showen ? 1 : 0);
-    }, 50);
+    setTranslateX(props.showen ? "0" : "120%");
+    setOpacity(props.showen ? 1 : 0);
   }, [props.showen]);
 
   useEffect(() => {
@@ -142,7 +140,8 @@ function SidebarComponent(props: ISidebarProps) {
           transform: `translateX(${translateX})`,
         }}
       >
-        <div className="w-full h-full rounded-[20px] bg-black/10 dark:bg-white/20 shadow-sidebar pb-14 pl-[2px] overflow-hidden">
+        <div className="w-full h-full rounded-[20px] bg-black/10 dark:bg-white/20 pb-14 overflow-hidden">
+          <div className="w-screen h-32 bg-white/50 mb-4 shadow-sm"></div>
           <List setValue={setValue} input={textarea} />
           <div className="flex absolute bottom-0 left-0 flex-row p-[0.72rem] w-full">
             {props.isLoggedIn ? (
