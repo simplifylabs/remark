@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
+import RedisClient from "ioredis";
 import RateLimit from "express-rate-limit";
 import RedisStore from "rate-limit-redis";
+
+const client = new RedisClient();
 
 interface Options {
   requests: number;
@@ -19,7 +22,10 @@ export default function limit(input: Options | number, interval?: number) {
   if (typeof input == "object") options = { ...options, ...input };
 
   return RateLimit({
-    store: new RedisStore({}),
+    store: new RedisStore({
+      // @ts-expect-error
+      sendCommand: (...args: string[]) => client.call(...args),
+    }),
     max: options.requests,
     windowMs: options.interval || 60000,
     keyGenerator: (req: Request) => {
