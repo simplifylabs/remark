@@ -2,6 +2,7 @@
 
 - Smart show
 - Add some intro?
+- Remove popup code (switch)
 
 # Before release
 

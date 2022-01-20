@@ -118,7 +118,7 @@
 }
 
 .remark__input {
-  @apply !bg-white rounded-lg shadow-sm border border-gray-300 dark:!bg-black dark:!border-gray-700 dark:!text-white focus:ring-2 focus:ring-brand outline-none;
+  @apply !bg-white rounded-lg shadow-sm border border-gray-300 dark:!bg-background-form dark:!border-gray-700 dark:!text-white focus:ring-2 focus:ring-brand outline-none;
 }
 
 .remark__suggestions__list {

@@ -1,5 +1,11 @@
 import React, { useEffect, useState, Ref } from "react";
 import { MentionsInput, Mention } from "react-mentions";
+import {
+  UserIcon,
+  CogIcon,
+  XIcon,
+  QuestionMarkCircleIcon,
+} from "@heroicons/react/outline";
 import { connect, IRootState } from "@browser/state/index";
 import { hideSidebar } from "@browser/actions/render";
 import { setTyping, postComment } from "@browser/actions/comment";
@@ -10,6 +16,7 @@ import API from "@browser/util/api";
 import Render from "@browser/util/render";
 import List from "@browser/components/List";
 import Frame from "@browser/components/Frame";
+import TextSwitch from "@browser/components/TextSwitch";
 
 interface ISidebarProps {
   showen: boolean;
@@ -141,7 +148,14 @@ function SidebarComponent(props: ISidebarProps) {
         }}
       >
         <div className="w-full h-full rounded-[20px] bg-black/10 dark:bg-white/20 pb-14 overflow-hidden">
-          <div className="w-screen h-32 bg-white/50 mb-4 shadow-sm"></div>
+          <div className="w-full flex flex-row justify-between items-center p-4 pb-2 gap-2">
+            <TextSwitch options={["Always", "Smart", "Never"]} />
+            <div className="w-full grow h-[2.2rem] bg-white dark:bg-background-form rounded-lg shadow-sm flex flex-row justify-between items-center px-1">
+              <UserIcon className="btn-icon text-gray-500 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300" />
+              <CogIcon className="btn-icon text-gray-500 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300" />
+              <XIcon className="btn-icon text-gray-500 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300" />
+            </div>
+          </div>
           <List setValue={setValue} input={textarea} />
           <div className="flex absolute bottom-0 left-0 flex-row p-[0.72rem] w-full">
             {props.isLoggedIn ? (

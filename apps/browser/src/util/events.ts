@@ -16,11 +16,11 @@ export default class Events {
   static async listenInjected() {
     window.addEventListener("load", () => {
       dispatch(checkLoggedIn());
-      Render.checkShowen();
+      Render.checkAutoOpen();
     });
 
     document.addEventListener("fullscreenchange", () => {
-      Render.checkShowen();
+      Render.checkAutoOpen();
     });
 
     chrome.runtime.onMessage.addListener(this.onMessageInjected);
@@ -98,10 +98,10 @@ export default class Events {
         dispatch(setIsOnline(true));
         break;
       case "action:click":
-        Render.checkShowen({ toggle: true, action: true });
+        Render.toggleFab(true);
         break;
       case "fab:toggle":
-        Render.checkShowen({ toggle: true });
+        Render.toggleFab();
         break;
       case "sidebar:toggle":
         Render.toggleSidebar();

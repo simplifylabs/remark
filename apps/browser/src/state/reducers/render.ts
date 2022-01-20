@@ -4,7 +4,6 @@ import {
   TOGGLE_SIDEBAR,
   HIDE_SIDEBAR,
   SHOW_SIDEBAR,
-  DISABLE_RENDER,
   SET_DARK,
 } from "@browser/actions/render";
 import { AnyAction } from "redux";

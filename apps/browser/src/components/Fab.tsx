@@ -28,10 +28,14 @@ function FabComponent(props: IProps) {
     return () => clearInterval(interval);
   }, []);
 
+  function onLoaded() {
+    if (props.total > 0) Render.showFab(true);
+  }
+
   useEffect(() => {
-    if (!props.showen) return setScale(0);
     if (props.sidebar) setScale(0.75);
-    else setScale(1);
+    else if (props.showen) setScale(1);
+    else setScale(0);
   }, [props.showen, props.sidebar]);
 
   function checkSecondary() {
@@ -46,6 +50,7 @@ function FabComponent(props: IProps) {
 
   return (
     <Frame
+      onLoad={onLoaded}
       style={{
         zIndex: 2147483646,
         position: "fixed",
@@ -58,12 +63,9 @@ function FabComponent(props: IProps) {
     >
       <div
         style={{
-          //@ts-ignore
-          "--tw-scale-x": scale,
-          //@ts-ignore
-          "--tw-scale-y": scale,
+          transform: `scale(${scale}, ${scale})`,
         }}
-        className="relative w-full h-full transform transition-all duration-200"
+        className="relative w-full h-full transition-all duration-200"
       >
         <div
           onClick={() => props.hideFab()}
@@ -78,7 +80,7 @@ function FabComponent(props: IProps) {
             !props.typing &&
             !props.sidebar
               ? "opacity-1"
-              : "opacity-0"
+              : "opacity-0 pointer-events-none"
           }`}
         >
           {labelHover || fabHover || props.total <= 0 ? (

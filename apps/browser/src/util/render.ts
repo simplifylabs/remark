@@ -14,12 +14,6 @@ export type IEventList = {
   [event: string]: EventListener[];
 };
 
-interface IShowOptions {
-  action?: boolean;
-  toggle?: boolean;
-  force?: boolean;
-}
-
 export default class Render {
   static events: IEventList = {};
 
@@ -124,16 +118,9 @@ export default class Render {
     return launcher;
   }
 
-  static async checkShowen(options: IShowOptions = {}) {
+  static async checkAutoOpen() {
     const { blocked, disabled } = await Domain.isDomainBlocked();
     const state = Registry.store.getState();
-
-    if (options.toggle) {
-      if (state.render.fab) return this.showFab(false);
-      if (options.action) this.showSidebar(true);
-      this.showFab(true);
-      return;
-    }
 
     if (disabled || blocked || document.fullscreenElement != null)
       return this.showFab(false);
@@ -144,6 +131,13 @@ export default class Render {
     this.showFab(true);
     if (state.render.sidebar) this.showSidebar(false);
     else this.showSidebar(true);
+  }
+
+  static toggleFab(action = false) {
+    const state = Registry.store.getState();
+    if (state.render.fab) return this.showFab(false);
+    if (action) this.showSidebar(true);
+    this.showFab(true);
   }
 
   static showFab(showen: boolean) {

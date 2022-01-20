@@ -4,31 +4,44 @@ import Tab from "@browser/util/tab";
 
 if (App.isDev()) require("crx-hotreload");
 
-chrome.runtime.setUninstallURL(`${App.webUrl}uninstall`);
-chrome.runtime.onInstalled.addListener(Events.onInstalled);
-chrome.commands.onCommand.addListener(Events.onCommand);
+(() => {
+  if (!chrome) return;
 
-chrome.runtime.onUpdateAvailable.addListener(() => {
-  chrome.runtime.reload();
-});
+  if (chrome.commands) {
+    chrome.commands.onCommand.addListener(Events.onCommand);
+  }
 
-chrome.runtime.onMessage.addListener((req, _, res) => {
-  if (req.passed) Events.onExternalMessage(req, res);
-  else Events.onInternalMessage(req, res);
-  return true;
-});
+  if (chrome.browserAction) {
+    chrome.browserAction.onClicked.addListener(() => {
+      Tab.send("action:click");
+    });
+  }
 
-chrome.runtime.onMessageExternal.addListener((req, _, res) => {
-  Events.onExternalMessage(req, res);
-  return true;
-});
+  if (chrome.webRequest) {
+    chrome.webRequest.onHeadersReceived.addListener(
+      Events.onHttpRequest,
+      { urls: ["http://*/*", "https://*/*"] },
+      ["blocking", "responseHeaders"]
+    );
+  }
 
-chrome.webRequest.onHeadersReceived.addListener(
-  Events.onHttpRequest,
-  { urls: ["http://*/*", "https://*/*"] },
-  ["blocking", "responseHeaders"]
-);
+  if (chrome.runtime) {
+    chrome.runtime.setUninstallURL(`${App.webUrl}uninstall`);
+    chrome.runtime.onInstalled.addListener(Events.onInstalled);
 
-chrome.browserAction.onClicked.addListener(() => {
-  Tab.send("action:click");
-});
+    chrome.runtime.onMessage.addListener((req, _, res) => {
+      if (req.passed) Events.onExternalMessage(req, res);
+      else Events.onInternalMessage(req, res);
+      return true;
+    });
+
+    chrome.runtime.onMessageExternal.addListener((req, _, res) => {
+      Events.onExternalMessage(req, res);
+      return true;
+    });
+
+    chrome.runtime.onUpdateAvailable.addListener(() => {
+      chrome.runtime.reload();
+    });
+  }
+})();
