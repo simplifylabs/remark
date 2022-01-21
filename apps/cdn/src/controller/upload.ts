@@ -19,7 +19,7 @@ import fs from "fs";
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/temp");
+    cb(null, join("apps/cdn", "uploads", "temp"));
   },
   filename: function (req, file, cb) {
     cb(null, file.fieldname + "-" + Date.now() + extname(file.originalname));
@@ -55,9 +55,9 @@ const uploadAvatarController = async (req: Request, res: Response) => {
         })
         .jpeg({ quality: avatar.quality[size] })
         .toFile(
-          resolve(
-            file.destination,
-            "..",
+          join(
+            "apps/cdn",
+            "uploads",
             "avatars",
             `${size}x${size}`,
             `${req.user.id}.${avatar.filetype}`

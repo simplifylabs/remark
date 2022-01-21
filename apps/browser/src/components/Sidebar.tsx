@@ -151,9 +151,15 @@ function SidebarComponent(props: ISidebarProps) {
           <div className="w-full flex flex-row justify-between items-center p-4 pb-2 gap-2">
             <TextSwitch options={["Always", "Smart", "Never"]} />
             <div className="w-full grow h-[2.2rem] bg-white dark:bg-background-form rounded-lg shadow-sm flex flex-row justify-between items-center px-1">
-              <UserIcon className="btn-icon text-gray-500 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300" />
+              <UserIcon
+                onClick={() => window.open(`${App.webUrl}profile`)}
+                className="btn-icon text-gray-500 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+              />
               <CogIcon className="btn-icon text-gray-500 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300" />
-              <XIcon className="btn-icon text-gray-500 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300" />
+              <XIcon
+                onClick={() => props.hide()}
+                className="btn-icon text-gray-500 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+              />
             </div>
           </div>
           <List setValue={setValue} input={textarea} />

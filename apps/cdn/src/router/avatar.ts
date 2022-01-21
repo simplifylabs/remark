@@ -11,7 +11,7 @@ if (process.env.NODE_ENV == "development") {
   avatar.sizes.forEach((size) => {
     router.use(
       `/${size}x${size}`,
-      express.static(`uploads/avatars/${size}x${size}/`, {
+      express.static(`apps/cdn/uploads/avatars/${size}x${size}/`, {
         extensions: [avatar.filetype],
       })
     );

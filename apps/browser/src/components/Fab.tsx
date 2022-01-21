@@ -16,10 +16,11 @@ interface IProps {
 }
 
 function FabComponent(props: IProps) {
+  const [labelHover, setLabelHover] = useState<boolean>(false);
+  const [fabHover, setFabHover] = useState<boolean>(false);
   const [secondary, setSecondary] = useState(false);
   const [scale, setScale] = useState(0);
-  const [fabHover, setFabHover] = useState<boolean>(false);
-  const [labelHover, setLabelHover] = useState<boolean>(false);
+  const [_, setLoaded] = useState(false);
 
   useEffect(() => {
     checkSecondary();
@@ -28,15 +29,34 @@ function FabComponent(props: IProps) {
     return () => clearInterval(interval);
   }, []);
 
-  function onLoaded() {
-    if (props.total > 0) Render.showFab(true);
-  }
-
   useEffect(() => {
     if (props.sidebar) setScale(0.75);
     else if (props.showen) setScale(1);
     else setScale(0);
   }, [props.showen, props.sidebar]);
+
+  useEffect(() => {
+    Render.on("comments:loaded", onCommentsLoad);
+  }, []);
+
+  function onFrameLoad() {
+    setLoaded(true);
+    checkSmartShow();
+  }
+
+  function onCommentsLoad(total: number) {
+    Render.off("comments:loaded", onCommentsLoad);
+
+    setLoaded((loaded: boolean) => {
+      if (loaded) checkSmartShow(total);
+      return loaded;
+    });
+  }
+
+  function checkSmartShow(total?: number) {
+    if (total == undefined) total = props.total;
+    if (total > 0) Render.showFab(true);
+  }
 
   function checkSecondary() {
     setSecondary(Render.fabExists());
@@ -50,7 +70,7 @@ function FabComponent(props: IProps) {
 
   return (
     <Frame
-      onLoad={onLoaded}
+      onLoad={onFrameLoad}
       style={{
         zIndex: 2147483646,
         position: "fixed",

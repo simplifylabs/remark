@@ -156,6 +156,7 @@ export default class User {
     form.append("image", file);
 
     const res = await API.file(["CDN", "avatar", "upload"], form);
+    console.log(res);
     return res;
   }
 

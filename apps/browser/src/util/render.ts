@@ -59,10 +59,10 @@ export default class Render {
     this.events[event] = this.events[event].filter((func) => func !== listener);
   }
 
-  static call(event: string) {
+  static call(event: string, ...data: any[]) {
     if (!this.events[event]) return;
     this.events[event].forEach((func) => {
-      func();
+      func(...data);
     });
   }
 
