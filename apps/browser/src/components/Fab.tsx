@@ -20,7 +20,7 @@ function FabComponent(props: IProps) {
   const [fabHover, setFabHover] = useState<boolean>(false);
   const [secondary, setSecondary] = useState(false);
   const [scale, setScale] = useState(0);
-  const [_, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     checkSecondary();
@@ -70,7 +70,7 @@ function FabComponent(props: IProps) {
 
   return (
     <Frame
-      onLoad={onFrameLoad}
+      onLoad={!loaded ? onFrameLoad : undefined}
       style={{
         zIndex: 2147483646,
         position: "fixed",

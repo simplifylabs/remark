@@ -136,11 +136,8 @@ export default function Layout(props: ILayoutProps) {
         <link rel="icon" type="image/png" />
         <link rel="manifest" href="/manifest.json" />
       </Head>
-
-      <div className="overflow-y-auto overflow-x-hidden max-h-screen max-w-screen scroll-smooth">
-        <DialogBox />
-        {props.children}
-      </div>
+      <DialogBox />
+      {props.children}
     </>
   );
 }

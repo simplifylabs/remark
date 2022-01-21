@@ -20,7 +20,7 @@ module.exports = {
       pacifico: ["Pacifico", "cursive"],
     },
     dropShadow: {
-      "example-big": "0 10px 30px rgba(0, 0, 0, 0.3)",
+      "example-big": "0 10px 23px rgba(0, 0, 0, 0.15)",
       "example-small": "0 5px 15px rgba(0, 0, 0, 0.3)",
     },
     extend: {

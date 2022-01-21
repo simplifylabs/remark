@@ -135,8 +135,13 @@ export default class Render {
 
   static toggleFab(action = false) {
     const state = Registry.store.getState();
+
+    if (action) {
+      if (state.render.sidebar) return this.showFab(false);
+      return this.showSidebar(true);
+    }
+
     if (state.render.fab) return this.showFab(false);
-    if (action) this.showSidebar(true);
     this.showFab(true);
   }
 

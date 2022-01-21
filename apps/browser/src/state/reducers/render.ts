@@ -50,6 +50,7 @@ export default (
       return {
         ...state,
         sidebar: true,
+        fab: true,
       };
     case SET_DARK:
       return {
