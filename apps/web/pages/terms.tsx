@@ -12,10 +12,10 @@ export default function Terms() {
         <article className="prose">
           <h1>Terms of Service</h1>
           <p>
-            The Remark website located at https://remark.surf/ is a
-            copyrighted work belonging to Simplify Software. Certain features of
-            the Site may be subject to additional guidelines, terms, or rules,
-            which will be posted on the Site in connection with such features.
+            The Remark website located at https://remark.surf/ is a copyrighted
+            work belonging to Simplify Software. Certain features of the Site
+            may be subject to additional guidelines, terms, or rules, which will
+            be posted on the Site in connection with such features.
           </p>
           <p>
             All such additional terms, guidelines, and rules are incorporated by
@@ -26,7 +26,7 @@ export default function Terms() {
             conditions that oversee your use of the Site. BY LOGGING INTO THE
             SITE, YOU ARE BEING COMPLIANT THAT THESE TERMS and you represent
             that you have the authority and capacity to enter into these Terms.
-            YOU SHOULD BE AT LEAST 18 YEARS OF AGE TO ACCESS THE SITE. IF YOU
+            YOU SHOULD BE AT LEAST 12 YEARS OF AGE TO ACCESS THE SITE. IF YOU
             DISAGREE WITH ALL OF THE PROVISION OF THESE TERMS, DO NOT LOG INTO
             AND/OR USE THE SITE.
           </p>

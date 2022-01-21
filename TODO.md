@@ -3,6 +3,7 @@
 - Smart show
 - Add some intro?
 - Remove popup code (switch)
+- Fix sharing with # in url
 
 # Before release
 

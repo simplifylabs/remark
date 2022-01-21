@@ -17,6 +17,7 @@ const allowedQueries: string[] = ["q", "query", "search", "s"];
 export function filter(str: string): IFilterResult | IFilterError {
   try {
     const url = new URL(str);
+    url.hash = "";
 
     let domain = url.hostname;
     domain = domain.replace("www.", "");

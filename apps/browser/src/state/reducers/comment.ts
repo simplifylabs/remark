@@ -194,9 +194,9 @@ function updateComment(
 
   let shared = state.shared ? { ...state.shared } : null;
   if (shared) {
-    if (shared.id == id) {
+    if (shared.id !== id) {
       const reply = shared.replies.findIndex((r) => r.id == id);
-      if (reply !== -1)
+      if (reply != -1)
         shared.replies[reply] = vote(shared.replies[reply], action, voteType);
     } else shared = vote(shared, action, voteType);
   }
@@ -208,7 +208,7 @@ function updateComment(
   if (index == -1) {
     list.forEach((c) => {
       const reply = c.replies.findIndex((r) => r.id == id);
-      if (reply !== -1) return;
+      if (reply == -1) return;
       c.replies[reply] = vote(c.replies[reply], action, voteType);
       return c;
     });

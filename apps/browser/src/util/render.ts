@@ -39,7 +39,7 @@ export default class Render {
     left: 0 !important;
     border: none !important;
     display: block !important;
-    z-index: 2147483646 !important;
+    z-index: 2147483647 !important;
     background-color: transparent !important;
     color-scheme: light !important;
     padding: 0 !important;

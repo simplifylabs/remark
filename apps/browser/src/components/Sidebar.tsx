@@ -135,7 +135,7 @@ function SidebarComponent(props: ISidebarProps) {
       <Frame
         id="sidebar"
         style={{
-          zIndex: 2147483646,
+          zIndex: 2147483645,
           position: "fixed",
           right: 0,
           bottom: 0,
