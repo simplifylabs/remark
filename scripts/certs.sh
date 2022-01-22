@@ -11,7 +11,7 @@ printf "${FgBlue}[INFO]:${FgWhite} Creating certs...\n"
 echo
 
 # Prepare
-# rm -rf .certs/ && mkdir .certs
+rm -rf .certs/ && mkdir .certs
 
 # Private Key 
 openssl genrsa -out .certs/private.pem 2048 2> /dev/null 
