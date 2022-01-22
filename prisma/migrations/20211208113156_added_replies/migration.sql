@@ -1,5 +1,0 @@
--- AlterTable
-ALTER TABLE `Post` ADD COLUMN `replyId` VARCHAR(191) NULL;
-
--- AddForeignKey
-ALTER TABLE `Post` ADD CONSTRAINT `Post_replyId_fkey` FOREIGN KEY (`replyId`) REFERENCES `Post`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
