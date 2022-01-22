@@ -24,7 +24,7 @@ export default function Profile() {
   const router = useRouter();
 
   const [openFileSelector, { plainFiles, filesContent }] = useFilePicker({
-    accept: "image/*",
+    accept: [".png", ".jpg", ".jpeg"],
     multiple: false,
     limitFilesConfig: { max: 1 },
     maxFileSize: 5,
