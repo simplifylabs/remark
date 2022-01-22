@@ -9,7 +9,8 @@
 
 - Search for todo
 - Update action branch
-- Delete TODO
+- Lint
+- Delete TODO.md
 - Delete .git
 - Re-Init
 - Push
