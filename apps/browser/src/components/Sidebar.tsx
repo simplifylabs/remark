@@ -7,7 +7,7 @@ import {
 } from "@heroicons/react/outline";
 import { connect, IRootState } from "@browser/state/index";
 import { hideSidebar } from "@browser/actions/render";
-import { setTyping, postComment } from "@browser/actions/comment";
+import { setTyping, postComment, setReplying } from "@browser/actions/comment";
 import { IReply } from "@browser/reducers/comment";
 import { Mode } from "@browser/util/settings";
 import Darkmode from "@browser/util/darkmode";
@@ -27,6 +27,7 @@ interface ISidebarProps {
   hide: typeof hideSidebar;
   typing: typeof setTyping;
   post: typeof postComment;
+  reply: typeof setReplying;
 }
 
 function Sidebar(props: ISidebarProps) {
@@ -129,8 +130,7 @@ function Sidebar(props: ISidebarProps) {
     props.post(modified, isReplying ? props.replying.commentId : null, () =>
       setValue("")
     );
-
-    return value;
+    props.reply(null);
   }
 
   function check() {
@@ -344,6 +344,7 @@ const mapDipatchToProps = {
   hide: hideSidebar,
   typing: setTyping,
   post: postComment,
+  reply: setReplying,
 };
 
 //@ts-ignore

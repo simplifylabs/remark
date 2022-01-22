@@ -49,10 +49,11 @@ export const removeComment = (id: string) => async (dispatch: Dispatch) => {
 };
 
 export const setReplying =
-  (comment: { id: string; author: IAuthor }) => async (dispatch: Dispatch) => {
+  (comment: { id: string; author: IAuthor } | null) =>
+  async (dispatch: Dispatch) => {
     dispatch({
       type: SET_REPLYING,
-      to: { commentId: comment.id, author: comment.author },
+      to: comment ? { commentId: comment.id, author: comment.author } : null,
     });
   };
 
