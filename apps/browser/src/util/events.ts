@@ -12,7 +12,6 @@ import Domain from "@browser/util/domain";
 import Policy from "@browser/util/policy";
 import Indicator from "@browser/util/indicator";
 
-// eslint-disable-next-line
 type Data = { [key: string]: any };
 
 export default class Events {

@@ -4,7 +4,6 @@ import Storage from "./storage";
 import Tab from "./tab";
 
 type Data = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 };
 

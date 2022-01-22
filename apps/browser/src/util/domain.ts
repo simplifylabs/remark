@@ -3,7 +3,6 @@ import Storage from "@browser/util/storage";
 import Settings, { Mode } from "@browser/util/settings";
 import Tab from "@browser/util/tab";
 
-// eslint-disable-next-line
 type Data = { [key: string]: any };
 type List = "WHITE" | "BLACK" | "SMART";
 

@@ -1,6 +1,5 @@
 import chalk from "chalk";
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 export default function getConsole() {
   const old = { ...console };
 
@@ -27,6 +26,5 @@ export function error(con: any, ...args: any[]) {
 export function warn(con: any, ...args: any[]) {
   con.warn(chalk.yellow("[WARN]"), ...args);
 }
-/* eslint-enable @typescript-eslint/no-explicit-any */
 
 module.exports = getConsole;

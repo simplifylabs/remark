@@ -1,12 +1,10 @@
 import App from "@browser/util/app";
 type ITab = chrome.tabs.Tab;
 
-// eslint-disable-next-line
 type Data = {
   [key: string]: any;
 };
 
-// eslint-disable-next-line
 export type EventListener = (...args: any[]) => void;
 
 export type IEventList = {

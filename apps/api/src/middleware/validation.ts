@@ -5,7 +5,6 @@ export function validate(validation: object) {
   return validateOriginal(validation, {}, {});
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getValidationMessage(err: any) {
   if (!err) return false;
   if (!err.details) return false;

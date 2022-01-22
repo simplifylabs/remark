@@ -2,7 +2,6 @@ import Tab from "@browser/util/tab";
 import User from "@browser/util/user";
 import Error from "@browser/util/error";
 
-// eslint-disable-next-line
 type Data = { [key: string]: any };
 
 export interface Res extends Data {
@@ -134,7 +133,6 @@ class API {
 
   static async file(
     path: string | string[],
-    // eslint-disable-next-line
     form: any,
     resent = false
   ): Promise<Res | null> {

@@ -5,7 +5,6 @@ import { Post, commentSelect } from "@db";
 
 const singleComments = async (req: Request, res: Response) => {
   // Using any to be able to easily overwrite the replies
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const comment: any = await Post.findUnique({
     where: { id: String(req.params.id) },
     select: {
@@ -32,7 +31,6 @@ const singleComments = async (req: Request, res: Response) => {
 
   if (comment.replyId) {
     // Using any to be able to easily overwrite the replies
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const parent: any = await Post.findUnique({
       where: { id: comment.replyId },
       select: {

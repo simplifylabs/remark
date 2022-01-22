@@ -1,19 +1,19 @@
 export default class Policy {
-  raw: string = "";
+  raw = "";
   directives: { [key: string]: string } = {};
 
   constructor(raw: string) {
     this.raw = raw;
 
-    let directives = this.raw.split(";");
+    const directives = this.raw.split(";");
     for (let i = 0; i < directives.length; ++i) {
-      let directive = directives[i].trim();
-      let tokens = directive.split(/\s+/);
+      const directive = directives[i].trim();
+      const tokens = directive.split(/\s+/);
 
-      let name = tokens[0];
+      const name = tokens[0];
       if (!name) continue;
 
-      let values = tokens.slice(1, tokens.length);
+      const values = tokens.slice(1, tokens.length);
       this.directives[name] = values.join(" ");
     }
   }
@@ -44,8 +44,8 @@ export default class Policy {
     if (!this.directives[directive]) {
       return;
     } else {
-      let directiveValues = this.directives[directive].split(" ");
-      let index = directiveValues.indexOf(value);
+      const directiveValues = this.directives[directive].split(" ");
+      const index = directiveValues.indexOf(value);
       if (index > -1) {
         directiveValues.splice(index, 1);
         this.directives[directive] = directiveValues.join(" ");
@@ -56,7 +56,7 @@ export default class Policy {
   toString() {
     let out = "";
 
-    for (let directive in this.directives) {
+    for (const directive in this.directives) {
       if (this.directives[directive]) {
         out += directive + " " + this.directives[directive] + "; ";
       }
@@ -68,7 +68,7 @@ export default class Policy {
   toPrettyString() {
     let out = "";
 
-    for (let directive in this.directives) {
+    for (const directive in this.directives) {
       if (this.directives[directive])
         out += directive + "\n\t" + this.directives[directive] + ";\n";
     }

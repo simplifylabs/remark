@@ -37,9 +37,7 @@ export default class App {
     ) {
       this.deviceCache = DeviceType.FirefoxExtension;
     } else if (
-      // eslint-disable-next-line
       !!(window as any).opr ||
-      // eslint-disable-next-line
       !!(window as any).opera ||
       navigator.userAgent.indexOf(" OPR/") >= 0
     ) {
@@ -49,7 +47,6 @@ export default class App {
     } else if (navigator.userAgent.indexOf(" Vivaldi/") !== -1) {
       this.deviceCache = DeviceType.VivaldiExtension;
     } else if (
-      // eslint-disable-next-line
       (window as any).chrome &&
       navigator.userAgent.indexOf(" Chrome/") !== -1
     ) {

@@ -19,11 +19,12 @@ const initialState: DialogState = {
   modals: [],
 };
 
-/* eslint-disable no-var */
 export default (
   state: DialogState = initialState,
   action: AnyAction
 ): DialogState => {
+  let list = [];
+  let index = 0;
   switch (action.type) {
     case SHOW_SNACKBAR:
       return {
@@ -31,16 +32,18 @@ export default (
         snackbars: [...state.snackbars, action.data],
       };
     case HIDE_SNACKBAR:
-      var list = [...state.snackbars];
-      var index = list.findIndex((item) => item.id == action.id);
+      list = [...state.snackbars];
+      index = list.findIndex((item) => item.id == action.id);
+
       if (index == -1) return state;
       list[index].showen = false;
+
       return {
         ...state,
         snackbars: list,
       };
     case REMOVE_SNACKBAR:
-      var list = state.snackbars.filter((item) => item.id !== action.id);
+      list = state.snackbars.filter((item) => item.id !== action.id);
       return {
         ...state,
         snackbars: list,
@@ -51,13 +54,12 @@ export default (
         modals: [...state.modals, action.data],
       };
     case REMOVE_MODAL:
-      var modals = state.modals.filter((item) => item.id !== action.id);
+      list = state.modals.filter((item) => item.id !== action.id);
       return {
         ...state,
-        modals,
+        modals: list,
       };
     default:
       return { ...state };
   }
 };
-/* eslint-enable no-var */

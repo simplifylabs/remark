@@ -30,8 +30,6 @@ const listComments = async (req: Request, res: Response) => {
           downvotes: "asc",
         },
       ],
-      // Seems like the prisma types have a little bug here
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       select: commentSelect as any,
     }),
   ];

@@ -46,7 +46,6 @@ export default function Settings() {
   }
 
   async function update(key: keyof ISettings, value: ISettings[typeof key]) {
-    // eslint-disable-next-line
     const update: any = {};
     update[key] = value;
 

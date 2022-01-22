@@ -1,6 +1,5 @@
 import Storage from "@browser/util/storage";
 
-// eslint-disable-next-line
 type Data = { [key: string]: any };
 export type Mode = "SHOW" | "SMART" | "HIDE";
 
@@ -18,7 +17,7 @@ export default class Settings {
   static async load() {
     if (this.cache) return this.cache;
 
-    let raw = await Storage.get("settings");
+    const raw = await Storage.get("settings");
     let parsed = raw ? JSON.parse(raw) : {};
     let updated = false;
 

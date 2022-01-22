@@ -4,10 +4,8 @@ import {
   showFab,
   showSidebar,
 } from "@browser/actions/render";
-import Domain from "@browser/util/domain";
 import Registry from "@browser/state/registry";
 
-// eslint-disable-next-line
 export type EventListener = (...args: any[]) => void;
 
 export type IEventList = {

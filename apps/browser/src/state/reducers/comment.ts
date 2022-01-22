@@ -61,7 +61,6 @@ const initialState: CommentState = {
   typing: false,
 };
 
-/* eslint-disable no-var */
 export default (
   state: CommentState = initialState,
   action: AnyAction
@@ -104,7 +103,6 @@ export default (
       return state;
   }
 };
-/* eslint-enable no-var */
 
 function update(prev: CommentState, update: any): CommentState {
   const state = { ...prev, ...update };
@@ -121,8 +119,8 @@ function update(prev: CommentState, update: any): CommentState {
 }
 
 function removeComment(state: CommentState, action: AnyAction) {
-  var list: IComment[] = [...state.list];
-  var removed = list.find((c) => c.id == action.id);
+  let list: IComment[] = [...state.list];
+  let removed = list.find((c) => c.id == action.id);
 
   if (!removed)
     list.forEach((c) => {
@@ -130,7 +128,7 @@ function removeComment(state: CommentState, action: AnyAction) {
       if (found) removed = found;
     });
 
-  var shared = state.shared ? { ...state.shared } : null;
+  let shared = state.shared ? { ...state.shared } : null;
   if (shared) {
     if (shared.id == action.id) shared = null;
     else {
@@ -147,8 +145,8 @@ function removeComment(state: CommentState, action: AnyAction) {
 
   if (!removed) return state;
 
-  var parents = removed.replyId ? state.parents : state.parents - 1;
-  var total = state.total - 1;
+  const parents = removed.replyId ? state.parents : state.parents - 1;
+  let total = state.total - 1;
   if (removed.replies) total -= removed.replies.length;
 
   return update(state, {
@@ -160,8 +158,8 @@ function removeComment(state: CommentState, action: AnyAction) {
 }
 
 function addComment(state: CommentState, action: AnyAction) {
-  var list: IComment[] = [...state.list];
-  var shared: IComment = state.shared;
+  const list: IComment[] = [...state.list];
+  const shared: IComment = state.shared;
 
   if (action.replyTo) {
     const index = list.findIndex((c) => c.id == action.replyTo && !c.shared);
@@ -191,7 +189,7 @@ function updateComment(
   else if (action == "DELETED") {
     votes = votes.filter((vote) => vote.post.id != id);
   } else if (action == "TOGGLED") {
-    let index = votes.findIndex((vote) => vote.post.id == id);
+    const index = votes.findIndex((vote) => vote.post.id == id);
     votes[index].type = voteType;
   }
 

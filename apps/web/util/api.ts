@@ -1,12 +1,10 @@
 interface Data {
-  // eslint-disable-next-line
   [key: string]: any;
 }
 
 export interface Res {
   status: number;
   success: boolean;
-  // eslint-disable-next-line
   [key: string]: any;
 }
 

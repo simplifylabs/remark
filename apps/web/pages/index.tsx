@@ -42,7 +42,6 @@ function Hero() {
           primary
         />
         <AddButton className="md:py-4" />
-        {/* eslint-disable-next-line */}
         <img
           src="/images/example.png"
           alt="Example"

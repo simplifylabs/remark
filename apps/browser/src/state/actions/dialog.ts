@@ -47,7 +47,6 @@ export const showSnackbar =
 
     if (data.type == "TOAST") {
       setTimeout(() => {
-        // eslint-disable-next-line
         dispatch(hideSnackbar(data.id) as any);
       }, 2000);
     }
