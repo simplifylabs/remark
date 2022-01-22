@@ -21,12 +21,12 @@
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
-      "js": ["scripts/injected.js"],
+      "js": ["entry/injected.js"],
       "run_at": "document_end"
     }
   ],
   "background": {
-    "scripts": ["scripts/background.js"],
+    "scripts": ["entry/background.js"],
     "persistent": true
   },
   "browser_action": {

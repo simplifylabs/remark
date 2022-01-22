@@ -153,7 +153,7 @@ function SnackbarComponent(props: ISnackbarProps) {
     >
       <div
         className={`flex flex-row items-center fixed left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 px-4 py-2 max-w-[90%] ${
-          props.level == "SUCCESS" ? "bg-green-500" : "bg-red-500"
+          props.level == "SUCCESS" ? "bg-emerald-500" : "bg-red-500"
         } shadow-lg rounded-md`}
       >
         <p className="w-full px-2 text-lg text-white whitespace-nowrap">
