@@ -32,7 +32,7 @@ export default function Settings(props: ISettingsProps) {
   }
 
   function clearHide() {
-    if (clearedSmart) return;
+    if (clearedHide) return;
     setClearedHide(true);
   }
 
