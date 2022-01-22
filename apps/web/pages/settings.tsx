@@ -108,7 +108,7 @@ export default function Settings() {
           <select
             defaultValue={mode}
             onChange={(e) => updateMode(e.target.value as Mode)}
-            className="bg-white dark:bg-background-form text-black dark:text-white py-[0.4rem] rounded-md pl-3 pr-10 focus:ring-2 focus:ring-brand focus:outline-none border-gray-200 dark:border-gray-700 border shadow-sm"
+            className="bg-white text-black py-[0.4rem] rounded-md pl-3 pr-10 focus:ring-2 focus:ring-brand focus:outline-none border-gray-200 border shadow-sm"
           >
             <option value="SHOW">Always</option>
             <option value="SMART">Smart</option>
@@ -172,9 +172,5 @@ function Option(props: { children: any }) {
 }
 
 function Label(props: { children: string }) {
-  return (
-    <label className="text-base text-gray-600 dark:text-gray-300">
-      {props.children}
-    </label>
-  );
+  return <label className="text-gray-700">{props.children}</label>;
 }

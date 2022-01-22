@@ -28,9 +28,7 @@ export default function SignIn() {
     if (res.redirect) return router.push(res.redirect);
     if (!res.success) return setError("Something unexpected happened");
 
-    send("CLOSE", {
-      url: window.location.href,
-    }).then((res) => !res.success && router.push("/"));
+    send("CLOSE").then((res) => !res.success && router.push("/"));
   }
 
   return (

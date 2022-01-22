@@ -30,7 +30,6 @@ const upload = multer({
   storage: storage,
   fileFilter: function (req, file, callback) {
     const ext = extname(file.originalname);
-    console.log();
     if (ext !== ".png" && ext !== ".jpg" && ext !== ".jpeg") {
       return callback(
         new Error("Only .png, .jpeg and .jpg images are allowed!")
@@ -70,7 +69,6 @@ const uploadAvatarController = async (req: Request, res: Response) => {
     fs.unlinkSync(file.path);
   } catch (e) {
     fs.unlinkSync(file.path);
-    console.log(e);
     return res.status(500).json({ error: "PROCESS_IMAGE_ERROR" });
   }
 

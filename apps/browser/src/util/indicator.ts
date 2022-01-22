@@ -5,9 +5,9 @@ export default class Indicator {
     if (!chrome.browserAction) return { success: false };
     chrome.browserAction.setIcon({
       path: {
-        "64": chrome.extension.getURL("assets/icon/64.png"),
-        "128": chrome.extension.getURL("assets/icon/128.png"),
-        "256": chrome.extension.getURL("assets/icon/256.png"),
+        "64": chrome.runtime.getURL("assets/icon/64.png"),
+        "128": chrome.runtime.getURL("assets/icon/128.png"),
+        "256": chrome.runtime.getURL("assets/icon/256.png"),
       },
     });
     return { success: true };
@@ -17,9 +17,9 @@ export default class Indicator {
     if (!chrome.browserAction) return { success: false };
     chrome.browserAction.setIcon({
       path: {
-        "64": chrome.extension.getURL("assets/indicator/64.png"),
-        "128": chrome.extension.getURL("assets/indicator/128.png"),
-        "256": chrome.extension.getURL("assets/indicator/256.png"),
+        "64": chrome.runtime.getURL("assets/indicator/64.png"),
+        "128": chrome.runtime.getURL("assets/indicator/128.png"),
+        "256": chrome.runtime.getURL("assets/indicator/256.png"),
       },
     });
     return { success: true };

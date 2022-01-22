@@ -32,23 +32,19 @@ export default class Events {
     dispatch(fetchComments(0));
   }
 
-  static reply(event: MessageEvent, data: Data) {
-    if (!event.data || !event.data.type) return;
-    window.postMessage({ ...data, type: `RE:${event.data.type}` }, "*");
-  }
-
-  static pass(event: MessageEvent) {
-    const data = { ...event.data };
-    data.type = data.type.replace("REMARK:", "");
-    chrome.runtime.sendMessage({ ...data, passed: true }, (res) => {
-      this.reply(event, res);
-    });
-  }
-
   static onWindowMessage(event: MessageEvent) {
     if (event.source !== window || !event?.data?.type?.startsWith("REMARK:"))
       return;
-    this.pass(event);
+
+    const data = {
+      ...event.data,
+      type: event.data.type.replace("REMARK:", ""),
+    };
+
+    chrome.runtime.sendMessage({ ...data, passed: true }, (res) => {
+      if (!res) return;
+      window.postMessage({ ...res, type: `RE:${event.data.type}` }, "*");
+    });
   }
 
   static onTabChange() {
@@ -76,10 +72,10 @@ export default class Events {
   static async onCommand(command: string, tab: chrome.tabs.Tab) {
     switch (command) {
       case "toggle_button":
-        Tab.send("fab:toggle", {}, tab.id);
+        Tab.send("fab:toggle", {}, tab ? tab.id : null);
         break;
       case "toggle_sidebar":
-        Tab.send("sidebar:toggle", {}, tab.id);
+        Tab.send("sidebar:toggle", {}, tab ? tab.id : null);
         break;
     }
   }
@@ -101,6 +97,9 @@ export default class Events {
   }
 
   static onMessageInjected(data: Data) {
+    if (chrome.runtime.lastError)
+      return console.error(chrome.runtime.lastError);
+
     if (!data || !data.type) return;
     switch (data.type) {
       case "server:offline":
@@ -167,7 +166,7 @@ export default class Events {
         res(await User.me(true));
         break;
       case "CLOSE":
-        res(await Tab.closeAndReload(req.url));
+        res(await Tab.closeAndReload());
         break;
       case "SETTINGS":
         res(await Settings.event(req));

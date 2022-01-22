@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { connect, IRootState } from "@browser/state/index";
 import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
+import App from "@browser/util/app";
 
 function Frame({ withMotion, children, dark, dispatch, ...props }) {
   const [contentRef, setContentRef] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  function onLoad() {
     if (!contentRef) return;
 
     const css = document.createElement("link");
@@ -18,8 +19,12 @@ function Frame({ withMotion, children, dark, dispatch, ...props }) {
       setLoading(false);
     };
 
-    contentRef.contentWindow.document.head.appendChild(css);
-  }, [contentRef]);
+    if (App.isFirefox())
+      contentRef.contentWindow.document.body.appendChild(css);
+    else contentRef.contentWindow.document.head.appendChild(css);
+
+    if (props.onLoad) props.onLoad();
+  }
 
   useEffect(() => {
     if (!contentRef) return;
@@ -30,13 +35,18 @@ function Frame({ withMotion, children, dark, dispatch, ...props }) {
 
   if (withMotion)
     return (
-      <motion.iframe {...props} ref={setContentRef} frameBorder="0">
+      <motion.iframe
+        {...props}
+        onLoad={onLoad}
+        ref={setContentRef}
+        frameBorder="0"
+      >
         {!loading &&
           createPortal(children, contentRef.contentWindow.document.body)}
       </motion.iframe>
     );
   return (
-    <iframe {...props} ref={setContentRef} frameBorder="0">
+    <iframe {...props} onLoad={onLoad} ref={setContentRef} frameBorder="0">
       {!loading &&
         createPortal(children, contentRef.contentWindow.document.body)}
     </iframe>

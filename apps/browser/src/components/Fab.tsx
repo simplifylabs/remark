@@ -18,6 +18,7 @@ interface IProps {
 
 function FabComponent(props: IProps) {
   const [labelHover, setLabelHover] = useState<boolean>(false);
+  const [icon, setIcon] = useState<any>();
   const [fabHover, setFabHover] = useState<boolean>(false);
   const [secondary, setSecondary] = useState(false);
   const [scale, setScale] = useState(0);
@@ -153,15 +154,30 @@ function FabComponent(props: IProps) {
               shapeRendering="geometricPrecision"
             />
           ) : (
-            <img
+            <svg
               style={{
                 //@ts-ignore
                 "--tw-rotate": `${fabHover ? 20 : 0}deg`,
               }}
-              className="w-5/12 text-white transition-all duration-200 transform cursor-pointer"
-              src={chrome.extension.getURL("assets/icon/64.png")}
-              alt="Remark Icon"
-            />
+              className="w-5/12 transition-all duration-200 transform cursor-pointer"
+              viewBox="0 0 354 354"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clipPath="url(#path)">
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M47.1459 268.651C51.9912 171.496 111.097 11.2717 322.078 0.0169719C328.756 -0.339238 334.439 4.95694 334.226 11.6405C333.347 39.2153 328.34 72.5522 317.122 106.436C294.747 106.736 280.341 116.531 274.506 121.4H311.765C279.475 205.113 207.525 287.491 64.6598 290.229C50.7681 313.872 39.5558 335.032 32.3426 349.807C30.7677 353.033 26.8759 354.372 23.6499 352.797C20.4239 351.222 19.0855 347.33 20.6604 344.104C27.5933 329.903 38.0909 310.03 51.0503 287.751C50.9415 287.664 50.8343 287.575 50.7288 287.484C70.053 255.547 95.1001 221.502 129.231 190.339C131.882 187.919 132.069 183.808 129.648 181.157C127.228 178.506 123.116 178.319 120.465 180.739C89.5228 208.991 65.8532 239.501 47.1459 268.651Z"
+                  fill="white"
+                />
+              </g>
+              <defs>
+                <clipPath id="path">
+                  <rect width="353.46" height="353.46" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
           )}
         </button>
       </div>

@@ -20,6 +20,12 @@ function distFirefox() {
     delete manifest.externally_connectable;
     // Applications are required on firefox
     manifest.applications = {};
+    manifest.commands["toggle_button"].suggested_key = {
+      default: "Ctrl+Alt+Y",
+    };
+    manifest.commands["toggle_sidebar"].suggested_key = {
+      default: "Ctrl+Alt+S",
+    };
     return manifest;
   });
 }
