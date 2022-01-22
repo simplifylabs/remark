@@ -84,7 +84,7 @@ function List(props: IListProps) {
         }
         scrollableTarget="remark-scroll"
       >
-        <div className="flex flex-col gap-[1.1rem] justify-start items-center p-3 w-full min-h-full">
+        <div className="flex flex-col gap-[1.1rem] justify-start items-center pt-3 w-full grow">
           {props.list.map((item) => (
             <Fragment key={item.shared ? "SHARED" : item.id}>
               <Comment {...item} remove={remove} setValue={setValue} />

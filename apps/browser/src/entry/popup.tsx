@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import Home from "@browser/popup/Home";
-import Settings from "@browser/popup/Settings";
+import Home from "../popup/Home";
+import Settings from "../popup/Settings";
 import Darkmode from "@browser/util/darkmode";
 import "@browser/styles/app.css";
 

@@ -25,7 +25,7 @@
       "@browser/hooks/*": ["apps/browser/src/hooks/*"],
       "@browser/reducers/*": ["apps/browser/src/state/reducers/*"],
       "@browser/state/*": ["apps/browser/src/state/*"],
-      "@browser/popup/*": ["apps/browser/src/popup/*"],
+      "@browser/pages/*": ["apps/browser/src/pages/*"],
       "@browser/styles/*": ["apps/browser/src/styles/*"],
       "@browser/util/*": ["apps/browser/src/util/*"],
       "@cdn/config/*": ["apps/cdn/src/config/*"],

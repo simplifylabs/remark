@@ -152,7 +152,7 @@ export default class Events {
         res(await User.me(true));
         break;
       case "CLOSE":
-        res(await Tab.closeAndReload(req.rul));
+        res(await Tab.closeAndReload(req.url));
         break;
       default:
         res({ success: false });

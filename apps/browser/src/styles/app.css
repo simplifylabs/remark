@@ -43,6 +43,11 @@
     @apply border-gray-200 rounded-lg shadow-sm focus:ring-brand bg-white focus:caret-brand text-black py-[0.6rem];
   }
 
+  select {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
   [type="checkbox"],
   [type="radio"] {
     @apply rounded border-gray-300 text-brand focus:ring-brand;
