@@ -1,7 +1,7 @@
 # Todo:
 
 - Add some intro?
-- Fix sharing with # in url
+- Comment indicator
 
 # Before release
 
