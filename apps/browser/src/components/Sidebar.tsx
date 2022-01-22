@@ -3,7 +3,6 @@ import { MentionsInput, Mention } from "react-mentions";
 import {
   UserIcon,
   CogIcon,
-  XIcon,
   QuestionMarkCircleIcon,
 } from "@heroicons/react/outline";
 import { connect, IRootState } from "@browser/state/index";
@@ -203,10 +202,6 @@ function Sidebar(props: ISidebarProps) {
             />
             <CogIcon
               onClick={() => window.open(`${App.webUrl}settings`)}
-              className="btn-icon text-gray-500 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
-            />
-            <XIcon
-              onClick={() => props.hide()}
               className="btn-icon text-gray-500 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
             />
           </div>

@@ -1,7 +1,6 @@
 # Todo:
 
 - Add some intro?
-- Comment indicator
 
 # Before release
 
