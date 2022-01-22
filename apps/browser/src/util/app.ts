@@ -28,10 +28,6 @@ export default class App {
     return chrome.tabs === undefined && document.body !== undefined;
   }
 
-  static isPopup() {
-    return chrome.tabs !== undefined && document.body !== undefined;
-  }
-
   static getDevice(): DeviceType {
     if (this.deviceCache) return this.deviceCache;
 

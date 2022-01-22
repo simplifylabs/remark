@@ -64,9 +64,6 @@ export default class Tab {
   }
 
   static async close(url: string): Promise<void> {
-    const count = await this.count();
-    if (count <= 1) return;
-
     const tab = await this.find(url);
     chrome.tabs.remove(tab.id);
   }
@@ -95,8 +92,11 @@ export default class Tab {
   }
 
   static async closeAndReload(url: string) {
-    const result = await Tab.close(url);
+    const count = await this.count();
+    if (count <= 1) return { success: false };
+
+    await Tab.close(url);
     setTimeout(() => Tab.reload(), 1000);
-    return { success: result !== null };
+    return { success: true };
   }
 }

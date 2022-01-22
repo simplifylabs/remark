@@ -44,6 +44,11 @@
     @apply border-gray-300 rounded-md shadow-sm focus:ring-brand bg-white focus:caret-brand  text-black;
   }
 
+  select {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
   textarea {
     @apply border-gray-300 rounded-md shadow-sm focus:ring-brand bg-white focus:caret-brand text-black;
   }

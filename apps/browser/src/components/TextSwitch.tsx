@@ -4,7 +4,7 @@ interface IProps {
   options: string[];
   initialSelected?: number;
   selected?: number;
-  onChange?: Function;
+  onChange?: (i: number, option: string) => void;
   small?: boolean;
 }
 
@@ -32,7 +32,7 @@ export default function TextSwitch(props: IProps) {
         <button
           key={index}
           onClick={() => focus(index)}
-          className={`text-sm whitespace-nowrap px-[0.7rem] h-7 cursor-pointer ${
+          className={`text-sm whitespace-nowrap px-[0.6rem] h-7 cursor-pointer ${
             index == props.options.length - 1
               ? "rounded-r-md"
               : index == 0

@@ -21,10 +21,6 @@
     @apply font-inter;
   }
 
-  #popup {
-    @apply bg-background-light dark:bg-background-dark dark:text-white;
-  }
-
   [type="text"],
   [type="email"],
   [type="url"],
@@ -41,11 +37,6 @@
   textarea,
   select {
     @apply border-gray-200 rounded-lg shadow-sm focus:ring-brand bg-white focus:caret-brand text-black py-[0.6rem];
-  }
-
-  select {
-    -webkit-appearance: none;
-    appearance: none;
   }
 
   [type="checkbox"],

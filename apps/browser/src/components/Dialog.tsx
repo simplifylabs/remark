@@ -68,19 +68,21 @@ function ModalComponent(props: IModalProps) {
         left: "50%",
         transform: "translate(-50%, -50%)",
         zIndex: 2147483646,
-        width: 390,
-        height: 250,
+        width: "100vw",
+        height: "100vh",
       }}
     >
+      <div onClick={close} className="absolute w-screen h-screen"></div>
       <div
-        className={`absolute top-1/2 left-1/2 transform -translate-x-1/2
-                    -translate-y-1/2 w-[90%] flex flex-col items-start p-6
-                    shadow-lg rounded-2xl bg-white dark:bg-background-card`}
+        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-start p-6 shadow-lg rounded-2xl bg-white dark:bg-background-card z-[1]`}
       >
         <p className="text-lg font-medium text-black dark:text-white">
           {props.title}
         </p>
-        <p className="text-sm text-gray-500 dark:text-gray-400">{props.text}</p>
+        <p
+          dangerouslySetInnerHTML={{ __html: props.text }}
+          className="text-sm text-gray-500 dark:text-gray-400 whitespace-pre"
+        ></p>
         <div className="flex flex-row gap-4 justify-end items-center mt-4 w-full">
           {props.buttons.map((button) => {
             if (button.type == "LINK")

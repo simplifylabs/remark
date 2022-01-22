@@ -3,10 +3,12 @@ import { setIsOnline } from "@browser/actions/connection";
 import { checkLoggedIn } from "@browser/actions/user";
 import { Snackbar, Toast } from "@browser/util/dialog";
 import { dispatch } from "@browser/state/index";
+import Settings from "@browser/util/settings";
 import Render from "@browser/util/render";
 import Tab from "@browser/util/tab";
 import User from "@browser/util/user";
 import App from "@browser/util/app";
+import Domain from "@browser/util/domain";
 import Policy from "@browser/util/policy";
 
 // eslint-disable-next-line
@@ -16,11 +18,11 @@ export default class Events {
   static async listenInjected() {
     window.addEventListener("load", () => {
       dispatch(checkLoggedIn());
-      Render.checkAutoOpen();
+      Render.checkFullscreen();
     });
 
     document.addEventListener("fullscreenchange", () => {
-      Render.checkAutoOpen();
+      Render.checkFullscreen();
     });
 
     chrome.runtime.onMessage.addListener(this.onMessageInjected);
@@ -153,6 +155,12 @@ export default class Events {
         break;
       case "CLOSE":
         res(await Tab.closeAndReload(req.url));
+        break;
+      case "SETTINGS":
+        res(await Settings.event(req));
+        break;
+      case "CLEAR":
+        res(await Domain.clear(req));
         break;
       default:
         res({ success: false });

@@ -3,6 +3,7 @@ import { XIcon, PaperAirplaneIcon } from "@heroicons/react/solid";
 import { connect, IRootState } from "@browser/state/index";
 import { showSidebar, hideSidebar, hideFab } from "@browser/actions/render";
 import Render from "@browser/util/render";
+import Domain from "@browser/util/domain";
 import Frame from "@browser/components/Frame";
 
 interface IProps {
@@ -39,9 +40,12 @@ function FabComponent(props: IProps) {
     Render.on("comments:loaded", onCommentsLoad);
   }, []);
 
-  function onFrameLoad() {
+  async function onFrameLoad() {
     setLoaded(true);
     checkSmartShow();
+
+    const mode = await Domain.getMode();
+    if (mode == "SHOW") Render.showFab(true);
   }
 
   function onCommentsLoad(total: number) {
@@ -53,7 +57,10 @@ function FabComponent(props: IProps) {
     });
   }
 
-  function checkSmartShow(total?: number) {
+  async function checkSmartShow(total?: number) {
+    const mode = await Domain.getMode();
+    if (mode !== "SMART") return;
+
     if (total == undefined) total = props.total;
     if (total > 0) Render.showFab(true);
   }

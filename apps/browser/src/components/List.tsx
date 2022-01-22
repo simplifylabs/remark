@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import { fetchComments, removeComment } from "@browser/actions/comment";
 import { Modal } from "@browser/util/dialog";
 import { connect, IRootState } from "@browser/state/index";
-import { IComment, IAuthor } from "@browser/reducers/comment";
+import { IComment } from "@browser/reducers/comment";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from "@browser/components/Loader";
 import Comment from "@browser/components/Comment";

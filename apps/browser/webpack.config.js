@@ -11,7 +11,6 @@ module.exports = function (_, env) {
     mode: env.mode == "production" ? "production" : "development",
     devtool: env.mode == "production" ? "source-map" : "inline-source-map",
     entry: {
-      "entry/popup": "apps/browser/src/entry/popup.tsx",
       "entry/injected": "apps/browser/src/entry/injected.tsx",
       "entry/background": "apps/browser/src/entry/background.ts",
     },
@@ -65,10 +64,6 @@ module.exports = function (_, env) {
       new webpack.ProgressPlugin(),
       new webpack.ProvidePlugin({
         process: "process/browser",
-      }),
-      new HtmlWebpackPlugin({
-        template: "apps/browser/assets/popup.html",
-        filename: "html/popup.html",
       }),
       new MiniCssExtractPlugin({
         filename: "css/app.css",

@@ -21,6 +21,7 @@ interface IMe {
 export default function Profile() {
   useTitle("Profile");
   const { send } = useExtension();
+  const router = useRouter();
 
   const [openFileSelector, { plainFiles, filesContent }] = useFilePicker({
     accept: [".png", ".jpg", ".jpeg"],
@@ -30,7 +31,6 @@ export default function Profile() {
     readAs: "DataURL",
   });
 
-  const router = useRouter();
   const [error, setError] = useState<string | undefined>();
   const [success, setSuccess] = useState<string | undefined>();
   const [changed, setChanged] = useState<Field[]>([]);

@@ -118,12 +118,8 @@ export default class Render {
     return launcher;
   }
 
-  static async checkAutoOpen() {
-    const { blocked, disabled } = await Domain.isDomainBlocked();
-    const state = Registry.store.getState();
-
-    if (disabled || blocked || document.fullscreenElement != null)
-      return this.showFab(false);
+  static async checkFullscreen() {
+    if (document.fullscreenElement != null) return this.showFab(false);
   }
 
   static toggleSidebar() {
