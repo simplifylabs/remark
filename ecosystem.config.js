@@ -23,7 +23,7 @@ module.exports = {
     {
       name: "Remark Web",
       cwd: "./apps/web/dist",
-      script: "next start",
+      script: "node_modules/.bin/next start",
     },
   ],
 };
