@@ -10,6 +10,7 @@ import User from "@browser/util/user";
 import App from "@browser/util/app";
 import Domain from "@browser/util/domain";
 import Policy from "@browser/util/policy";
+import Indicator from "@browser/util/indicator";
 
 // eslint-disable-next-line
 type Data = { [key: string]: any };
@@ -51,6 +52,10 @@ export default class Events {
     this.pass(event);
   }
 
+  static onTabChange() {
+    Tab.send("indicator:check");
+  }
+
   static onInstalled(details: chrome.runtime.InstalledDetails) {
     if (App.isDev()) return;
     if (details.reason != "install") return;
@@ -84,6 +89,12 @@ export default class Events {
     switch (type) {
       case "LOGOUT":
         res(await User.logout(false, true));
+        break;
+      case "INDICATOR:SHOW":
+        res(Indicator.show());
+        break;
+      case "INDICATOR:HIDE":
+        res(Indicator.hide());
         break;
       default:
         res({ success: false });
@@ -122,6 +133,9 @@ export default class Events {
         break;
       case "toast:error":
         Toast.error(data.text);
+        break;
+      case "indicator:check":
+        Indicator.check();
         break;
     }
   }

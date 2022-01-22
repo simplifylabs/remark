@@ -114,6 +114,9 @@ function update(prev: CommentState, update: any): CommentState {
     state.list = [state.shared, ...filtered];
   }
 
+  if (state.total > 0) chrome.runtime.sendMessage("INDICATOR:SHOW");
+  else chrome.runtime.sendMessage("INDICATOR:HIDE");
+
   return state;
 }
 

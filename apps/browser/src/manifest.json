@@ -13,10 +13,9 @@
   },
   "web_accessible_resources": [
     "assets/*.png",
-    "assets/*.svg",
+    "assets/indicator/*.png",
     "assets/icon/*.png",
-    "css/*.css",
-    "html/*.html"
+    "css/*.css"
   ],
   "content_scripts": [
     {

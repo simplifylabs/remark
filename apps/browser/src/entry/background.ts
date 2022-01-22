@@ -7,6 +7,10 @@ if (App.isDev()) require("crx-hotreload");
 (() => {
   if (!chrome) return;
 
+  if (chrome.tabs) {
+    chrome.tabs.onActivated.addListener(Events.onTabChange);
+  }
+
   if (chrome.commands) {
     chrome.commands.onCommand.addListener(Events.onCommand);
   }
