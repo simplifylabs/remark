@@ -14,8 +14,6 @@ module.exports = {
       name: "Remark CDN",
       cwd: "./",
       script: "./apps/cdn/dist/main.js",
-      exec_mode: "cluster",
-      instances: "max",
       env: {
         NODE_ENV: "production",
       },

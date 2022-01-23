@@ -8,9 +8,18 @@ function Frame({ withMotion, children, dark, dispatch, ...props }) {
   const [contentRef, setContentRef] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  function onLoad() {
-    if (!contentRef) return;
+  useEffect(() => {
+    if (App.isFirefox() || !contentRef) return;
+    contentRef.contentWindow.document.head.appendChild(getStyleTag());
+  }, [contentRef]);
 
+  function onLoad() {
+    if (props.onLoad) props.onLoad();
+    if (!contentRef || !App.isFirefox()) return;
+    contentRef.contentWindow.document.body.appendChild(getStyleTag());
+  }
+
+  function getStyleTag() {
     const css = document.createElement("link");
     css.rel = "stylesheet";
     css.type = "text/css";
@@ -18,12 +27,7 @@ function Frame({ withMotion, children, dark, dispatch, ...props }) {
     css.onload = () => {
       setLoading(false);
     };
-
-    if (App.isFirefox())
-      contentRef.contentWindow.document.body.appendChild(css);
-    else contentRef.contentWindow.document.head.appendChild(css);
-
-    if (props.onLoad) props.onLoad();
+    return css;
   }
 
   useEffect(() => {
