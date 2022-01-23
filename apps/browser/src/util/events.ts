@@ -11,6 +11,7 @@ import App from "@browser/util/app";
 import Domain from "@browser/util/domain";
 import Policy from "@browser/util/policy";
 import Indicator from "@browser/util/indicator";
+import Clipboard from "./clipboard";
 
 type Data = { [key: string]: any };
 
@@ -90,6 +91,10 @@ export default class Events {
         break;
       case "INDICATOR:HIDE":
         res(Indicator.hide());
+        break;
+      case "COPY":
+        console.log("COPY");
+        res(Clipboard.event("hello, world"));
         break;
       default:
         res({ success: false });

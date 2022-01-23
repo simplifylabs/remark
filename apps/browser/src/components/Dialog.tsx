@@ -3,8 +3,9 @@ import { XIcon } from "@heroicons/react/solid";
 import { ISnackbar, IModal } from "@browser/actions/dialog";
 import { connect, IRootState } from "@browser/state/index";
 import { Snackbar, level, Modal } from "@browser/util/dialog";
-import Frame from "@browser/components/Frame";
 import { useAnimation } from "framer-motion";
+import Frame from "@browser/components/Frame";
+import App from "@browser/util/app";
 
 interface IWrapperProps {
   snackbars: ISnackbar[];
@@ -29,8 +30,11 @@ interface IModalProps extends IModal {}
 function ModalComponent(props: IModalProps) {
   const animation = useAnimation();
   const [isOpen, setIsOpen] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (loading) return;
+
     if (isOpen)
       animation.start({
         scale: 1,
@@ -41,13 +45,13 @@ function ModalComponent(props: IModalProps) {
       });
     else
       animation.start({
-        scale: 0,
+        scale: 0.5,
         opacity: 0,
         x: "-50%",
         y: "-50%",
         transition: { duration: 0.2 },
       });
-  }, [isOpen]);
+  }, [loading, isOpen]);
 
   function close() {
     setIsOpen(false);
@@ -60,7 +64,14 @@ function ModalComponent(props: IModalProps) {
   return (
     <Frame
       withMotion
-      initial={{ scale: 0, opacity: 0, x: "-50%", y: "-50%" }}
+      onLoaded={() => setLoading(false)}
+      initial={{
+        // Scale is buggy in Firefox
+        scale: 0.5,
+        opacity: 0,
+        x: "-50%",
+        y: "-50%",
+      }}
       animate={animation}
       style={{
         position: "fixed",
@@ -120,8 +131,11 @@ interface ISnackbarProps extends ISnackbar {}
 
 function SnackbarComponent(props: ISnackbarProps) {
   const animation = useAnimation();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (loading) return;
+
     if (props.showen)
       animation.start({
         opacity: 1,
@@ -136,11 +150,12 @@ function SnackbarComponent(props: ISnackbarProps) {
         y: 20,
         transition: { duration: 0.2 },
       });
-  }, [props.showen]);
+  }, [loading, props.showen]);
 
   return (
     <Frame
       withMotion
+      onLoaded={() => setLoading(false)}
       initial={{ x: "-50%", opacity: 0, y: 20 }}
       animate={animation}
       style={{

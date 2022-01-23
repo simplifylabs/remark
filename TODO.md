@@ -1,7 +1,7 @@
 # Todo:
 
 - Add some intro?
-- Fix darkmode
+- Fix copy
 
 # Before release
 

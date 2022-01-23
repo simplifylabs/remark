@@ -57,7 +57,8 @@
     "notifications",
     "idle",
     "webRequest",
-    "webRequestBlocking"
+    "webRequestBlocking",
+    "clipboardWrite"
   ],
   "optional_permissions": []
 }

@@ -7,34 +7,41 @@ import App from "@browser/util/app";
 function Frame({ withMotion, children, dark, dispatch, onLoaded, ...props }) {
   const [contentRef, setContentRef] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [cssLoading, setCssLoading] = useState(true);
+  const [frameLoading, setFrameLoading] = useState(true);
 
   useEffect(() => {
-    if (App.isFirefox() || !contentRef) return;
-    contentRef.contentWindow.document.head.appendChild(getStyleTag());
+    if (!contentRef || !App.isFirefox()) return;
+    contentRef.addEventListener("load", () => setFrameLoading(false));
   }, [contentRef]);
 
   useEffect(() => {
-    if (!contentRef) return;
+    if (!contentRef || frameLoading) return;
+    contentRef.contentWindow.document.head.appendChild(getStyleTag());
+  }, [frameLoading, contentRef]);
+
+  useEffect(() => {
+    setLoading(frameLoading || cssLoading);
+    if (!frameLoading && !cssLoading && onLoaded) onLoaded();
+  }, [frameLoading, cssLoading]);
+
+  useEffect(() => {
+    if (!contentRef || App.isFirefox()) return;
+
     const timer = setInterval(() => {
       const doc =
         contentRef.contentDocument || contentRef.contentWindow.document;
 
       if (doc.readyState == "complete" || doc.readyState == "interactive") {
-        onFrameLoaded();
-        if (onLoaded) onLoaded();
+        setFrameLoading(false);
         clearInterval(timer);
       }
-    }, 500);
+    }, 100);
 
     return () => {
       clearInterval(timer);
     };
   }, [onLoaded, contentRef]);
-
-  function onFrameLoaded() {
-    if (!contentRef || !App.isFirefox()) return;
-    contentRef.contentWindow.document.body.appendChild(getStyleTag());
-  }
 
   function getStyleTag() {
     const css = document.createElement("link");
@@ -42,17 +49,18 @@ function Frame({ withMotion, children, dark, dispatch, onLoaded, ...props }) {
     css.type = "text/css";
     css.href = chrome.extension.getURL("css/app.css");
     css.onload = () => {
-      setLoading(false);
+      setCssLoading(false);
     };
     return css;
   }
 
   useEffect(() => {
-    if (!contentRef) return;
+    if (!contentRef || loading) return;
+    const html = contentRef.contentWindow.document.documentElement;
 
-    if (dark) contentRef.contentWindow.document.body.classList.add("dark");
-    else contentRef.contentWindow.document.body.classList.remove("dark");
-  }, [dark, contentRef]);
+    if (dark) html.classList.add("dark");
+    else html.classList.remove("dark");
+  }, [loading, dark, contentRef]);
 
   if (withMotion)
     return (

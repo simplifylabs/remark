@@ -173,23 +173,7 @@ function Comment(props: ICommentProps) {
           </div>
           <div className="flex flex-row gap-2 items-center">
             <AnnotationIcon onClick={reply} className="btn-icon p-[0.35rem]" />
-            <ShareIcon
-              onClick={() => {
-                if (
-                  !navigator ||
-                  !navigator.clipboard ||
-                  !navigator.clipboard.writeText
-                )
-                  return Toast.error("Copy Failed!");
-
-                navigator.clipboard.writeText(
-                  `${App.webUrl}share?id=${props.id}`
-                );
-
-                Toast.success("Link copied!");
-              }}
-              className="btn-icon p-[0.35rem]"
-            />
+            <ShareIcon onClick={() => {}} className="btn-icon p-[0.35rem]" />
             {props.author.id == props.myId && (
               <TrashIcon
                 onClick={() => props.remove(props.id)}
