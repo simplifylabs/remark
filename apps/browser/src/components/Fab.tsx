@@ -18,10 +18,10 @@ interface IProps {
 
 function FabComponent(props: IProps) {
   const [labelHover, setLabelHover] = useState<boolean>(false);
-  const [icon, setIcon] = useState<any>();
   const [fabHover, setFabHover] = useState<boolean>(false);
   const [secondary, setSecondary] = useState(false);
   const [scale, setScale] = useState(0);
+  const [showen, setShowen] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -31,17 +31,29 @@ function FabComponent(props: IProps) {
     return () => clearInterval(interval);
   }, []);
 
+  let timeout = null;
   useEffect(() => {
-    if (props.sidebar) setScale(0.75);
-    else if (props.showen) setScale(1);
-    else setScale(0);
+    if (timeout) clearTimeout(timeout);
+
+    if (props.sidebar) {
+      setShowen(true);
+      setTimeout(() => setScale(0.75), 10);
+    }
+    if (props.showen) {
+      setShowen(true);
+      setTimeout(() => setScale(1), 10);
+      return;
+    }
+
+    setScale(0);
+    timeout = setTimeout(() => setShowen(false), 200);
   }, [props.showen, props.sidebar]);
 
   useEffect(() => {
     Render.on("comments:loaded", onCommentsLoad);
   }, []);
 
-  async function onFrameLoad() {
+  async function onFrameLoaded() {
     setLoaded(true);
     checkSmartShow();
 
@@ -78,7 +90,8 @@ function FabComponent(props: IProps) {
 
   return (
     <Frame
-      onLoad={!loaded ? onFrameLoad : undefined}
+      id="fab"
+      onLoaded={!loaded ? onFrameLoaded : undefined}
       style={{
         zIndex: 2147483646,
         position: "fixed",
@@ -87,6 +100,7 @@ function FabComponent(props: IProps) {
         width: 65,
         height: 63,
         transition: "all 0.2s ease",
+        display: showen ? "block" : "none",
       }}
     >
       <div

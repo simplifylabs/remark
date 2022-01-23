@@ -1,6 +1,5 @@
 import API from "@browser/util/api";
 import Error from "@browser/util/error";
-import Render from "@browser/util/render";
 import query from "query-string";
 import { Dispatch } from "redux";
 import { Toast } from "@browser/util/dialog";
@@ -112,8 +111,6 @@ export const fetchComments =
         parents: res.body.parents,
         votes: res.body.votes,
       });
-
-      Render.call("comments:loaded", res.body.total);
     } else {
       dispatch({
         type: ADD_COMMENT_LIST,

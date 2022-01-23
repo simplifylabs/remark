@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
 import App from "@browser/util/app";
 
-function Frame({ withMotion, children, dark, dispatch, ...props }) {
+function Frame({ withMotion, children, dark, dispatch, onLoaded, ...props }) {
   const [contentRef, setContentRef] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -13,8 +13,25 @@ function Frame({ withMotion, children, dark, dispatch, ...props }) {
     contentRef.contentWindow.document.head.appendChild(getStyleTag());
   }, [contentRef]);
 
-  function onLoad() {
-    if (props.onLoad) props.onLoad();
+  useEffect(() => {
+    if (!contentRef) return;
+    const timer = setInterval(() => {
+      const doc =
+        contentRef.contentDocument || contentRef.contentWindow.document;
+
+      if (doc.readyState == "complete" || doc.readyState == "interactive") {
+        onFrameLoaded();
+        if (onLoaded) onLoaded();
+        clearInterval(timer);
+      }
+    }, 500);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [onLoaded, contentRef]);
+
+  function onFrameLoaded() {
     if (!contentRef || !App.isFirefox()) return;
     contentRef.contentWindow.document.body.appendChild(getStyleTag());
   }
@@ -39,18 +56,13 @@ function Frame({ withMotion, children, dark, dispatch, ...props }) {
 
   if (withMotion)
     return (
-      <motion.iframe
-        {...props}
-        onLoad={onLoad}
-        ref={setContentRef}
-        frameBorder="0"
-      >
+      <motion.iframe {...props} ref={setContentRef} frameBorder="0">
         {!loading &&
           createPortal(children, contentRef.contentWindow.document.body)}
       </motion.iframe>
     );
   return (
-    <iframe {...props} onLoad={onLoad} ref={setContentRef} frameBorder="0">
+    <iframe {...props} ref={setContentRef} frameBorder="0">
       {!loading &&
         createPortal(children, contentRef.contentWindow.document.body)}
     </iframe>

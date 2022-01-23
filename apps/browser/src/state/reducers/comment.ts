@@ -9,6 +9,7 @@ import {
   REMOVE_COMMENT,
   UPDATE_COMMENT,
 } from "@browser/actions/comment";
+import Render from "@browser/util/render";
 
 export interface IAuthor {
   id: string;
@@ -91,6 +92,7 @@ export default (
         page: action.page,
       });
     case SET_COMMENT_LIST:
+      Render.call("comments:loaded", action.total);
       return update(state, {
         ...state,
         page: 0,
