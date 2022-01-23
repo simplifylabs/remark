@@ -1,6 +1,7 @@
 # Todo:
 
 - Add some intro?
+- Fix darkmode
 
 # Before release
 

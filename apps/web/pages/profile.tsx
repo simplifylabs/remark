@@ -139,7 +139,7 @@ export default function Profile() {
               backgroundImage: avatar
                 ? `url("${avatar}")`
                 : initial?.avatar
-                ? `url("${Server.cdn}avatar/100x100/${id}.jpg")`
+                ? `url("${Server.cdn}avatar/light/100x100/${id}.jpg")`
                 : undefined,
             }}
             className="flex justify-center items-center w-24 h-24 bg-center bg-no-repeat bg-cover rounded-full border border-gray-300 shadow-sm group"

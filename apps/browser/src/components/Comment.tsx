@@ -129,8 +129,8 @@ function Comment(props: ICommentProps) {
       <div className="w-full bg-white dark:bg-background-card rounded-[0.75rem] flex flex-col items-center justify-center overflow-hidden shadow ">
         <div className="flex flex-row gap-3 justify-center items-start p-4 w-full">
           <img
-            src={`${Server.cdn}avatar/50x50/${props.author.id}${
-              props.dark ? "?dark=true" : ""
+            src={`${Server.cdn}avatar/${props.dark ? "dark" : "light"}/50x50/${
+              props.author.id
             }`}
             alt={`${props.author.username}´s Avatar`}
             className="min-w-[2rem] min-h-[2rem] rounded-full mt-1"

@@ -10,17 +10,17 @@ const router = Router();
 if (process.env.NODE_ENV == "development") {
   avatar.sizes.forEach((size) => {
     router.use(
-      `/${size}x${size}`,
+      `/:theme/${size}x${size}`,
       express.static(`apps/cdn/uploads/avatars/${size}x${size}/`, {
         extensions: [avatar.filetype],
       })
     );
 
-    router.get(`/${size}x${size}/*`, (req: Request, res: Response) => {
+    router.get(`/:theme/${size}x${size}/*`, (req: Request, res: Response) => {
       res.sendFile(
         path.resolve(
           `apps/cdn/assets/default-${
-            req.query.dark ? "dark" : "light"
+            req.params.theme == "dark" ? "dark" : "light"
           }-${size}x${size}.${avatar.filetype}`
         )
       );
