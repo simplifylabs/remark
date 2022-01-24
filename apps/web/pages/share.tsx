@@ -18,8 +18,10 @@ export default function Share() {
   useEffect(() => {
     if (checking || !router.isReady) return;
 
-    if (installed) fetch(router.query.id);
-    else setLoading(false);
+    if (installed) {
+      setLoading(true);
+      fetch(router.query.id);
+    } else setLoading(false);
   }, [installed, checking, router]);
 
   async function fetch(id?: any) {

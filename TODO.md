@@ -1,7 +1,9 @@
 # Todo:
 
+- Youtube videos
 - Add some intro?
-- Fix copy
+- Fix profile page
+- PING sometimes broken
 
 # Before release
 

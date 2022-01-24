@@ -35,6 +35,8 @@ export default function useExtension(options: Options = { required: true }) {
           gotPong = true;
           setInstalled(true);
         } else setInstalled(false);
+
+        setLoading(false);
       });
 
       setTimeout(() => {
@@ -62,8 +64,8 @@ export default function useExtension(options: Options = { required: true }) {
       if (!Extension.supported) return res({ success: false });
 
       if (Browser.type == BrowserType.Firefox) {
-        window.postMessage({ type: `REMARK:${type}`, ...data }, "*");
         on(`RE:REMARK:${type}`, res);
+        window.postMessage({ type: `REMARK:${type}`, ...data }, "*");
       } else {
         if (!chrome || !chrome.runtime) {
           if (options.required) router.push(Extension.url as string);

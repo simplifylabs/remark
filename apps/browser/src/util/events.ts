@@ -17,10 +17,8 @@ type Data = { [key: string]: any };
 
 export default class Events {
   static async listenInjected() {
-    window.addEventListener("load", () => {
-      dispatch(checkLoggedIn());
-      Render.checkFullscreen();
-    });
+    dispatch(checkLoggedIn());
+    Render.checkFullscreen();
 
     document.addEventListener("fullscreenchange", () => {
       Render.checkFullscreen();
@@ -81,7 +79,13 @@ export default class Events {
     }
   }
 
-  static async onInternalMessage(type: string, res: (data: Data) => void) {
+  static async onInternalMessage(
+    req: string | { [key: string]: any },
+    res: (data: Data) => void
+  ) {
+    const type = typeof req == "string" ? req : req.type;
+    const body = typeof req == "string" ? {} : req;
+
     switch (type) {
       case "LOGOUT":
         res(await User.logout(false, true));
@@ -93,8 +97,7 @@ export default class Events {
         res(Indicator.hide());
         break;
       case "COPY":
-        console.log("COPY");
-        res(Clipboard.event("hello, world"));
+        res(Clipboard.event(body));
         break;
       default:
         res({ success: false });

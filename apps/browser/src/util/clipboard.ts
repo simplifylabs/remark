@@ -3,10 +3,10 @@ export default class Clipboard {
     navigator.clipboard.writeText(text);
   }
 
-  static event(text: string) {
+  static event(body: { [key: string]: any }) {
     if (!navigator || !navigator.clipboard || !navigator.clipboard.writeText)
       return { success: false };
-    this.copy(text);
+    this.copy(body.text);
     return { success: true };
   }
 }
