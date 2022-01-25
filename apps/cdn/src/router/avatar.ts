@@ -6,6 +6,9 @@ import existsController from "@cdn/controller/exists";
 
 const router = Router();
 
+router.get(`/exists/:size/:file`, existsController);
+router.post("/upload", uploadController);
+
 // Images are provided by nginx in production
 if (process.env.NODE_ENV == "development") {
   avatar.sizes.forEach((size) => {
@@ -27,8 +30,5 @@ if (process.env.NODE_ENV == "development") {
     });
   });
 }
-
-router.get(`/exists/:size/:file`, existsController);
-router.post("/upload", uploadController);
 
 export default router;

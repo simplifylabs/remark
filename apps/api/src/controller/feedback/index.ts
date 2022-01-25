@@ -13,7 +13,7 @@ const meUser = async (req: Request, res: Response) => {
 
     res.status(200).json({});
   } catch (e) {
-    console.log(e);
+    console.error(e);
     res.status(500).json({ error: "INTERNAL_SERVER_ERROR" });
   }
 };

@@ -28,7 +28,7 @@ export default async function executor(
           res(false);
         }
 
-        console.log(
+        console.info(
           stats.toString({
             assets: false,
             modules: false,
@@ -49,7 +49,7 @@ export default async function executor(
           res(false);
         }
 
-        console.log(
+        console.info(
           stats.toString({
             assets: false,
             modules: false,

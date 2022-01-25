@@ -174,13 +174,16 @@ export default class Events {
         res(await User.me(true));
         break;
       case "CLOSE":
-        res(await Tab.closeAndReload());
+        res(await Tab.close());
         break;
       case "SETTINGS":
         res(await Settings.event(req));
         break;
       case "CLEAR":
         res(await Domain.clear(req));
+        break;
+      case "LOGOUT":
+        res(await User.logout(false));
         break;
       default:
         res({ success: false });

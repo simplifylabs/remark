@@ -5,6 +5,7 @@ import { PlusIcon, PencilIcon } from "@heroicons/react/outline";
 import { Server } from "@web/util/api";
 import useExtension from "@web/hooks/useExtension";
 import useTitle from "@web/hooks/useTitle";
+import { Toast } from "@web/util/dialog";
 import Alert from "@web/components/Alert";
 import Input from "@web/components/Input";
 import Loader from "@web/components/Loader";
@@ -20,7 +21,7 @@ interface IMe {
 
 export default function Profile() {
   useTitle("Profile");
-  const { send } = useExtension();
+  const { loading: checking, send } = useExtension();
   const router = useRouter();
 
   const [openFileSelector, { plainFiles, filesContent }] = useFilePicker({
@@ -43,8 +44,11 @@ export default function Profile() {
   const [username, setUsername] = useState<string>("");
 
   useEffect(() => {
+    if (checking) return;
+
     (async () => {
       const res = await send("ME", {});
+
       if (res.success) {
         setInitial(res.body);
 
@@ -56,9 +60,10 @@ export default function Profile() {
         setLoading(false);
         return;
       }
+
       handle(res);
     })();
-  }, []);
+  }, [checking]);
 
   useEffect(() => {
     if (plainFiles && filesContent && filesContent.length > 0) {
@@ -92,9 +97,18 @@ export default function Profile() {
   }
 
   function handle(res: any) {
-    if (res.error) return setError(res.error);
     if (res.redirect) return router.push(res.redirect);
-    setError("Something unexpected happened");
+
+    if (res.body && res.body.error == "ACCESS_TOKEN_INVALID")
+      return router.push("/auth/signin");
+
+    if (res.error) {
+      if (loading) return Toast.error(res.error);
+      return setError(res.error);
+    }
+
+    if (loading) return Toast.error("Something unexpected happened!");
+    setError("Something unexpected happened!");
   }
 
   function change(of: Field, key?: keyof IMe, to?: string) {
@@ -139,7 +153,9 @@ export default function Profile() {
               backgroundImage: avatar
                 ? `url("${avatar}")`
                 : initial?.avatar
-                ? `url("${Server.cdn}avatar/light/100x100/${id}.jpg")`
+                ? `url("${Server.cdn}avatar/light/100x100/${id}${
+                    process.env.NODE_ENV == "development" ? ".jpg" : ""
+                  }")`
                 : undefined,
             }}
             className="flex justify-center items-center w-24 h-24 bg-center bg-no-repeat bg-cover rounded-full border border-gray-300 shadow-sm group"

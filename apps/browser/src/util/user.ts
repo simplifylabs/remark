@@ -62,19 +62,13 @@ export default class User {
   }
 
   static async hasAvatar(id: string): Promise<boolean> {
-    const res = await API.get([
-      "CDN",
-      "avatar",
-      "exists",
-      "50x50",
-      `${id}.jpg`,
-    ]);
+    const res = await API.get(["CDN", "avatar", "exists", "50x50", id]);
 
     if (!res.success) return false;
     return res.body.exists;
   }
 
-  static async logout(manual = false, background = false) {
+  static async logout(http = true, background = false) {
     this.refreshTokenCache = "";
     this.accessTokenCache = "";
     if (background) return;
@@ -82,12 +76,11 @@ export default class User {
     await Storage.set("access_token", "");
     await Storage.set("refresh_token", "");
 
-    if (manual) Tab.send("toast:success", { text: "Signed Out!" });
     Tab.sendAll("auth:update");
-
     if (chrome.runtime) chrome.runtime.sendMessage("LOGOUT");
 
-    return { success: false, logout: true };
+    if (http) return { success: false, logout: true };
+    return { success: true };
   }
 
   static async forgot(data: Data) {

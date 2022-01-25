@@ -14,7 +14,7 @@ interface ISettings {
 
 export default function Settings() {
   useTitle("Settings");
-  const { send } = useExtension();
+  const { loading: checking, send } = useExtension();
   const router = useRouter();
 
   const [error, setError] = useState<string | undefined>();
@@ -26,6 +26,8 @@ export default function Settings() {
   const [signedOut, setSignedOut] = useState(false);
 
   useEffect(() => {
+    if (checking) return;
+
     (async () => {
       const res = await send("SETTINGS", { load: true });
       if (res.success) {
@@ -35,7 +37,7 @@ export default function Settings() {
       }
       handle(res);
     })();
-  }, []);
+  }, [checking]);
 
   function handle(res: any) {
     if (res.success) return;
@@ -79,8 +81,9 @@ export default function Settings() {
     handle(await send("CLEAR", { list: "BLACK" }));
   }
 
-  function signOut() {
+  async function signOut() {
     setSignedOut(true);
+    handle(await send("LOGOUT"));
   }
 
   function signIn() {
