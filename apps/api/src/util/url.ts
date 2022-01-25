@@ -12,7 +12,7 @@ interface IFilterResult {
   share: string;
 }
 
-const allowedQueries: string[] = ["q", "query", "search", "s"];
+const allowedQueries: string[] = ["q", "query", "search", "s", "v"];
 
 export function filter(str: string): IFilterResult | IFilterError {
   try {

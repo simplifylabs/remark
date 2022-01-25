@@ -2,7 +2,7 @@
 
 - Youtube videos
 - Add some intro?
-- Fix profile page
+- On url change handler
 
 # Before release
 

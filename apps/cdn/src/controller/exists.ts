@@ -10,7 +10,6 @@ const existsController = async (req: Request, res: Response) => {
       "apps/cdn",
       "uploads",
       "avatars",
-      req.params.size,
       `${req.params.file}.${avatar.filetype}`
     )
   );

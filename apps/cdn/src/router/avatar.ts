@@ -6,7 +6,7 @@ import existsController from "@cdn/controller/exists";
 
 const router = Router();
 
-router.get(`/exists/:size/:file`, existsController);
+router.get(`/exists/:file`, existsController);
 router.post("/upload", uploadController);
 
 // Images are provided by nginx in production

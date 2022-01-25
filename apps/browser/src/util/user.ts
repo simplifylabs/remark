@@ -62,7 +62,7 @@ export default class User {
   }
 
   static async hasAvatar(id: string): Promise<boolean> {
-    const res = await API.get(["CDN", "avatar", "exists", "50x50", id]);
+    const res = await API.get(["CDN", "avatar", "exists", id]);
 
     if (!res.success) return false;
     return res.body.exists;
