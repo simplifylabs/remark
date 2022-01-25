@@ -3,7 +3,6 @@
 - Youtube videos
 - Add some intro?
 - Fix profile page
-- PING sometimes broken
 
 # Before release
 

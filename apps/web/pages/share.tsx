@@ -26,11 +26,9 @@ export default function Share() {
 
   async function fetch(id?: any) {
     if (!id) return router.push("/");
-    id = String(id);
+    const res = await API.get(["comment", String(id), "url"]);
 
-    const res = await API.get(["comment", id, "url"]);
-
-    if (res && res.success) return (window.location.href = res.url);
+    if (res && res.success) return router.replace(res.url);
     if (!res) return router.push("/maintenance");
     Toast.error("Something unexpected happened!");
     router.push("/");

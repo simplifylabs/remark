@@ -28,24 +28,29 @@ export default function useExtension(options: Options = { required: true }) {
     }
 
     if (Browser.type == BrowserType.Firefox) {
-      let gotPong = false;
-
-      send("PING").then((data) => {
+      send("PING").then((data: any) => {
         if (data.success) {
-          gotPong = true;
           setInstalled(true);
         } else setInstalled(false);
 
         setLoading(false);
+        if (ping) clearInterval(ping);
       });
 
-      setTimeout(() => {
-        if (!gotPong) {
-          if (options.required) router.push(Extension.url as string);
-          setInstalled(false);
-        }
+      const ping = setInterval(() => {
+        window.postMessage({ type: `REMARK:PING` }, "*");
+      }, 500);
 
-        setLoading(false);
+      setTimeout(() => {
+        if (ping) clearInterval(ping);
+
+        setInstalled((installed) => {
+          if (!installed)
+            if (options.required) router.push(Extension.url as string);
+
+          setLoading(false);
+          return installed;
+        });
       }, 2500);
     } else {
       send("PING").then((data) => {
