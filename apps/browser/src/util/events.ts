@@ -17,6 +17,8 @@ type Data = { [key: string]: any };
 
 export default class Events {
   static async listenInjected() {
+    URL.update();
+
     dispatch(checkLoggedIn());
     Render.checkFullscreen();
 
@@ -48,6 +50,10 @@ export default class Events {
 
   static onTabChange() {
     Tab.send("indicator:check");
+  }
+
+  static onTabUpdate(id: number, change: any, tab: any) {
+    if (change.url) Tab.send("url:change", {}, id);
   }
 
   static onInstalled(details: chrome.runtime.InstalledDetails) {
@@ -143,6 +149,10 @@ export default class Events {
       case "indicator:check":
         Indicator.check();
         break;
+      case "url:change":
+        console.log(URL.store, window.location.href);
+        dispatch(fetchComments(0));
+        break;
     }
   }
 
@@ -188,5 +198,13 @@ export default class Events {
       default:
         res({ success: false });
     }
+  }
+}
+
+class URL {
+  static store = "";
+
+  static update() {
+    this.store = window.location.href;
   }
 }

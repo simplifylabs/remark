@@ -4,6 +4,7 @@
     "api": "apps/api",
     "browser": "apps/browser",
     "cdn": "apps/cdn",
+    "web": "apps/web",
     "db": "libs/db",
     "util": "libs/util",
     "middleware": "libs/middleware"

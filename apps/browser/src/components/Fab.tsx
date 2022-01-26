@@ -53,6 +53,10 @@ function FabComponent(props: IProps) {
 
   useEffect(() => {
     Render.on("comments:loaded", onCommentsLoad);
+
+    return () => {
+      Render.off("comments:loaded", onCommentsLoad);
+    };
   }, []);
 
   async function onFrameLoaded() {

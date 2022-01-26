@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <>
       <div className="relative flex flex-col overflow-x-hidden overflow-y-auto scroll-smooth">
-        <Navigation />
+        <Navigation transparent />
         <Hero />
         <Features />
         <Download />
@@ -34,19 +34,34 @@ function Hero() {
     <LazyShow>
       <section
         id="hero"
-        className="min-h-screen flex flex-col justify-center items-center py-0 md:py-24 md:pt-[10rem] w-screen md:mb-[4rem]"
+        className="relative min-h-screen flex flex-col justify-center items-center py-0 md:py-24 md:pt-[10rem] w-screen md:mb-[4rem]"
       >
         <Title
           title="Comments, anywhere."
           subtitle="Uncensored & Better"
           primary
         />
-        <AddButton className="md:py-4" />
+        {/* <h1 className="text-6xl font-extrabold text-center">
+          Uncensored Comments
+          <br />
+          <span className="text-6xl text-indigo-600">anywhere you want.</span>
+        </h1>
+        <p className="max-w-[50vw] text-2xl text-gray-600 mt-10 text-center">
+          Consectetur quia quisquam odio perspiciatis quod Laudantium eum asperi
+          cupericat aspernatur maiores maiores? Nulla est suscipit velit
+          doloribus de la.
+        </p> */}
+        <div className="flex flex-row gap-5">
+          <AddButton className="md:py-4 shadow" />
+          <button className="btn-secondary shadow">All Browsers</button>
+        </div>
         <img
           src="/images/example.png"
           alt="Example"
-          className="w-[80vw] md:w-[60vw] drop-shadow-example-small md:drop-shadow-example-big mt-[4rem] md:mt-[8rem]"
+          className="w-[80vw] md:w-[70vw] drop-shadow-example-small md:drop-shadow-example-big mt-[4rem] md:mt-[8rem]"
         />
+        <div className="absolute bottom-0 left-0 h-[68%] w-[24rem] dotted z-[-1]"></div>
+        <div className="absolute top-0 right-0 h-[30rem] w-[22rem] dotted z-[-1]"></div>
       </section>
     </LazyShow>
   );

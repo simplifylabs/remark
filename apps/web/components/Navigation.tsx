@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 
 interface INavigationProps {
   uninstall?: boolean;
+  transparent?: boolean;
 }
 
 export default function Navigation(props: INavigationProps) {
@@ -12,7 +13,11 @@ export default function Navigation(props: INavigationProps) {
 
   return (
     <header className="absolute top-0 left-0 z-[100]">
-      <div className="relative w-screen h-auto lg:h-[5rem] bg-background/70 flex flex-col lg:flex-row justify-between items-center lg:px-[3rem] gap-4 lg:gap-0 py-5 lg:py-0">
+      <div
+        className={`relative w-screen h-auto lg:h-[5rem] ${
+          !props.transparent ? "bg-background/70" : ""
+        } flex flex-col lg:flex-row justify-between items-center lg:px-[3rem] gap-4 lg:gap-0 py-5 lg:py-0`}
+      >
         {props.uninstall ? (
           <>
             <div></div>
