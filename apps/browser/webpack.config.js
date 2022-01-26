@@ -1,7 +1,6 @@
 const webpack = require("webpack");
 const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
@@ -28,7 +27,11 @@ module.exports = function (_, env) {
         {
           test: /\.(ts|tsx)?$/,
           use: ["ts-loader"],
-          include: path.resolve(__dirname, "src"),
+          include: [
+            path.resolve(__dirname, "src"),
+            path.resolve(__dirname, "..", "..", "libs", "db", "src"),
+            path.resolve(__dirname, "..", "..", "libs", "util", "src"),
+          ],
           exclude: /node_modules/,
         },
         {
