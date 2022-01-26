@@ -1,6 +1,5 @@
 # Todo:
 
-- Youtube videos
 - Add some intro?
 - On url change handler
 
