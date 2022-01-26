@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { hash } from "@api/util/hash";
-import { generateAccessToken, generateRefreshToken } from "@api/util/auth";
+import { generateAccessToken, generateRefreshToken } from "@util/auth";
 import { validate, Joi, prefabs } from "@api/middleware/validation";
 import sanitize from "sanitize-html";
 import { User } from "@db";

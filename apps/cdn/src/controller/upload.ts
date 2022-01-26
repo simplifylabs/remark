@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { extname, resolve, join } from "path";
-import access from "@cdn/middleware/access";
-import limit from "@cdn/middleware/limit";
+import access from "@middleware/access";
+import limit from "@middleware/limit";
 import avatar from "@cdn/config/avatar.config";
 import multer from "multer";
 import sharp from "sharp";

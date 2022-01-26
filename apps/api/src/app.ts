@@ -1,10 +1,10 @@
 require("module-alias/register");
-require("@api/util/env").load();
-require("@api/util/logger")();
+require("@util/env").load("api");
+require("@util/logger")();
 
 import express from "express";
 import cookies from "cookie-parser";
-import env from "@api/util/env";
+import env from "@util/env";
 import cors from "@api/middleware/cors";
 import error from "@api/middleware/error";
 import auth from "@api/router/auth";

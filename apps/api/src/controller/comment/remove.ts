@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
 import { Post } from "@db";
-import access from "@api/middleware/access";
+import access from "@middleware/access";
 
 const removeComment = async (req: Request, res: Response) => {
   const comment = await Post.findUnique({

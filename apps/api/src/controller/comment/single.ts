@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
-import { filter } from "@api/util/url";
+import filter from "@util/filter";
 import { Post, commentSelect } from "@db";
 
 const singleComments = async (req: Request, res: Response) => {

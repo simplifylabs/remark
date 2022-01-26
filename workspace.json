@@ -5,6 +5,7 @@
     "browser": "apps/browser",
     "cdn": "apps/cdn",
     "db": "libs/db",
-    "web": "apps/web"
+    "util": "libs/util",
+    "middleware": "libs/middleware"
   }
 }

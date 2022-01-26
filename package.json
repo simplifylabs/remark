@@ -146,14 +146,15 @@
   },
   "_moduleAliases": {
     "@db": "libs/db/src/index",
+    "@util/": "libs/util/src",
+    "@middleware/": "libs/middleware/src",
     "@api/router": "dist/apps/api/router",
     "@api/controller": "dist/apps/api/controller",
     "@api/util": "dist/apps/api/util",
     "@api/middleware": "dist/apps/api/middleware",
     "@cdn/config": "dist/apps/cdn/config",
     "@cdn/controller": "dist/apps/cdn/config",
-    "@cdn/rotuer": "dist/apps/cdn/router",
-    "@cdn/util": "dist/apps/cdn/config",
+    "@cdn/router": "dist/apps/cdn/router",
     "@cdn/middleware": "dist/apps/cdn/middleware"
   }
 }

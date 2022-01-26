@@ -4,7 +4,7 @@ import removeController from "@api/controller/comment/remove";
 import singleController from "@api/controller/comment/single";
 import urlController from "@api/controller/comment/url";
 import voteController from "@api/controller/comment/vote";
-import limit from "@api/middleware/limit";
+import limit from "@middleware/limit";
 import { Router } from "express";
 
 const router = Router();

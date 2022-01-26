@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
 import { prisma, Post, Vote, commentSelect } from "@db";
-import { optionalAccess } from "@api/middleware/access";
-import { filter } from "@api/util/url";
+import { optionalAccess } from "@middleware/access";
+import filter from "@util/filter";
 
 const listComments = async (req: Request, res: Response) => {
   const decoded = decodeURIComponent(String(req.query.url) || "");

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import limit from "@cdn/middleware/limit";
+import limit from "@middleware/limit";
 import path from "path";
 import fs from "fs";
 import avatar from "@cdn/config/avatar.config";

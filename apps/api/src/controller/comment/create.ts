@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
-import { filter } from "@api/util/url";
-import access from "@api/middleware/access";
-import limit from "@api/middleware/limit";
+import filter from "@util/filter";
+import access from "@middleware/access";
+import limit from "@middleware/limit";
 import sanitize from "sanitize-html";
 import { Url, Post, commentSelect } from "@db";
 

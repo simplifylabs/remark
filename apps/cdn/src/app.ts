@@ -1,10 +1,10 @@
 require("module-alias/register");
-require("@cdn/util/env").load();
-require("@cdn/util/logger")();
+require("@util/env").load("cdn");
+require("@util/logger")();
 
 import express from "express";
 import avatar from "@cdn/router/avatar";
-import env from "@cdn/util/env";
+import env from "@util/env";
 
 const app = express();
 

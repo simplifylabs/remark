@@ -1,6 +1,6 @@
 import fs from "fs";
 import nodemailer from "nodemailer";
-import env from "@api/util/env";
+import env from "@util/env";
 
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",

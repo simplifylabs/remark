@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import access from "@api/middleware/access";
+import access from "@middleware/access";
 import { User } from "@db";
 
 const meUser = async (req: Request, res: Response) => {

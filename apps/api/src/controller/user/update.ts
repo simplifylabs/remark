@@ -1,6 +1,6 @@
 import { User } from "@db";
 import sanitize from "sanitize-html";
-import access from "@api/middleware/access";
+import access from "@middleware/access";
 import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
 import { User as UserType } from "@prisma/client";

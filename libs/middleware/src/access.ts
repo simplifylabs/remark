@@ -1,4 +1,4 @@
-import { verifyAccessToken } from "@api/util/auth";
+import { verifyAccessToken } from "@util/auth";
 import { NextFunction, Request, Response } from "express";
 
 declare global {

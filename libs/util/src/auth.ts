@@ -1,6 +1,6 @@
 import { sign, verify, JwtPayload } from "jsonwebtoken";
 import { User } from "@prisma/client";
-import { env } from "@api/util/env";
+import { env } from "@util/env";
 import fs from "fs";
 
 const publicPath = "./.certs/public.pem";

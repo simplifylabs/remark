@@ -1,5 +1,5 @@
 import { User } from "@db";
-import { generateAccessToken, generateRefreshToken } from "@api/util/auth";
+import { generateAccessToken, generateRefreshToken } from "@util/auth";
 import { comparePasswords } from "@api/util/hash";
 import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";

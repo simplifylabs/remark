@@ -4,7 +4,7 @@ import loginController from "@api/controller/auth/login";
 import refreshController from "@api/controller/auth/refresh";
 import registerController from "@api/controller/auth/register";
 import resetController from "@api/controller/auth/reset";
-import limit from "@api/middleware/limit";
+import limit from "@middleware/limit";
 import { Router } from "express";
 
 const router = Router();

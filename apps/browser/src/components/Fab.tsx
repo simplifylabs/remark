@@ -37,13 +37,13 @@ function FabComponent(props: IProps) {
 
     if (props.sidebar) {
       setShowen(true);
-      setTimeout(() => setScale(0.75), 50);
+      setScale(0.75);
       return;
     }
 
     if (props.showen) {
       setShowen(true);
-      setTimeout(() => setScale(1), 50);
+      setScale(1);
       return;
     }
 

@@ -4,7 +4,7 @@ import {
   generateAccessToken,
   generateRefreshToken,
   verifyRefreshToken,
-} from "@api/util/auth";
+} from "@util/auth";
 import { User } from "@db";
 
 const refreshController = async (req: Request, res: Response) => {

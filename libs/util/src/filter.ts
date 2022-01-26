@@ -14,7 +14,7 @@ interface IFilterResult {
 
 const allowedQueries: string[] = ["q", "query", "search", "s", "v"];
 
-export function filter(str: string): IFilterResult | IFilterError {
+export default function filter(str: string): IFilterResult | IFilterError {
   try {
     const url = new URL(str);
     url.hash = "";

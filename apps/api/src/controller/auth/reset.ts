@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
-import { generateAccessToken, generateRefreshToken } from "@api/util/auth";
+import { generateAccessToken, generateRefreshToken } from "@util/auth";
 import { hash } from "@api/util/hash";
 import { User } from "@db";
 

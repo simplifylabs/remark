@@ -1,5 +1,5 @@
 import feedbackController from "@api/controller/feedback/";
-import limit from "@api/middleware/limit";
+import limit from "@middleware/limit";
 import { Router } from "express";
 
 const router = Router();

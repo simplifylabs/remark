@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
-import access from "@api/middleware/access";
+import access from "@middleware/access";
 import { Vote, Post } from "@db";
 
 const voteComment = async (req: Request, res: Response) => {

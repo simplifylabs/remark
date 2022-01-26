@@ -1,13 +1,13 @@
 import dotenv from "dotenv";
 
 const globalEnv = ".env";
-const localEnv = "apps/api/.env";
+let app = "{...}";
 
 export function env(key: string) {
   if (!process.env[key]) {
     console.error(
       `Missing environment variable "${key}"!
-      \tUse ${globalEnv}.template and ${localEnv}.template to create valid .env files.`
+      \tUse ${globalEnv}.template and apps/${app}/.env.template to create valid .env files.`
     );
     process.exit(1);
   }
@@ -15,9 +15,10 @@ export function env(key: string) {
   return process.env[key];
 }
 
-export function load() {
+export function load(name: string) {
+  app = name;
   dotenv.config({ path: globalEnv });
-  dotenv.config({ path: localEnv });
+  dotenv.config({ path: `apps/${app}/.env` });
 }
 
 export default env;
