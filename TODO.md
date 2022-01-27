@@ -1,7 +1,7 @@
 # Todo:
 
 - Add some intro?
-- On url change handler
+- Google
 
 # Before release
 

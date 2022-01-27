@@ -31,10 +31,7 @@ function FabComponent(props: IProps) {
     return () => clearInterval(interval);
   }, []);
 
-  let timeout = null;
   useEffect(() => {
-    if (timeout) clearTimeout(timeout);
-
     if (props.sidebar) {
       setShowen(true);
       setScale(0.75);
@@ -48,7 +45,7 @@ function FabComponent(props: IProps) {
     }
 
     setScale(0);
-    timeout = setTimeout(() => setShowen(false), 200);
+    setShowen(false);
   }, [props.showen, props.sidebar]);
 
   useEffect(() => {
@@ -106,7 +103,7 @@ function FabComponent(props: IProps) {
         width: 65,
         height: 63,
         transition: "all 0.2s ease",
-        display: showen ? "block" : "none",
+        pointerEvents: showen ? "auto" : "none",
       }}
     >
       <div

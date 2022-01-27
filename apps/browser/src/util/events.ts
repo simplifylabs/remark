@@ -1,24 +1,21 @@
-import { fetchComments } from "@browser/actions/comment";
 import { setIsOnline } from "@browser/actions/connection";
 import { checkLoggedIn } from "@browser/actions/user";
 import { Snackbar, Toast } from "@browser/util/dialog";
 import { dispatch } from "@browser/state/index";
+import Indicator from "@browser/util/indicator";
+import Clipboard from "@browser/util/clipboard";
 import Settings from "@browser/util/settings";
+import Domain from "@browser/util/domain";
+import Policy from "@browser/util/policy";
 import Render from "@browser/util/render";
+import URL from "@browser/util/url";
 import Tab from "@browser/util/tab";
 import User from "@browser/util/user";
 import App from "@browser/util/app";
-import Domain from "@browser/util/domain";
-import Policy from "@browser/util/policy";
-import Indicator from "@browser/util/indicator";
-import Clipboard from "./clipboard";
-
 type Data = { [key: string]: any };
 
 export default class Events {
   static async listenInjected() {
-    URL.update();
-
     dispatch(checkLoggedIn());
     Render.checkFullscreen();
 
@@ -30,7 +27,7 @@ export default class Events {
     window.addEventListener("message", this.onWindowMessage, false);
 
     Tab.listen(this.onMessageInjected);
-    dispatch(fetchComments(0));
+    URL.update();
   }
 
   static onWindowMessage(event: MessageEvent) {
@@ -150,8 +147,7 @@ export default class Events {
         Indicator.check();
         break;
       case "url:change":
-        console.log(URL.store, window.location.href);
-        dispatch(fetchComments(0));
+        URL.update();
         break;
     }
   }
@@ -198,13 +194,5 @@ export default class Events {
       default:
         res({ success: false });
     }
-  }
-}
-
-class URL {
-  static store = "";
-
-  static update() {
-    this.store = window.location.href;
   }
 }
