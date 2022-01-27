@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ThumbUpIcon, GlobeAltIcon, EyeIcon } from "@heroicons/react/outline";
+import { useRouter } from "next/router";
 import Navigation from "@web/components/Navigation";
 import Footer from "@web/components/Footer";
 import Title from "@web/components/Title";
@@ -30,11 +31,13 @@ export default function Home() {
 }
 
 function Hero() {
+  const router = useRouter();
+
   return (
     <LazyShow>
       <section
         id="hero"
-        className="relative min-h-screen flex flex-col justify-center items-center py-0 md:py-24 md:pt-[10rem] w-screen md:mb-[4rem]"
+        className="relative w-screen min-h-screen flex flex-col justify-center items-center py-0 md:pb-24 md:pt-[10rem] lg:mb-8"
       >
         <Title
           title="Comments, anywhere."
@@ -52,16 +55,21 @@ function Hero() {
           doloribus de la.
         </p> */}
         <div className="flex flex-row gap-5">
-          <AddButton className="md:py-4 shadow" />
-          <button className="btn-secondary shadow">All Browsers</button>
+          <AddButton className="md:py-4" />
+          <button
+            onClick={() => router.push("#features")}
+            className="btn-secondary hidden md:block"
+          >
+            Learn More
+          </button>
         </div>
         <img
           src="/images/example.png"
           alt="Example"
           className="w-[80vw] md:w-[70vw] drop-shadow-example-small md:drop-shadow-example-big mt-[4rem] md:mt-[8rem]"
         />
-        <div className="absolute bottom-0 left-0 h-[68%] w-[24rem] dotted z-[-1]"></div>
-        <div className="absolute top-0 right-0 h-[30rem] w-[22rem] dotted z-[-1]"></div>
+        <div className="absolute bottom-0 left-0 h-[50%] w-[22rem] dotted z-[-1] hidden lg:block"></div>
+        <div className="absolute top-0 right-0 h-[24rem] w-[20rem] dotted z-[-1] hidden lg:block"></div>
       </section>
     </LazyShow>
   );
@@ -72,35 +80,10 @@ function Features() {
     <LazyShow>
       <section
         id="features"
-        className="relative w-screen pb-[4rem] md:pb-[6rem] flex flex-row justify-between items-center gap-[10rem] xl:gap-0"
+        className="relative w-screen pb-[4rem] md:py-[6rem] flex flex-row justify-between items-center gap-[10rem] xl:gap-0"
       >
-        <div className="relative w-1/2 h-full flex-col justify-start pr-[2rem] xl:pr-[5rem] 2xl:pr-[7rem] pl-[2rem] xl:pl-[5rem] 2xl:pl-[7rem] hidden xl:flex">
-          <div className="absolute left-0 top-1/2 dotted w-[25rem] h-[40rem] z-[-1] transform -translate-y-1/2"></div>
-          <div className="flex flex-col gap-3 rounded-2xl">
-            <Comment
-              image="person1.jpg"
-              author="simonsmith"
-              text="Always love to see a funny @remark when surfing the web."
-            />
-            <Comment
-              image="person2.jpg"
-              author="emiliagopp"
-              text="Loved @remark the very moment I used it!"
-            />
-            <Comment
-              image="person3.jpg"
-              author="lindaernstson"
-              text="Just found out about @remark, can recommend."
-            />
-            <Comment
-              image="person4.jpg"
-              author="julianzengerle"
-              text="It's finally possible to comment anywhere, with @remark."
-            />
-          </div>
-        </div>
         <div
-          className={`w-full xl:w-1/2 flex flex-col justify-center items-start px-10 md:px-20 xl:pr-[9rem] xl:pl-0`}
+          className={`w-full xl:w-1/2 flex flex-col justify-center items-start px-10 md:px-20 xl:pl-[4rem] 2xl:pl-[9rem] xl:pr-0`}
         >
           <Title title="Just comments, but better." left />
           <p className="mt-4 text-gray-500 sm:text-xl text-md">
@@ -126,6 +109,31 @@ function Features() {
             >
               <GlobeAltIcon className="w-6 h-6" />
             </Feature>
+          </div>
+        </div>
+        <div className="relative w-1/2 h-full flex-col justify-start pr-[2rem] 2xl:pr-[4rem] pl-[3rem] 2xl:pl-[6rem] hidden xl:flex">
+          <div className="absolute right-0 top-1/2 dotted w-[25rem] h-[40rem] z-[-1] transform -translate-y-1/2"></div>
+          <div className="flex flex-col gap-3 rounded-2xl">
+            <Comment
+              image="person1.jpg"
+              author="simonsmith"
+              text="Always love to see a funny @remark when surfing the web."
+            />
+            <Comment
+              image="person2.jpg"
+              author="emiliagopp"
+              text="Loved @remark the very moment I used it!"
+            />
+            <Comment
+              image="person3.jpg"
+              author="lindaernstson"
+              text="Just found out about @remark, can recommend."
+            />
+            <Comment
+              image="person4.jpg"
+              author="julianzengerle"
+              text="It's finally possible to comment anywhere, with @remark."
+            />
           </div>
         </div>
       </section>

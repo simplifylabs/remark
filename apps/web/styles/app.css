@@ -79,7 +79,7 @@
   }
 
   .btn-secondary {
-    @apply btn bg-brand/10 text-brand hover:shadow-sm focus:ring-brand focus:ring-2 focus:ring-offset-2;
+    @apply btn bg-brand/10 text-brand hover:shadow-sm;
   }
 
   .btn-outline {
