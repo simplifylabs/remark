@@ -4,6 +4,7 @@ import useTitle from "@web/hooks/useTitle";
 import useExtension from "@web/hooks/useExtension";
 import Link from "next/link";
 import Alert from "@web/components/Alert";
+import Google from "@web/components/Google";
 import Input from "@web/components/Input";
 
 export default function SignUp() {
@@ -77,6 +78,7 @@ export default function SignUp() {
         />
         {error && <Alert type="ERROR" text={error} />}
         <input className="mt-2 btn-primary" type="submit" value="Submit" />
+        <Google />
       </form>
     </div>
   );

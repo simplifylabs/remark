@@ -4,6 +4,7 @@ import Head from "next/head";
 import { useEffect } from "react";
 import { useStore } from "react-redux";
 import { useRouter } from "next/router";
+import { Server } from "@web/util/api";
 
 interface ILayoutProps {
   children: any;
@@ -35,10 +36,7 @@ export default function Layout(props: ILayoutProps) {
         {/* Open Graph Tags */}
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="website" />
-        <meta
-          property="og:url"
-          content={`https://remark.surf/${router.pathname}`}
-        />
+        <meta property="og:url" content={`${Server.url}${router.pathname}`} />
         <meta
           property="og:title"
           content="Remark: Uncensored Comments, anywhere."
@@ -50,12 +48,12 @@ export default function Layout(props: ILayoutProps) {
         <meta
           key="og:image"
           property="og:image"
-          content={`https://remark.surf/social.jpg`}
+          content={`${Server.url}social.jpg`}
         />
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://remark.surf/" />
+        <meta property="twitter:url" content={Server.url} />
         <meta
           property="twitter:title"
           content="Remark: Uncensored Comments, anywhere."
@@ -64,10 +62,7 @@ export default function Layout(props: ILayoutProps) {
           property="twitter:description"
           content="Remark is a browser extension that let's you write comments anywhere on the web, completely uncensored."
         />
-        <meta
-          property="twitter:image"
-          content={`https://remark.surf/social.jpg`}
-        />
+        <meta property="twitter:image" content={`${Server.url}social.jpg`} />
 
         {/* Favicon */}
         <link

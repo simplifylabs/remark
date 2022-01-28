@@ -1,6 +1,7 @@
 import useTitle from "@web/hooks/useTitle";
 import Navigation from "@web/components/Navigation";
 import Footer from "@web/components/Footer";
+import { Server } from "@web/util/api";
 
 export default function Terms() {
   useTitle("Terms of Service");
@@ -12,10 +13,10 @@ export default function Terms() {
         <article className="prose">
           <h1>Terms of Service</h1>
           <p>
-            The Remark website located at https://remark.surf/ is a copyrighted
-            work belonging to Simplify Software. Certain features of the Site
-            may be subject to additional guidelines, terms, or rules, which will
-            be posted on the Site in connection with such features.
+            The Remark website located at {Server.url} is a copyrighted work
+            belonging to Simplify Software. Certain features of the Site may be
+            subject to additional guidelines, terms, or rules, which will be
+            posted on the Site in connection with such features.
           </p>
           <p>
             All such additional terms, guidelines, and rules are incorporated by

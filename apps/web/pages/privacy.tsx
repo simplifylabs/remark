@@ -1,6 +1,7 @@
 import useTitle from "@web/hooks/useTitle";
 import Navigation from "@web/components/Navigation";
 import Footer from "@web/components/Footer";
+import { Server } from "@web/util/api";
 
 export default function Privacy() {
   useTitle("Privacy Policy");
@@ -12,10 +13,10 @@ export default function Privacy() {
         <article className="prose">
           <h1>Privacy Policy for Remark</h1>
           <p>
-            At Remark, accessible from https://remark.surf/, one of our main
-            priorities is the privacy of our visitors. This Privacy Policy
-            document contains types of information that is collected and
-            recorded by Remark and how we use it.
+            At Remark, accessible from {Server.url}, one of our main priorities
+            is the privacy of our visitors. This Privacy Policy document
+            contains types of information that is collected and recorded by
+            Remark and how we use it.
           </p>
           <p>
             If you have additional questions or require more information about

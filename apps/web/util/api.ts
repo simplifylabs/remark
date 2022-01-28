@@ -9,14 +9,21 @@ export interface Res {
 }
 
 export class Server {
-  static devUrl = "http://localhost:5050/";
-  static prodUrl = "https://api.remark.surf/";
+  static devWeb = "http://localhost:3000/";
+  static prodWeb = "https://www.remark.surf/";
+
+  static devAPI = "http://localhost:5050/";
+  static prodAPI = "https://api.remark.surf/";
 
   static devCDN = "http://localhost:5000/";
   static prodCDN = "https://cdn.remark.surf/";
 
   static get url() {
-    return process.env.NODE_ENV == "development" ? this.devUrl : this.prodUrl;
+    return process.env.NODE_ENV == "development" ? this.devWeb : this.prodWeb;
+  }
+
+  static get api() {
+    return process.env.NODE_ENV == "development" ? this.devAPI : this.prodAPI;
   }
 
   static get cdn() {
@@ -33,7 +40,7 @@ class API {
     headers.append("Content-Type", "application/json");
 
     try {
-      const res = await fetch(Server.url + path, {
+      const res = await fetch(Server.api + path, {
         headers: headers,
         method: "GET",
         credentials: "include",
@@ -54,7 +61,7 @@ class API {
     headers.append("Content-Type", "application/json");
 
     try {
-      const res = await fetch(Server.url + path, {
+      const res = await fetch(Server.api + path, {
         headers: headers,
         method: "POST",
         credentials: "include",

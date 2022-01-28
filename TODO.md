@@ -13,3 +13,4 @@
 - Re-Init
 - Push
 - Create release
+- Release google api

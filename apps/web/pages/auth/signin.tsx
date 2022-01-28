@@ -4,6 +4,7 @@ import useTitle from "@web/hooks/useTitle";
 import useExtension from "@web/hooks/useExtension";
 import Link from "next/link";
 import Alert from "@web/components/Alert";
+import Google from "@web/components/Google";
 import Input from "@web/components/Input";
 
 export default function SignIn() {
@@ -62,6 +63,7 @@ export default function SignIn() {
             <a className="text-md">Forgot Password?</a>
           </Link>
         </div>
+        <Google />
       </form>
     </div>
   );
