@@ -1,5 +1,5 @@
+import googleController from "@api/controller/auth/google";
 import forgotController from "@api/controller/auth/forgot";
-import keyController from "@api/controller/auth/key";
 import loginController from "@api/controller/auth/login";
 import refreshController from "@api/controller/auth/refresh";
 import registerController from "@api/controller/auth/register";
@@ -16,13 +16,13 @@ router.use(
   })
 );
 
+router.post("/google", googleController);
+router.post("/refresh", refreshController);
+
 router.post("/login", loginController);
 router.post("/register", registerController);
 
 router.post("/forgot", forgotController);
 router.post("/reset", resetController);
-
-router.post("/refresh", refreshController);
-router.get("/key", keyController);
 
 export default router;

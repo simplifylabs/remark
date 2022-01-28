@@ -38,6 +38,10 @@ export default class Error {
         return this.error("Error processing Image");
       case "UPDATE_MISSING":
         return this.error("No Update specified");
+      case "EMAIL_NOT_MODIFIABLE":
+        return this.error("Cannot update email");
+      case "INVALID_ID_TOKEN":
+        return this.error("Failed to login with Google");
       case "USER_NOT_FOUND":
         return User.logout();
       case "INVALID_REFRESH_TOKEN":
@@ -45,7 +49,7 @@ export default class Error {
       case "ACCESS_TOKEN_INVALID":
         return await this.refresh(res);
       default:
-        return this.error("Something unexpected happened");
+        return res;
     }
   }
 

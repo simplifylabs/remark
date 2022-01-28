@@ -11,7 +11,8 @@ model User {
   id String @id @default(uuid()) 
   username String @unique
   email String @unique
-  password String  
+  password String?  
+  googleId String?
   resetToken String? 
   resetExp DateTime?
   posts Post[]

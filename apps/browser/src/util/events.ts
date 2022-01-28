@@ -137,9 +137,6 @@ export default class Events {
       case "snackbar:error":
         Snackbar.error(data.text);
         break;
-      case "toast:success":
-        Toast.success(data.text);
-        break;
       case "toast:error":
         Toast.error(data.text);
         break;
@@ -160,6 +157,9 @@ export default class Events {
         break;
       case "AUTHENTICATED":
         res(await User.isAuthenticated());
+        break;
+      case "GOOGLE":
+        res(await User.google(req));
         break;
       case "REGISTER":
         res(await User.register(req));

@@ -18,8 +18,8 @@ const registerController = async (req: Request, res: Response) => {
 
     if (existing) {
       if (existing.email == email)
-        return res.status(403).json({ error: "EMAIL_NOT_AVAILABLE" });
-      return res.status(403).json({ error: "USERNAME_NOT_AVAILABLE" });
+        return res.status(400).json({ error: "EMAIL_NOT_AVAILABLE" });
+      return res.status(400).json({ error: "USERNAME_NOT_AVAILABLE" });
     }
 
     const hashedPw = await hash(req.body.password);

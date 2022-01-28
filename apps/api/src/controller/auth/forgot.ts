@@ -10,7 +10,8 @@ const forgotPassword = async (req: Request, res: Response) => {
     where: { email: req.body.email },
   });
 
-  if (!user) return res.status(403).json({ error: "EMAIL_NOT_FOUND" });
+  if (!user || user.googleId)
+    return res.status(404).json({ error: "EMAIL_NOT_FOUND" });
 
   const token = randomBytes(32).toString("hex");
   const expires = new Date();

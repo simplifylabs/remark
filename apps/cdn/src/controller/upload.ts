@@ -45,7 +45,7 @@ const upload = multer({
 const uploadAvatarController = async (req: Request, res: Response) => {
   // @ts-ignore
   const file = req.file;
-  if (!file) return res.status(403).json({ error: "NO_FILE_SPECIFIED" });
+  if (!file) return res.status(400).json({ error: "NO_FILE_SPECIFIED" });
   try {
     for (let i = 0; i < avatar.sizes.length; i++) {
       const size = avatar.sizes[i];

@@ -14,7 +14,7 @@ const updateController = async (req: Request, res: Response) => {
   if (email) or.push({ email });
   if (username) or.push({ username });
 
-  if (or.length < 1) return res.status(403).json({ error: "UPDATE_MISSING" });
+  if (or.length < 1) return res.status(400).json({ error: "UPDATE_MISSING" });
 
   const existing = await User.findFirst({
     where: {
@@ -29,14 +29,18 @@ const updateController = async (req: Request, res: Response) => {
     select: {
       id: true,
       username: true,
+      googleId: true,
     },
   });
 
+  if (email && me && me.googleId)
+    return res.status(400).json({ error: "EMAIL_NOT_MODIFIABLE" });
+
   if (existing) {
     if (email && existing.email == email)
-      return res.status(403).json({ error: "EMAIL_NOT_AVAILABLE" });
+      return res.status(400).json({ error: "EMAIL_NOT_AVAILABLE" });
     if (!me || me.id !== existing.id || me.username == username)
-      return res.status(403).json({ error: "USERNAME_NOT_AVAILABLE" });
+      return res.status(400).json({ error: "USERNAME_NOT_AVAILABLE" });
   }
 
   const update: UpdateQuery<UserType> = {};

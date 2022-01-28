@@ -1,7 +1,6 @@
 # Todo:
 
 - Add some intro?
-- Google
 
 # Before release
 

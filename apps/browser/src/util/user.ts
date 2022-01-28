@@ -1,7 +1,7 @@
 import API, { Res } from "@browser/util/api";
 import Error from "@browser/util/error";
-import Storage from "./storage";
-import Tab from "./tab";
+import Storage from "@browser/util/storage";
+import Tab from "@browser/util/tab";
 
 type Data = {
   [key: string]: any;
@@ -25,12 +25,12 @@ export default class User {
     return this.refreshTokenCache;
   }
 
-  static setTokens(res: Data) {
+  static async setTokens(res: Data) {
     this.accessTokenCache = res.accessToken;
     this.refreshTokenCache = res.refreshToken;
 
-    Storage.set("access_token", this.accessTokenCache);
-    Storage.set("refresh_token", this.refreshTokenCache);
+    await Storage.set("access_token", this.accessTokenCache);
+    await Storage.set("refresh_token", this.refreshTokenCache);
   }
 
   static async isAuthenticated() {
@@ -49,7 +49,7 @@ export default class User {
     });
     if (!res.success) return res;
 
-    this.setTokens(res.body);
+    await this.setTokens(res.body);
     return res;
   }
 
@@ -102,10 +102,9 @@ export default class User {
 
     if (!res.success) return res;
 
-    Tab.send("toast:success", { text: "Authenticated!" });
+    await this.setTokens(res.body);
     Tab.sendAll("auth:update");
 
-    this.setTokens(res.body);
     return res;
   }
 
@@ -151,6 +150,20 @@ export default class User {
     return res;
   }
 
+  static async google(data: Data) {
+    const res = await API.post(["auth", "google"], {
+      token: data.token,
+      ...(data.username ? { username: data.username } : {}),
+    });
+
+    if (!res.success) return res;
+
+    await this.setTokens(res.body);
+    Tab.sendAll("auth:update");
+
+    return res;
+  }
+
   static async login(data: Data) {
     const res = await API.post(["auth", "login"], {
       email: data.email,
@@ -159,10 +172,9 @@ export default class User {
 
     if (!res.success) return res;
 
-    Tab.send("toast:success", { text: "Authenticated!" });
+    await this.setTokens(res.body);
     Tab.sendAll("auth:update");
 
-    this.setTokens(res.body);
     return res;
   }
 
@@ -178,10 +190,9 @@ export default class User {
 
     if (!res.success) return res;
 
-    Tab.send("toast:success", { text: "Authenticated!" });
+    await this.setTokens(res.body);
     Tab.send("auth:update");
 
-    this.setTokens(res.body);
     return res;
   }
 }

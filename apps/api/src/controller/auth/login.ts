@@ -11,7 +11,8 @@ const loginController = async (req: Request, res: Response) => {
     },
   });
 
-  if (!user) return res.status(403).json({ error: "WRONG_EMAIL_OR_PASSWORD" });
+  if (!user || user.googleId)
+    return res.status(400).json({ error: "WRONG_EMAIL_OR_PASSWORD" });
 
   const passwordsMatch = await comparePasswords(
     user.password,
@@ -19,7 +20,7 @@ const loginController = async (req: Request, res: Response) => {
   );
 
   if (!passwordsMatch)
-    return res.status(403).json({ error: "WRONG_EMAIL_OR_PASSWORD" });
+    return res.status(400).json({ error: "WRONG_EMAIL_OR_PASSWORD" });
 
   const accessToken = generateAccessToken(user);
   const refreshToken = generateRefreshToken(user);

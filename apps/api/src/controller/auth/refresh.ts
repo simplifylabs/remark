@@ -16,7 +16,7 @@ const refreshController = async (req: Request, res: Response) => {
       where: { id: verified.user.id },
     });
 
-    if (!user) return res.status(403).json({ error: "USER_NOT_FOUND" });
+    if (!user) return res.status(404).json({ error: "USER_NOT_FOUND" });
 
     const newAccessToken = generateAccessToken(user);
     const newRefreshToken = generateRefreshToken(user);

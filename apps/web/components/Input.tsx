@@ -21,6 +21,10 @@ export default function Input(props: IInputProps) {
     if (props.value == undefined) props.set(value);
   }, [value]);
 
+  useEffect(() => {
+    if (props.value !== undefined) setValue(props.value);
+  }, [props.value]);
+
   return (
     <div className="flex flex-col justify-start">
       <label
@@ -38,7 +42,7 @@ export default function Input(props: IInputProps) {
         maxLength={props.max}
         required={props.optional == undefined ? true : props.optional}
         disabled={props.disabled == undefined ? undefined : props.disabled}
-        className={`${props.disabled && "text-gray-500"}`}
+        className={`${props.disabled && "bg-gray-100 text-gray-600"}`}
         onChange={(e) =>
           props.value ? props.set(e.target.value) : setValue(e.target.value)
         }

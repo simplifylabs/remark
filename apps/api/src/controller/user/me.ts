@@ -11,10 +11,11 @@ const meUser = async (req: Request, res: Response) => {
       id: true,
       username: true,
       email: true,
+      googleId: true,
     },
   });
 
-  if (!user) return res.status(403).json({ error: "USER_NOT_FOUND" });
+  if (!user) return res.status(404).json({ error: "USER_NOT_FOUND" });
   res.status(200).json(user);
 };
 

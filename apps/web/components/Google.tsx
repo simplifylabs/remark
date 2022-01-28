@@ -1,22 +1,53 @@
 import { Server } from "@web/util/api";
+import { useRouter } from "next/router";
 import {
   useGoogleLogin,
   GoogleLoginResponse,
   GoogleLoginResponseOffline,
 } from "react-google-login";
+import { Toast } from "@web/util/dialog";
+import useExtension from "@web/hooks/useExtension";
 
 export default function Google() {
+  const router = useRouter();
+  const { send } = useExtension();
+
   const { signIn: googleSignIn } = useGoogleLogin({
     clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
     redirectUri: `${Server.url}auth/google/callback`,
+    scope: `openid email`,
     onFailure: console.error,
     onSuccess: onSuccess,
   });
 
-  function onSuccess(
-    response: GoogleLoginResponse | GoogleLoginResponseOffline
+  async function onSuccess(
+    data: GoogleLoginResponse | GoogleLoginResponseOffline
   ) {
-    console.log(response.code);
+    // @ts-ignore
+    if (!data || !data.tokenObj || !data.tokenObj.id_token)
+      return Toast.error("Failed to load Google token");
+
+    // @ts-ignore
+    if (!data || !data.profileObj || !data.profileObj.email)
+      return Toast.error("Failed to load Google token");
+
+    // @ts-ignore
+    const token = data.tokenObj.id_token;
+    // @ts-ignore
+    const email = data.profileObj.email;
+
+    const res = await send("GOOGLE", { token });
+
+    if (res.redirect) return router.push(res.redirect);
+    if (res.body.error && res.body.error == "USERNAME_REQUIRED") {
+      sessionStorage.setItem("token", token);
+      sessionStorage.setItem("email", email);
+      return router.push(`/auth/google`);
+    }
+    if (res.error) return Toast.error(res.error);
+    if (!res.success) return Toast.error("Something unexpected happened");
+
+    send("CLOSE").then((res) => !res.success && router.push("/"));
   }
 
   return (
@@ -28,7 +59,7 @@ export default function Google() {
       </div>
       <div
         onClick={googleSignIn}
-        className="w-full cursor-pointer h-10 bg-white py-2 border rounded shadow-sm border-gray-300 hover:border-gray-400 transition-all flex justify-center items-center gap-3"
+        className="w-full cursor-pointer h-10 bg-white py-2 border rounded shadow-sm border-gray-300 hover:shadow transition-all flex justify-center items-center gap-3"
       >
         <svg
           className="w-5 pointer-events-none"

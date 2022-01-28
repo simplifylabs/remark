@@ -1,4 +1,5 @@
 import { sign, verify, JwtPayload } from "jsonwebtoken";
+import { OAuth2Client } from "google-auth-library";
 import { User } from "@prisma/client";
 import { env } from "@util/env";
 import fs from "fs";
@@ -67,4 +68,14 @@ export async function verifyRefreshToken(
   // Payload will never be a string
   // @ts-ignore
   return verified;
+}
+
+const client = new OAuth2Client(env("GOOGLE_CLIENT_ID"));
+export async function verifyGoogleIdToken(idToken: string) {
+  const ticket = await client.verifyIdToken({
+    idToken: idToken,
+    audience: env("GOOGLE_CLIENT_ID"),
+  });
+  const payload = ticket.getPayload();
+  return payload;
 }

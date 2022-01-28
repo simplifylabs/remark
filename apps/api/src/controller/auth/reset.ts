@@ -11,7 +11,8 @@ async function resetPassword(req: Request, res: Response) {
     },
   });
 
-  if (!user) return res.status(403).json({ error: "WRONG_TOKEN" });
+  if (!user || user.googleId)
+    return res.status(400).json({ error: "WRONG_TOKEN" });
 
   const exp = new Date(Number(user.resetExp)).getTime();
   const now = new Date().getTime();

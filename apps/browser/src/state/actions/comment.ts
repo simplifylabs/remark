@@ -5,6 +5,8 @@ import { Dispatch } from "redux";
 import { Toast } from "@browser/util/dialog";
 import { SHOW_SIDEBAR } from "./render";
 import { IAuthor } from "@browser/reducers/comment";
+import Registry from "../registry";
+import App from "@browser/util/app";
 
 export const SET_TYPING = "SET_TYPING";
 export const SET_SHARED = "SET_SHARED";
@@ -26,6 +28,9 @@ export const setTyping =
 
 export const voteComment =
   (id: string, type: "UP" | "DOWN") => async (dispatch: Dispatch) => {
+    const state = Registry.store.getState();
+    if (!state.user.isLoggedIn) return window.open(`${App.webUrl}auth/signin`);
+
     const res = await API.post(["comment", id, "vote"], { type });
     if (!res.success) return Error.handle(res);
 
@@ -50,6 +55,9 @@ export const removeComment = (id: string) => async (dispatch: Dispatch) => {
 export const setReplying =
   (comment: { id: string; author: IAuthor } | null) =>
   async (dispatch: Dispatch) => {
+    const state = Registry.store.getState();
+    if (!state.user.isLoggedIn) return window.open(`${App.webUrl}auth/signin`);
+
     dispatch({
       type: SET_REPLYING,
       to: comment ? { commentId: comment.id, author: comment.author } : null,
@@ -59,6 +67,9 @@ export const setReplying =
 export const postComment =
   (text: string, replyTo: string | null, success: () => void) =>
   async (dispatch: Dispatch) => {
+    const state = Registry.store.getState();
+    if (!state.user.isLoggedIn) return window.open(`${App.webUrl}auth/signin`);
+
     const res = await API.post(["comment"], {
       comment: text,
       url: window.location.href,

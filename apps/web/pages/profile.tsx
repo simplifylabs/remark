@@ -42,6 +42,7 @@ export default function Profile() {
   const [avatar, setAvatar] = useState<string>();
   const [email, setEmail] = useState<string>("");
   const [username, setUsername] = useState<string>("");
+  const [isGoogle, setIsGoogle] = useState<boolean>(false);
 
   useEffect(() => {
     if (checking) return;
@@ -55,6 +56,7 @@ export default function Profile() {
         setId(res.body.id);
         setEmail(res.body.email);
         setUsername(res.body.username);
+        setIsGoogle(res.body.googleId !== null);
 
         setChanged([]);
         setLoading(false);
@@ -184,6 +186,7 @@ export default function Profile() {
           name="Email"
           initial={email}
           autoComplete="off"
+          disabled={isGoogle}
           set={(value) => {
             change("EMAIL", "email", value);
             setEmail(value);
