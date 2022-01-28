@@ -1,5 +1,3 @@
-const defaults = require("tailwindcss/defaultTheme");
-
 function withOpacity(variable) {
   return (data) => {
     if (data.opacityValue !== undefined)
@@ -11,19 +9,18 @@ function withOpacity(variable) {
 module.exports = {
   content: ["apps/web/components/**/*.tsx", "apps/web/pages/**/*.tsx"],
   theme: {
-    screens: {
-      xs: "450px",
-      ...defaults.screens,
-    },
-    fontFamily: {
-      inter: ["Inter", "sans-serif"],
-      pacifico: ["Pacifico", "cursive"],
-    },
-    dropShadow: {
-      "example-big": "0 10px 23px rgba(0, 0, 0, 0.15)",
-      "example-small": "0 5px 15px rgba(0, 0, 0, 0.3)",
-    },
     extend: {
+      fontFamily: {
+        inter: ["Inter", "sans-serif"],
+        pacifico: ["Pacifico", "cursive"],
+      },
+      screens: {
+        xs: "450px",
+      },
+      dropShadow: {
+        "example-big": "0 10px 23px rgba(0, 0, 0, 0.15)",
+        "example-small": "0 5px 15px rgba(0, 0, 0, 0.3)",
+      },
       colors: {
         background: {
           DEFAULT: withOpacity("--bg"),

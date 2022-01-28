@@ -1,7 +1,3 @@
-# Todo:
-
-- Add some intro?
-
 # Before release
 
 - Search for todo
