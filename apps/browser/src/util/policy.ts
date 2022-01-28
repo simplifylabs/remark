@@ -78,7 +78,12 @@ export default class Policy {
 
   static isPolicyHeader(name: string) {
     name = name.toUpperCase();
-    return name == "CONTENT-SECURITY-POLICY" || name == "X-WEBKIT-CSP";
+    return (
+      name == "CONTENT-SECURITY-POLICY" ||
+      name == "X-WEBKIT-CSP" ||
+      name == "X-FRAME-OPTIONS" ||
+      name == "CONTENT_SECURITY_REPORT_ONLY"
+    );
   }
 
   static updatePolicy(raw: string) {

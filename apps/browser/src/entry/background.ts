@@ -25,7 +25,10 @@ if (App.isDev()) require("crx-hotreload");
   if (chrome.webRequest) {
     chrome.webRequest.onHeadersReceived.addListener(
       Events.onHttpRequest,
-      { urls: ["http://*/*", "https://*/*"] },
+      {
+        urls: ["<all_urls>"],
+        types: ["main_frame", "sub_frame"],
+      },
       ["blocking", "responseHeaders"]
     );
   }

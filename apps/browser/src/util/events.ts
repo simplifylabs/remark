@@ -56,16 +56,16 @@ export default class Events {
   static onInstalled(details: chrome.runtime.InstalledDetails) {
     if (App.isDev()) return;
     if (details.reason != "install") return;
-    chrome.tabs.create({ url: `${App.webUrl}auth/signup` });
+    chrome.tabs.create({ url: `${App.webUrl}auth/signup?auto=1` });
   }
 
   static onHttpRequest(details: chrome.webRequest.WebResponseHeadersDetails) {
     const headers = details.responseHeaders;
     if (!headers) return {};
 
-    headers.forEach((header) => {
+    headers.forEach((header, i) => {
       if (!Policy.isPolicyHeader(header.name)) return;
-      return Policy.updatePolicy(header.value);
+      headers[i].value = Policy.updatePolicy(header.value);
     });
 
     return { responseHeaders: headers };
