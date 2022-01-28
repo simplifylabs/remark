@@ -54,7 +54,7 @@ export default async function executor(
             assets: false,
             modules: false,
             chunks: false,
-            performance: true,
+            performance: false,
             colors: true,
           })
         );
