@@ -25,16 +25,16 @@ export default (
         snackbars: [...state.snackbars, action.data],
       };
     case HIDE_SNACKBAR:
-      var list = [...state.snackbars];
-      var index = list.findIndex((item) => item.id == action.id);
+      const snackbars = [...state.snackbars];
+      let index = snackbars.findIndex((item) => item.id == action.id);
       if (index == -1) return state;
-      list[index].showen = false;
+      snackbars[index].showen = false;
       return {
         ...state,
-        snackbars: list,
+        snackbars,
       };
     case REMOVE_SNACKBAR:
-      var list = state.snackbars.filter((item) => item.id !== action.id);
+      const list = state.snackbars.filter((item) => item.id !== action.id);
       return {
         ...state,
         snackbars: list,

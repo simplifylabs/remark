@@ -63,6 +63,7 @@ export default class Browser {
     }
   }
 
+  /* eslint-disable no-useless-escape */
   static get isMobile() {
     if (typeof window == "undefined") return false;
     let check = false;
@@ -80,4 +81,5 @@ export default class Browser {
     })(navigator.userAgent || navigator.vendor || window.opera);
     return check;
   }
+  /* eslint-enable no-useless-escape */
 }
