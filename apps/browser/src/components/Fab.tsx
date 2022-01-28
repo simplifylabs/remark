@@ -65,8 +65,6 @@ function FabComponent(props: IProps) {
   }
 
   function onCommentsLoad(total: number) {
-    Render.off("comments:loaded", onCommentsLoad);
-
     setLoaded((loaded: boolean) => {
       if (loaded) checkSmartShow(total);
       return loaded;

@@ -38,7 +38,7 @@ export default class User {
     const isAuthenticated =
       accessToken !== "" && accessToken !== null && accessToken !== undefined;
 
-    return { isAuthenticated: isAuthenticated };
+    return { success: true, isAuthenticated: isAuthenticated };
   }
 
   static async refresh() {

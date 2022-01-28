@@ -54,7 +54,6 @@ export default class Events {
   }
 
   static onInstalled(details: chrome.runtime.InstalledDetails) {
-    if (App.isDev()) return;
     if (details.reason != "install") return;
     chrome.tabs.create({ url: `${App.webUrl}auth/signup?auto=1` });
   }

@@ -34,6 +34,8 @@ export default function Google() {
     if (res.redirect) return router.push(res.redirect);
     if (!res.success) return setError("Something unexpected happened");
 
+    if (sessionStorage.getItem("auto") == "true")
+      return router.push("/welcome");
     send("CLOSE").then((res) => !res.success && router.push("/"));
   }
 

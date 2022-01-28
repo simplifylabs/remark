@@ -1,4 +1,3 @@
-import { Server } from "@web/util/api";
 import { useRouter } from "next/router";
 import {
   useGoogleLogin,
@@ -14,7 +13,6 @@ export default function Google() {
 
   const { signIn: googleSignIn } = useGoogleLogin({
     clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
-    redirectUri: `${Server.url}auth/google/callback`,
     scope: `openid email`,
     onFailure: console.error,
     onSuccess: onSuccess,
@@ -47,6 +45,8 @@ export default function Google() {
     if (res.error) return Toast.error(res.error);
     if (!res.success) return Toast.error("Something unexpected happened");
 
+    if (sessionStorage.getItem("auto") == "true")
+      return router.push("/welcome");
     send("CLOSE").then((res) => !res.success && router.push("/"));
   }
 

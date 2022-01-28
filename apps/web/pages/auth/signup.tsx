@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useTitle from "@web/hooks/useTitle";
 import useExtension from "@web/hooks/useExtension";
@@ -19,6 +19,11 @@ export default function SignUp() {
   const [password, setPassword] = useState<string | undefined>();
   const [confirm, setConfirm] = useState<string | undefined>();
 
+  useEffect(() => {
+    if (!router.isReady) return;
+    sessionStorage.setItem("auto", "true");
+  }, [router]);
+
   async function submit(e: any) {
     e.preventDefault();
 
@@ -33,6 +38,8 @@ export default function SignUp() {
     if (res.redirect) return router.push(res.redirect);
     if (!res.success) return setError("Something unexpected happened");
 
+    if (sessionStorage.getItem("auto") == "true")
+      return router.push("/welcome");
     send("CLOSE").then((res) => !res.success && router.push("/"));
   }
 

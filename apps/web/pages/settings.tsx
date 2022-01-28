@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useGoogleLogout } from "react-google-login";
 import { useRouter } from "next/router";
 import { Toast } from "@web/util/dialog";
 import useExtension from "@web/hooks/useExtension";
@@ -17,6 +18,12 @@ export default function Settings() {
   const { loading: checking, send } = useExtension();
   const router = useRouter();
 
+  const { signOut: googleSignOut } = useGoogleLogout({
+    clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+    onFailure: console.error,
+    onLogoutSuccess: () => null,
+  });
+
   const [error, setError] = useState<string | undefined>();
   const [loading, setLoading] = useState(true);
   const [mode, setMode] = useState<Mode>("SMART");
@@ -24,18 +31,29 @@ export default function Settings() {
   const [clearedSmart, setClearedSmart] = useState(false);
   const [clearedBlack, setClearedBlack] = useState(false);
   const [signedOut, setSignedOut] = useState(false);
+  const [isGoogle, setIsGoogle] = useState<boolean>(false);
 
   useEffect(() => {
     if (checking) return;
 
     (async () => {
-      const res = await send("SETTINGS", { load: true });
-      if (res.success) {
-        setMode(res.settings.mode);
-        setLoading(false);
-        return;
+      const settingsRes = await send("SETTINGS", { load: true });
+
+      if (!settingsRes.success) return handle(settingsRes);
+      setMode(settingsRes.settings.mode);
+
+      const authenticatedRes = await send("AUTHENTICATED");
+
+      if (!authenticatedRes.success) return handle(authenticatedRes);
+      setSignedOut(!authenticatedRes.isAuthenticated);
+
+      if (authenticatedRes.isAuthenticated) {
+        const meRes = await send("ME");
+        if (!meRes.success) return handle(meRes);
+        setIsGoogle(meRes.body.googleId !== null);
       }
-      handle(res);
+
+      setLoading(false);
     })();
   }, [checking]);
 
@@ -82,6 +100,7 @@ export default function Settings() {
   }
 
   async function signOut() {
+    if (isGoogle) googleSignOut();
     setSignedOut(true);
     handle(await send("LOGOUT"));
   }
