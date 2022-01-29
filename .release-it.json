@@ -1,0 +1,21 @@
+{
+  "hooks": {
+    "before:github:release": "rm -rf dist/ && yarn dist"
+  },
+  "git": {
+    "commitMessage": "Release v${version}",
+    "tagAnnotation": "v${version}",
+    "tagName": "v${version}"
+  },
+  "github": {
+    "release": true,
+    "releaseName": "v${version}",
+    "releaseNotes": "echo ",
+    "tokenRef": "GITHUB_TOKEN",
+    "assets": ["dist/*.(zip)"],
+    "autoGenerate": true
+  },
+  "npm": {
+    "publish": false
+  }
+}

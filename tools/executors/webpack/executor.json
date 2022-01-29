@@ -1,0 +1,9 @@
+{
+  "executors": {
+    "build": {
+      "implementation": "./impl",
+      "schema": "./schema.json",
+      "description": "Executes a webpack build with 100% custom config"
+    }
+  }
+}

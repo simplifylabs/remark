@@ -1,0 +1,31 @@
+{
+  "projectType": "application",
+  "root": "apps/browser",
+  "sourceRoot": "apps/browser/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "./tools/executors/webpack:build",
+      "options": {
+        "configPath": "apps/browser/webpack.config.js",
+        "mode": "production",
+        "watch": false
+      }
+    },
+    "serve": {
+      "executor": "./tools/executors/webpack:build",
+      "options": {
+        "configPath": "apps/browser/webpack.config.js",
+        "mode": "development",
+        "watch": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/browser/**/*.ts"]
+      }
+    }
+  }
+}

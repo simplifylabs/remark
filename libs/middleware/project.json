@@ -1,0 +1,15 @@
+{
+  "root": "libs/middleware",
+  "sourceRoot": "libs/middleware/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/middleware/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}

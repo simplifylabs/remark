@@ -1,0 +1,149 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand: 99, 102, 241;
+    --brand-light: 104, 117, 237;
+    --brand-100: 224, 231, 255;
+    --brand-700: 67, 56, 202;
+
+    --bg: 249, 250, 251;
+  }
+
+  * {
+    @apply m-0 p-0 text-base font-inter;
+  }
+
+  body {
+    @apply bg-background scroll-smooth overflow-x-hidden overflow-y-auto;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  [type="text"],
+  [type="email"],
+  [type="url"],
+  [type="password"],
+  [type="number"],
+  [type="date"],
+  [type="datetime-local"],
+  [type="month"],
+  [type="search"],
+  [type="tel"],
+  [type="time"],
+  [type="week"],
+  [multiple],
+  textarea select {
+    @apply border-gray-300 rounded-md shadow-sm focus:ring-brand bg-white focus:caret-brand  text-black;
+  }
+
+  select {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  textarea {
+    @apply border-gray-300 rounded-md shadow-sm focus:ring-brand bg-white focus:caret-brand text-black;
+  }
+
+  [type="checkbox"],
+  [type="radio"] {
+    @apply rounded border-gray-300 text-brand focus:ring-brand;
+  }
+
+  [type="submit"] {
+    @apply cursor-pointer;
+  }
+
+  button {
+    @apply outline-none font-medium cursor-pointer select-none focus:outline-none;
+  }
+
+  .fade {
+    @apply transition-all duration-150 ease-in-out;
+  }
+
+  .link {
+    @apply text-brand hover:text-gray-700 cursor-pointer fade;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand text-white hover:bg-brand-light focus:ring-brand focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply btn bg-brand/10 text-brand hover:shadow-sm;
+  }
+
+  .btn-outline {
+    @apply btn border-gray-300 hover:border-gray-400 focus:border-gray-400 border-2 text-gray-700 hover:shadow-sm;
+  }
+
+  .btn-disabled {
+    @apply btn bg-black/10 text-gray-500;
+  }
+
+  .btn {
+    @apply flex flex-row justify-center items-center gap-2 px-7 py-2.5 rounded-md select-none cursor-pointer fade focus:outline-none;
+  }
+
+  .text-default {
+    @apply text-black dark:text-white;
+  }
+
+  a {
+    @apply link;
+  }
+
+  .switch:checked + label {
+    @apply bg-brand;
+  }
+
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+
+  .dotted {
+    background-image: radial-gradient(
+      circle,
+      rgba(0, 0, 0, 0.1) 3px,
+      transparent 10%
+    );
+    background-size: 30px 30px;
+    background-position: 0 0, 30px 30px;
+  }
+
+  /* Using css because min seems 
+   * kinda broken with tailwind */
+  .feature-icon {
+    min-width: 3rem;
+    min-height: 3rem;
+  }
+}
+
+.dialog-info {
+  @apply bg-gray-600;
+}
+
+.dialog-success {
+  @apply bg-green-500;
+}
+
+.dialog-error {
+  @apply bg-red-500;
+}
+
+.dialog-warn {
+  @apply bg-yellow-500;
+}
+
+.dialog-brand {
+  @apply bg-brand;
+}
