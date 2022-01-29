@@ -22,7 +22,13 @@ if (App.isDev()) require("crx-hotreload");
     });
   }
 
-  if (chrome.webRequest) {
+  if (chrome.action) {
+    chrome.action.onClicked.addListener(() => {
+      Tab.send("action:click");
+    });
+  }
+
+  if (chrome.webRequest && !(!App.isDev() && App.isChrome())) {
     chrome.webRequest.onHeadersReceived.addListener(
       Events.onHttpRequest,
       {

@@ -46,7 +46,7 @@ function distChrome() {
   return dist("chrome", (manifest) => {
     manifest.version = package.version;
     manifest.externally_connectable.matches.pop();
-    return manifest;
+    return toV3(manifest);
   });
 }
 
@@ -56,6 +56,51 @@ function distEdge() {
     manifest.externally_connectable.matches.pop();
     return manifest;
   });
+}
+
+function toV3(manifest) {
+  manifest.manifest_version = 3;
+  manifest.background.service_worker = manifest.background.scripts[0];
+  manifest.action = manifest.browser_action;
+  manifest.host_permissions = ["*://*/*"];
+
+  manifest.web_accessible_resources = [
+    {
+      resources: manifest.web_accessible_resources,
+      matches: ["http://*/*", "https://*/*"],
+    },
+  ];
+
+  manifest.declarative_net_request = {
+    rule_resources: [
+      {
+        id: "CSP Change",
+        path: "rules/csp.json",
+        enabled: true,
+      },
+    ],
+  };
+
+  manifest.permissions = manifest.permissions.filter(
+    (p) =>
+      ![
+        "http://*/*",
+        "https://*/*",
+        "webRequest",
+        "webRequestBlocking",
+      ].includes(p)
+  );
+
+  manifest.permissions.push(
+    "declarativeNetRequest",
+    "declarativeNetRequestFeedback"
+  );
+
+  delete manifest.background.scripts;
+  delete manifest.background.persistent;
+  delete manifest.browser_action;
+
+  return manifest;
 }
 
 exports["dist:firefox"] = distFirefox;

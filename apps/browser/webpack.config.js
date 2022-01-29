@@ -80,9 +80,9 @@ module.exports = function (_, env) {
             to: "manifest.json",
           },
           { from: path.join(__dirname, "assets"), to: "assets" },
+          { from: path.join(__dirname, "rules"), to: "rules" },
         ],
       }),
-      // env.mode == "production" && new BundleAnalyzerPlugin(),
     ].filter((p) => p !== false),
   };
 };
