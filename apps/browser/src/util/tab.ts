@@ -56,11 +56,6 @@ export default class Tab {
     });
   }
 
-  static async reload(): Promise<void> {
-    const tab = await this.getCurrent();
-    chrome.tabs.reload(tab.id);
-  }
-
   static async close() {
     const count = await this.count();
     if (count <= 1) return { success: false };
