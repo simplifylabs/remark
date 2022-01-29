@@ -47,7 +47,7 @@ function Frame({ withMotion, children, dark, dispatch, onLoaded, ...props }) {
     const css = document.createElement("link");
     css.rel = "stylesheet";
     css.type = "text/css";
-    css.href = chrome.extension.getURL("css/app.css");
+    css.href = chrome.runtime.getURL("css/app.css");
     css.onload = () => {
       setCssLoading(false);
     };

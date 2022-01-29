@@ -81,8 +81,7 @@ export default class Policy {
     return (
       name == "CONTENT-SECURITY-POLICY" ||
       name == "X-WEBKIT-CSP" ||
-      name == "X-FRAME-OPTIONS" ||
-      name == "CONTENT_SECURITY_REPORT_ONLY"
+      name == "X-FRAME-OPTIONS"
     );
   }
 

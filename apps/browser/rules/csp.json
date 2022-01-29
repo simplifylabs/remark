@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "condition": {
+      "urlFilter": "abc*d"
+    },
+    "action": {
+      "type": "modifyHeaders",
+      "responseHeaders": [
+        {
+          "header": "Content-Security-Policy",
+          "operation": "remove"
+        },
+        {
+          "header": "X-Webkit-CSP",
+          "operation": "remove"
+        },
+        {
+          "header": "X-Frame-Options",
+          "operation": "remove"
+        }
+      ]
+    }
+  }
+]
