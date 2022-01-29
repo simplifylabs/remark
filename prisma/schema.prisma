@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(uuid()) 
+  username String @unique
+  email String @unique
+  password String?  
+  googleId String?
+  resetToken String? 
+  resetExp DateTime?
+  posts Post[]
+  votes Vote[]
+  updatedAt DateTime @updatedAt  
+  createdAt DateTime @default(now())  
+}
+
+model Post {
+  id String @id @default(uuid()) 
+  author   User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId String 
+  comment String @db.VarChar(200) 
+  url Url @relation(fields: [urlId], references: [id], onDelete: Cascade)
+  urlId String 
+  upvotes Int @default(0)
+  downvotes Int @default(0)
+  votes Vote[]
+  originalURL String
+  shareURL String
+  replies Post[] @relation("Reply")
+  replyId String? 
+  reply Post? @relation("Reply", fields: [replyId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+model Url {
+  id String @id @default(uuid()) 
+  filtered String @unique
+  posts Post[]
+}
+
+enum VoteType {
+  UP 
+  DOWN
+}
+
+model Vote {
+  id String @id @default(uuid())
+  type VoteType
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId String
+}
+
+model Feedback {
+  id String @id @default(uuid()) 
+  statements Json
+  comment String?
+  createdAt DateTime @default(now())
+}

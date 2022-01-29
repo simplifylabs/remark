@@ -1,0 +1,14 @@
+changelog:
+  exclude:
+    labels:
+      - ":ghost: Ignore in Release"
+      - ":no_entry_sign:  Won't fix"
+    authors:
+      - octocat
+  categories:
+    - title: New Features 🎉
+      labels:
+        - ":rocket: Feature"
+    - title: Other Changes
+      labels:
+        - "*"

@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "files": [],
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "outDir": "../../dist/out-tsc",
+    "types": ["node", "chrome"],
+    "jsx": "react"
+  },
+  "exclude": ["**/*.spec.ts", "**/*.test.ts"],
+  "include": ["**/*.ts", "**/*.tsx"]
+}

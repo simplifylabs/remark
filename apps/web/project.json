@@ -1,0 +1,41 @@
+{
+  "root": "apps/web",
+  "sourceRoot": "apps/web",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "root": "apps/web",
+        "outputPath": "apps/web/dist/"
+      },
+      "configurations": {
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/next:server",
+      "options": {
+        "buildTarget": "web:build",
+        "port": 3000,
+        "dev": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "web:build:production",
+          "dev": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/web/**/*.{ts,tsx}"]
+      }
+    }
+  },
+  "tags": []
+}

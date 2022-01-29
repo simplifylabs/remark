@@ -1,0 +1,64 @@
+{
+  "manifest_version": 2,
+  "name": "Remark",
+  "short_name": "Remark",
+  "version": "0.0.0",
+  "description": "Uncensored Comments, anywhere.",
+  "author": "Simplify Software",
+  "homepage_url": "https://remark.surf/",
+  "icons": {
+    "64": "assets/icon/64.png",
+    "128": "assets/icon/128.png",
+    "256": "assets/icon/256.png"
+  },
+  "web_accessible_resources": [
+    "assets/*.png",
+    "assets/indicator/*.png",
+    "assets/icon/*.png",
+    "css/*.css"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["entry/injected.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "scripts": ["entry/background.js"],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_title": "Remark"
+  },
+  "commands": {
+    "toggle_button": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y"
+      },
+      "description": "Toggle the Remark Button"
+    },
+    "toggle_sidebar": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S"
+      },
+      "description": "Toggle the Remark Sidebar"
+    }
+  },
+  "externally_connectable": {
+    "matches": ["*://*.remark.surf/*", "*://localhost/*"]
+  },
+  "permissions": [
+    "http://*/*",
+    "https://*/*",
+    "tabs",
+    "storage",
+    "unlimitedStorage",
+    "notifications",
+    "idle",
+    "webRequest",
+    "webRequestBlocking",
+    "clipboardWrite"
+  ],
+  "optional_permissions": []
+}

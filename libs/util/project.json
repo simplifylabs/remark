@@ -1,0 +1,15 @@
+{
+  "root": "libs/util",
+  "sourceRoot": "libs/util/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/util/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}
