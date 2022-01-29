@@ -13,7 +13,7 @@ export default function Google() {
 
   const { signIn: googleSignIn } = useGoogleLogin({
     clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
-    scope: `openid email`,
+    scope: `profile email`,
     onFailure: console.error,
     onSuccess: onSuccess,
   });
