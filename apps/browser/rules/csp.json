@@ -3,21 +3,22 @@
     "id": 1,
     "priority": 1,
     "condition": {
-      "urlFilter": "abc*d"
+      "urlFilter": "*",
+      "resourceTypes": ["main_frame", "sub_frame"]
     },
     "action": {
       "type": "modifyHeaders",
       "responseHeaders": [
         {
-          "header": "Content-Security-Policy",
+          "header": "content-security-policy",
           "operation": "remove"
         },
         {
-          "header": "X-Webkit-CSP",
+          "header": "x-webkit-csp",
           "operation": "remove"
         },
         {
-          "header": "X-Frame-Options",
+          "header": "x-frame-options",
           "operation": "remove"
         }
       ]
