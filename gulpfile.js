@@ -91,10 +91,7 @@ function toV3(manifest) {
       ].includes(p)
   );
 
-  manifest.permissions.push(
-    "declarativeNetRequest",
-    "declarativeNetRequestFeedback"
-  );
+  manifest.permissions.push("declarativeNetRequest");
 
   delete manifest.background.scripts;
   delete manifest.background.persistent;
