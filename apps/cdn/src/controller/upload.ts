@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { extname, resolve, join } from "path";
+import { extname, join } from "path";
 import access from "@middleware/access";
 import limit from "@middleware/limit";
 import avatar from "@cdn/config/avatar.config";

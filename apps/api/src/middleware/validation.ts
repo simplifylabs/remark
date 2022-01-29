@@ -1,11 +1,15 @@
-import { Joi, validate as validateOriginal } from "express-validation";
+import {
+  Joi,
+  validate as validateOriginal,
+  ValidationError,
+} from "express-validation";
 
 // Validate with options
 export function validate(validation: object) {
   return validateOriginal(validation, {}, {});
 }
 
-export function getValidationMessage(err: any) {
+export function getValidationMessage(err: ValidationError) {
   if (!err) return false;
   if (!err.details) return false;
 

@@ -1,5 +1,6 @@
 import Footer from "@web/components/Footer";
 import Navigation from "@web/components/Navigation";
+import Image from "next/image";
 
 export default function Welcome() {
   return (
@@ -18,7 +19,8 @@ export default function Welcome() {
       </Section>
       <Section title="Action Icon" image="action" flip>
         You can use the action icon, usually showen in the top right of your
-        browser, to toggle the Sidebar - even if the Remark button isn't showen.
+        browser, to toggle the Sidebar - even if the Remark button isn&apos;t
+        showen.
         <br />
         <br />
         Furthermore, you can set Hotkeys to toggle the sidebar and/or button for
@@ -29,8 +31,8 @@ export default function Welcome() {
         automatically showen for this <b className="text-lg">Domain.</b>
         <br />
         <br />
-        "Smart" will only show if a Remark has been posted on that site. You can
-        change the default behaviour in the settings.
+        &quot;Smart&quot; will only show if a Remark has been posted on that
+        site. You can change the default behaviour in the settings.
       </Section>
       <Footer />
     </div>
@@ -66,7 +68,7 @@ function Spacer() {
 interface ISectionProps {
   flip?: boolean;
   title: string;
-  image: string;
+  image: any;
   children: any;
 }
 

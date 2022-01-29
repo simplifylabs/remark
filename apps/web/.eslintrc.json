@@ -11,11 +11,13 @@
       "files": ["*.ts", "*.tsx"],
       "rules": {
         "@next/next/no-html-link-for-pages": ["error", "apps/web/pages"],
+        "@next/next/no-img-element": "off",
         "@typescript-eslint/no-namespace": "off",
         "@typescript-eslint/no-var-requires": "off",
         "@typescript-eslint/ban-ts-comment": "off",
         "@typescript-eslint/no-explicit-any": "off",
         "@nrwl/nx/enforce-module-boundaries": "off",
+        "import/no-anonymous-default-export": "off",
         "react-hooks/exhaustive-deps": "off"
       }
     }

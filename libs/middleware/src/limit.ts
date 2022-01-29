@@ -21,7 +21,6 @@ export default function limit(input: Options | number, interval?: number) {
   if (typeof input == "object") options = { ...options, ...input };
 
   return RateLimit({
-    // @ts-expect-error
     sendCommand: (...args: string[]) => client.call(...args),
     max: options.requests,
     windowMs: options.interval || 60000,

@@ -49,7 +49,7 @@ export default class Events {
     Tab.send("indicator:check");
   }
 
-  static onTabUpdate(id: number, change: any, tab: any) {
+  static onTabUpdate(id: number, change: any) {
     if (change.url) Tab.send("url:change", {}, id);
   }
 

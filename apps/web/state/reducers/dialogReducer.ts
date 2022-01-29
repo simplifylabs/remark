@@ -25,21 +25,31 @@ export default (
         snackbars: [...state.snackbars, action.data],
       };
     case HIDE_SNACKBAR:
-      const snackbars = [...state.snackbars];
-      let index = snackbars.findIndex((item) => item.id == action.id);
-      if (index == -1) return state;
-      snackbars[index].showen = false;
-      return {
-        ...state,
-        snackbars,
-      };
+      return hideSnackbar(state, action);
     case REMOVE_SNACKBAR:
-      const list = state.snackbars.filter((item) => item.id !== action.id);
-      return {
-        ...state,
-        snackbars: list,
-      };
+      return removeSnackbar(state, action);
     default:
       return { ...state };
   }
 };
+
+function hideSnackbar(state: DialogState, action: AnyAction) {
+  const snackbars = [...state.snackbars];
+  const index = snackbars.findIndex((item) => item.id == action.id);
+
+  if (index == -1) return state;
+  snackbars[index].showen = false;
+
+  return {
+    ...state,
+    snackbars,
+  };
+}
+
+function removeSnackbar(state: DialogState, action: AnyAction) {
+  const list = state.snackbars.filter((item) => item.id !== action.id);
+  return {
+    ...state,
+    snackbars: list,
+  };
+}

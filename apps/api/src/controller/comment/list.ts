@@ -30,6 +30,7 @@ const listComments = async (req: Request, res: Response) => {
           downvotes: "asc",
         },
       ],
+      // eslint-disable-next-line
       select: commentSelect as any,
     }),
   ];
