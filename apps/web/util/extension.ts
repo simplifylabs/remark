@@ -1,8 +1,8 @@
 import Browser, { BrowserType } from "@web/util/browser";
 
 export default class Extension {
-  static firefoxUrl = `https://addons.mozilla.org/de/firefox/addon/${process.env.NEXT_PUBLIC_FIREFOX_STORE_ID}/`;
-  static operaUrl = `https://addons.opera.com/de/extensions/details/${process.env.NEXT_PUBLIC_OPERA_STORE_ID}`;
+  static firefoxUrl = `https://addons.mozilla.org/en-US/firefox/addon/${process.env.NEXT_PUBLIC_FIREFOX_STORE_ID}/`;
+  static operaUrl = `https://addons.opera.com/en/extensions/details/${process.env.NEXT_PUBLIC_OPERA_STORE_ID}`;
   static edgeUrl = `https://microsoftedge.microsoft.com/addons/detail/${process.env.NEXT_PUBLIC_EDGE_ID}`;
   static chromeUrl = `https://chrome.google.com/webstore/detail/${process.env.NEXT_PUBLIC_CHROME_ID}`;
 
