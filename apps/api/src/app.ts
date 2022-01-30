@@ -14,6 +14,10 @@ import feedback from "@api/router/feedback";
 
 const app = express();
 
+app.disable("etag");
+app.disable("x-powered-by");
+app.set("trust proxy", true);
+
 app.use(express.json());
 app.use(cookies());
 app.use(cors());
