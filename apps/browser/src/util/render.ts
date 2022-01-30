@@ -28,7 +28,7 @@ export default class Render {
     "#tidio-chat",
   ];
 
-  static fabStyle = `
+  static wrapperStyle = `
     position: absolute !important;
     opacity: 1 !important;
     width: 0px !important;
@@ -110,7 +110,7 @@ export default class Render {
     const launcher = document.createElement("div");
 
     launcher.id = "remark-launcher";
-    launcher.setAttribute("style", this.fabStyle);
+    launcher.setAttribute("style", this.wrapperStyle);
 
     document.body.appendChild(launcher);
     return launcher;
