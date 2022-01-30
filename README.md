@@ -1,7 +1,7 @@
 <h1 align="center">Remark</h1>
 <p align="center">Uncensored comments, anywhere.</p>
 
-![Example](https://imgur.com/NYTv4NE.png)
+![Example](https://imgur.com/DAg7BNf.png)
 
 <br />
 <!-- TODO: Update href's -->
