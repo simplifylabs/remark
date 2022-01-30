@@ -92,7 +92,6 @@ Use these commands to execute an action for all apps:
 ```bash
 yarn start
 yarn build
-yarn test
 yarn lint
 ```
 
@@ -119,7 +118,6 @@ Commands:
 ```bash
 nx serve api
 nx build api
-nx test api
 nx lint api
 ```
 
