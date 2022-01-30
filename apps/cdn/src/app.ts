@@ -11,6 +11,8 @@ const app = express();
 app.disable("etag");
 app.disable("x-powered-by");
 
+app.set("trust proxy", true);
+
 app.use(express.json());
 
 app.use("/avatar", avatar);
