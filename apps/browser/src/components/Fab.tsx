@@ -94,7 +94,7 @@ function FabComponent(props: IProps) {
       id="fab"
       onLoaded={!loaded ? onFrameLoaded : undefined}
       style={{
-        zIndex: 2147483646,
+        zIndex: 2147483647,
         position: "fixed",
         right: `${!props.sidebar && secondary ? 11 : 13}px`,
         bottom: `${!props.sidebar && secondary ? 96 : 21}px`,
