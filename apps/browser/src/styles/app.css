@@ -109,6 +109,10 @@
   @apply rounded-md z-[1] text-brand pointer-events-none;
 }
 
+.dark .remark__mention {
+  text-shadow: 0px 0px 1px rgb(var(--bg-form));
+}
+
 .remark__highlighter {
   @apply rounded-lg z-[1] pointer-events-none;
 }
