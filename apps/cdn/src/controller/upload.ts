@@ -19,7 +19,7 @@ import fs from "fs";
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, join("apps/cdn", "uploads", "temp"));
+    cb(null, join("apps", "cdn", "uploads", "temp"));
   },
   filename: function (req, file, cb) {
     cb(null, file.fieldname + "-" + Date.now() + extname(file.originalname));
@@ -76,7 +76,7 @@ const uploadAvatarController = async (req: Request, res: Response) => {
 };
 
 export default [
-  access,
+  access(),
   limit(10),
   upload.single("image"),
   uploadAvatarController,
