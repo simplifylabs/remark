@@ -1,8 +1,9 @@
 import Footer from "@web/components/Footer";
 import Navigation from "@web/components/Navigation";
-import Image from "next/image";
 
 export default function Welcome() {
+  useTitle("Get Started");
+
   return (
     <div className="w-full h-full">
       <Navigation hideLinks closeIcon />
