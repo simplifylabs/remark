@@ -1,5 +1,6 @@
 import Footer from "@web/components/Footer";
 import Navigation from "@web/components/Navigation";
+import useTitle from "@web/hooks/useTitle";
 
 export default function Welcome() {
   useTitle("Get Started");
