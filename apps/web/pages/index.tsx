@@ -64,7 +64,7 @@ function Hero() {
           </button>
         </div>
         <img
-          src="/images/example.png"
+          src="/images/screens/example.png"
           alt="Example"
           className="w-[80vw] md:w-[70vw] drop-shadow-example-small md:drop-shadow-example-big mt-[4rem] md:mt-[8rem]"
         />
@@ -115,22 +115,22 @@ function Features() {
           <div className="absolute right-0 top-1/2 dotted w-[25rem] h-[40rem] z-[-1] transform -translate-y-1/2"></div>
           <div className="flex flex-col gap-3 rounded-2xl">
             <Comment
-              image="person1.jpg"
+              image="1.jpg"
               author="simonsmith"
               text="Always love to see a funny @remark when surfing the web."
             />
             <Comment
-              image="person2.jpg"
+              image="2.jpg"
               author="emiliagopp"
               text="Loved @remark the very moment I used it!"
             />
             <Comment
-              image="person3.jpg"
+              image="3.jpg"
               author="lindaernstson"
               text="Just found out about @remark, can recommend."
             />
             <Comment
-              image="person4.jpg"
+              image="4.jpg"
               author="julianzengerle"
               text="It's finally possible to comment anywhere, with @remark."
             />
@@ -151,7 +151,7 @@ function Comment(props: ICommentProps) {
   return (
     <div className="flex flex-row items-center justify-start w-full gap-6 p-5 bg-white shadow-lg rounded-xl">
       <Image
-        src={`/images/${props.image}`}
+        src={`/images/person/${props.image}`}
         className="rounded-full"
         width={50}
         height={50}
@@ -287,7 +287,7 @@ function BrowserCard(props: IBrowserCardProps) {
       */}
       <Image
         alt={`${props.name} Icon`}
-        src={`/images/${props.name.toLowerCase()}.svg`}
+        src={`/images/browser/${props.name.toLowerCase()}.svg`}
         width={50}
         height={50}
       />

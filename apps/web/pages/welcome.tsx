@@ -59,7 +59,7 @@ function Spacer() {
   return (
     <div className="flex flex-row items-center gap-12">
       <div className="w-full h-[2px] bg-black/20"></div>
-      <img src="/images/welcome/logo.png" alt="Remark Logo" className="w-16" />
+      <img src="/images/logo/small.png" alt="Remark Logo" className="w-16" />
       <div className="w-full h-[2px] bg-black/20"></div>
     </div>
   );
@@ -80,7 +80,7 @@ function Section(props: ISectionProps) {
       } justify-evenly items-center px-8 md:px-[10vw] my-[7rem] gap-10 md:gap-0`}
     >
       <img
-        src={`/images/welcome/${props.image}.png`}
+        src={`/images/screens/${props.image}.png`}
         className="h-full md:h-[17vw] drop-shadow-md"
         alt={props.title}
       />
