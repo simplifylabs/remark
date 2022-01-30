@@ -61,7 +61,7 @@ function Spacer() {
   return (
     <div className="flex flex-row items-center gap-12">
       <div className="w-full h-[2px] bg-black/20"></div>
-      <img src="/images/logo/small.png" alt="Remark Logo" className="w-16" />
+      <img src="/images/logo/logo.png" alt="Remark Logo" className="w-16" />
       <div className="w-full h-[2px] bg-black/20"></div>
     </div>
   );
