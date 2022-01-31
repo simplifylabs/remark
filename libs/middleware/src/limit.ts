@@ -21,7 +21,6 @@ export default function limit(input: Options | number, interval?: number) {
   if (typeof input == "object") options = { ...options, ...input };
 
   return RateLimit({
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     sendCommand: (...args: string[]) => client.call(...args),
     max: options.requests,
