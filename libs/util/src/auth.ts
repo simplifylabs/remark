@@ -65,9 +65,7 @@ export async function verifyRefreshToken(
 ): Promise<JwtPayload> {
   const verified: string | JwtPayload = verify(refreshToken, publicKey);
 
-  // Payload will never be a string
-  // @ts-ignore
-  return verified;
+  return verified as JwtPayload;
 }
 
 const client = new OAuth2Client(env("GOOGLE_CLIENT_ID"));
