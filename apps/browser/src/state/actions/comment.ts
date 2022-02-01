@@ -98,7 +98,14 @@ export const fetchComments =
     const url = encodeURIComponent(window.location.href);
 
     const parsed = query.parse(location.search);
-    if (page == 0 && parsed.remark && typeof parsed.remark == "string") {
+    if (
+      page == 0 &&
+      parsed.remark &&
+      typeof parsed.remark == "string" &&
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+        parsed.remark
+      )
+    ) {
       const single = await API.get(["comment", parsed.remark, `?url=${url}`]);
 
       if (single.success) {
