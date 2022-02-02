@@ -20,7 +20,13 @@ export default function Share() {
 
     if (installed) {
       setLoading(true);
-      fetch(router.query.id);
+      if (
+        /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+          router.query.id.toString()
+        )
+      ) {
+        fetch(router.query.id);
+      }
     } else setLoading(false);
   }, [installed, checking, router]);
 
@@ -36,12 +42,12 @@ export default function Share() {
 
   if (loading)
     return (
-      <div className="flex justify-center items-center w-screen h-screen">
+      <div className="flex items-center justify-center w-screen h-screen">
         <Loader />
       </div>
     );
   return (
-    <div className="flex justify-center items-center w-screen h-screen">
+    <div className="flex items-center justify-center w-screen h-screen">
       <div className="flex flex-col items-center text-center">
         <Title title="Not Installed" subtitle="Required Extension" primary />
         <p className="text-lg max-w-[80vw] sm:max-w-[30em] whitespace-pre-wrap break-words text-gray-700 mb-10">
