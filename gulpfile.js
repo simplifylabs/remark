@@ -46,6 +46,9 @@ function distChrome() {
   return dist("chrome", (manifest) => {
     manifest.version = package.version;
     manifest.externally_connectable.matches.pop();
+    manifest.permissions = manifest.permissions.filter(
+      (p) => !["notifications"].includes(p)
+    );
     return toV3(manifest);
   });
 }
@@ -88,6 +91,7 @@ function toV3(manifest) {
         "https://*/*",
         "webRequest",
         "webRequestBlocking",
+        "clipboardWrite",
       ].includes(p)
   );
 
