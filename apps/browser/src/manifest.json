@@ -55,7 +55,6 @@
     "storage",
     "unlimitedStorage",
     "notifications",
-    "idle",
     "webRequest",
     "webRequestBlocking",
     "clipboardWrite"

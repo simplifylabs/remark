@@ -31,7 +31,7 @@ model Post {
   upvotes Int @default(0)
   downvotes Int @default(0)
   votes Vote[]
-  originalURL String
+  originalURL String @db.VarChar(2000)
   shareURL String
   replies Post[] @relation("Reply")
   replyId String? 
