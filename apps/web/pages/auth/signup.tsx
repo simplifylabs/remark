@@ -44,8 +44,8 @@ export default function SignUp() {
   }
 
   return (
-    <div className="flex flex-col gap-10 justify-center items-center w-screen min-h-screen">
-      <div className="flex flex-col gap-3 justify-center items-center">
+    <div className="flex min-h-screen w-screen flex-col items-center justify-center gap-10">
+      <div className="flex flex-col items-center justify-center gap-3">
         <h1 className="text-5xl font-extrabold">Sign Up</h1>
         <p className="text-lg text-gray-700">
           Already have an account?{" "}
@@ -56,7 +56,7 @@ export default function SignUp() {
       </div>
       <form
         onSubmit={submit}
-        className="w-[90vw] sm:w-[22rem] bg-white rounded-xl shadow p-8 flex flex-col gap-2"
+        className="flex w-[90vw] flex-col gap-2 rounded-xl bg-white p-8 shadow sm:w-[22rem]"
       >
         <Input
           type="text"
@@ -84,7 +84,7 @@ export default function SignUp() {
           max={128}
         />
         {error && <Alert type="ERROR" text={error} />}
-        <input className="mt-2 btn-primary" type="submit" value="Submit" />
+        <input className="btn-primary mt-2" type="submit" value="Submit" />
         <Google />
       </form>
     </div>

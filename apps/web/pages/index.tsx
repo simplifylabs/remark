@@ -18,7 +18,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="relative flex flex-col overflow-x-hidden overflow-y-auto scroll-smooth">
+      <div className="relative flex flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
         <Navigation transparent />
         <Hero />
         <Features />
@@ -37,7 +37,7 @@ function Hero() {
     <LazyShow>
       <section
         id="hero"
-        className="relative w-screen min-h-screen flex flex-col justify-center items-center py-0 md:pb-24 md:pt-[10rem] lg:mb-8"
+        className="relative flex min-h-screen w-screen flex-col items-center justify-center py-0 md:pb-24 md:pt-[10rem] lg:mb-8"
       >
         <Title
           title="Comments, anywhere."
@@ -66,10 +66,10 @@ function Hero() {
         <img
           src="/images/screens/example.png"
           alt="Example"
-          className="w-[80vw] md:w-[70vw] drop-shadow-example-small md:drop-shadow-example-big mt-[4rem] md:mt-[8rem]"
+          className="drop-shadow-example-small md:drop-shadow-example-big mt-[4rem] w-[80vw] md:mt-[8rem] md:w-[70vw]"
         />
-        <div className="absolute bottom-0 left-0 h-[50%] w-[22rem] dotted z-[-1] hidden lg:block"></div>
-        <div className="absolute top-0 right-0 h-[24rem] w-[20rem] dotted z-[-1] hidden lg:block"></div>
+        <div className="dotted absolute bottom-0 left-0 z-[-1] hidden h-[50%] w-[22rem] lg:block"></div>
+        <div className="dotted absolute top-0 right-0 z-[-1] hidden h-[24rem] w-[20rem] lg:block"></div>
       </section>
     </LazyShow>
   );
@@ -80,39 +80,39 @@ function Features() {
     <LazyShow>
       <section
         id="features"
-        className="relative w-screen pb-[4rem] md:py-[6rem] flex flex-row justify-between items-center gap-[10rem] xl:gap-0"
+        className="relative flex w-screen flex-row items-center justify-between gap-[10rem] pb-[4rem] md:py-[6rem] xl:gap-0"
       >
         <div
-          className={`w-full xl:w-1/2 flex flex-col justify-center items-start px-10 md:px-20 xl:pl-[4rem] 2xl:pl-[9rem] xl:pr-0`}
+          className={`flex w-full flex-col items-start justify-center px-10 md:px-20 xl:w-1/2 xl:pl-[4rem] xl:pr-0 2xl:pl-[9rem]`}
         >
           <Title title="Just comments, but better." left />
-          <p className="mt-4 text-gray-500 sm:text-xl text-md">
+          <p className="text-md mt-4 text-gray-500 sm:text-xl">
             Yes, we only provide a comment system - but a better one! Having a
             uniform comment system has a lot of advantages, here are a few:
           </p>
-          <div className="flex flex-col items-start gap-12 mt-16">
+          <div className="mt-16 flex flex-col items-start gap-12">
             <Feature
               title="Uncensored"
               description="Are your comments always getting deleted by the owner? In Remark, this is not possible anymore. Your comments can only be deleted by violating our Terms of Service."
             >
-              <EyeIcon className="w-6 h-6" />
+              <EyeIcon className="h-6 w-6" />
             </Feature>
             <Feature
               title="Better"
               description="Replies, Mentions, Upvotes and Downvotes - we have everything you need! Thanks to our voting system, you will always see the most important comments first."
             >
-              <ThumbUpIcon className="w-6 h-6" />
+              <ThumbUpIcon className="h-6 w-6" />
             </Feature>
             <Feature
               title="Anywhere"
               description="You could possibly comment anywhere you want! Even on sites that don't have a comment system. And the best of it - you can do all of that with just one account!"
             >
-              <GlobeAltIcon className="w-6 h-6" />
+              <GlobeAltIcon className="h-6 w-6" />
             </Feature>
           </div>
         </div>
-        <div className="relative w-1/2 h-full flex-col justify-start pr-[2rem] 2xl:pr-[4rem] pl-[3rem] 2xl:pl-[6rem] hidden xl:flex">
-          <div className="absolute right-0 top-1/2 dotted w-[25rem] h-[40rem] z-[-1] transform -translate-y-1/2"></div>
+        <div className="relative hidden h-full w-1/2 flex-col justify-start pr-[2rem] pl-[3rem] xl:flex 2xl:pr-[4rem] 2xl:pl-[6rem]">
+          <div className="dotted absolute right-0 top-1/2 z-[-1] h-[40rem] w-[25rem] -translate-y-1/2 transform"></div>
           <div className="flex flex-col gap-3 rounded-2xl">
             <Comment
               image="1.jpg"
@@ -149,7 +149,7 @@ interface ICommentProps {
 
 function Comment(props: ICommentProps) {
   return (
-    <div className="flex flex-row items-center justify-start w-full gap-6 p-5 bg-white shadow-lg rounded-xl">
+    <div className="flex w-full flex-row items-center justify-start gap-6 rounded-xl bg-white p-5 shadow-lg">
       <Image
         src={`/images/person/${props.image}`}
         className="rounded-full"
@@ -159,7 +159,7 @@ function Comment(props: ICommentProps) {
       />
       <div className="flex flex-col items-start justify-center">
         <p className="text-gray-500">@{props.author}</p>
-        <p className="text-gray-800 2xl:text-lg text-md">{props.text}</p>
+        <p className="text-md text-gray-800 2xl:text-lg">{props.text}</p>
       </div>
     </div>
   );
@@ -173,13 +173,13 @@ interface IFeatureProps {
 
 function Feature(props: IFeatureProps) {
   return (
-    <div className="flex flex-row items-start w-full gap-5">
-      <div className="flex items-center justify-center text-white rounded-md feature-icon bg-brand">
+    <div className="flex w-full flex-row items-start gap-5">
+      <div className="feature-icon bg-brand flex items-center justify-center rounded-md text-white">
         {props.children}
       </div>
-      <div className="flex-col items-start w-auto gap-4">
+      <div className="w-auto flex-col items-start gap-4">
         <h3 className="text-xl font-medium text-gray-800">{props.title}</h3>
-        <p className="text-gray-500 sm:text-lg text-md">{props.description}</p>
+        <p className="text-md text-gray-500 sm:text-lg">{props.description}</p>
       </div>
     </div>
   );
@@ -195,7 +195,7 @@ function Download() {
     <LazyShow>
       <section
         id="download"
-        className="w-screen py-[4rem] md:py-[6rem] flex flex-col justify-center"
+        className="flex w-screen flex-col justify-center py-[4rem] md:py-[6rem]"
       >
         <Title
           title="Download"
@@ -206,7 +206,7 @@ function Download() {
         <div
           className={`flex ${
             small ? "flex-col" : "flex-row flex-wrap"
-          } justify-center items-center gap-8 mt-4 md:mt-12 px-12`}
+          } mt-4 items-center justify-center gap-8 px-12 md:mt-12`}
         >
           <BrowserCard
             name="Firefox"
@@ -274,13 +274,13 @@ function BrowserCard(props: IBrowserCardProps) {
 
   return (
     <div
-      className={`relative bg-white p-8 shadow-md rounded-xl flex flex-col justify-center items-center gap-8 ${
+      className={`relative flex flex-col items-center justify-center gap-8 rounded-xl bg-white p-8 shadow-md ${
         props.hidden && "hidden"
       }`}
     >
       {/*
       {current && (
-        <div className="absolute top-0 flex items-center justify-center w-full h-8 transform -translate-y-full rounded-t-lg bg-brand">
+        <div className="flex absolute top-0 justify-center items-center w-full h-8 rounded-t-lg transform -translate-y-full bg-brand">
           <label className="text-sm text-white">Current</label>
         </div>
       )}
@@ -298,7 +298,7 @@ function BrowserCard(props: IBrowserCardProps) {
           href={props.download}
           target="_blank"
           rel="noreferrer"
-          className="-mt-1 uppercase hover:opacity-70 text-md"
+          className="text-md -mt-1 uppercase hover:opacity-70"
         >
           Download
         </a>
@@ -317,11 +317,11 @@ function Contact() {
   return (
     <section
       id="contact"
-      className="relative w-full py-[4rem] md:py-[5rem] flex flex-row px-10 bg-white gap-10 justify-evenly items-start mt-12 lg:mt-32"
+      className="relative mt-12 flex w-full flex-row items-start justify-evenly gap-10 bg-white py-[4rem] px-10 md:py-[5rem] lg:mt-32"
     >
-      <div className="flex flex-col items-start w-auto gap-10 justify-evenly md:flex-row md:flex-wrap md:w-full xl:items-center">
+      <div className="flex w-auto flex-col items-start justify-evenly gap-10 md:w-full md:flex-row md:flex-wrap xl:items-center">
         <div className="flex flex-col items-start">
-          <label className="text-sm text-gray-500 uppercase">
+          <label className="text-sm uppercase text-gray-500">
             Contact Info
           </label>
           <div className="flex flex-col items-start">
@@ -334,7 +334,7 @@ function Contact() {
           </div>
         </div>
         <div className="flex flex-col items-start">
-          <label className="text-sm text-gray-500 uppercase">Address</label>
+          <label className="text-sm uppercase text-gray-500">Address</label>
           <p className="text-lg text-gray-800">
             Wolf-Huber-Straße 31
             <br />
@@ -342,7 +342,7 @@ function Contact() {
           </p>
         </div>
         <div className="flex flex-col items-start">
-          <label className="text-sm text-gray-500 uppercase">Legal</label>
+          <label className="text-sm uppercase text-gray-500">Legal</label>
           <div className="flex flex-col items-start">
             <Link passHref href="/privacy">
               <a className="text-lg text-gray-800 hover:text-gray-600">
@@ -355,7 +355,7 @@ function Contact() {
           </div>
         </div>
         <div className="flex flex-col items-start">
-          <label className="text-sm text-gray-500 uppercase">Info</label>
+          <label className="text-sm uppercase text-gray-500">Info</label>
           <div className="flex flex-col items-start">
             <Link passHref href="/#features">
               <a className="text-lg text-gray-800 hover:text-gray-600">
@@ -370,7 +370,7 @@ function Contact() {
           </div>
         </div>
       </div>
-      <hr className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[90vw] h-[2px] bg-[rgba(0,0,0,0.08)]"></hr>
+      <hr className="absolute bottom-0 left-1/2 h-[2px] w-[90vw] -translate-x-1/2 transform bg-[rgba(0,0,0,0.08)]"></hr>
     </section>
   );
 }

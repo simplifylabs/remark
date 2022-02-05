@@ -108,7 +108,7 @@ function FabComponent(props: IProps) {
         style={{
           transform: `scale(${scale}, ${scale})`,
         }}
-        className="relative w-full h-full transition-all duration-200"
+        className="relative h-full w-full transition-all duration-200"
       >
         <div
           onClick={() => props.hideFab()}
@@ -118,18 +118,18 @@ function FabComponent(props: IProps) {
           }}
           onMouseOver={() => setLabelHover(true)}
           onMouseOut={() => setLabelHover(false)}
-          className={`fixed w-6 h-6 bg-red-500 rounded-full justify-center items-center shadow-xl flex transition-all z-[1] cursor-pointer ${
+          className={`fixed z-[1] flex h-6 w-6 cursor-pointer items-center justify-center rounded-full bg-red-500 shadow-xl transition-all ${
             (props.total > 0 || fabHover || labelHover) &&
             !props.typing &&
             !props.sidebar
               ? "opacity-1"
-              : "opacity-0 pointer-events-none"
+              : "pointer-events-none opacity-0"
           }`}
         >
           {labelHover || fabHover || props.total <= 0 ? (
-            <XIcon className="text-white w-1/2 pointer-events-none" />
+            <XIcon className="pointer-events-none w-1/2 text-white" />
           ) : (
-            <label className="text-xs font-bold text-white pointer-events-none">
+            <label className="pointer-events-none text-xs font-bold text-white">
               {props.total > 99 ? "!" : props.total}
             </label>
           )}
@@ -138,13 +138,13 @@ function FabComponent(props: IProps) {
           onClick={click}
           onMouseOver={() => setFabHover(true)}
           onMouseOut={() => setFabHover(false)}
-          className={`absolute left-0 bottom-0 group ${
+          className={`group absolute left-0 bottom-0 ${
             !props.sidebar && secondary
-              ? "w-[50px] h-[50px]"
-              : "w-[55px] h-[55px]"
+              ? "h-[50px] w-[50px]"
+              : "h-[55px] w-[55px]"
           } ${
             props.sidebar ? "rounded-lg" : "rounded-[50%]"
-          } bg-brand !cursor-pointer flex justify-center items-center !transition-all !duration-200 remark-ignore`}
+          } bg-brand remark-ignore flex !cursor-pointer items-center justify-center !transition-all !duration-200`}
         >
           {props.typing ? (
             <PaperAirplaneIcon
@@ -156,7 +156,7 @@ function FabComponent(props: IProps) {
                 //@ts-ignore
                 "--tw-rotate": `90deg`,
               }}
-              className="w-5/12 icon-white transition-all duration-200 transform !cursor-pointer remark-ignore opacity-[99]"
+              className="icon-white remark-ignore w-5/12 transform !cursor-pointer opacity-[99] transition-all duration-200"
               shapeRendering="geometricPrecision"
             />
           ) : props.sidebar ? (
@@ -165,7 +165,7 @@ function FabComponent(props: IProps) {
                 //@ts-ignore
                 "--tw-rotate": `${fabHover ? 90 : 0}deg`,
               }}
-              className="w-5/12 icon-white transition-all duration-200 transform !cursor-pointer remark-ignore opacity-[99]"
+              className="icon-white remark-ignore w-5/12 transform !cursor-pointer opacity-[99] transition-all duration-200"
               shapeRendering="geometricPrecision"
             />
           ) : (
@@ -174,7 +174,7 @@ function FabComponent(props: IProps) {
                 //@ts-ignore
                 "--tw-rotate": `${fabHover ? 20 : 0}deg`,
               }}
-              className="w-5/12 transition-all duration-200 transform cursor-pointer"
+              className="w-5/12 transform cursor-pointer transition-all duration-200"
               viewBox="0 0 354 354"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"

@@ -6,7 +6,7 @@ export default function Welcome() {
   useTitle("Get Started");
 
   return (
-    <div className="w-full h-full">
+    <div className="h-full w-full">
       <Navigation hideLinks closeIcon />
       <Hero />
       <Spacer />
@@ -43,12 +43,12 @@ export default function Welcome() {
 
 function Hero() {
   return (
-    <section className="relative h-[35vh] w-full py-8 flex justify-center items-center mt-12">
-      <div className="absolute hidden md:block left-0 top-1/2 -translate-y-1/2 dotted w-[13rem] h-[72%]"></div>
-      <div className="absolute hidden md:block right-0 top-1/2 -translate-y-1/2 dotted w-[13rem] h-[72%]"></div>
+    <section className="relative mt-12 flex h-[35vh] w-full items-center justify-center py-8">
+      <div className="dotted absolute left-0 top-1/2 hidden h-[72%] w-[13rem] -translate-y-1/2 md:block"></div>
+      <div className="dotted absolute right-0 top-1/2 hidden h-[72%] w-[13rem] -translate-y-1/2 md:block"></div>
       <div className="flex flex-col items-center px-8 text-center">
-        <h1 className="font-extrabold text-5xl">Get started with Remark</h1>
-        <p className="text-xl text-gray-500 mt-3">
+        <h1 className="text-5xl font-extrabold">Get started with Remark</h1>
+        <p className="mt-3 text-xl text-gray-500">
           This short introduction will show you everything you need to know to
           get started!
         </p>
@@ -60,9 +60,9 @@ function Hero() {
 function Spacer() {
   return (
     <div className="flex flex-row items-center gap-12">
-      <div className="w-full h-[2px] bg-black/20"></div>
+      <div className="h-[2px] w-full bg-black/20"></div>
       <img src="/images/logo/logo.png" alt="Remark Logo" className="w-16" />
-      <div className="w-full h-[2px] bg-black/20"></div>
+      <div className="h-[2px] w-full bg-black/20"></div>
     </div>
   );
 }
@@ -79,17 +79,17 @@ function Section(props: ISectionProps) {
     <section
       className={`relative flex flex-col-reverse ${
         props.flip ? "md:flex-row-reverse" : "md:flex-row"
-      } justify-evenly items-center px-8 md:px-[10vw] my-[7rem] gap-10 md:gap-0`}
+      } my-[7rem] items-center justify-evenly gap-10 px-8 md:gap-0 md:px-[10vw]`}
     >
       <img
         src={`/images/screens/${props.image}.png`}
-        className="h-full md:h-[17vw] drop-shadow-md"
+        className="h-full drop-shadow-md md:h-[17vw]"
         alt={props.title}
       />
-      <div className="flex flex-col md:max-w-[32vw] gap-1">
+      <div className="flex flex-col gap-1 md:max-w-[32vw]">
         <label className="text-md text-brand uppercase">Using Remark</label>
         <h2 className="text-4xl font-bold">{props.title}</h2>
-        <p className="text-lg text-gray-700 mt-6">{props.children}</p>
+        <p className="mt-6 text-lg text-gray-700">{props.children}</p>
       </div>
     </section>
   );

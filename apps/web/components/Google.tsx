@@ -52,17 +52,17 @@ export default function Google() {
 
   return (
     <>
-      <div className="w-full flex justify-between items-center gap-5 my-2">
-        <div className="bg-gray-200 w-full h-0.5"></div>
-        <p className="text-gray-400 whitespace-nowrap">Or</p>
-        <div className="bg-gray-200 w-full h-0.5"></div>
+      <div className="my-2 flex w-full items-center justify-between gap-5">
+        <div className="h-0.5 w-full bg-gray-200"></div>
+        <p className="whitespace-nowrap text-gray-400">Or</p>
+        <div className="h-0.5 w-full bg-gray-200"></div>
       </div>
       <div
         onClick={googleSignIn}
-        className="w-full cursor-pointer h-10 bg-white py-2 border rounded shadow-sm border-gray-300 hover:shadow transition-all flex justify-center items-center gap-3"
+        className="flex h-10 w-full cursor-pointer items-center justify-center gap-3 rounded border border-gray-300 bg-white py-2 shadow-sm transition-all hover:shadow"
       >
         <svg
-          className="w-5 pointer-events-none"
+          className="pointer-events-none w-5"
           xmlns="http://www.w3.org/2000/svg"
           xmlnsXlink="http://www.w3.org/1999/xlink"
           viewBox="0 0 48 48"
@@ -93,7 +93,7 @@ export default function Google() {
             d="M48 48L17 24l-4-3 35-10z"
           />
         </svg>
-        <label className="text-gray-500 pointer-events-none select-none">
+        <label className="pointer-events-none select-none text-gray-500">
           Continue with Google
         </label>
       </div>

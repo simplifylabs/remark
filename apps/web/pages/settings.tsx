@@ -111,26 +111,26 @@ export default function Settings() {
 
   if (loading)
     return (
-      <div className="flex justify-center items-center w-screen h-screen">
+      <div className="flex h-screen w-screen items-center justify-center">
         <Loader />
       </div>
     );
   return (
-    <div className="flex flex-col gap-10 justify-center items-center w-screen min-h-screen">
-      <div className="flex flex-col gap-1 justify-center items-center">
+    <div className="flex min-h-screen w-screen flex-col items-center justify-center gap-10">
+      <div className="flex flex-col items-center justify-center gap-1">
         <h1 className="text-5xl font-extrabold">Settings</h1>
         <p className="text-lg text-gray-700">Update the Remark Settings</p>
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="w-[90vw] sm:w-[23rem] bg-white rounded-xl shadow p-8 flex flex-col gap-4"
+        className="flex w-[90vw] flex-col gap-4 rounded-xl bg-white p-8 shadow sm:w-[23rem]"
       >
         <Option>
           <Label>Show by Default</Label>
           <select
             defaultValue={mode}
             onChange={(e) => updateMode(e.target.value as Mode)}
-            className="bg-white text-black py-[0.4rem] rounded-md pl-3 pr-10 focus:ring-2 focus:ring-brand focus:outline-none border-gray-200 border shadow-sm"
+            className="focus:ring-brand rounded-md border border-gray-200 bg-white py-[0.4rem] pl-3 pr-10 text-black shadow-sm focus:outline-none focus:ring-2"
           >
             <option value="SHOW">Always</option>
             <option value="SMART">Smart</option>
@@ -143,7 +143,7 @@ export default function Settings() {
             onClick={clearWhite}
             className={`${
               clearedWhite ? "btn-disabled" : "btn-primary"
-            } text-sm px-4 py-2`}
+            } px-4 py-2 text-sm`}
           >
             Clear
           </button>
@@ -154,7 +154,7 @@ export default function Settings() {
             onClick={clearSmart}
             className={`${
               clearedSmart ? "btn-disabled" : "btn-primary"
-            } text-sm px-4 py-2`}
+            } px-4 py-2 text-sm`}
           >
             Clear
           </button>
@@ -165,7 +165,7 @@ export default function Settings() {
             onClick={clearBlack}
             className={`${
               clearedBlack ? "btn-disabled" : "btn-primary"
-            } text-sm px-4 py-2`}
+            } px-4 py-2 text-sm`}
           >
             Clear
           </button>
@@ -174,7 +174,7 @@ export default function Settings() {
           <Label>{signedOut ? "Sign In" : "Sign Out"}</Label>
           <button
             onClick={signedOut ? signIn : signOut}
-            className={`btn-primary text-sm px-4 py-2`}
+            className={`btn-primary px-4 py-2 text-sm`}
           >
             {signedOut ? "Sign In" : "Sign Out"}
           </button>
@@ -187,7 +187,7 @@ export default function Settings() {
 
 function Option(props: { children: any }) {
   return (
-    <div className="flex flex-row justify-between items-center w-full">
+    <div className="flex w-full flex-row items-center justify-between">
       {props.children}
     </div>
   );

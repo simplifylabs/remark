@@ -28,7 +28,7 @@ export default function Input(props: IInputProps) {
   return (
     <div className="flex flex-col justify-start">
       <label
-        className={`text-gray-500 text-sm`}
+        className={`text-sm text-gray-500`}
         htmlFor={props.name.toUpperCase().replace(" ", "")}
       >
         {props.name}

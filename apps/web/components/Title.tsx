@@ -13,11 +13,11 @@ export default function Title(props: ITitleProps) {
     <div
       className={`flex flex-col ${
         props.left ? "items-start" : "items-center"
-      } ${!props.left && "px-4 mb-8 text-center"}`}
+      } ${!props.left && "mb-8 px-4 text-center"}`}
     >
       {props.subtitle && (
         <p
-          className={`tracking-widest uppercase font-medium text-brand ${
+          className={`text-brand font-medium uppercase tracking-widest ${
             props.primary
               ? "text-lg sm:text-xl md:text-2xl"
               : "text-lg md:text-xl"
@@ -29,7 +29,7 @@ export default function Title(props: ITitleProps) {
       {props.primary ? (
         <h1
           id={props.id}
-          className={`text-5xl md:text-6xl font-extrabold ${
+          className={`text-5xl font-extrabold md:text-6xl ${
             props.titleClassName || ""
           }`}
         >
@@ -38,7 +38,7 @@ export default function Title(props: ITitleProps) {
       ) : (
         <h2
           id={props.id}
-          className={`text-4xl md:text-5xl font-extrabold ${
+          className={`text-4xl font-extrabold md:text-5xl ${
             props.titleClassName || ""
           }`}
         >

@@ -6,7 +6,7 @@ export default function Maintance() {
   const router = useRouter();
 
   return (
-    <div className="flex flex-col justify-center items-center w-screen h-screen">
+    <div className="flex h-screen w-screen flex-col items-center justify-center">
       <div className="flex flex-col gap-1 px-8 text-left md:px-0">
         <h1 className="text-4xl font-extrabold md:text-5xl">
           We&apos;ll be back soon!
@@ -16,10 +16,10 @@ export default function Maintance() {
           <br />
           Please try again later!
         </p>
-        <div className="flex justify-center items-center mt-10 w-full">
+        <div className="mt-10 flex w-full items-center justify-center">
           <button
             onClick={() => router.back()}
-            className="px-12 w-min btn-primary"
+            className="btn-primary w-min px-12"
           >
             Retry
           </button>

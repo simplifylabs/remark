@@ -21,7 +21,7 @@ export default function Loader(props: ILoaderProps) {
         width: getSize() + "rem",
         height: getSize() + "rem",
       }}
-      className={`animate-spin text-white mx-auto`}
+      className={`mx-auto animate-spin text-white`}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"

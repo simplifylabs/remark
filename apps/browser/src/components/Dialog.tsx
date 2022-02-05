@@ -83,18 +83,18 @@ function ModalComponent(props: IModalProps) {
         height: "100vh",
       }}
     >
-      <div onClick={close} className="absolute w-screen h-screen"></div>
+      <div onClick={close} className="absolute h-screen w-screen"></div>
       <div
-        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-start p-6 shadow-lg rounded-2xl bg-white dark:bg-background-card z-[1]`}
+        className={`dark:bg-background-card absolute top-1/2 left-1/2 z-[1] flex -translate-x-1/2 -translate-y-1/2 flex-col items-start rounded-2xl bg-white p-6 shadow-lg`}
       >
         <p className="text-lg font-medium text-black dark:text-white">
           {props.title}
         </p>
         <p
           dangerouslySetInnerHTML={{ __html: props.text }}
-          className="text-sm text-gray-500 dark:text-gray-400 whitespace-pre"
+          className="whitespace-pre text-sm text-gray-500 dark:text-gray-400"
         ></p>
-        <div className="flex flex-row gap-4 justify-end items-center mt-4 w-full">
+        <div className="mt-4 flex w-full flex-row items-center justify-end gap-4">
           {props.buttons.map((button) => {
             if (button.type == "LINK")
               return (
@@ -169,17 +169,17 @@ function SnackbarComponent(props: ISnackbarProps) {
       }}
     >
       <div
-        className={`flex flex-row items-center fixed left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 px-4 py-2 max-w-[90%] ${
+        className={`fixed left-1/2 top-1/2 flex max-w-[90%] -translate-y-1/2 -translate-x-1/2 flex-row items-center px-4 py-2 ${
           props.level == "SUCCESS" ? "bg-emerald-500" : "bg-red-500"
-        } shadow-lg rounded-md`}
+        } rounded-md shadow-lg`}
       >
-        <p className="w-full px-2 text-lg text-white whitespace-nowrap">
+        <p className="w-full whitespace-nowrap px-2 text-lg text-white">
           {props.text}
         </p>
         {props.type == "SNACKBAR" && (
           <XIcon
             onClick={() => Snackbar.hide(props.id)}
-            className="min-w-[1.25rem] min-h-[1.25rem] text-white cursor-pointer"
+            className="min-h-[1.25rem] min-w-[1.25rem] cursor-pointer text-white"
           />
         )}
       </div>

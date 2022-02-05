@@ -9,11 +9,11 @@ export default function Alert({ type, text }: IAlertProps): ReactElement {
   return (
     <>
       <div
-        className={`w-full mt-3 ${
+        className={`mt-3 w-full ${
           type == "ERROR"
-            ? "bg-red-200 border-red-300"
-            : "bg-green-200 border-green-300"
-        } px-3 py-2 rounded-md border`}
+            ? "border-red-300 bg-red-200"
+            : "border-green-300 bg-green-200"
+        } rounded-md border px-3 py-2`}
       >
         <p
           className={`${
