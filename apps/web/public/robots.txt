@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Allow: /privacy
+Allow: /terms
+Allow: /auth/signin
+Allow: /auth/signup
+
+Disallow: /profile
+Disallow: /uninstall
+Disallow: /settings
+Disallow: /share
+Disallow: /welcome
