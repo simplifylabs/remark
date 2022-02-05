@@ -9,7 +9,7 @@ export default function Privacy() {
   return (
     <>
       <Navigation />
-      <div className="flex justify-center items-center p-12 pt-32 w-screen min-h-screen py-8 xl:py-[10rem]">
+      <div className="flex min-h-screen w-screen items-center justify-center p-12 py-8 pt-32 xl:py-[10rem]">
         <article className="prose">
           <h1>Privacy Policy for Remark</h1>
           <p>

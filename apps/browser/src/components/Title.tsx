@@ -7,11 +7,11 @@ interface IProps {
 
 export default function Title(props: IProps) {
   return (
-    <div className="flex flex-col justify-center items-center mb-5">
-      <h2 className="text-lg uppercase tracking-[3px] text-brand -mb-1">
+    <div className="mb-5 flex flex-col items-center justify-center">
+      <h2 className="text-brand -mb-1 text-lg uppercase tracking-[3px]">
         {props.subtitle}
       </h2>
-      <h1 className="text-4xl font-bold text-default">{props.title}</h1>
+      <h1 className="text-default text-4xl font-bold">{props.title}</h1>
     </div>
   );
 }

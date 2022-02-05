@@ -31,22 +31,22 @@ export default function Forgot() {
 
   if (sent)
     return (
-      <div className="flex flex-col justify-center items-center px-5 w-screen min-h-screen">
+      <div className="flex min-h-screen w-screen flex-col items-center justify-center px-5">
         <Title
           title="Email Sent"
           subtitle="Password-Reset"
           primary
           titleClassName="text-4xl sm:text-5xl"
         />
-        <p className="max-w-[23rem] text-lg text-gray-700 text-center">
+        <p className="max-w-[23rem] text-center text-lg text-gray-700">
           We&apos;ve just sent you an email including a reset link. Please check
           your inbox!
         </p>
       </div>
     );
   return (
-    <div className="flex flex-col gap-10 justify-center items-center w-screen min-h-screen">
-      <div className="flex flex-col gap-3 justify-center items-center">
+    <div className="flex min-h-screen w-screen flex-col items-center justify-center gap-10">
+      <div className="flex flex-col items-center justify-center gap-3">
         <h1 className="text-5xl font-extrabold">Forgot</h1>
         <p className="text-lg text-gray-700">
           Already know your password?{" "}
@@ -57,11 +57,11 @@ export default function Forgot() {
       </div>
       <form
         onSubmit={submit}
-        className="w-[90vw] sm:w-[22rem] bg-white rounded-xl shadow p-8 flex flex-col gap-2"
+        className="flex w-[90vw] flex-col gap-2 rounded-xl bg-white p-8 shadow sm:w-[22rem]"
       >
         <Input type="email" name="Email" autoComplete="email" set={setEmail} />
         {error && <Alert type="ERROR" text={error} />}
-        <input className="mt-2 btn-primary" type="submit" value="Send" />
+        <input className="btn-primary mt-2" type="submit" value="Send" />
       </form>
     </div>
   );

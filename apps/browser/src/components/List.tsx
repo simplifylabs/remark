@@ -49,7 +49,7 @@ function List(props: IListProps) {
 
   if (!props.online)
     return (
-      <div className="flex justify-center items-center w-full h-full">
+      <div className="flex h-full w-full items-center justify-center">
         <div className="flex flex-col items-center px-12 text-left">
           <h1 className="w-full text-4xl font-extrabold text-gray-800 dark:text-white">
             {!props.client ? "Offline" : "Maintenance"}
@@ -61,7 +61,7 @@ function List(props: IListProps) {
           </p>
           <button
             onClick={() => props.fetch(0)}
-            className="mt-5 w-auto btn-primary"
+            className="btn-primary mt-5 w-auto"
           >
             Retry
           </button>
@@ -71,20 +71,20 @@ function List(props: IListProps) {
   return (
     <div
       id="remark-scroll"
-      className="overflow-y-auto w-full h-full thin-scrollbar"
+      className="thin-scrollbar h-full w-full overflow-y-auto"
     >
       <InfiniteScroll
         dataLength={props.list.length}
         next={() => props.fetch(props.page + 1)}
         hasMore={props.list.length < props.parents}
         loader={
-          <div className="flex justify-center items-center p-4 w-full">
+          <div className="flex w-full items-center justify-center p-4">
             <Loader />
           </div>
         }
         scrollableTarget="remark-scroll"
       >
-        <div className="flex flex-col gap-[1.1rem] justify-start items-center pt-3 w-full grow">
+        <div className="flex w-full grow flex-col items-center justify-start gap-[1.1rem] pt-3">
           {props.list.map((item) => (
             <Fragment key={item.shared ? "SHARED" : item.id}>
               <Comment {...item} remove={remove} setValue={setValue} />

@@ -128,13 +128,13 @@ export default function Profile() {
 
   if (loading)
     return (
-      <div className="flex justify-center items-center w-screen h-screen">
+      <div className="flex h-screen w-screen items-center justify-center">
         <Loader />
       </div>
     );
   return (
-    <div className="flex flex-col gap-10 justify-center items-center w-screen min-h-screen">
-      <div className="flex flex-col gap-1 justify-center items-center">
+    <div className="flex min-h-screen w-screen flex-col items-center justify-center gap-10">
+      <div className="flex flex-col items-center justify-center gap-1">
         <h1 className="text-5xl font-extrabold">Profile</h1>
         <p className="text-lg text-gray-700">Update your Profile</p>
       </div>
@@ -143,9 +143,9 @@ export default function Profile() {
           e.preventDefault();
           if (changed.length > 0) submit();
         }}
-        className="w-[90vw] sm:w-[22rem] bg-white rounded-xl shadow p-8 flex flex-col gap-2"
+        className="flex w-[90vw] flex-col gap-2 rounded-xl bg-white p-8 shadow sm:w-[22rem]"
       >
-        <div className="flex justify-center mb-4 w-full">
+        <div className="mb-4 flex w-full justify-center">
           <button
             onClick={(e) => {
               e.preventDefault();
@@ -160,14 +160,14 @@ export default function Profile() {
                   }")`
                 : undefined,
             }}
-            className="flex justify-center items-center w-24 h-24 bg-center bg-no-repeat bg-cover rounded-full border border-gray-300 shadow-sm group"
+            className="group flex h-24 w-24 items-center justify-center rounded-full border border-gray-300 bg-cover bg-center bg-no-repeat shadow-sm"
           >
             {!avatar && !initial?.avatar && (
-              <PlusIcon className="w-5 h-5 text-gray-500" />
+              <PlusIcon className="h-5 w-5 text-gray-500" />
             )}
 
             {(avatar || initial?.avatar) && (
-              <PencilIcon className="w-5 h-5 text-white opacity-0 transition-opacity group-hover:opacity-100 drop-shadow-md" />
+              <PencilIcon className="h-5 w-5 text-white opacity-0 drop-shadow-md transition-opacity group-hover:opacity-100" />
             )}
           </button>
         </div>

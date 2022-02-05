@@ -10,8 +10,8 @@ export default function Logo(props: ILogoProps) {
   return (
     <div
       onClick={() => props.router.push("/#")}
-      className={`flex flex-row items-center cursor-pointer group ${
-        props.centered && "absolute left-1/2 transform -translate-x-1/2"
+      className={`group flex cursor-pointer flex-row items-center ${
+        props.centered && "absolute left-1/2 -translate-x-1/2 transform"
       } `}
     >
       <Image
@@ -21,7 +21,7 @@ export default function Logo(props: ILogoProps) {
         height={25}
         width={25}
       />
-      <a className="ml-3 text-2xl text-black group-hover:opacity-80 font-pacifico">
+      <a className="font-pacifico ml-3 text-2xl text-black group-hover:opacity-80">
         Remark
       </a>
     </div>

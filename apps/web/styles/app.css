@@ -16,11 +16,11 @@
   }
 
   * {
-    @apply m-0 p-0 text-base font-inter;
+    @apply font-inter m-0 p-0 text-base;
   }
 
   body {
-    @apply bg-background scroll-smooth overflow-x-hidden overflow-y-auto;
+    @apply bg-background overflow-y-auto overflow-x-hidden scroll-smooth;
   }
 
   html {
@@ -41,7 +41,7 @@
   [type="week"],
   [multiple],
   textarea select {
-    @apply border-gray-300 rounded-md shadow-sm focus:ring-brand bg-white focus:caret-brand  text-black;
+    @apply focus:ring-brand focus:caret-brand rounded-md border-gray-300 bg-white text-black  shadow-sm;
   }
 
   select {
@@ -50,12 +50,12 @@
   }
 
   textarea {
-    @apply border-gray-300 rounded-md shadow-sm focus:ring-brand bg-white focus:caret-brand text-black;
+    @apply focus:ring-brand focus:caret-brand rounded-md border-gray-300 bg-white text-black shadow-sm;
   }
 
   [type="checkbox"],
   [type="radio"] {
-    @apply rounded border-gray-300 text-brand focus:ring-brand;
+    @apply text-brand focus:ring-brand rounded border-gray-300;
   }
 
   [type="submit"] {
@@ -63,7 +63,7 @@
   }
 
   button {
-    @apply outline-none font-medium cursor-pointer select-none focus:outline-none;
+    @apply cursor-pointer select-none font-medium outline-none focus:outline-none;
   }
 
   .fade {
@@ -71,11 +71,11 @@
   }
 
   .link {
-    @apply text-brand hover:text-gray-700 cursor-pointer fade;
+    @apply text-brand fade cursor-pointer hover:text-gray-700;
   }
 
   .btn-primary {
-    @apply btn bg-brand text-white hover:bg-brand-light focus:ring-brand focus:ring-2 focus:ring-offset-2;
+    @apply btn bg-brand hover:bg-brand-light focus:ring-brand text-white focus:ring-2 focus:ring-offset-2;
   }
 
   .btn-secondary {
@@ -83,7 +83,7 @@
   }
 
   .btn-outline {
-    @apply btn border-gray-300 hover:border-gray-400 focus:border-gray-400 border-2 text-gray-700 hover:shadow-sm;
+    @apply btn border-2 border-gray-300 text-gray-700 hover:border-gray-400 hover:shadow-sm focus:border-gray-400;
   }
 
   .btn-disabled {
@@ -91,7 +91,7 @@
   }
 
   .btn {
-    @apply flex flex-row justify-center items-center gap-2 px-7 py-2.5 rounded-md select-none cursor-pointer fade focus:outline-none;
+    @apply fade flex cursor-pointer select-none flex-row items-center justify-center gap-2 rounded-md px-7 py-2.5 focus:outline-none;
   }
 
   .text-default {

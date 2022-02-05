@@ -117,27 +117,27 @@ function Comment(props: ICommentProps) {
 
   return (
     <div
-      className={`relative w-full flex flex-col items-end ${
+      className={`relative flex w-full flex-col items-end ${
         (props.shared && props.replies.length < 1) ||
         (props.parent &&
           props.parent.shared &&
           props.parent.replies[props.parent.replies.length - 1].id == props.id)
-          ? "pb-4 border-b border-black/10"
+          ? "border-b border-black/10 pb-4"
           : ""
       } ${props.parent ? "pl-6" : ""}`}
     >
-      <div className="w-full bg-white dark:bg-background-card rounded-[0.75rem] flex flex-col items-center justify-center overflow-hidden shadow ">
-        <div className="flex flex-row gap-3 justify-center items-start p-4 w-full">
+      <div className="dark:bg-background-card flex w-full flex-col items-center justify-center overflow-hidden rounded-[0.75rem] bg-white shadow ">
+        <div className="flex w-full flex-row items-start justify-center gap-3 p-4">
           <img
             src={`${Server.cdn}avatar/${props.dark ? "dark" : "light"}/50x50/${
               props.author.id
             }`}
             alt={`${props.author.username}´s Avatar`}
-            className="min-w-[2rem] min-h-[2rem] rounded-full mt-1"
+            className="mt-1 min-h-[2rem] min-w-[2rem] rounded-full"
           />
-          <div className="flex flex-col items-start w-full">
-            <div className="flex flex-row justify-between w-full">
-              <label className="font-semibold text-black dark:text-white text-md">
+          <div className="flex w-full flex-col items-start">
+            <div className="flex w-full flex-row justify-between">
+              <label className="text-md font-semibold text-black dark:text-white">
                 {props.author.username}{" "}
               </label>
               <small className="text-xs text-gray-500 dark:text-gray-500">
@@ -157,8 +157,8 @@ function Comment(props: ICommentProps) {
             </p>
           </div>
         </div>
-        <div className="flex flex-row justify-between items-center px-2 w-full h-10 bg-gray-100 dark:bg-white/10">
-          <div className="flex flex-row gap-2 items-center">
+        <div className="flex h-10 w-full flex-row items-center justify-between bg-gray-100 px-2 dark:bg-white/10">
+          <div className="flex flex-row items-center gap-2">
             <ChevronUpIcon
               onClick={() => props.vote(props.id, "UP")}
               className={`btn-icon ${vote == "UP" && "!text-brand"}`}
@@ -171,7 +171,7 @@ function Comment(props: ICommentProps) {
               className={`btn-icon ${vote == "DOWN" && "!text-brand"}`}
             />
           </div>
-          <div className="flex flex-row gap-2 items-center">
+          <div className="flex flex-row items-center gap-2">
             <AnnotationIcon onClick={reply} className="btn-icon p-[0.35rem]" />
             <ShareIcon
               onClick={() => {

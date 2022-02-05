@@ -49,31 +49,31 @@ export default function Feedback() {
   }
 
   return (
-    <div className="flex flex-col items-center w-screen min-h-screen">
+    <div className="flex min-h-screen w-screen flex-col items-center">
       <Navigation uninstall />
       <div className="mt-auto"></div>
       {finished ? (
         <>
           <h1 className="text-6xl font-extrabold">Thanks</h1>
-          <p className="text-xl tracking-widest uppercase text-brand">
+          <p className="text-brand text-xl uppercase tracking-widest">
             for your feedback
           </p>
-          <div className="flex flex-col gap-1 mt-12">
+          <div className="mt-12 flex flex-col gap-1">
             <label className="text-sm text-gray-600">Changed your mind?</label>
             <AddButton reinstall />
           </div>
         </>
       ) : (
         <>
-          <p className="text-xl tracking-widest uppercase text-brand">
+          <p className="text-brand text-xl uppercase tracking-widest">
             Please give us
           </p>
           <h1 className="text-5xl font-extrabold">Feedback</h1>
 
-          <h2 className="mt-12 mb-4 text-gray-700 text-basesm:text-lg">
+          <h2 className="text-basesm:text-lg mt-12 mb-4 text-gray-700">
             Why did you uninstall Remark?
           </h2>
-          <div className="w-[90vw] sm:w-[18rem] flex flex-col gap-2">
+          <div className="flex w-[90vw] flex-col gap-2 sm:w-[18rem]">
             <div className="flex flex-col justify-start pl-2">
               <Option
                 add={add}
@@ -107,7 +107,7 @@ export default function Feedback() {
               onChange={(e) => setComment(e.target.value)}
             />
             {error && <Alert type="ERROR" text={error} />}
-            <button onClick={submit} className="w-full btn-primary">
+            <button onClick={submit} className="btn-primary w-full">
               Submit
             </button>
           </div>
@@ -136,9 +136,9 @@ function Option(props: IOptionProps) {
   }, [checked]);
 
   return (
-    <div className="flex flex-row gap-4 items-center">
+    <div className="flex flex-row items-center gap-4">
       <input
-        className="w-4 h-4 cursor-pointer"
+        className="h-4 w-4 cursor-pointer"
         type="checkbox"
         name={id}
         checked={checked}
@@ -146,7 +146,7 @@ function Option(props: IOptionProps) {
       />
       <label
         onClick={() => setChecked(!checked)}
-        className="text-base cursor-pointer select-none sm:text-lg"
+        className="cursor-pointer select-none text-base sm:text-lg"
         htmlFor={id}
       >
         {props.text}

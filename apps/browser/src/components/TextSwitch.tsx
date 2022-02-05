@@ -24,7 +24,7 @@ export default function TextSwitch(props: IProps) {
 
   return (
     <div
-      className={`relative flex flex-row justify-center items-center border bg-white dark:bg-background-form border-gray-200 dark:border-white/20 ${
+      className={`dark:bg-background-form relative flex flex-row items-center justify-center border border-gray-200 bg-white dark:border-white/20 ${
         props.small ? "p-0.5" : "p-1"
       } rounded-lg shadow-sm`}
     >
@@ -32,7 +32,7 @@ export default function TextSwitch(props: IProps) {
         <button
           key={index}
           onClick={() => focus(index)}
-          className={`text-sm whitespace-nowrap px-[0.78rem] h-7 cursor-pointer ${
+          className={`h-7 cursor-pointer whitespace-nowrap px-[0.78rem] text-sm ${
             index == props.options.length - 1
               ? "rounded-r-md"
               : index == 0
@@ -40,7 +40,7 @@ export default function TextSwitch(props: IProps) {
               : ""
           }  ${
             focused == index
-              ? `bg-black/5 text-gray-700 dark:bg-white/10 dark:text-gray-200 transition-all`
+              ? `bg-black/5 text-gray-700 transition-all dark:bg-white/10 dark:text-gray-200`
               : "text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
           }`}
         >

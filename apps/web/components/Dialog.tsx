@@ -53,15 +53,15 @@ function SnackbarComponent(props: ISnackbarProps) {
       initial={{ x: "-50%", opacity: 0, y: 20 }}
       animate={animation}
       style={{ zIndex: 1000 + props.index }}
-      className={`flex flex-row items-center fixed bottom-5 left-1/2 -translate-x-1/2 px-4 py-2 ${
+      className={`fixed bottom-5 left-1/2 flex -translate-x-1/2 flex-row items-center px-4 py-2 ${
         props.level == "SUCCESS" ? "bg-green-500" : "bg-red-500"
-      } shadow-lg rounded-md`}
+      } rounded-md shadow-lg`}
     >
       <p className="px-2 text-lg text-white">{props.text}</p>
       {props.type == "SNACKBAR" && (
         <XIcon
           onClick={() => Snackbar.hide(props.id)}
-          className="w-5 h-5 text-white cursor-pointer"
+          className="h-5 w-5 cursor-pointer text-white"
         />
       )}
     </motion.div>

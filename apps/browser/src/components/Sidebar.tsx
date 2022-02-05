@@ -184,30 +184,30 @@ function Sidebar(props: ISidebarProps) {
         transform: `translateX(${translateX})`,
       }}
     >
-      <div className="w-full h-full rounded-[20px] bg-black/10 dark:bg-white/20 overflow-hidden p-[0.8rem] flex flex-col items-center">
-        <div className="w-full flex flex-row justify-between items-center gap-2">
+      <div className="flex h-full w-full flex-col items-center overflow-hidden rounded-[20px] bg-black/10 p-[0.8rem] dark:bg-white/20">
+        <div className="flex w-full flex-row items-center justify-between gap-2">
           <TextSwitch
             selected={modeToIndex(mode)}
             onChange={onModeChange}
             options={["Always", "Smart", "Never"]}
           />
-          <div className="w-full grow h-[2.2rem] bg-white dark:bg-background-form rounded-lg shadow-sm flex flex-row justify-between items-center px-1">
+          <div className="dark:bg-background-form flex h-[2.2rem] w-full grow flex-row items-center justify-between rounded-lg bg-white px-1 shadow-sm">
             <QuestionMarkCircleIcon
               onClick={info}
-              className="btn-icon text-gray-500 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+              className="btn-icon text-gray-500 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-300"
             />
             <UserIcon
               onClick={() => window.open(`${App.webUrl}profile`)}
-              className="btn-icon text-gray-500 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+              className="btn-icon text-gray-500 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-300"
             />
             <CogIcon
               onClick={() => window.open(`${App.webUrl}settings`)}
-              className="btn-icon text-gray-500 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+              className="btn-icon text-gray-500 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-300"
             />
           </div>
         </div>
         <List setValue={setValue} input={textarea} />
-        <div className="flex flex-row w-full">
+        <div className="flex w-full flex-row">
           {props.isLoggedIn ? (
             <Input
               value={value}
@@ -252,7 +252,7 @@ function Input(props: IInputProps) {
   }
 
   return (
-    <div className="w-[calc(100%-3.4rem)] h-auto">
+    <div className="h-auto w-[calc(100%-3.4rem)]">
       <MentionsInput
         inputRef={props.inputRef}
         placeholder="Create Remark..."

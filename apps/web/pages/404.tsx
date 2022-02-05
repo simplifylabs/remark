@@ -10,7 +10,7 @@ export default function ErrorPage() {
 
   return (
     <>
-      <div className="flex flex-row justify-center items-center w-screen h-screen">
+      <div className="flex h-screen w-screen flex-row items-center justify-center">
         <div className="flex flex-col items-start">
           <Image
             src="/images/dino.png"

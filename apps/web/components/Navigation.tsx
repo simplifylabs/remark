@@ -17,9 +17,9 @@ export default function Navigation(props: INavigationProps) {
   return (
     <header className="absolute top-0 left-0 z-[100]">
       <div
-        className={`relative w-screen h-auto lg:h-[5rem] ${
+        className={`relative h-auto w-screen lg:h-[5rem] ${
           !props.transparent ? "bg-background/70" : ""
-        } flex flex-col lg:flex-row justify-between items-center lg:px-[3rem] gap-4 lg:gap-0 py-5 lg:py-0`}
+        } flex flex-col items-center justify-between gap-4 py-5 lg:flex-row lg:gap-0 lg:px-[3rem] lg:py-0`}
       >
         {props.uninstall ? (
           <>
@@ -31,17 +31,17 @@ export default function Navigation(props: INavigationProps) {
           <>
             <Logo router={router} />
             {!props.hideLinks ? (
-              <ul className="flex justify-evenly items-center w-full lg:absolute lg:left-1/2 lg:gap-16 lg:justify-center lg:w-auto lg:transform lg:-translate-x-1/2">
+              <ul className="flex w-full items-center justify-evenly lg:absolute lg:left-1/2 lg:w-auto lg:-translate-x-1/2 lg:transform lg:justify-center lg:gap-16">
                 <li>
                   <Link passHref href="/#features">
-                    <a className="text-gray-800 sm:text-lg hover:text-gray-600 text-md">
+                    <a className="text-md text-gray-800 hover:text-gray-600 sm:text-lg">
                       Features
                     </a>
                   </Link>
                 </li>
                 <li>
                   <Link passHref href="/#download">
-                    <a className="text-gray-800 sm:text-lg hover:text-gray-600 text-md">
+                    <a className="text-md text-gray-800 hover:text-gray-600 sm:text-lg">
                       Download
                     </a>
                   </Link>
@@ -51,7 +51,7 @@ export default function Navigation(props: INavigationProps) {
                     href="https://github.com/simplifylabs/remark"
                     target="_blank"
                     rel="noreferrer"
-                    className="text-gray-800 sm:text-lg hover:text-gray-600 text-md"
+                    className="text-md text-gray-800 hover:text-gray-600 sm:text-lg"
                   >
                     GitHub
                   </a>
@@ -62,9 +62,9 @@ export default function Navigation(props: INavigationProps) {
             {props.closeIcon ? (
               <button
                 onClick={() => router.push("/")}
-                className="hover:bg-black/5 p-2 rounded-md transition-all hidden lg:block"
+                className="hidden rounded-md p-2 transition-all hover:bg-black/5 lg:block"
               >
-                <XIcon className="w-6 h-6 text-gray-500" />
+                <XIcon className="h-6 w-6 text-gray-500" />
               </button>
             ) : (
               <AddButton dynamic className="hidden lg:block" />

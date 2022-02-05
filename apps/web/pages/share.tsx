@@ -42,15 +42,15 @@ export default function Share() {
 
   if (loading)
     return (
-      <div className="flex items-center justify-center w-screen h-screen">
+      <div className="flex h-screen w-screen items-center justify-center">
         <Loader />
       </div>
     );
   return (
-    <div className="flex items-center justify-center w-screen h-screen">
+    <div className="flex h-screen w-screen items-center justify-center">
       <div className="flex flex-col items-center text-center">
         <Title title="Not Installed" subtitle="Required Extension" primary />
-        <p className="text-lg max-w-[80vw] sm:max-w-[30em] whitespace-pre-wrap break-words text-gray-700 mb-10">
+        <p className="mb-10 max-w-[80vw] whitespace-pre-wrap break-words text-lg text-gray-700 sm:max-w-[30em]">
           It seems like Remark isn&apos;t installed in your browser. Please
           install the Browser Extension to view the shared comment.
         </p>
