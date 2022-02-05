@@ -126,7 +126,7 @@ function Comment(props: ICommentProps) {
           : ""
       } ${props.parent ? "pl-6" : ""}`}
     >
-      <div className="dark:bg-background-card flex w-full flex-col items-center justify-center overflow-hidden rounded-[0.75rem] bg-white shadow ">
+      <div className="dark:bg-background-card flex w-full flex-col items-center justify-center overflow-hidden rounded-[0.75rem] bg-white shadow">
         <div className="flex w-full flex-row items-start justify-center gap-3 p-4">
           <img
             src={`${Server.cdn}avatar/${props.dark ? "dark" : "light"}/50x50/${
