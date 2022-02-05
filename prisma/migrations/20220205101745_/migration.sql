@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `Post` MODIFY `originalURL` VARCHAR(2000) NOT NULL;
