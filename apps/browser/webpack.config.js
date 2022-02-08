@@ -8,7 +8,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = function (_, env) {
   return {
     mode: env.mode == "production" ? "production" : "development",
-    devtool: env.mode == "production" ? "source-map" : "inline-source-map",
+    devtool: env.mode == "production" ? undefined : "inline-source-map",
     entry: {
       "entry/injected": "apps/browser/src/entry/injected.tsx",
       "entry/background": "apps/browser/src/entry/background.ts",
