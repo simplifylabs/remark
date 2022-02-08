@@ -27,6 +27,7 @@
     "@prisma/client": "^3.7.0",
     "@tailwindcss/forms": "^0.4.0",
     "@tailwindcss/typography": "^0.5.0",
+    "amqplib": "^0.8.0",
     "bcrypt": "^5.0.1",
     "chalk": "4.0.0",
     "cookie-parser": "^1.4.6",
@@ -81,6 +82,7 @@
     "@nrwl/tao": "13.4.6",
     "@nrwl/web": "^13.4.3",
     "@nrwl/workspace": "13.4.6",
+    "@types/amqplib": "^0.8.2",
     "@types/bcrypt": "^5.0.0",
     "@types/chrome": "^0.0.176",
     "@types/cookie-parser": "^1.4.2",
@@ -144,6 +146,7 @@
   },
   "_moduleAliases": {
     "@db": "libs/db/src/index",
+    "@queue": "libs/db/queue/index",
     "@util/": "libs/util/src",
     "@middleware/": "libs/middleware/src",
     "@api/router": "dist/apps/api/router",

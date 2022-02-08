@@ -6,6 +6,7 @@
     "cdn": "apps/cdn",
     "db": "libs/db",
     "middleware": "libs/middleware",
+    "queue": "libs/queue",
     "socket": "apps/socket",
     "util": "libs/util",
     "web": "apps/web"
