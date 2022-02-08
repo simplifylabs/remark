@@ -4,9 +4,10 @@
     "api": "apps/api",
     "browser": "apps/browser",
     "cdn": "apps/cdn",
-    "web": "apps/web",
     "db": "libs/db",
+    "middleware": "libs/middleware",
+    "socket": "apps/socket",
     "util": "libs/util",
-    "middleware": "libs/middleware"
+    "web": "apps/web"
   }
 }
