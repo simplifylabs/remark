@@ -75,7 +75,7 @@
   }
 
   .btn-primary {
-    @apply btn bg-brand hover:bg-brand-light focus:ring-brand text-white focus:ring-2 focus:ring-offset-2;
+    @apply btn bg-brand hover:bg-brand-light text-white;
   }
 
   .btn-secondary {
