@@ -38,6 +38,9 @@ function distOpera() {
   return dist("opera", (manifest) => {
     manifest.version = package.version;
     manifest.externally_connectable.matches.pop();
+    manifest.permissions = manifest.permissions.filter(
+      (p) => !["notifications"].includes(p)
+    );
     return manifest;
   });
 }
