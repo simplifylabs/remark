@@ -6,12 +6,12 @@
 <br />
 <!-- TODO: Update href's -->
 <p align="center">
-  <a href="https://www.remark.surf/#download" target="_blank"><img src="https://imgur.com/3C4iKO0.png" width="64" height="64"></a>
+  <a href="https://chrome.google.com/webstore/detail/remark/bkcfoljpnhifgljnaiahaihkppbkpcjo" target="_blank"><img src="https://imgur.com/3C4iKO0.png" width="64" height="64"></a>
   <a href="https://addons.mozilla.org/en-US/firefox/addon/remark-surf/" target="_blank"><img src="https://imgur.com/ihXsdDO.png" width="64" height="64"></a>
-  <a href="https://www.remark.surf/#download" target="_blank"><img src="https://imgur.com/vMcaXaw.png" width="64" height="64"></a>
-  <a href="https://www.remark.surf/#download" target="_blank"><img src="https://imgur.com/nSJ9htU.png" width="64" height="64"></a>
-  <a href="https://www.remark.surf/#download" target="_blank"><img src="https://imgur.com/EuDp4vP.png" width="64" height="64"></a>
-  <a href="https://www.remark.surf/#download" target="_blank"><img src="https://imgur.com/z8yjLZ2.png" width="64" height="64"></a>
+  <a href="https://microsoftedge.microsoft.com/addons/detail/remark/llnpmengfmlgkiccppiobhjdgmieibdd" target="_blank"><img src="https://imgur.com/vMcaXaw.png" width="64" height="64"></a>
+  <a href="https://addons.opera.com/en/extensions/details/remark/" target="_blank"><img src="https://imgur.com/nSJ9htU.png" width="64" height="64"></a>
+  <a href="https://chrome.google.com/webstore/detail/remark/bkcfoljpnhifgljnaiahaihkppbkpcjo" target="_blank"><img src="https://imgur.com/EuDp4vP.png" width="64" height="64"></a>
+  <a href="https://chrome.google.com/webstore/detail/remark/bkcfoljpnhifgljnaiahaihkppbkpcjo" target="_blank"><img src="https://imgur.com/z8yjLZ2.png" width="64" height="64"></a>
   <a href="https://addons.mozilla.org/en-US/firefox/addon/remark-surf/" target="_blank"><img src="https://imgur.com/MQYBSrD.png" width="64" height="64"></a>
 </p>
 <br />
