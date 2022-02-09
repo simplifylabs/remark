@@ -15,7 +15,7 @@ io.on("connection", (socket) => {
   console.log(socket.id);
 });
 
-consume("NOTIFICATION", notification(io));
+consume("notification", notification(io));
 
 http.listen(env("PORT"), () => {
   console.info(`Remark WSS is listening on port ${env("PORT")}`);

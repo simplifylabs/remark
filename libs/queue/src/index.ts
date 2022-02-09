@@ -49,7 +49,10 @@ export async function consume(
   });
 }
 
-export async function sendToQueue(queue: string, message: IData) {
+export async function sendToQueue(
+  queue: keyof IEventData,
+  message: IEventData[typeof queue]
+) {
   if (!connection) connection = await connect();
 
   connection.createChannel((err, channel) => {
