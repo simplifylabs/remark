@@ -64,6 +64,7 @@
     "regenerator-runtime": "0.13.9",
     "sanitize-html": "^2.6.1",
     "sharp": "^0.29.3",
+    "socket.io": "^4.4.1",
     "tslib": "^2.0.0",
     "use-file-picker": "^1.4.1"
   },
@@ -156,6 +157,7 @@
     "@cdn/config": "dist/apps/cdn/config",
     "@cdn/controller": "dist/apps/cdn/config",
     "@cdn/router": "dist/apps/cdn/router",
-    "@cdn/middleware": "dist/apps/cdn/middleware"
+    "@cdn/middleware": "dist/apps/cdn/middleware",
+    "@wss/consumers": "dist/apps/wss/consumers"
   }
 }

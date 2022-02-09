@@ -42,7 +42,8 @@
       "@web/registry": ["apps/web/state/registry.ts"],
       "@web/state": ["apps/web/state/index.ts"],
       "@web/styles/*": ["apps/web/styles/*"],
-      "@web/util/*": ["apps/web/util/*"]
+      "@web/util/*": ["apps/web/util/*"],
+      "@wss/consumers/*": ["apps/wss/src/consumers/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
