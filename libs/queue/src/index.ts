@@ -1,13 +1,11 @@
 import * as amqp from "amqplib/callback_api";
 
-const prefix = "REMARK";
-let connection: amqp.Connection;
-
 interface IData {
   // eslint-disable-next-line
   [key: string]: any;
 }
 
+let connection: amqp.Connection;
 function connect(): Promise<amqp.Connection> {
   return new Promise((resolve, reject) => {
     amqp.connect("amqp://localhost", (err, con) => {
@@ -23,12 +21,12 @@ export async function consume(queue: string, cb: (data: IData) => void) {
   connection.createChannel((err, channel) => {
     if (err) throw err;
 
-    channel.assertQueue(`${prefix}:${queue}`, {
+    channel.assertQueue(`REMARK:${queue}`, {
       durable: false,
     });
 
     channel.consume(
-      `${prefix}:${queue}`,
+      `REMARK:${queue}`,
       (msg) => {
         if (msg == null) return;
         const data = JSON.parse(msg.content.toString());
@@ -47,12 +45,12 @@ export async function sendToQueue(queue: string, message: IData) {
   connection.createChannel((err, channel) => {
     if (err) throw err;
 
-    channel.assertQueue(`${prefix}:${queue}`, {
+    channel.assertQueue(`REMARK:${queue}`, {
       durable: false,
     });
 
     channel.sendToQueue(
-      `${prefix}:${queue}`,
+      `REMARK:${queue}`,
       Buffer.from(JSON.stringify(message))
     );
   });
