@@ -49,8 +49,10 @@ If you want to run any Remark application locally, follow these steps:
 
 1. Node ([nodejs.org](https://nodejs.org/en/download/))
 2. MySQL ([mysql.com](https://www.mysql.com/de/downloads/))
-3. Yarn (`npm i -g yarn`)
-4. NX Cli (`yarn global add @nrwl/cli`)
+3. Redis ([redis.io](https://redis.io/download))
+4. RabbitMQ ([rabbitmq.com](https://www.rabbitmq.com/))
+5. Yarn (`npm i -g yarn`)
+6. NX Cli (`yarn global add @nrwl/cli`)
 
 <br />
 
