@@ -7,7 +7,7 @@
     "db": "libs/db",
     "middleware": "libs/middleware",
     "queue": "libs/queue",
-    "socket": "apps/socket",
+    "wss": "apps/wss",
     "util": "libs/util",
     "web": "apps/web"
   }
