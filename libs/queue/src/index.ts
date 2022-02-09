@@ -1,8 +1,15 @@
 import * as amqp from "amqplib/callback_api";
+import { User, NotificationType } from "@prisma/client";
 
-interface IData {
-  // eslint-disable-next-line
-  [key: string]: any;
+export interface IEventData {
+  notification: {
+    type: NotificationType;
+    user: User;
+    data: {
+      // eslint-disable-next-line
+      [key: string]: any;
+    };
+  };
 }
 
 let connection: amqp.Connection;
@@ -15,7 +22,10 @@ function connect(): Promise<amqp.Connection> {
   });
 }
 
-export async function consume(queue: string, cb: (data: IData) => void) {
+export async function consume(
+  queue: keyof IEventData,
+  cb: (data: IEventData[typeof queue]) => void
+) {
   if (!connection) connection = await connect();
 
   connection.createChannel((err, channel) => {
