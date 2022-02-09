@@ -8,7 +8,7 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/wss",
-        "main": "apps/wss/src/main.ts",
+        "main": "apps/wss/src/app.ts",
         "tsConfig": "apps/wss/tsconfig.json"
       },
       "configurations": {
