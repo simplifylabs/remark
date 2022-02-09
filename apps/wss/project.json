@@ -1,15 +1,15 @@
 {
-  "root": "apps/socket",
-  "sourceRoot": "apps/socket/src",
+  "root": "apps/wss",
+  "sourceRoot": "apps/wss/src",
   "projectType": "application",
   "targets": {
     "build": {
       "executor": "@nrwl/node:build",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/socket",
-        "main": "apps/socket/src/main.ts",
-        "tsConfig": "apps/socket/tsconfig.json"
+        "outputPath": "dist/apps/wss",
+        "main": "apps/wss/src/main.ts",
+        "tsConfig": "apps/wss/tsconfig.json"
       },
       "configurations": {
         "production": {
@@ -18,8 +18,8 @@
           "inspect": false,
           "fileReplacements": [
             {
-              "replace": "apps/socket/src/environments/environment.ts",
-              "with": "apps/socket/src/environments/environment.prod.ts"
+              "replace": "apps/wss/src/environments/environment.ts",
+              "with": "apps/wss/src/environments/environment.prod.ts"
             }
           ]
         }
@@ -28,14 +28,14 @@
     "serve": {
       "executor": "@nrwl/node:execute",
       "options": {
-        "buildTarget": "socket:build"
+        "buildTarget": "wss:build"
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/socket/**/*.ts"]
+        "lintFilePatterns": ["apps/wss/**/*.ts"]
       }
     }
   },
