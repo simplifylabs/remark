@@ -1,4 +1,4 @@
-import * as chalk from "chalk";
+import { cyan, red, blue, yellow } from "chalk";
 
 export default function getConsole() {
   const old = { ...console };
@@ -12,19 +12,19 @@ export default function getConsole() {
 }
 
 export function log(con: Console, ...args: any[]) {
-  con.log(chalk.cyan("[LOG]"), ...args);
+  con.log(cyan("[LOG]"), ...args);
 }
 
 export function info(con: Console, ...args: any[]) {
-  con.info(chalk.blue("[INFO]"), ...args);
+  con.info(blue("[INFO]"), ...args);
 }
 
 export function error(con: Console, ...args: any[]) {
-  con.error(chalk.red("[ERROR]"), ...args);
+  con.error(red("[ERROR]"), ...args);
 }
 
 export function warn(con: Console, ...args: any[]) {
-  con.warn(chalk.yellow("[WARN]"), ...args);
+  con.warn(yellow("[WARN]"), ...args);
 }
 
 module.exports = getConsole;
