@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import Storage from "@browser/util/storage";
+import { Storage } from "@browser/util/browser";
 import User from "@browser/util/user";
 
 export const SET_LOGGED_IN = "SET_LOGGED_IN";

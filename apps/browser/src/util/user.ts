@@ -1,7 +1,6 @@
 import API, { Res } from "@browser/util/api";
 import Error from "@browser/util/error";
-import Storage from "@browser/util/storage";
-import Tab from "@browser/util/tab";
+import { Tab, Storage } from "@browser/util/browser";
 
 type Data = {
   [key: string]: any;
