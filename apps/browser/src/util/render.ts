@@ -1,10 +1,10 @@
+import Registry from "@browser/state/registry";
 import {
   hideFab,
   hideSidebar,
   showFab,
   showSidebar,
 } from "@browser/actions/render";
-import Registry from "@browser/state/registry";
 
 export type EventListener = (...args: any[]) => void;
 
@@ -94,6 +94,7 @@ export default class Render {
   static allowed(): boolean {
     if (window.location.href.startsWith("chrome-extension://")) return false;
     if (window.location.href.startsWith("moz-extension://")) return false;
+    if (window.location.href.startsWith("chrome://")) return false;
     return true;
   }
 
@@ -101,7 +102,7 @@ export default class Render {
     if (!this.allowed()) return;
 
     const current = document.querySelector("#remark-launcher");
-    if (current) return (current as HTMLIFrameElement).querySelector("#app");
+    if (current) return current;
 
     return this.injectWrapper();
   }
@@ -151,6 +152,7 @@ export default class Render {
     const sidebar: HTMLIFrameElement = document.querySelector(
       "#remark-launcher #sidebar"
     );
+
     if (!sidebar) return null;
 
     const element = sidebar.contentWindow.document.querySelector(selector);
