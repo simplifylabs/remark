@@ -1,9 +1,8 @@
 import { setIsOnline } from "@browser/actions/connection";
 import { checkLoggedIn } from "@browser/actions/user";
-import { Tab, Clipboard } from "@browser/util/browser";
+import { Tab, Clipboard, Indicator } from "@browser/util/browser";
 import { Snackbar, Toast } from "@browser/util/dialog";
 import { dispatch } from "@browser/state/index";
-import Indicator from "@browser/util/indicator";
 import Settings from "@browser/util/settings";
 import Domain from "@browser/util/domain";
 import Policy from "@browser/util/policy";
