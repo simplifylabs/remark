@@ -1,6 +1,6 @@
 import App from "@browser/util/app";
 import Events from "@browser/util/events";
-import Tab from "@browser/util/tab";
+import { Tab } from "@browser/util/browser";
 
 if (App.isDev()) require("crx-hotreload");
 

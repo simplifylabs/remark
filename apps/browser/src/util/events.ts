@@ -1,15 +1,14 @@
 import { setIsOnline } from "@browser/actions/connection";
 import { checkLoggedIn } from "@browser/actions/user";
+import { Tab, Clipboard } from "@browser/util/browser";
 import { Snackbar, Toast } from "@browser/util/dialog";
 import { dispatch } from "@browser/state/index";
 import Indicator from "@browser/util/indicator";
-import Clipboard from "@browser/util/clipboard";
 import Settings from "@browser/util/settings";
 import Domain from "@browser/util/domain";
 import Policy from "@browser/util/policy";
 import Render from "@browser/util/render";
 import URL from "@browser/util/url";
-import Tab from "@browser/util/tab";
 import User from "@browser/util/user";
 import App from "@browser/util/app";
 type Data = { [key: string]: any };

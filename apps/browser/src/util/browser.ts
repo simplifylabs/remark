@@ -1,17 +1,17 @@
 import App from "@browser/util/app";
-type ITab = chrome.tabs.Tab;
 
 type Data = {
   [key: string]: any;
 };
 
-export type EventListener = (...args: any[]) => void;
-
 export type IEventList = {
   [event: string]: EventListener[];
 };
 
-export default class Tab {
+export type EventListener = (...args: any[]) => void;
+export type ITab = chrome.tabs.Tab;
+
+export class Tab {
   static events: EventListener[] = [];
 
   static listen(listener: EventListener) {
@@ -88,5 +88,45 @@ export default class Tab {
 
   static async open(url: string): Promise<void> {
     await chrome.tabs.create({ url: url });
+  }
+}
+
+export class Clipboard {
+  static copy(text: string) {
+    navigator.clipboard.writeText(text);
+  }
+
+  static event(body: { [key: string]: any }) {
+    if (!navigator || !navigator.clipboard || !navigator.clipboard.writeText)
+      return { success: false };
+    this.copy(body.text);
+    return { success: true };
+  }
+}
+
+interface IStorageObject {
+  [key: string]: string;
+}
+
+export class Storage {
+  static toObject(key: string, value: string): IStorageObject {
+    const obj = {};
+    obj[key] = value;
+    return obj;
+  }
+
+  static set(key: string, value: string): Promise<void> {
+    return new Promise((res) => {
+      chrome.storage.local.set(this.toObject(key, value), () => res());
+    });
+  }
+
+  static get(key: string): Promise<string | undefined> {
+    return new Promise((res) => {
+      chrome.storage.local.get(key, (data: IStorageObject) => {
+        if (!data || !data[key]) res(undefined);
+        res(data[key]);
+      });
+    });
   }
 }

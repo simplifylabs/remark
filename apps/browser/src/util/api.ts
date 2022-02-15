@@ -1,4 +1,4 @@
-import Tab from "@browser/util/tab";
+import { Tab } from "@browser/util/browser";
 import User from "@browser/util/user";
 import Error from "@browser/util/error";
 
