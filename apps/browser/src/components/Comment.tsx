@@ -175,16 +175,29 @@ function Comment(props: ICommentProps) {
             <AnnotationIcon onClick={reply} className="btn-icon p-[0.35rem]" />
             <ShareIcon
               onClick={() => {
-                chrome.runtime.sendMessage(
-                  {
-                    type: "COPY",
-                    text: `${App.webUrl}share?id=${props.id}`,
-                  },
-                  (res) => {
-                    if (res.success) return Toast.success("Copied link!");
-                    Toast.error("Failed to copy link!");
+                if (App.isFirefox()) {
+                  chrome.runtime.sendMessage(
+                    {
+                      type: "COPY",
+                      text: `${App.webUrl}share?id=${props.id}`,
+                    },
+                    (res) => {
+                      if (res.success) return Toast.success("Copied link!");
+                      Toast.error("Failed to copy link!");
+                    }
+                  );
+                } else {
+                  if (navigator && navigator.clipboard) {
+                    navigator.clipboard
+                      .writeText(`${App.webUrl}share?id=${props.id}`)
+                      .then(() => {
+                        return Toast.success("Copied link!");
+                      })
+                      .catch(() => {
+                        return Toast.error("Failed to copy link!");
+                      });
                   }
-                );
+                }
               }}
               className="btn-icon p-[0.35rem]"
             />
