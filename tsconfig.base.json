@@ -43,7 +43,8 @@
       "@web/state": ["apps/web/state/index.ts"],
       "@web/styles/*": ["apps/web/styles/*"],
       "@web/util/*": ["apps/web/util/*"],
-      "@wss/consumers/*": ["apps/wss/src/consumers/*"]
+      "@wss/consumers/*": ["apps/wss/src/consumers/*"],
+      "@wss/controller/*": ["apps/wss/src/controller/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

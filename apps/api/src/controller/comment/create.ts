@@ -4,14 +4,18 @@ import filter from "@util/filter";
 import access from "@middleware/access";
 import limit from "@middleware/limit";
 import sanitize from "sanitize-html";
+import { mentionRegex } from "@util/mentions";
 import { Url, Post, commentSelect } from "@db";
+import { sendToQueue } from "@queue";
 
 const createComment = async (req: Request, res: Response) => {
   try {
+    let reply = null;
+
     if (req.body.replyTo) {
-      const reply = await Post.findUnique({
+      reply = await Post.findUnique({
         where: { id: req.body.replyTo },
-        select: { id: true, replyId: true },
+        select: { id: true, replyId: true, author: { select: { id: true } } },
       });
 
       if (!reply || reply.replyId)
@@ -44,6 +48,12 @@ const createComment = async (req: Request, res: Response) => {
         replies: true,
         replyId: true,
         shareURL: true,
+        author: {
+          select: {
+            id: true,
+            username: true,
+          },
+        },
       },
     });
 
@@ -51,6 +61,28 @@ const createComment = async (req: Request, res: Response) => {
     await Post.update({ where: { id: comment.id }, data: { shareURL } });
 
     res.status(200).json(comment);
+
+    const mentions = [...text.matchAll(mentionRegex)];
+    if (mentions.length) {
+      mentions.forEach((mention) => {
+        const mentionedId = mention[0].match(/\((.*?)\)/)[1];
+        if (mentionedId == comment.author.id) return;
+
+        sendToQueue("notification", {
+          type: "MENTION",
+          user: mentionedId,
+          data: { user: comment.author },
+        });
+      });
+    }
+
+    if (reply && reply.author.id !== comment.author.id) {
+      sendToQueue("notification", {
+        type: "REPLY",
+        user: reply.author.id,
+        data: { user: comment.author },
+      });
+    }
   } catch (e) {
     console.error(e);
     res.status(500).json({ error: "INTERNAL_SERVER_ERROR" });

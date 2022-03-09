@@ -1,10 +1,10 @@
 import * as amqp from "amqplib/callback_api";
-import { User, NotificationType } from "@prisma/client";
+import { NotificationType } from "@prisma/client";
 
 export interface IEventData {
   notification: {
     type: NotificationType;
-    user: User;
+    user: string;
     data: {
       // eslint-disable-next-line
       [key: string]: any;

@@ -1,5 +1,3 @@
-import App from "@browser/util/app";
-
 interface Data {
   [key: string]: any;
 }
@@ -20,23 +18,16 @@ export class Server {
   static devCDN = "http://localhost:5000/";
   static prodCDN = "https://cdn.remark.surf/";
 
-  static devWSS = "http://localhost:5500/";
-  static prodWSS = "https://wss.remark.surf/";
-
   static get url() {
-    return App.isDev() ? this.devWeb : this.prodWeb;
+    return process.env.NODE_ENV == "development" ? this.devWeb : this.prodWeb;
   }
 
   static get api() {
-    return App.isDev() ? this.devAPI : this.prodAPI;
+    return process.env.NODE_ENV == "development" ? this.devAPI : this.prodAPI;
   }
 
   static get cdn() {
-    return App.isDev() ? this.devCDN : this.prodCDN;
-  }
-
-  static get wss() {
-    return App.isDev() ? this.devWSS : this.prodWSS;
+    return process.env.NODE_ENV == "development" ? this.devCDN : this.prodCDN;
   }
 }
 
