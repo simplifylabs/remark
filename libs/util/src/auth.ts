@@ -2,7 +2,7 @@ import { sign, verify, JwtPayload } from "jsonwebtoken";
 import { OAuth2Client } from "google-auth-library";
 import { User } from "@prisma/client";
 import { env } from "@util/env";
-import fs from "fs";
+import * as fs from "fs";
 
 const publicPath = "./.certs/public.pem";
 const privatePath = "./.certs/private.pem";
