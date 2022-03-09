@@ -28,6 +28,10 @@ export default class App {
     return chrome.tabs === undefined && document.body !== undefined;
   }
 
+  static isManifestV3() {
+    return chrome.runtime.getManifest().version == "3";
+  }
+
   static getDevice(): DeviceType {
     if (this.deviceCache) return this.deviceCache;
 

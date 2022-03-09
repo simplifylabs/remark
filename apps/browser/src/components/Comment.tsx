@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
-import {
-  IComment,
-  IVote,
-  IAuthor,
-  mentionRegex,
-} from "@browser/reducers/comment";
-import { Server } from "@browser/util/api";
+import { IComment, IVote, IAuthor } from "@browser/reducers/comment";
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/solid";
 import { AnnotationIcon, ShareIcon, TrashIcon } from "@heroicons/react/outline";
 import { voteComment, setReplying, setTyping } from "@browser/actions/comment";
 import { connect, IRootState } from "@browser/state/index";
+import { mentionRegex } from "@util/mentions";
 import { Toast } from "@browser/util/dialog";
+import { Server } from "@browser/util/api";
 import App from "@browser/util/app";
 
 interface ICommentProps extends IComment {
