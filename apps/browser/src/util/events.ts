@@ -3,12 +3,12 @@ import { checkLoggedIn } from "@browser/actions/user";
 import { Tab, Clipboard, Indicator } from "@browser/util/browser";
 import { Snackbar, Toast } from "@browser/util/dialog";
 import { dispatch } from "@browser/state/index";
-import { URL } from "@browser/state/registry";
 import Settings from "@browser/util/settings";
 import Domain from "@browser/util/domain";
 import Policy from "@browser/util/policy";
 import Render from "@browser/util/render";
 import User from "@browser/util/user";
+import URL from "@browser/util/url";
 import App from "@browser/util/app";
 type Data = { [key: string]: any };
 
@@ -90,6 +90,9 @@ export default class Events {
       case "LOGOUT":
         res(await User.logout(false, true));
         break;
+      case "TOKEN:UPDATE":
+        res(await User.setTokens(body, true));
+        break;
       case "INDICATOR:SHOW":
         res(Indicator.show());
         break;
@@ -128,6 +131,9 @@ export default class Events {
       case "auth:update":
         dispatch(checkLoggedIn());
         break;
+      case "token:update":
+        User.setTokens(data, true);
+        break;
       case "snackbar:success":
         Snackbar.success(data.text);
         break;
@@ -153,7 +159,7 @@ export default class Events {
         res({ success: true });
         break;
       case "AUTHENTICATED":
-        res(await User.isAuthenticated());
+        res(await User.checkAuthenticated());
         break;
       case "GOOGLE":
         res(await User.google(req));

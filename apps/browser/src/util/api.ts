@@ -1,4 +1,5 @@
 import { Tab } from "@browser/util/browser";
+import App from "@browser/util/app";
 import User from "@browser/util/user";
 import Error from "@browser/util/error";
 
@@ -22,6 +23,9 @@ export class Server {
   static devCDN = "http://localhost:5000/";
   static prodCDN = "https://cdn.remark.surf/";
 
+  static devWSS = "http://localhost:5500";
+  static prodWSS = "https://wss.remark.surf/";
+
   static notifyOnline() {
     this.isOnline = true;
     Tab.sendAll("server:online");
@@ -33,11 +37,15 @@ export class Server {
   }
 
   static get url() {
-    return process.env.NODE_ENV === "development" ? this.devUrl : this.prodUrl;
+    return App.isDev() ? this.devUrl : this.prodUrl;
   }
 
   static get cdn() {
-    return process.env.NODE_ENV === "development" ? this.devCDN : this.prodCDN;
+    return App.isDev() ? this.devCDN : this.prodCDN;
+  }
+
+  static get wss() {
+    return App.isDev() ? this.devWSS : this.prodWSS;
   }
 }
 

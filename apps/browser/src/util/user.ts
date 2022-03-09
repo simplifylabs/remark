@@ -1,6 +1,8 @@
 import API, { Res } from "@browser/util/api";
 import Error from "@browser/util/error";
+import Socket from "@browser/util/socket";
 import { Tab, Storage } from "@browser/util/browser";
+import App from "./app";
 
 type Data = {
   [key: string]: any;
@@ -24,12 +26,23 @@ export default class User {
     return this.refreshTokenCache;
   }
 
-  static async setTokens(res: Data) {
+  static async setTokens(res: Data, sync = false) {
     this.accessTokenCache = res.accessToken;
     this.refreshTokenCache = res.refreshToken;
 
     await Storage.set("access_token", this.accessTokenCache);
     await Storage.set("refresh_token", this.refreshTokenCache);
+
+    if (sync) return { success: true };
+
+    if (App.isInjected()) {
+      chrome.runtime.sendMessage({ type: "TOKEN:UPDATE", ...res }, () => null);
+    } else {
+      if (!Socket.authenticated) Socket.authenticate();
+      Tab.sendAll("token:update", res);
+    }
+
+    return { success: true };
   }
 
   static async isAuthenticated() {
@@ -37,7 +50,12 @@ export default class User {
     const isAuthenticated =
       accessToken !== "" && accessToken !== null && accessToken !== undefined;
 
-    return { success: true, isAuthenticated: isAuthenticated };
+    return isAuthenticated;
+  }
+
+  static async checkAuthenticated() {
+    const isAuthenticated = await this.isAuthenticated();
+    return { success: true, isAuthenticated };
   }
 
   static async refresh() {
@@ -70,13 +88,15 @@ export default class User {
   static async logout(http = true, background = false) {
     this.refreshTokenCache = "";
     this.accessTokenCache = "";
+
+    if (!App.isInjected()) Socket.logout();
     if (background) return;
 
     await Storage.set("access_token", "");
     await Storage.set("refresh_token", "");
 
     Tab.sendAll("auth:update");
-    if (chrome.runtime) chrome.runtime.sendMessage("LOGOUT");
+    if (!App.isInjected()) chrome.runtime.sendMessage("LOGOUT");
 
     if (http) return { success: false, logout: true };
     return { success: true };
