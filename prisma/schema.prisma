@@ -72,6 +72,7 @@ model Notification {
   data Json
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
+  read Boolean @default(false)
   createdAt DateTime @default(now())
 }
 
