@@ -1,40 +1,37 @@
-import React, { useEffect, useState, Ref } from "react";
-import { MentionsInput, Mention } from "react-mentions";
+import React, { useEffect, useState } from "react";
 import {
   UserIcon,
   CogIcon,
-  QuestionMarkCircleIcon,
+  BellIcon,
+  HomeIcon,
 } from "@heroicons/react/outline";
 import { connect, IRootState } from "@browser/state/index";
-import { hideSidebar } from "@browser/actions/render";
-import { setTyping, postComment, setReplying } from "@browser/actions/comment";
-import { IReply } from "@browser/reducers/comment";
+import { fetchComments, setTyping } from "@browser/actions/comment";
 import { Mode } from "@browser/util/settings";
+import { hideSidebar, Page, setPage } from "@browser/actions/render";
 import Darkmode from "@browser/util/darkmode";
 import App from "@browser/util/app";
-import API from "@browser/util/api";
 import Domain from "@browser/util/domain";
-import Render from "@browser/util/render";
-import List from "@browser/components/List";
+import Home from "@browser/pages/Home";
 import TextSwitch from "@browser/components/TextSwitch";
 import Frame from "@browser/components/Frame";
-import { Modal } from "@browser/util/dialog";
+import Render from "@browser/util/render";
+import Inbox from "@browser/pages/Inbox";
 
 interface ISidebarProps {
+  online: boolean;
+  client: boolean;
   showen: boolean;
-  isLoggedIn: boolean;
-  replying: IReply | null;
-  hide: typeof hideSidebar;
+  unread: boolean;
+  page: Page;
   typing: typeof setTyping;
-  post: typeof postComment;
-  reply: typeof setReplying;
+  setPage: typeof setPage;
+  hide: typeof hideSidebar;
+  fetch: typeof fetchComments;
 }
 
 function Sidebar(props: ISidebarProps) {
   const [mode, setMode] = useState<Mode>("SMART");
-  const [modal, setModal] = useState<string | null>(null);
-  const [textarea, setTextarea] = useState<HTMLTextAreaElement>();
-  const [value, setValue] = useState("");
   const [translateX, setTranslateX] = useState("0");
   const [opacity, setOpacity] = useState(0);
 
@@ -49,14 +46,10 @@ function Sidebar(props: ISidebarProps) {
     check();
 
     // I'm sorry...
+    // Hehe this being kinda funny
     const interval = setInterval(check, 5000);
     return () => clearInterval(interval);
   }, []);
-
-  useEffect(() => {
-    Render.on("remark:post", post);
-    return () => Render.off("remark:post", post);
-  }, [value, props.replying]);
 
   useEffect(() => {
     setTranslateX(props.showen ? "0" : "120%");
@@ -64,23 +57,17 @@ function Sidebar(props: ISidebarProps) {
   }, [props.showen]);
 
   useEffect(() => {
-    if (!textarea) return;
-
-    textarea.addEventListener("keydown", keydown);
-    return () => textarea && textarea.removeEventListener("keydown", keydown);
-  }, [textarea, value]);
+    props.typing(false);
+  }, [props.page]);
 
   useEffect(() => {
-    if (props.showen) {
-      document.body.addEventListener("click", close);
+    Render.on("back", back);
+    return () => Render.off("back", back);
+  }, []);
 
-      if (value) props.typing(true);
-      else props.typing(false);
-    }
-
-    return () => {
-      document.body.removeEventListener("click", close);
-    };
+  useEffect(() => {
+    if (props.showen) document.body.addEventListener("click", close);
+    return () => document.body.removeEventListener("click", close);
   }, [props.showen]);
 
   function close(e: MouseEvent) {
@@ -99,46 +86,12 @@ function Sidebar(props: ISidebarProps) {
     props.hide();
   }
 
-  function keydown(e: KeyboardEvent) {
-    if (e.key == "Enter" && !e.shiftKey) {
-      e.preventDefault();
-
-      const suggestions = Render.sidebarQuerySelector(
-        ".remark__suggestions__list"
-      );
-      if (suggestions) return;
-
-      post();
-    }
-  }
-
-  function post() {
-    if (!value || !value.replace(/\s/g, "").length) return;
-    let modified = value;
-    let isReplying = false;
-
-    if (props.replying) {
-      const mention = `@[${props.replying.author.username}](${props.replying.author.id}) `;
-
-      if (modified.startsWith(mention)) {
-        modified = modified.replace(mention, "");
-        isReplying = true;
-      }
-    }
-
-    if (textarea) textarea.blur();
-    props.post(modified, isReplying ? props.replying.commentId : null, () =>
-      setValue("")
-    );
-    props.reply(null);
+  function back() {
+    props.setPage("HOME");
   }
 
   function check() {
     Darkmode.checkSidebar();
-  }
-
-  function signIn() {
-    window.open(`${App.webUrl}auth/signin`);
   }
 
   function modeToIndex(mode: Mode) {
@@ -157,15 +110,6 @@ function Sidebar(props: ISidebarProps) {
     const mode = indexToMode(i);
     setMode(mode);
     Domain.setDomain(mode);
-  }
-
-  function info() {
-    if (modal) Modal.remove(modal);
-    setModal(
-      Modal.show("Display Modes", infoText, [
-        { text: "Got it!", type: "PRIMARY" },
-      ])
-    );
   }
 
   return (
@@ -192,10 +136,22 @@ function Sidebar(props: ISidebarProps) {
             options={["Always", "Smart", "Never"]}
           />
           <div className="dark:bg-background-form flex h-[2.2rem] w-full grow flex-row items-center justify-between rounded-lg bg-white px-1 shadow-sm">
-            <QuestionMarkCircleIcon
-              onClick={info}
-              className="btn-icon text-gray-500 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-300"
-            />
+            {props.page == "HOME" ? (
+              <div className="relative">
+                <BellIcon
+                  onClick={() => props.setPage("INBOX")}
+                  className="btn-icon text-gray-500 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-300"
+                />
+                {props.unread && (
+                  <div className="pointer-events-none absolute top-1 right-1 h-2 w-2 rounded-full bg-red-500"></div>
+                )}
+              </div>
+            ) : (
+              <HomeIcon
+                onClick={() => props.setPage("HOME")}
+                className="btn-icon text-gray-500 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-300"
+              />
+            )}
             <UserIcon
               onClick={() => window.open(`${App.webUrl}profile`)}
               className="btn-icon text-gray-500 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-300"
@@ -206,145 +162,49 @@ function Sidebar(props: ISidebarProps) {
             />
           </div>
         </div>
-        <List setValue={setValue} input={textarea} />
-        <div className="flex w-full flex-row">
-          {props.isLoggedIn ? (
-            <Input
-              value={value}
-              set={setValue}
-              inputRef={setTextarea}
-              typing={props.typing}
-            />
-          ) : (
-            <button
-              onClick={signIn}
-              className="btn-disabled w-[calc(100%-3.4rem)] py-[0.6rem]"
-            >
-              Sign In
-            </button>
-          )}
-        </div>
+
+        {!props.online ? (
+          <div className="flex h-full w-full items-center justify-center">
+            <div className="flex flex-col items-center px-12 text-left">
+              <h1 className="w-full text-4xl font-extrabold text-gray-800 dark:text-white">
+                {!props.client ? "Offline" : "Maintenance"}
+              </h1>
+              <p className="w-full text-gray-500 dark:text-gray-300">
+                {!props.client
+                  ? "You are currently offline."
+                  : "Our servers are currently under maintenance. Please try again later!"}
+              </p>
+              <button
+                onClick={() => props.fetch(0)}
+                className="btn-primary mt-5 w-auto"
+              >
+                Retry
+              </button>
+            </div>
+          </div>
+        ) : props.page == "HOME" ? (
+          <Home />
+        ) : (
+          <Inbox />
+        )}
       </div>
     </Frame>
   );
 }
 
-interface IInputProps {
-  inputRef: Ref<HTMLTextAreaElement>;
-  value: string;
-  set: (value: string) => void;
-  typing: (to: boolean) => void;
-}
-
-function Input(props: IInputProps) {
-  async function fetchUsers(query: string, callback: (any: []) => void) {
-    if (!query) return;
-
-    const res = await API.get(["user", `list?q=${query}`]);
-    if (!res.success) return callback([]);
-
-    callback(
-      res.body.list.map((u: any) => ({
-        display: `${u.username}`,
-        id: u.id,
-      }))
-    );
-  }
-
-  return (
-    <div className="h-auto w-[calc(100%-3.4rem)]">
-      <MentionsInput
-        inputRef={props.inputRef}
-        placeholder="Create Remark..."
-        rows={1}
-        className="remark"
-        value={props.value}
-        onChange={(e) => {
-          props.set(e.target.value);
-          if (e.target.value) props.typing(true);
-          else props.typing(false);
-        }}
-        style={{
-          control: {
-            fontWeight: "normal",
-          },
-          "&multiLine": {
-            control: {
-              minHeight: 42.75,
-              maxHeight: 200,
-              overflow: "auto",
-              resize: "none",
-              background: "transparent",
-            },
-            highlighter: {
-              maxHeight: 200,
-              padding: "8.5px 12px",
-              /* The 1px invisible border is
-               * important for position  */
-              border: "1px solid transparent",
-            },
-            input: {
-              padding: "8.5px 12px",
-            },
-          },
-          suggestions: {
-            list: {
-              backgroundColor: "white",
-              border: "1px solid rgba(0,0,0,0.15)",
-              fontSize: 14,
-              maxHeight: 105,
-              overflow: "hidden",
-              borderRadius: 8,
-              position: "absolute",
-              bottom: 14,
-            },
-            item: {
-              padding: "5px 15px",
-              borderBottom: "1px solid rgba(0,0,0,0.15)",
-              "&focused": {
-                backgroundColor: "rgba(0, 0, 0, 0.08)",
-              },
-            },
-          },
-        }}
-      >
-        <Mention
-          displayTransform={(_, b) => `@${b}`}
-          trigger="@"
-          data={fetchUsers}
-          className="remark__mention"
-          appendSpaceOnAdd
-        />
-      </MentionsInput>
-    </div>
-  );
-}
-
-const infoText = `The different "Display Modes" let you control when
-the Remark button should be automatically showen.
-
- - <b>Always:</b> Always show automatically
- - <b>Smart:</b> Show if comments exist
- - <b>Never:</b> Never show automatically
-
-The button can always be showen with a shortcut 
-or by pressing the icon. You can change the default 
-behaviour in the Settings.
-
-<b>Important:</b> These changes are applied to the domain.
-`;
-
 const mapStateToProps = (state: IRootState) => ({
+  online: state.connection.online,
+  client: state.connection.clientOn,
+  page: state.render.page,
   showen: state.render.sidebar,
-  isLoggedIn: state.user.isLoggedIn,
-  replying: state.comment.replying,
+  unread: state.notification.unread,
 });
 
 const mapDipatchToProps = {
-  hide: hideSidebar,
   typing: setTyping,
-  post: postComment,
-  reply: setReplying,
+  setPage,
+  hide: hideSidebar,
+  fetch: fetchComments,
 };
 
 //@ts-ignore

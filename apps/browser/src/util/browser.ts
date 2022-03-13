@@ -74,7 +74,7 @@ export class Tab {
     }
 
     const tab = await Tab.getCurrent();
-    if (tab.url.startsWith("about:")) return;
+    if (tab.url && tab.url.startsWith("about:")) return;
     chrome.tabs.sendMessage(id ? id : tab.id, { ...data, type: type });
   }
 

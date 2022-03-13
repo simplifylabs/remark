@@ -1,6 +1,7 @@
 import API, { Res } from "@browser/util/api";
 import Error from "@browser/util/error";
 import Socket from "@browser/util/socket";
+import Notification from "@browser/util/notification";
 import { Tab, Storage } from "@browser/util/browser";
 import App from "./app";
 
@@ -38,7 +39,10 @@ export default class User {
     if (App.isInjected()) {
       chrome.runtime.sendMessage({ type: "TOKEN:UPDATE", ...res }, () => null);
     } else {
-      if (!Socket.authenticated) Socket.authenticate();
+      if (!Socket.authenticated) {
+        Notification.fetch();
+        Socket.authenticate();
+      }
       Tab.sendAll("token:update", res);
     }
 
@@ -64,6 +68,7 @@ export default class User {
     const res = await API.post(["auth", "refresh"], {
       refreshToken: refreshToken,
     });
+
     if (!res.success) return res;
 
     await this.setTokens(res.body);
@@ -89,7 +94,11 @@ export default class User {
     this.refreshTokenCache = "";
     this.accessTokenCache = "";
 
-    if (!App.isInjected()) Socket.logout();
+    if (!App.isInjected()) {
+      Socket.logout();
+      Notification.logout();
+    }
+
     if (background) return;
 
     await Storage.set("access_token", "");

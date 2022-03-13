@@ -1,7 +1,7 @@
 import App from "@browser/util/app";
 import Events from "@browser/util/events";
 import Persistence from "@browser/util/persistence";
-import Notifications from "@browser/util/notifications";
+import Notification from "@browser/util/notification";
 import Socket from "@browser/util/socket";
 import { Tab } from "@browser/util/browser";
 
@@ -63,7 +63,7 @@ if (App.isDev()) require("crx-hotreload");
   }
 
   if (chrome.notifications) {
-    Notifications.init();
+    Notification.init();
   }
 
   if (App.isManifestV3()) {
