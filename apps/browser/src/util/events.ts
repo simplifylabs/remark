@@ -1,8 +1,13 @@
 import { setIsOnline } from "@browser/actions/connection";
 import { checkLoggedIn } from "@browser/actions/user";
+import {
+  fetchNotifications,
+  updateNotifications,
+} from "@browser/actions/notification";
 import { Tab, Clipboard, Indicator } from "@browser/util/browser";
 import { Snackbar, Toast } from "@browser/util/dialog";
 import { dispatch } from "@browser/state/index";
+import Notification from "@browser/util/notification";
 import Settings from "@browser/util/settings";
 import Domain from "@browser/util/domain";
 import Policy from "@browser/util/policy";
@@ -15,7 +20,7 @@ type Data = { [key: string]: any };
 export default class Events {
   static async listenInjected() {
     dispatch(checkLoggedIn());
-    Render.checkFullscreen();
+    dispatch(fetchNotifications());
 
     document.addEventListener("fullscreenchange", () => {
       Render.checkFullscreen();
@@ -25,7 +30,9 @@ export default class Events {
     window.addEventListener("message", this.onWindowMessage, false);
 
     Tab.listen(this.onMessageInjected);
+
     URL.update();
+    Render.checkFullscreen();
   }
 
   static onWindowMessage(event: MessageEvent) {
@@ -99,6 +106,17 @@ export default class Events {
       case "INDICATOR:HIDE":
         res(Indicator.hide());
         break;
+      case "NOTIFICATIONS:GET":
+        res(Notification.getLoaded());
+        break;
+      case "NOTIFICATIONS:READ":
+        Notification.setRead();
+        res(null);
+        break;
+      case "NOTIFICATIONS:MORE":
+        await Notification.fetch(true);
+        res(null);
+        break;
       case "COPY":
         res(Clipboard.event(body));
         break;
@@ -130,6 +148,9 @@ export default class Events {
         break;
       case "auth:update":
         dispatch(checkLoggedIn());
+        break;
+      case "notification:update":
+        dispatch(updateNotifications(data));
         break;
       case "token:update":
         User.setTokens(data, true);

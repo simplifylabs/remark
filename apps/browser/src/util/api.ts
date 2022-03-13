@@ -162,6 +162,7 @@ class API {
         credentials: "include",
         body: form,
       });
+      console.log(res);
 
       return await this.parse(res, resent, () => this.file(path, form, true));
     } catch (e) {
