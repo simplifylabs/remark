@@ -1,7 +1,6 @@
 import App from "@browser/util/app";
-import Storage from "@browser/util/storage";
 import Settings, { Mode } from "@browser/util/settings";
-import Tab from "@browser/util/tab";
+import { Tab, Storage } from "@browser/util/browser";
 
 type Data = { [key: string]: any };
 type List = "WHITE" | "BLACK" | "SMART";

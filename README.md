@@ -4,7 +4,6 @@
 ![Example](https://imgur.com/DAg7BNf.png)
 
 <br />
-<!-- TODO: Update href's -->
 <p align="center">
   <a href="https://chrome.google.com/webstore/detail/remark/bkcfoljpnhifgljnaiahaihkppbkpcjo" target="_blank"><img src="https://imgur.com/3C4iKO0.png" width="64" height="64"></a>
   <a href="https://addons.mozilla.org/en-US/firefox/addon/remark-surf/" target="_blank"><img src="https://imgur.com/ihXsdDO.png" width="64" height="64"></a>

@@ -1,6 +1,9 @@
 import App from "@browser/util/app";
 import Events from "@browser/util/events";
-import Tab from "@browser/util/tab";
+import Persistence from "@browser/util/persistence";
+import Notification from "@browser/util/notification";
+import Socket from "@browser/util/socket";
+import { Tab } from "@browser/util/browser";
 
 if (App.isDev()) require("crx-hotreload");
 
@@ -28,7 +31,7 @@ if (App.isDev()) require("crx-hotreload");
     });
   }
 
-  if (chrome.webRequest && !(!App.isDev() && App.isChrome())) {
+  if (chrome.webRequest && !App.isManifestV3()) {
     chrome.webRequest.onHeadersReceived.addListener(
       Events.onHttpRequest,
       {
@@ -57,5 +60,18 @@ if (App.isDev()) require("crx-hotreload");
     chrome.runtime.onUpdateAvailable.addListener(() => {
       chrome.runtime.reload();
     });
+  }
+
+  if (chrome.notifications) {
+    Notification.init();
+  }
+
+  if (App.isManifestV3()) {
+    Persistence.init({
+      onConnect: () => Socket.init(),
+      onDisconnect: () => Socket.dispose(),
+    });
+  } else {
+    Socket.init();
   }
 })();

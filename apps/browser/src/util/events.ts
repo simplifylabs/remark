@@ -1,23 +1,26 @@
 import { setIsOnline } from "@browser/actions/connection";
 import { checkLoggedIn } from "@browser/actions/user";
+import {
+  fetchNotifications,
+  updateNotifications,
+} from "@browser/actions/notification";
+import { Tab, Clipboard, Indicator } from "@browser/util/browser";
 import { Snackbar, Toast } from "@browser/util/dialog";
 import { dispatch } from "@browser/state/index";
-import Indicator from "@browser/util/indicator";
-import Clipboard from "@browser/util/clipboard";
+import Notification from "@browser/util/notification";
 import Settings from "@browser/util/settings";
 import Domain from "@browser/util/domain";
 import Policy from "@browser/util/policy";
 import Render from "@browser/util/render";
-import URL from "@browser/util/url";
-import Tab from "@browser/util/tab";
 import User from "@browser/util/user";
+import URL from "@browser/util/url";
 import App from "@browser/util/app";
 type Data = { [key: string]: any };
 
 export default class Events {
   static async listenInjected() {
     dispatch(checkLoggedIn());
-    Render.checkFullscreen();
+    dispatch(fetchNotifications());
 
     document.addEventListener("fullscreenchange", () => {
       Render.checkFullscreen();
@@ -27,7 +30,9 @@ export default class Events {
     window.addEventListener("message", this.onWindowMessage, false);
 
     Tab.listen(this.onMessageInjected);
+
     URL.update();
+    Render.checkFullscreen();
   }
 
   static onWindowMessage(event: MessageEvent) {
@@ -92,11 +97,25 @@ export default class Events {
       case "LOGOUT":
         res(await User.logout(false, true));
         break;
+      case "TOKEN:UPDATE":
+        res(await User.setTokens(body, true));
+        break;
       case "INDICATOR:SHOW":
         res(Indicator.show());
         break;
       case "INDICATOR:HIDE":
         res(Indicator.hide());
+        break;
+      case "NOTIFICATIONS:GET":
+        res(Notification.getLoaded());
+        break;
+      case "NOTIFICATIONS:READ":
+        Notification.setRead();
+        res(null);
+        break;
+      case "NOTIFICATIONS:MORE":
+        await Notification.fetch(true);
+        res(null);
         break;
       case "COPY":
         res(Clipboard.event(body));
@@ -130,6 +149,12 @@ export default class Events {
       case "auth:update":
         dispatch(checkLoggedIn());
         break;
+      case "notification:update":
+        dispatch(updateNotifications(data));
+        break;
+      case "token:update":
+        User.setTokens(data, true);
+        break;
       case "snackbar:success":
         Snackbar.success(data.text);
         break;
@@ -155,7 +180,7 @@ export default class Events {
         res({ success: true });
         break;
       case "AUTHENTICATED":
-        res(await User.isAuthenticated());
+        res(await User.checkAuthenticated());
         break;
       case "GOOGLE":
         res(await User.google(req));

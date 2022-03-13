@@ -24,7 +24,7 @@ export default function TextSwitch(props: IProps) {
 
   return (
     <div
-      className={`dark:bg-background-form relative flex flex-row items-center justify-center border border-gray-200 bg-white dark:border-white/20 ${
+      className={`dark:bg-background-form relative flex flex-row items-center justify-center bg-white ${
         props.small ? "p-0.5" : "p-1"
       } rounded-lg shadow-sm`}
     >

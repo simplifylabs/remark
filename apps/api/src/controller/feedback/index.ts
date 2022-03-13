@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { validate, Joi } from "@api/middleware/validation";
 import { Feedback } from "@db";
 
-const meUser = async (req: Request, res: Response) => {
+const feedback = async (req: Request, res: Response) => {
   try {
     await Feedback.create({
       data: {
@@ -25,5 +25,5 @@ export default [
       comment: Joi.string().max(3000).optional(),
     }),
   }),
-  meUser,
+  feedback,
 ];
