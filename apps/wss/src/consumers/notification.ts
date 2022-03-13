@@ -1,5 +1,5 @@
 import { Server } from "socket.io";
-import { Notification } from "@db";
+import { Notification, User } from "@db";
 import { IEventData } from "@queue";
 
 export default function notification(io: Server) {
@@ -22,10 +22,12 @@ export default function notification(io: Server) {
       data: {
         type: data.type,
         userId: data.user,
+        url: data.url,
         data: JSON.stringify(data.data),
       },
     });
 
+    await User.update({ where: { id: data.user }, data: { hasUnread: true } });
     io.to(data.user).emit("notification", notification);
   };
 }
