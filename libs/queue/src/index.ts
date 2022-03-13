@@ -5,6 +5,7 @@ export interface IEventData {
   notification: {
     type: NotificationType;
     user: string;
+    url?: string;
     data: {
       // eslint-disable-next-line
       [key: string]: any;
