@@ -1,6 +1,5 @@
 import listController from "@api/controller/notification/list";
-import unreadController from "@api/controller/notification/unread";
-import updateController from "@api/controller/notification/update";
+import readController from "@api/controller/notification/read";
 import access from "@middleware/access";
 import limit from "@middleware/limit";
 import { Router } from "express";
@@ -16,7 +15,6 @@ router.use(
 );
 
 router.get("/list", listController);
-router.get("/unread/count", unreadController);
-router.post("/:id/update", updateController);
+router.post("/read", readController);
 
 export default router;

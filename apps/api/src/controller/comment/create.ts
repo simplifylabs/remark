@@ -71,6 +71,7 @@ const createComment = async (req: Request, res: Response) => {
         sendToQueue("notification", {
           type: "MENTION",
           user: mentionedId,
+          url: shareURL,
           data: { user: comment.author },
         });
       });
@@ -80,6 +81,7 @@ const createComment = async (req: Request, res: Response) => {
       sendToQueue("notification", {
         type: "REPLY",
         user: reply.author.id,
+        url: shareURL,
         data: { user: comment.author },
       });
     }
