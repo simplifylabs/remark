@@ -61,6 +61,7 @@ const voteComment = async (req: Request, res: Response) => {
       select: {
         upvotes: true,
         downvotes: true,
+        shareURL: true,
         author: {
           select: {
             id: true,
@@ -76,7 +77,8 @@ const voteComment = async (req: Request, res: Response) => {
       sendToQueue("notification", {
         type: "VOTES",
         user: post.author.id,
-        data: { count: votes },
+        url: post.shareURL,
+        data: { count: votes, voter: req.user.id },
       });
     }
   } catch (e) {

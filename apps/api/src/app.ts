@@ -11,6 +11,7 @@ import auth from "@api/router/auth";
 import comment from "@api/router/comment";
 import user from "@api/router/user";
 import feedback from "@api/router/feedback";
+import notification from "@api/router/notification";
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use("/auth", auth);
 app.use("/comment", comment);
 app.use("/user", user);
 app.use("/feedback", feedback);
+app.use("/notification", notification);
 
 app.use(error());
 

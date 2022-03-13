@@ -1,9 +1,17 @@
 import { Joi, prefabs, validate } from "@api/middleware/validation";
 import { Request, Response } from "express";
-import { prisma, Notification } from "@db";
+import { prisma, Notification, User } from "@db";
 
 async function listNotifications(req: Request, res: Response) {
   const result = await prisma.$transaction([
+    User.findUnique({
+      where: {
+        id: req.user.id,
+      },
+      select: {
+        hasUnread: true,
+      },
+    }),
     Notification.count({
       where: { userId: req.user.id },
     }),
@@ -18,8 +26,9 @@ async function listNotifications(req: Request, res: Response) {
   ]);
 
   res.status(200).json({
-    total: result[0] || 0,
-    list: result[1] || [],
+    hasUnread: result[0] || false,
+    total: result[1] || 0,
+    list: result[2] || [],
   });
 }
 

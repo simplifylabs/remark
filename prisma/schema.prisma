@@ -18,6 +18,7 @@ model User {
   posts Post[]
   votes Vote[]
   notifcations Notification[]
+  hasUnread Boolean @default(false)
   updatedAt DateTime @updatedAt  
   createdAt DateTime @default(now())  
 }
@@ -58,6 +59,7 @@ model Vote {
   userId String
   post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId String
+  createdAt DateTime @default(now())
 }
 
 enum NotificationType {
@@ -69,10 +71,10 @@ enum NotificationType {
 model Notification {
   id String @id @default(uuid())
   type NotificationType
+  url String?
   data Json
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
-  read Boolean @default(false)
   createdAt DateTime @default(now())
 }
 
