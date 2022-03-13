@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
-import {
-  IComment,
-  IVote,
-  IAuthor,
-  mentionRegex,
-} from "@browser/reducers/comment";
-import { Server } from "@browser/util/api";
+import { IComment, IVote, IAuthor } from "@browser/reducers/comment";
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/solid";
 import { AnnotationIcon, ShareIcon, TrashIcon } from "@heroicons/react/outline";
 import { voteComment, setReplying, setTyping } from "@browser/actions/comment";
 import { connect, IRootState } from "@browser/state/index";
+import { mentionRegex } from "@util/mentions";
 import { Toast } from "@browser/util/dialog";
+import { Server } from "@browser/util/api";
 import App from "@browser/util/app";
 
 interface ICommentProps extends IComment {
@@ -175,16 +171,29 @@ function Comment(props: ICommentProps) {
             <AnnotationIcon onClick={reply} className="btn-icon p-[0.35rem]" />
             <ShareIcon
               onClick={() => {
-                chrome.runtime.sendMessage(
-                  {
-                    type: "COPY",
-                    text: `${App.webUrl}share?id=${props.id}`,
-                  },
-                  (res) => {
-                    if (res.success) return Toast.success("Copied link!");
-                    Toast.error("Failed to copy link!");
+                if (App.isFirefox()) {
+                  chrome.runtime.sendMessage(
+                    {
+                      type: "COPY",
+                      text: `${App.webUrl}share?id=${props.id}`,
+                    },
+                    (res) => {
+                      if (res.success) return Toast.success("Copied link!");
+                      Toast.error("Failed to copy link!");
+                    }
+                  );
+                } else {
+                  if (navigator && navigator.clipboard) {
+                    navigator.clipboard
+                      .writeText(`${App.webUrl}share?id=${props.id}`)
+                      .then(() => {
+                        return Toast.success("Copied link!");
+                      })
+                      .catch(() => {
+                        return Toast.error("Failed to copy link!");
+                      });
                   }
-                );
+                }
               }}
               className="btn-icon p-[0.35rem]"
             />

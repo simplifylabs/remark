@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { XIcon, PaperAirplaneIcon } from "@heroicons/react/solid";
+import {
+  XIcon,
+  PaperAirplaneIcon,
+  ArrowLeftIcon,
+} from "@heroicons/react/solid";
 import { connect, IRootState } from "@browser/state/index";
-import { showSidebar, hideSidebar, hideFab } from "@browser/actions/render";
+import {
+  showSidebar,
+  hideSidebar,
+  hideFab,
+  Page,
+} from "@browser/actions/render";
 import Render from "@browser/util/render";
 import Domain from "@browser/util/domain";
 import Frame from "@browser/components/Frame";
@@ -10,7 +19,9 @@ interface IProps {
   showen: boolean;
   sidebar: boolean;
   typing: boolean;
+  unread: boolean;
   total: number;
+  page: Page;
   show: typeof showSidebar;
   hide: typeof hideSidebar;
   hideFab: typeof hideFab;
@@ -84,9 +95,11 @@ function FabComponent(props: IProps) {
   }
 
   function click() {
-    if (props.typing) Render.call("remark:post");
-    else if (props.sidebar) props.hide();
-    else props.show();
+    if (props.typing) Render.call("post");
+    else if (props.sidebar) {
+      if (props.page == "HOME") props.hide();
+      else Render.call("back");
+    } else props.show();
   }
 
   return (
@@ -119,18 +132,18 @@ function FabComponent(props: IProps) {
           onMouseOver={() => setLabelHover(true)}
           onMouseOut={() => setLabelHover(false)}
           className={`fixed z-[1] flex h-6 w-6 cursor-pointer items-center justify-center rounded-full bg-red-500 shadow-xl transition-all ${
-            (props.total > 0 || fabHover || labelHover) &&
+            (props.total > 0 || fabHover || labelHover || props.unread) &&
             !props.typing &&
             !props.sidebar
               ? "opacity-1"
               : "pointer-events-none opacity-0"
           }`}
         >
-          {labelHover || fabHover || props.total <= 0 ? (
+          {labelHover || fabHover ? (
             <XIcon className="pointer-events-none w-1/2 text-white" />
           ) : (
             <label className="pointer-events-none text-xs font-bold text-white">
-              {props.total > 99 ? "!" : props.total}
+              {props.total > 99 || props.total == 0 ? "!" : props.total}
             </label>
           )}
         </div>
@@ -160,14 +173,21 @@ function FabComponent(props: IProps) {
               shapeRendering="geometricPrecision"
             />
           ) : props.sidebar ? (
-            <XIcon
-              style={{
-                //@ts-ignore
-                "--tw-rotate": `${fabHover ? 90 : 0}deg`,
-              }}
-              className="icon-white remark-ignore w-5/12 transform !cursor-pointer opacity-[99] transition-all duration-200"
-              shapeRendering="geometricPrecision"
-            />
+            props.page == "HOME" ? (
+              <XIcon
+                style={{
+                  //@ts-ignore
+                  "--tw-rotate": `${fabHover ? 90 : 0}deg`,
+                }}
+                className="icon-white remark-ignore w-5/12 transform !cursor-pointer opacity-[99] transition-all duration-200"
+                shapeRendering="geometricPrecision"
+              />
+            ) : (
+              <ArrowLeftIcon
+                className="icon-white remark-ignore w-5/12 transform !cursor-pointer opacity-[99] transition-all duration-200"
+                shapeRendering="geometricPrecision"
+              />
+            )
           ) : (
             <svg
               style={{
@@ -205,6 +225,8 @@ const mapStateToProps = (state: IRootState) => ({
   sidebar: state.render.sidebar,
   typing: state.comment.typing,
   total: state.comment.total,
+  page: state.render.page,
+  unread: state.notification.unread,
 });
 
 const mapDispatchToProps = {

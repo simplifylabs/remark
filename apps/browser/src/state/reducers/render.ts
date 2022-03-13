@@ -5,18 +5,22 @@ import {
   HIDE_SIDEBAR,
   SHOW_SIDEBAR,
   SET_DARK,
+  SET_PAGE,
+  Page,
 } from "@browser/actions/render";
 import { AnyAction } from "redux";
 
 export interface RenderState {
   fab: boolean;
   sidebar: boolean;
+  page: Page;
   dark: boolean;
 }
 
 const initialState: RenderState = {
   fab: false,
   sidebar: false,
+  page: "HOME",
   dark: false,
 };
 
@@ -56,6 +60,11 @@ export default (
       return {
         ...state,
         dark: action.to,
+      };
+    case SET_PAGE:
+      return {
+        ...state,
+        page: action.to,
       };
     default:
       return { ...state };

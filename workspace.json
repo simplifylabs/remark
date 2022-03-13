@@ -4,9 +4,11 @@
     "api": "apps/api",
     "browser": "apps/browser",
     "cdn": "apps/cdn",
-    "web": "apps/web",
     "db": "libs/db",
+    "middleware": "libs/middleware",
+    "queue": "libs/queue",
+    "wss": "apps/wss",
     "util": "libs/util",
-    "middleware": "libs/middleware"
+    "web": "apps/web"
   }
 }

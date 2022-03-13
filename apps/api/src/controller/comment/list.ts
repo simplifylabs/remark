@@ -43,6 +43,7 @@ const listComments = async (req: Request, res: Response) => {
           post: { url: { filtered: filtered.url } },
         },
         select: {
+          id: true,
           type: true,
           post: {
             select: {

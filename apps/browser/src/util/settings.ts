@@ -1,4 +1,4 @@
-import Storage from "@browser/util/storage";
+import { Storage } from "@browser/util/browser";
 
 type Data = { [key: string]: any };
 export type Mode = "SHOW" | "SMART" | "HIDE";

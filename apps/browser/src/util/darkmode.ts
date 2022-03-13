@@ -1,4 +1,4 @@
-import Storage from "@browser/util/storage";
+import { Storage } from "@browser/util/browser";
 import Registry from "@browser/state/registry";
 import { setDark } from "@browser/actions/render";
 

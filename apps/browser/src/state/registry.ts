@@ -1,7 +1,7 @@
-import { Store } from "redux";
+import { Store as ReduxStore } from "redux";
 
 export default class Registry {
-  static store: Store;
+  static store: ReduxStore;
 
   // eslint-ignore-next-line
   static dispatch(data: any) {
@@ -9,11 +9,11 @@ export default class Registry {
     Registry.store.dispatch(data);
   }
 
-  static getStore(): Store {
+  static getStore(): ReduxStore {
     return this.store;
   }
 
-  static set(store: Store) {
+  static set(store: ReduxStore) {
     this.store = store;
   }
 }

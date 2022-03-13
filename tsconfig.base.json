@@ -15,9 +15,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@db": ["libs/db/src/index.ts"],
-      "@util/*": ["libs/util/src/*"],
-      "@middleware/*": ["libs/middleware/src/*"],
       "@api/controller/*": ["apps/api/src/controller/*"],
       "@api/middleware/*": ["apps/api/src/middleware/*"],
       "@api/router/*": ["apps/api/src/router/*"],
@@ -34,13 +31,20 @@
       "@cdn/controller/*": ["apps/cdn/src/controller/*"],
       "@cdn/middleware/*": ["apps/cdn/src/middleware/*"],
       "@cdn/router/*": ["apps/cdn/src/router/*"],
+      "@db": ["libs/db/src/index.ts"],
+      "@queue": ["libs/queue/src/index.ts"],
+      "@middleware/*": ["libs/middleware/src/*"],
+      "@remark/queue": ["libs/queue/src/index.ts"],
+      "@util/*": ["libs/util/src/*"],
       "@web/actions/*": ["apps/web/state/actions/*"],
       "@web/components/*": ["apps/web/components/*"],
       "@web/hooks/*": ["apps/web/hooks/*"],
       "@web/registry": ["apps/web/state/registry.ts"],
       "@web/state": ["apps/web/state/index.ts"],
       "@web/styles/*": ["apps/web/styles/*"],
-      "@web/util/*": ["apps/web/util/*"]
+      "@web/util/*": ["apps/web/util/*"],
+      "@wss/consumers/*": ["apps/wss/src/consumers/*"],
+      "@wss/controller/*": ["apps/wss/src/controller/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

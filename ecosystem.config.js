@@ -19,6 +19,14 @@ module.exports = {
       },
     },
     {
+      name: "Remark WSS",
+      cwd: "./",
+      script: "./apps/wss/dist/main.js",
+      env: {
+        NODE_ENV: "production",
+      },
+    },
+    {
       name: "Remark Web",
       cwd: "./apps/web/dist",
       script: "../../../node_modules/.bin/next start",

@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
 import access from "@middleware/access";
 import { Vote, Post } from "@db";
+import { sendToQueue } from "@queue";
 
 const voteComment = async (req: Request, res: Response) => {
   try {
@@ -54,6 +55,32 @@ const voteComment = async (req: Request, res: Response) => {
     });
 
     res.status(200).json({ action: type });
+
+    const post = await Post.findUnique({
+      where: { id: req.params.id },
+      select: {
+        upvotes: true,
+        downvotes: true,
+        shareURL: true,
+        author: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+
+    if (!post) return;
+
+    const votes = post.upvotes - post.downvotes;
+    if ([3, 5, 10, 50, 100, 500, 1000].includes(votes)) {
+      sendToQueue("notification", {
+        type: "VOTES",
+        user: post.author.id,
+        url: post.shareURL,
+        data: { count: votes, voter: req.user.id },
+      });
+    }
   } catch (e) {
     console.error(e);
     res.status(500).json({ error: "INTERNAL_SERVER_ERROR" });
