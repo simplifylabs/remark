@@ -16,17 +16,12 @@ export default function Share() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log(router);
     if (checking || !router.isReady) return;
 
     if (installed) {
       setLoading(true);
-      if (
-        /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
-          router.query.id.toString()
-        )
-      ) {
-        fetch(router.query.id);
-      }
+      fetch(router.query.id);
     } else setLoading(false);
   }, [installed, checking, router]);
 
@@ -36,7 +31,7 @@ export default function Share() {
 
     if (res && res.success) return router.replace(res.url);
     if (!res) return router.push("/maintenance");
-    Toast.error("Something unexpected happened!");
+    Toast.error("Post doesn't exist!");
     router.push("/");
   }
 
