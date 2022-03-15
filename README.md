@@ -155,7 +155,7 @@ nx serve browser
 2. Open `chrome://extensions/`
 3. Press "Load unpacked"
 4. Navigate to the remark source code and select the `build` folder inside apps/browser/
-5. A new extension should show up. Copy the ID showen in the extension box
+5. A new extension should show up. Copy the ID shown in the extension box
 6. Paste the copied id into `apps/web/.env.local` as the `NEXT_PUBLIC_CHROME_ID`
 
 ### Firefox

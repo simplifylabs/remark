@@ -9,7 +9,7 @@ export interface ISnackbarData {
 }
 
 export interface ISnackbar extends ISnackbarData {
-  showen: boolean;
+  shown: boolean;
 }
 
 export interface IModal {
@@ -42,7 +42,7 @@ export const showSnackbar =
   (data: ISnackbarData) => async (dispatch: Dispatch) => {
     dispatch({
       type: SHOW_SNACKBAR,
-      data: { ...data, showen: true } as ISnackbar,
+      data: { ...data, shown: true } as ISnackbar,
     });
 
     if (data.type == "TOAST") {

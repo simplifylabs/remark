@@ -140,12 +140,12 @@ export default class Render {
     this.showFab(true);
   }
 
-  static showFab(showen: boolean) {
-    Registry.dispatch(showen ? showFab() : hideFab());
+  static showFab(shown: boolean) {
+    Registry.dispatch(shown ? showFab() : hideFab());
   }
 
-  static showSidebar(showen: boolean) {
-    Registry.dispatch(showen ? showSidebar() : hideSidebar());
+  static showSidebar(shown: boolean) {
+    Registry.dispatch(shown ? showSidebar() : hideSidebar());
   }
 
   static sidebarQuerySelector(selector: string): Element | null {

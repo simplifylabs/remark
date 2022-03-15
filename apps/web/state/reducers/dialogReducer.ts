@@ -38,7 +38,7 @@ function hideSnackbar(state: DialogState, action: AnyAction) {
   const index = snackbars.findIndex((item) => item.id == action.id);
 
   if (index == -1) return state;
-  snackbars[index].showen = false;
+  snackbars[index].shown = false;
 
   return {
     ...state,

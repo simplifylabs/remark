@@ -9,7 +9,7 @@ export interface ISnackbarData {
 
 export interface ISnackbar extends ISnackbarData {
   id: string;
-  showen: boolean;
+  shown: boolean;
 }
 
 export const SHOW_SNACKBAR = "SHOW_SNACKBAR";
@@ -22,7 +22,7 @@ export const showSnackbar =
 
     dispatch({
       type: SHOW_SNACKBAR,
-      data: { ...data, showen: true, id } as ISnackbar,
+      data: { ...data, shown: true, id } as ISnackbar,
     });
 
     if (data.type == "TOAST") {

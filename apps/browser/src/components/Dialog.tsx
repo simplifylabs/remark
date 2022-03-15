@@ -136,7 +136,7 @@ function SnackbarComponent(props: ISnackbarProps) {
   useEffect(() => {
     if (loading) return;
 
-    if (props.showen)
+    if (props.shown)
       animation.start({
         opacity: 1,
         x: "-50%",
@@ -150,7 +150,7 @@ function SnackbarComponent(props: ISnackbarProps) {
         y: 20,
         transition: { duration: 0.2 },
       });
-  }, [loading, props.showen]);
+  }, [loading, props.shown]);
 
   return (
     <Frame

@@ -16,7 +16,7 @@ import Domain from "@browser/util/domain";
 import Frame from "@browser/components/Frame";
 
 interface IProps {
-  showen: boolean;
+  shown: boolean;
   sidebar: boolean;
   typing: boolean;
   unread: boolean;
@@ -32,7 +32,7 @@ function FabComponent(props: IProps) {
   const [fabHover, setFabHover] = useState<boolean>(false);
   const [secondary, setSecondary] = useState(false);
   const [scale, setScale] = useState(0);
-  const [showen, setShowen] = useState(false);
+  const [shown, setShown] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -44,20 +44,20 @@ function FabComponent(props: IProps) {
 
   useEffect(() => {
     if (props.sidebar) {
-      setShowen(true);
+      setShown(true);
       setScale(0.75);
       return;
     }
 
-    if (props.showen) {
-      setShowen(true);
+    if (props.shown) {
+      setShown(true);
       setScale(1);
       return;
     }
 
     setScale(0);
-    setShowen(false);
-  }, [props.showen, props.sidebar]);
+    setShown(false);
+  }, [props.shown, props.sidebar]);
 
   useEffect(() => {
     Render.on("comments:loaded", onCommentsLoad);
@@ -114,7 +114,7 @@ function FabComponent(props: IProps) {
         width: 65,
         height: 63,
         transition: "all 0.2s ease",
-        pointerEvents: showen ? "auto" : "none",
+        pointerEvents: shown ? "auto" : "none",
       }}
     >
       <div
@@ -221,7 +221,7 @@ function FabComponent(props: IProps) {
 }
 
 const mapStateToProps = (state: IRootState) => ({
-  showen: state.render.fab,
+  shown: state.render.fab,
   sidebar: state.render.sidebar,
   typing: state.comment.typing,
   total: state.comment.total,

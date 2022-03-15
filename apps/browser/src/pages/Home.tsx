@@ -14,7 +14,7 @@ import Comment from "@browser/components/Comment";
 import App from "@browser/util/app";
 
 interface IHomeProps {
-  showen: boolean;
+  shown: boolean;
   isLoggedIn: boolean;
   replying: IReply | null;
   typing: typeof setTyping;
@@ -40,11 +40,11 @@ function Home(props: IHomeProps) {
   }, [textarea, value]);
 
   useEffect(() => {
-    if (props.showen) {
+    if (props.shown) {
       if (value) props.typing(true);
       else props.typing(false);
     }
-  }, [props.showen]);
+  }, [props.shown]);
 
   function signIn() {
     window.open(`${App.webUrl}auth/signin`);
@@ -197,7 +197,7 @@ const List = connect(
 )(ListComponent);
 
 const mapStateToProps = (state: IRootState) => ({
-  showen: state.render.sidebar,
+  shown: state.render.sidebar,
   isLoggedIn: state.user.isLoggedIn,
   replying: state.comment.replying,
 });
