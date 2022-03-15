@@ -44,14 +44,24 @@ function FabComponent(props: IProps) {
 
   useEffect(() => {
     if (props.sidebar) {
-      setShowen(true);
-      setScale(0.75);
+      if (showen) setScale(0.75);
+      else {
+        setShowen(true);
+        setTimeout(() => {
+          setScale(0.75);
+        }, 100);
+      }
       return;
     }
 
     if (props.showen) {
-      setShowen(true);
-      setScale(1);
+      if (showen) setScale(1);
+      else {
+        setShowen(true);
+        setTimeout(() => {
+          setScale(1);
+        }, 100);
+      }
       return;
     }
 
@@ -87,7 +97,7 @@ function FabComponent(props: IProps) {
     if (mode !== "SMART") return;
 
     if (total == undefined) total = props.total;
-    if (total > 0) Render.showFab(true);
+    if (total > 0) Render.showFab(true, true);
   }
 
   function checkSecondary() {
