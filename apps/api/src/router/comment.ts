@@ -3,6 +3,7 @@ import listController from "@api/controller/comment/list";
 import removeController from "@api/controller/comment/remove";
 import singleController from "@api/controller/comment/single";
 import urlController from "@api/controller/comment/url";
+import shareController from "@api/controller/comment/share";
 import voteController from "@api/controller/comment/vote";
 import limit from "@middleware/limit";
 import { Router } from "express";
@@ -19,9 +20,11 @@ router.use(
 router.get("/list", listController);
 router.post("/", createController);
 
-router.get("/:id/url", urlController);
 router.get("/:id/", singleController);
 router.post("/:id/vote", voteController);
+
+router.get("/:id/url", urlController);
+router.get("/:id/share", shareController);
 
 router.delete("/:id", removeController);
 
