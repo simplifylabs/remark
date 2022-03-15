@@ -11,11 +11,14 @@ export const SHOW_SIDEBAR = "SHOW_SIDEBAR";
 export const SET_DARK = "SET_DARK";
 export const SET_PAGE = "SET_PAGE";
 
-export const showFab = () => async (dispatch: Dispatch) => {
-  dispatch({
-    type: SHOW_FAB,
-  });
-};
+export const showFab =
+  (autoShown = false) =>
+  async (dispatch: Dispatch) => {
+    dispatch({
+      type: SHOW_FAB,
+      autoShown,
+    });
+  };
 
 export const hideFab = () => async (dispatch: Dispatch) => {
   dispatch({
