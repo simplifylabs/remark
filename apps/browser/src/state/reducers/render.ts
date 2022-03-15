@@ -12,6 +12,7 @@ import { AnyAction } from "redux";
 
 export interface RenderState {
   fab: boolean;
+  fabAutoShown: boolean;
   sidebar: boolean;
   page: Page;
   dark: boolean;
@@ -19,6 +20,7 @@ export interface RenderState {
 
 const initialState: RenderState = {
   fab: false,
+  fabAutoShown: false,
   sidebar: false,
   page: "HOME",
   dark: false,
@@ -33,6 +35,7 @@ export default (
       return {
         ...state,
         fab: true,
+        fabAutoShown: action.autoShown,
       };
     case HIDE_FAB:
       return {
