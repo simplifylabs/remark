@@ -6,7 +6,7 @@ import { voteComment, setReplying, setTyping } from "@browser/actions/comment";
 import { connect, IRootState } from "@browser/state/index";
 import { mentionRegex } from "@util/mentions";
 import { Toast } from "@browser/util/dialog";
-import { Server } from "@browser/util/api";
+import API, { Server } from "@browser/util/api";
 import App from "@browser/util/app";
 
 interface ICommentProps extends IComment {
@@ -111,6 +111,35 @@ function Comment(props: ICommentProps) {
     return `@[${parent.username}](${parent.id}) ${mention}`;
   }
 
+  async function share() {
+    const res = await API.get(["comment", props.id, "share"]);
+    if (!res.success) return Toast.error("Failed to create share link!");
+
+    if (App.isFirefox()) {
+      chrome.runtime.sendMessage(
+        {
+          type: "COPY",
+          text: res.body.url,
+        },
+        (res) => {
+          if (res.success) return Toast.success("Copied link!");
+          Toast.error("Failed to copy link!");
+        }
+      );
+    } else {
+      if (navigator && navigator.clipboard) {
+        navigator.clipboard
+          .writeText(res.body.url)
+          .then(() => {
+            return Toast.success("Copied link!");
+          })
+          .catch(() => {
+            return Toast.error("Failed to copy link!");
+          });
+      }
+    }
+  }
+
   return (
     <div
       className={`relative flex w-full flex-col items-end ${
@@ -169,34 +198,7 @@ function Comment(props: ICommentProps) {
           </div>
           <div className="flex flex-row items-center gap-2">
             <AnnotationIcon onClick={reply} className="btn-icon p-[0.35rem]" />
-            <ShareIcon
-              onClick={() => {
-                if (App.isFirefox()) {
-                  chrome.runtime.sendMessage(
-                    {
-                      type: "COPY",
-                      text: `${App.webUrl}share?id=${props.id}`,
-                    },
-                    (res) => {
-                      if (res.success) return Toast.success("Copied link!");
-                      Toast.error("Failed to copy link!");
-                    }
-                  );
-                } else {
-                  if (navigator && navigator.clipboard) {
-                    navigator.clipboard
-                      .writeText(`${App.webUrl}share?id=${props.id}`)
-                      .then(() => {
-                        return Toast.success("Copied link!");
-                      })
-                      .catch(() => {
-                        return Toast.error("Failed to copy link!");
-                      });
-                  }
-                }
-              }}
-              className="btn-icon p-[0.35rem]"
-            />
+            <ShareIcon onClick={share} className="btn-icon p-[0.35rem]" />
             {props.author.id == props.myId && (
               <TrashIcon
                 onClick={() => props.remove(props.id)}

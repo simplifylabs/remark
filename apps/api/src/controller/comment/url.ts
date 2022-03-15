@@ -1,10 +1,12 @@
 import { Request, Response } from "express";
-import { Joi, prefabs, validate } from "@api/middleware/validation";
+import { Joi, validate } from "@api/middleware/validation";
 import { Post } from "@db";
 
 const commentUrl = async (req: Request, res: Response) => {
-  const comment = await Post.findUnique({
-    where: { id: req.params.id },
+  const comment = await Post.findFirst({
+    where: {
+      OR: [{ id: req.params.id }, { slug: req.params.id }],
+    },
   });
 
   if (!comment) return res.status(404).json({ error: "POST_NOT_FOUND" });
@@ -14,7 +16,7 @@ const commentUrl = async (req: Request, res: Response) => {
 export default [
   validate({
     params: Joi.object({
-      id: prefabs.id.required(),
+      id: Joi.string().min(5).required(),
     }),
   }),
   commentUrl,
