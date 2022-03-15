@@ -12,7 +12,7 @@ export default function Welcome() {
       <Spacer />
       <Section title="The Remark Button" image="button">
         The button in bottom right allows you toggle the sidebar. It will be
-        automatically showen when a Remark has been posted on the current site.{" "}
+        automatically shown when a Remark has been posted on the current site.{" "}
         <br />
         <br />
         If the button is distracting you, you can always hover on it and press
@@ -20,9 +20,9 @@ export default function Welcome() {
         <br />
       </Section>
       <Section title="Action Icon" image="action" flip>
-        You can use the action icon, usually showen in the top right of your
+        You can use the action icon, usually shown in the top right of your
         browser, to toggle the Sidebar - even if the Remark button isn&apos;t
-        showen.
+        shown.
         <br />
         <br />
         Furthermore, you can set Hotkeys to toggle the sidebar and/or button for
@@ -30,7 +30,7 @@ export default function Welcome() {
       </Section>
       <Section title="Show Modes" image="modes">
         The different Show Modes allow you to control when the button should be
-        automatically showen for this <b className="text-lg">Domain.</b>
+        automatically shown for this <b className="text-lg">Domain.</b>
         <br />
         <br />
         &quot;Smart&quot; will only show if a Remark has been posted on that

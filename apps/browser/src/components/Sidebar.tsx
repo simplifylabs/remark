@@ -21,7 +21,7 @@ import Inbox from "@browser/pages/Inbox";
 interface ISidebarProps {
   online: boolean;
   client: boolean;
-  showen: boolean;
+  shown: boolean;
   unread: boolean;
   page: Page;
   typing: typeof setTyping;
@@ -52,9 +52,9 @@ function Sidebar(props: ISidebarProps) {
   }, []);
 
   useEffect(() => {
-    setTranslateX(props.showen ? "0" : "120%");
-    setOpacity(props.showen ? 1 : 0);
-  }, [props.showen]);
+    setTranslateX(props.shown ? "0" : "120%");
+    setOpacity(props.shown ? 1 : 0);
+  }, [props.shown]);
 
   useEffect(() => {
     props.typing(false);
@@ -66,9 +66,9 @@ function Sidebar(props: ISidebarProps) {
   }, []);
 
   useEffect(() => {
-    if (props.showen) document.body.addEventListener("click", close);
+    if (props.shown) document.body.addEventListener("click", close);
     return () => document.body.removeEventListener("click", close);
-  }, [props.showen]);
+  }, [props.shown]);
 
   function close(e: MouseEvent) {
     const launcher = document.querySelector("#remark-launcher");
@@ -196,7 +196,7 @@ const mapStateToProps = (state: IRootState) => ({
   online: state.connection.online,
   client: state.connection.clientOn,
   page: state.render.page,
-  showen: state.render.sidebar,
+  shown: state.render.sidebar,
   unread: state.notification.unread,
 });
 

@@ -25,14 +25,14 @@ interface ISnackbarProps {
   level: level;
   text: string;
   index: number;
-  showen: boolean;
+  shown: boolean;
 }
 
 function SnackbarComponent(props: ISnackbarProps) {
   const animation = useAnimation();
 
   useEffect(() => {
-    if (props.showen)
+    if (props.shown)
       animation.start({
         opacity: 1,
         x: "-50%",
@@ -46,7 +46,7 @@ function SnackbarComponent(props: ISnackbarProps) {
         y: 20,
         transition: { duration: 0.2 },
       });
-  }, [props.showen]);
+  }, [props.shown]);
 
   return (
     <motion.div

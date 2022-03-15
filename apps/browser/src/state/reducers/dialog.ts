@@ -36,7 +36,7 @@ export default (
       index = list.findIndex((item) => item.id == action.id);
 
       if (index == -1) return state;
-      list[index].showen = false;
+      list[index].shown = false;
 
       return {
         ...state,
