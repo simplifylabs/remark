@@ -140,8 +140,13 @@ export default class Render {
     this.showFab(true);
   }
 
-  static showFab(shown: boolean) {
-    Registry.dispatch(shown ? showFab() : hideFab());
+  static autoHideFab() {
+    const state = Registry.store.getState();
+    if (state.render.fabAutoShown) this.showFab(false);
+  }
+
+  static showFab(shown: boolean, shownAuto = false) {
+    Registry.dispatch(shown ? showFab(shownAuto) : hideFab());
   }
 
   static showSidebar(shown: boolean) {
