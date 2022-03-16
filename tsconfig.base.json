@@ -27,7 +27,6 @@
       "@browser/state/*": ["apps/browser/src/state/*"],
       "@browser/styles/*": ["apps/browser/src/styles/*"],
       "@browser/util/*": ["apps/browser/src/util/*"],
-      "@cdn/config/*": ["apps/cdn/src/config/*"],
       "@cdn/controller/*": ["apps/cdn/src/controller/*"],
       "@cdn/middleware/*": ["apps/cdn/src/middleware/*"],
       "@cdn/router/*": ["apps/cdn/src/router/*"],

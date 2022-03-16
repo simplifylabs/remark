@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { Joi, prefabs, validate } from "@api/middleware/validation";
 import { TokenPayload } from "google-auth-library";
+import { downloadGoogleAvatar, convertImage } from "@util/avatar";
 import {
   generateAccessToken,
   generateRefreshToken,
@@ -50,6 +51,15 @@ const google = async (req: Request, res: Response) => {
           googleId: payload.sub,
         },
       });
+
+      if (payload.picture) {
+        const avatarTmpPath = await downloadGoogleAvatar(
+          payload.picture,
+          user.id
+        );
+
+        await convertImage(avatarTmpPath, user.id);
+      }
     } catch (e) {
       console.error(e);
       return res.status(500).json({ error: "INTERNAL_SERVER_ERROR" });

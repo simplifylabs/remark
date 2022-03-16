@@ -1,6 +1,6 @@
 import path from "path";
 import express, { Router, Request, Response } from "express";
-import avatar from "@cdn/config/avatar.config";
+import { avatar } from "@util/avatar";
 import uploadController from "@cdn/controller/upload";
 import existsController from "@cdn/controller/exists";
 
