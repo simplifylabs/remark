@@ -13,7 +13,9 @@ import {
 } from "@browser/actions/render";
 import Render from "@browser/util/render";
 import Domain from "@browser/util/domain";
+import { Storage } from "@browser/util/browser";
 import Frame from "@browser/components/Frame";
+import { showRate } from "@browser/actions/notification";
 
 interface IProps {
   shown: boolean;
@@ -25,6 +27,7 @@ interface IProps {
   show: typeof showSidebar;
   hide: typeof hideSidebar;
   hideFab: typeof hideFab;
+  showRate: typeof showRate;
 }
 
 function FabComponent(props: IProps) {
@@ -104,12 +107,22 @@ function FabComponent(props: IProps) {
     setSecondary(Render.fabExists());
   }
 
-  function click() {
+  async function click() {
     if (props.typing) Render.call("post");
     else if (props.sidebar) {
       if (props.page == "HOME") props.hide();
       else Render.call("back");
     } else props.show();
+
+    const disabled = await Storage.get("disableRate");
+    if (disabled == "true") return;
+    let clicks = Number((await Storage.get("fabClickCount")) || 0);
+    clicks += 1;
+
+    if (clicks >= 20) {
+      await Storage.set("fabClickCount", "0");
+      props.showRate();
+    } else await Storage.set("fabClickCount", String(clicks));
   }
 
   return (
@@ -243,6 +256,7 @@ const mapDispatchToProps = {
   show: showSidebar,
   hide: hideSidebar,
   hideFab: hideFab,
+  showRate: showRate,
 };
 
 //@ts-ignore

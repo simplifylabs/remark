@@ -10,6 +10,11 @@ enum DeviceType {
 export default class App {
   static deviceCache: DeviceType = null;
 
+  static firefoxUrl = `https://addons.mozilla.org/en-US/firefox/addon/remark-surf/`;
+  static operaUrl = `https://addons.opera.com/en/extensions/details/remark/`;
+  static edgeUrl = `https://microsoftedge.microsoft.com/addons/detail/remark/llnpmengfmlgkiccppiobhjdgmieibdd`;
+  static chromeUrl = `https://chrome.google.com/webstore/detail/remark/bkcfoljpnhifgljnaiahaihkppbkpcjo`;
+
   static isDev() {
     return process.env.NODE_ENV === "development";
   }
@@ -84,5 +89,12 @@ export default class App {
 
   static isSafari(): boolean {
     return this.getDevice() === DeviceType.SafariExtension;
+  }
+
+  static rateUrl() {
+    if (this.isFirefox()) return this.firefoxUrl;
+    if (this.isOpera()) return this.operaUrl;
+    if (this.isEdge()) return this.edgeUrl;
+    return this.chromeUrl;
   }
 }

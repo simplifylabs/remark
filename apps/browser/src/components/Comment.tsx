@@ -148,7 +148,7 @@ function Comment(props: ICommentProps) {
         (props.parent &&
           props.parent.shared &&
           props.parent.replies[props.parent.replies.length - 1].id == props.id)
-          ? "border-b border-black/10 pb-4"
+          ? "border-b border-black/10 pb-4 dark:border-white/10"
           : ""
       } ${props.parent ? "pl-6" : ""}`}
     >

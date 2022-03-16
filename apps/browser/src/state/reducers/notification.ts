@@ -1,16 +1,18 @@
 import { AnyAction } from "redux";
 import { INotification } from "@browser/util/notification";
-import { ADD_LIST, SET_LIST } from "@browser/actions/notification";
+import { ADD_LIST, SET_LIST, SET_RATE } from "@browser/actions/notification";
 
 export interface NotificationState {
   total: number;
   unread: boolean;
+  rate: boolean;
   list: INotification[];
 }
 
 const initialState: NotificationState = {
   total: 0,
   unread: false,
+  rate: false,
   list: [],
 };
 
@@ -32,6 +34,11 @@ export default (
         total: action.total,
         unread: action.unread,
         list: [...state.list, action.list],
+      };
+    case SET_RATE:
+      return {
+        ...state,
+        rate: action.to,
       };
     default:
       return { ...state };
