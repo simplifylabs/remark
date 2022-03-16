@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import AddButton from "@web/components/AddButton";
 import Navigation from "@web/components/Navigation";
 import Alert from "@web/components/Alert";
@@ -7,11 +8,18 @@ import API from "@web/util/api";
 
 export default function Feedback() {
   useTitle("Feedback");
+  const router = useRouter();
 
   const [error, setError] = useState<string | undefined>();
   const [finished, setFinished] = useState<boolean>(false);
+  const [uninstall, setUninstall] = useState<boolean>(false);
   const [statements, setStatements] = useState<string[]>([]);
   const [comment, setComment] = useState<string | undefined>();
+
+  useEffect(() => {
+    if (!router.isReady) return;
+    setUninstall(router.query.source == "uninstall");
+  }, [router]);
 
   function add(text: string) {
     setStatements([...statements, text]);
@@ -50,7 +58,7 @@ export default function Feedback() {
 
   return (
     <div className="flex min-h-screen w-screen flex-col items-center">
-      <Navigation uninstall />
+      <Navigation uninstall={uninstall} />
       <div className="mt-auto"></div>
       {finished ? (
         <>
@@ -58,9 +66,25 @@ export default function Feedback() {
           <p className="text-brand text-xl uppercase tracking-widest">
             for your feedback
           </p>
-          <div className="mt-12 flex flex-col gap-1">
-            <label className="text-sm text-gray-600">Changed your mind?</label>
-            <AddButton reinstall />
+          <div className="mt-12 flex flex-col items-center gap-1">
+            {uninstall ? (
+              <>
+                <label className="text-sm text-gray-600">
+                  Changed your mind?
+                </label>
+                <AddButton reinstall />
+              </>
+            ) : (
+              <>
+                <label className="text-sm text-gray-600">Need help?</label>
+                <button
+                  onClick={() => router.push("/welcome")}
+                  className="btn-primary"
+                >
+                  See Tutorial
+                </button>
+              </>
+            )}
           </div>
         </>
       ) : (
@@ -71,7 +95,9 @@ export default function Feedback() {
           <h1 className="text-5xl font-extrabold">Feedback</h1>
 
           <h2 className="text-basesm:text-lg mt-12 mb-4 text-gray-700">
-            Why did you uninstall Remark?
+            {uninstall
+              ? "Why did you uninstall Remark?"
+              : "What don't you like about Remark?"}
           </h2>
           <div className="flex w-[90vw] flex-col gap-2 sm:w-[18rem]">
             <div className="flex flex-col justify-start pl-2">
