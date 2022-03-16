@@ -4,6 +4,7 @@ import { Modal } from "@browser/util/dialog";
 import { connect, IRootState } from "@browser/state/index";
 import { IComment } from "@browser/reducers/comment";
 import { setTyping, postComment, setReplying } from "@browser/actions/comment";
+import { XIcon } from "@heroicons/react/solid";
 import { hideSidebar } from "@browser/actions/render";
 import { IReply } from "@browser/reducers/comment";
 import Render from "@browser/util/render";
@@ -151,6 +152,24 @@ function ListComponent(props: IListProps) {
       id="remark-scroll"
       className="thin-scrollbar h-full w-full overflow-y-auto"
     >
+      <div className="bg-brand relative my-2 mt-4 flex w-full flex-col items-start justify-start gap-4 overflow-hidden rounded-xl">
+        <div className="flex flex-col items-start p-6 pb-0">
+          <h1 className="text-2xl font-bold text-white">Like Remark?</h1>
+          <p className="text-sm text-white/80">Leave us a 5 star rating!</p>
+        </div>
+        <div className="flex w-full flex-row items-center justify-end gap-2 bg-black/10 p-2">
+          <button className="btn py-1 px-3 text-white/50 hover:bg-white/10">
+            No!
+          </button>
+          <button className="btn py-1 px-3 text-white/90 hover:bg-white/10">
+            Yes!
+          </button>
+        </div>
+        <button className="absolute top-4 right-4 rounded-md px-2 py-2 text-white/60 transition-all hover:bg-white/20 hover:text-white/80">
+          <XIcon className="pointer-events-none h-5 w-5 rounded-md" />
+        </button>
+      </div>
+      <div className="mt-4 mb-2 h-[1px] w-full bg-black/10 dark:bg-white/10"></div>
       <InfiniteScroll
         dataLength={props.list.length}
         next={() => props.fetch(props.page + 1)}
