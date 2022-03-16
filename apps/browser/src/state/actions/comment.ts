@@ -115,7 +115,7 @@ export const fetchComments =
           type: SET_SHARED,
           to: single.body.comment,
         });
-      } else Toast.error("Failed to load shared Remark");
+      } else Toast.error("Shared Remark doesn't exist!");
     }
 
     const res = await API.get(["comment", `list?page=${page}&url=${url}`]);
