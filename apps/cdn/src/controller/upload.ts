@@ -2,9 +2,8 @@ import { Request, Response } from "express";
 import { extname, join } from "path";
 import access from "@middleware/access";
 import limit from "@middleware/limit";
-import avatar from "@cdn/config/avatar.config";
+import { avatar, convertImage } from "@util/avatar";
 import multer from "multer";
-import sharp from "sharp";
 import fs from "fs";
 
 [
@@ -28,7 +27,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({
   storage: storage,
-  fileFilter: function (req, file, callback) {
+  fileFilter: (_: any, file: any, callback: any) => {
     const ext = extname(file.originalname);
     if (ext !== ".png" && ext !== ".jpg" && ext !== ".jpeg") {
       return callback(
@@ -47,25 +46,7 @@ const uploadAvatarController = async (req: Request, res: Response) => {
   const file = req.file;
   if (!file) return res.status(400).json({ error: "NO_FILE_SPECIFIED" });
   try {
-    for (let i = 0; i < avatar.sizes.length; i++) {
-      const size = avatar.sizes[i];
-
-      await sharp(file.path)
-        .resize(size, size, {
-          fit: sharp.fit.cover,
-          position: sharp.strategy.entropy,
-        })
-        .jpeg({ quality: avatar.quality[size] })
-        .toFile(
-          join(
-            "apps/cdn",
-            "uploads",
-            "avatars",
-            `${size}x${size}`,
-            `${req.user.id}.${avatar.filetype}`
-          )
-        );
-    }
+    convertImage(file.path, req.user.id);
     fs.unlinkSync(file.path);
   } catch (e) {
     fs.unlinkSync(file.path);

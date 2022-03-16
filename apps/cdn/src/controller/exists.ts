@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
+import { avatar } from "@util/avatar";
 import limit from "@middleware/limit";
 import path from "path";
 import fs from "fs";
-import avatar from "@cdn/config/avatar.config";
 
 const existsController = async (req: Request, res: Response) => {
   const exists = fs.existsSync(

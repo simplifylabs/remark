@@ -63,6 +63,7 @@
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
     "regenerator-runtime": "0.13.9",
+    "request": "^2.88.2",
     "sanitize-html": "^2.6.1",
     "sharp": "^0.29.3",
     "socket.io": "^4.4.1",
@@ -156,8 +157,7 @@
     "@api/controller": "dist/apps/api/controller",
     "@api/util": "dist/apps/api/util",
     "@api/middleware": "dist/apps/api/middleware",
-    "@cdn/config": "dist/apps/cdn/config",
-    "@cdn/controller": "dist/apps/cdn/config",
+    "@cdn/controller": "dist/apps/cdn/controller",
     "@cdn/router": "dist/apps/cdn/router",
     "@cdn/middleware": "dist/apps/cdn/middleware",
     "@wss/consumers": "dist/apps/wss/consumers"
