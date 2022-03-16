@@ -13,6 +13,8 @@ import Loader from "@browser/components/Loader";
 import TextArea from "@browser/components/TextArea";
 import Comment from "@browser/components/Comment";
 import App from "@browser/util/app";
+import { hideRate } from "@browser/actions/notification";
+import { Storage } from "@browser/util/browser";
 
 interface IHomeProps {
   shown: boolean;
@@ -109,13 +111,83 @@ function Home(props: IHomeProps) {
   );
 }
 
+interface IRateProps {
+  hide: typeof hideRate;
+}
+
+function Rate(props: IRateProps) {
+  function feedback() {
+    disable();
+
+    Modal.show(
+      "Feedback",
+      "Would you like to provide Feedback to help us<br />improve Remark?",
+      [
+        { type: "LINK", text: "Cancel", onClick: () => props.hide() },
+        {
+          type: "PRIMARY",
+          text: "Feedback",
+          onClick: () => {
+            props.hide();
+            window.open(`${App.webUrl}feedback`);
+          },
+        },
+      ]
+    );
+  }
+
+  function rate() {
+    props.hide();
+    disable();
+    window.open(App.rateUrl());
+  }
+
+  async function disable() {
+    await Storage.set("disableRate", "true");
+  }
+
+  return (
+    <>
+      <div className="bg-brand relative my-2 mt-4 flex w-full flex-col items-start justify-start gap-4 overflow-hidden rounded-xl">
+        <div className="flex flex-col items-start p-6 pb-0">
+          <h1 className="text-2xl font-bold text-white">Like Remark?</h1>
+          <p className="text-sm text-white/80">Leave us a 5 star rating!</p>
+        </div>
+        <div className="flex w-full flex-row items-center justify-end gap-2 bg-black/10 p-2">
+          <button
+            onClick={feedback}
+            className="btn py-1 px-3 text-white/50 hover:bg-white/10"
+          >
+            No!
+          </button>
+          <button
+            onClick={rate}
+            className="btn py-1 px-3 text-white/90 hover:bg-white/10"
+          >
+            Yes!
+          </button>
+        </div>
+        <button
+          onClick={() => props.hide()}
+          className="absolute top-4 right-4 rounded-md px-2 py-2 text-white/60 transition-all hover:bg-white/20 hover:text-white/80"
+        >
+          <XIcon className="pointer-events-none h-5 w-5 rounded-md" />
+        </button>
+      </div>
+      <div className="mt-4 mb-2 h-[1px] w-full bg-black/10 dark:bg-white/10"></div>
+    </>
+  );
+}
+
 interface IListProps {
+  rate: boolean;
   page: number;
   parents: number;
   list: IComment[];
   input?: HTMLTextAreaElement;
   fetch: typeof fetchComments;
   remove: typeof removeComment;
+  hideRate: typeof hideRate;
   setValue: (to: string) => void;
 }
 
@@ -152,24 +224,6 @@ function ListComponent(props: IListProps) {
       id="remark-scroll"
       className="thin-scrollbar h-full w-full overflow-y-auto"
     >
-      <div className="bg-brand relative my-2 mt-4 flex w-full flex-col items-start justify-start gap-4 overflow-hidden rounded-xl">
-        <div className="flex flex-col items-start p-6 pb-0">
-          <h1 className="text-2xl font-bold text-white">Like Remark?</h1>
-          <p className="text-sm text-white/80">Leave us a 5 star rating!</p>
-        </div>
-        <div className="flex w-full flex-row items-center justify-end gap-2 bg-black/10 p-2">
-          <button className="btn py-1 px-3 text-white/50 hover:bg-white/10">
-            No!
-          </button>
-          <button className="btn py-1 px-3 text-white/90 hover:bg-white/10">
-            Yes!
-          </button>
-        </div>
-        <button className="absolute top-4 right-4 rounded-md px-2 py-2 text-white/60 transition-all hover:bg-white/20 hover:text-white/80">
-          <XIcon className="pointer-events-none h-5 w-5 rounded-md" />
-        </button>
-      </div>
-      <div className="mt-4 mb-2 h-[1px] w-full bg-black/10 dark:bg-white/10"></div>
       <InfiniteScroll
         dataLength={props.list.length}
         next={() => props.fetch(props.page + 1)}
@@ -181,6 +235,7 @@ function ListComponent(props: IListProps) {
         }
         scrollableTarget="remark-scroll"
       >
+        {props.rate && <Rate hide={props.hideRate} />}
         <div className="flex w-full grow flex-col items-center justify-start gap-[1.1rem] pt-3">
           {props.list.map((item) => (
             <Fragment key={item.shared ? "SHARED" : item.id}>
@@ -204,6 +259,7 @@ function ListComponent(props: IListProps) {
 
 const List = connect(
   (state: IRootState) => ({
+    rate: state.notification.rate,
     list: state.comment.list,
     page: state.comment.page,
     parents: state.comment.parents,
@@ -211,6 +267,7 @@ const List = connect(
   {
     fetch: fetchComments,
     remove: removeComment,
+    hideRate: hideRate,
   }
   //@ts-ignore
 )(ListComponent);
