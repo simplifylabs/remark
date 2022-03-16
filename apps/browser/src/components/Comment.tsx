@@ -7,6 +7,7 @@ import { connect, IRootState } from "@browser/state/index";
 import { mentionRegex } from "@util/mentions";
 import { Toast } from "@browser/util/dialog";
 import API, { Server } from "@browser/util/api";
+import Loader from "@browser/components/Loader";
 import App from "@browser/util/app";
 
 interface ICommentProps extends IComment {
@@ -153,13 +154,18 @@ function Comment(props: ICommentProps) {
     >
       <div className="dark:bg-background-card flex w-full flex-col items-center justify-center overflow-hidden rounded-[0.75rem] bg-white shadow">
         <div className="flex w-full flex-row items-start justify-center gap-3 p-4">
-          <img
-            src={`${Server.cdn}avatar/${props.dark ? "dark" : "light"}/50x50/${
-              props.author.id
-            }`}
-            alt={`${props.author.username}´s Avatar`}
-            className="mt-1 min-h-[2rem] min-w-[2rem] rounded-full"
-          />
+          <div className="relative mt-1 min-h-[2.5rem] min-w-[2.5rem]">
+            <img
+              src={`${Server.cdn}avatar/${
+                props.dark ? "dark" : "light"
+              }/50x50/${props.author.id}`}
+              alt={`${props.author.username}´s Avatar`}
+              className="absolute top-0 left-0 z-[2] h-[2.5rem] w-[2.5rem] rounded-full"
+            />
+            <div className="absolute top-0 left-0 z-[1] flex h-[2.5rem] w-[2.5rem] items-center justify-center">
+              <Loader small />
+            </div>
+          </div>
           <div className="flex w-full flex-col items-start">
             <div className="flex w-full flex-row justify-between">
               <label className="text-md font-semibold text-black dark:text-white">
