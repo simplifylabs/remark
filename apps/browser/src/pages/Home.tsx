@@ -17,6 +17,8 @@ import { hideRate } from "@browser/actions/notification";
 import { Storage } from "@browser/util/browser";
 
 interface IHomeProps {
+  total: number;
+  dark: boolean;
   shown: boolean;
   isLoggedIn: boolean;
   replying: IReply | null;
@@ -89,7 +91,27 @@ function Home(props: IHomeProps) {
 
   return (
     <>
-      <List setValue={setValue} input={textarea} />
+      {props.total > 0 ? (
+        <List setValue={setValue} input={textarea} />
+      ) : (
+        <div className="flex h-full w-full flex-col items-center justify-center">
+          <img
+            src={
+              props.dark
+                ? chrome.runtime.getURL("assets/empty_dark.svg")
+                : chrome.runtime.getURL("assets/empty_light.svg")
+            }
+            alt="No Posts"
+            className="mb-8 w-[70%]"
+          />
+          <p className="text-[1.7rem] font-bold text-black dark:text-white">
+            Nothing here yet...
+          </p>
+          <p className="-mb-1 text-lg text-gray-500 dark:text-gray-300">
+            ...so be the first one!
+          </p>
+        </div>
+      )}
       <div className="flex w-full flex-row">
         {props.isLoggedIn ? (
           <TextArea
@@ -273,6 +295,8 @@ const List = connect(
 )(ListComponent);
 
 const mapStateToProps = (state: IRootState) => ({
+  dark: state.render.dark,
+  total: state.comment.total,
   shown: state.render.sidebar,
   isLoggedIn: state.user.isLoggedIn,
   replying: state.comment.replying,
