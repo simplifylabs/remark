@@ -191,6 +191,24 @@ nx build cdn
 nx lint cdn
 ```
 
+## WSS Setup
+
+> Depends on [API](README.md#API-Setup)!
+
+1. Create WSS specific .env
+
+```bash
+cp apps/wss/.env.template apps/wss/.env
+```
+
+2. Edit `apps/wss/.env` to your needs!
+
+```bash
+nx serve wss
+nx build wss
+nx lint wss
+```
+
 ## Contribute
 
 Every contribution is welcome! Please commit any pull requests against the `main` branch. Learn more about how to contribute by reading the [`CONTRIBUTING.md`](CONTRIBUTING.md) file.
