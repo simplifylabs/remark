@@ -71,7 +71,7 @@ function Sidebar(props: ISidebarProps) {
   }, [props.shown]);
 
   function close(e: MouseEvent) {
-    const launcher = document.querySelector("#remark-launcher");
+    const launcher = document.querySelector("remark-container");
     const target = e.target as HTMLElement;
 
     // Some browsers may not support this

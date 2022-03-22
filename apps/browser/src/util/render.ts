@@ -28,21 +28,6 @@ export default class Render {
     "#tidio-chat",
   ];
 
-  static wrapperStyle = `
-    position: absolute !important;
-    opacity: 1 !important;
-    width: 0px !important;
-    height: 0px !important;
-    top: 0 !important;
-    left: 0 !important;
-    border: none !important;
-    display: block !important;
-    z-index: 2147483647 !important;
-    background-color: transparent !important;
-    color-scheme: light !important;
-    padding: 0 !important;
-    margin: 0 !important;`;
-
   static on(event: string, listener: EventListener) {
     if (!this.events[event]) this.events[event] = [];
     this.events[event].push(listener);
@@ -101,19 +86,15 @@ export default class Render {
   static getWrapper(): Element | undefined {
     if (!this.allowed()) return;
 
-    const current = document.querySelector("#remark-launcher");
+    const current = document.querySelector("remark-container");
     if (current) return current;
 
     return this.injectWrapper();
   }
 
   static injectWrapper(): HTMLElement | undefined {
-    const launcher = document.createElement("div");
-
-    launcher.id = "remark-launcher";
-    launcher.setAttribute("style", this.wrapperStyle);
-
-    document.body.appendChild(launcher);
+    const launcher = document.createElement("remark-container");
+    document.documentElement.appendChild(launcher);
     return launcher;
   }
 
@@ -155,7 +136,7 @@ export default class Render {
 
   static sidebarQuerySelector(selector: string): Element | null {
     const sidebar: HTMLIFrameElement = document.querySelector(
-      "#remark-launcher #sidebar"
+      "remark-container #sidebar"
     );
 
     if (!sidebar) return null;
