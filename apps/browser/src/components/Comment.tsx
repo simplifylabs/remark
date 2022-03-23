@@ -137,7 +137,7 @@ function Comment(props: ICommentProps) {
           .catch(() => {
             return Toast.error("Failed to copy link!");
           });
-      }
+      } else Toast.error("Failed to copy link!");
     }
   }
 
