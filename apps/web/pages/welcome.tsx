@@ -10,16 +10,7 @@ export default function Welcome() {
       <Navigation hideLinks closeIcon />
       <Hero />
       <Spacer />
-      <Section title="The Remark Button" image="button">
-        The button in bottom right allows you toggle the sidebar. It will be
-        automatically shown when a Remark has been posted on the current site.{" "}
-        <br />
-        <br />
-        If the button is distracting you, you can always hover on it and press
-        the X or disable Remark for this domain.
-        <br />
-      </Section>
-      <Section title="Action Icon" image="action" flip>
+      <Section title="Action Icon" image="action">
         You can use the action icon, usually shown in the top right of your
         browser, to toggle the Sidebar - even if the Remark button isn&apos;t
         shown.
@@ -27,6 +18,15 @@ export default function Welcome() {
         <br />
         Furthermore, you can set Hotkeys to toggle the sidebar and/or button for
         even quicker access to Remark.
+      </Section>
+      <Section title="The Remark Button" image="button" flip>
+        The button in bottom right allows you toggle the sidebar. It will be
+        automatically shown when a Remark has been posted on the current site.{" "}
+        <br />
+        <br />
+        If the button is distracting you, you can always hover on it and press
+        the X or disable Remark for this domain.
+        <br />
       </Section>
       <Section title="Show Modes" image="modes">
         The different Show Modes allow you to control when the button should be

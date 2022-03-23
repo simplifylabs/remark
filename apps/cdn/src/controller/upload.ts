@@ -46,7 +46,7 @@ const uploadAvatarController = async (req: Request, res: Response) => {
   const file = req.file;
   if (!file) return res.status(400).json({ error: "NO_FILE_SPECIFIED" });
   try {
-    convertImage(file.path, req.user.id);
+    await convertImage(file.path, req.user.id);
     fs.unlinkSync(file.path);
   } catch (e) {
     fs.unlinkSync(file.path);

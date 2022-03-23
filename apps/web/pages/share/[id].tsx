@@ -16,7 +16,6 @@ export default function Share() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log(router);
     if (checking || !router.isReady) return;
 
     if (installed) {
