@@ -4,7 +4,7 @@ const client = new PrismaClient();
 
 export const User = client.user;
 export const Post = client.post;
-export const Url = client.url;
+export const URL = client.url;
 export const Vote = client.vote;
 export const Feedback = client.feedback;
 export const Notification = client.notification;
