@@ -51,7 +51,7 @@ If you want to run any Remark application locally, follow these steps:
 3. Redis ([redis.io](https://redis.io/download))
 4. RabbitMQ ([rabbitmq.com](https://www.rabbitmq.com/))
 5. Yarn (`npm i -g yarn`)
-6. NX Cli (`yarn global add @nrwl/cli`)
+6. NX CLI (`yarn global add @nrwl/cli`)
 
 <br />
 

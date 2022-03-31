@@ -5,7 +5,7 @@ import access from "@middleware/access";
 import limit from "@middleware/limit";
 import sanitize from "sanitize-html";
 import { mentionRegex } from "@util/mentions";
-import { Url, Post, commentSelect } from "@db";
+import { URL, Post, commentSelect } from "@db";
 import { sendToQueue } from "@queue";
 
 const createComment = async (req: Request, res: Response) => {
@@ -28,11 +28,11 @@ const createComment = async (req: Request, res: Response) => {
     if (filtered.error)
       return res.status(500).json({ error: "INTERNAL_SERVER_ERROR" });
 
-    let url = await Url.findUnique({
+    let url = await URL.findUnique({
       where: { filtered: filtered.url },
     });
 
-    if (!url) url = await Url.create({ data: { filtered: filtered.url } });
+    if (!url) url = await URL.create({ data: { filtered: filtered.url } });
 
     const comment = await Post.create({
       data: {
