@@ -8,8 +8,10 @@ export default class URL {
   static update() {
     const previous = this.filtered;
     const filterResult = filter(window.location.href);
+
     if (filterResult.error) return;
     this.filtered = filterResult.url;
-    if (this.filtered !== previous) dispatch(fetchComments(0));
+
+    if (this.filtered !== previous) dispatch(fetchComments(0, true));
   }
 }
