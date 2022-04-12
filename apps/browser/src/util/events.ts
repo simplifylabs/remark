@@ -10,7 +10,6 @@ import { dispatch } from "@browser/state/index";
 import Notification from "@browser/util/notification";
 import Settings from "@browser/util/settings";
 import Domain from "@browser/util/domain";
-import Policy from "@browser/util/policy";
 import Render from "@browser/util/render";
 import User from "@browser/util/user";
 import URL from "@browser/util/url";
@@ -61,18 +60,6 @@ export default class Events {
   static onInstalled(details: chrome.runtime.InstalledDetails) {
     if (details.reason != "install") return;
     chrome.tabs.create({ url: `${App.webUrl}auth/signup?auto=1` });
-  }
-
-  static onHttpRequest(details: chrome.webRequest.WebResponseHeadersDetails) {
-    const headers = details.responseHeaders;
-    if (!headers) return {};
-
-    headers.forEach((header, i) => {
-      if (!Policy.isPolicyHeader(header.name)) return;
-      headers[i].value = Policy.updatePolicy(header.value);
-    });
-
-    return { responseHeaders: headers };
   }
 
   static async onCommand(command: string, tab: chrome.tabs.Tab) {
