@@ -22,6 +22,8 @@ export default class Error {
         return this.error("Wrong email or password");
       case "EMAIL_NOT_FOUND":
         return this.error("This email doesn't exist");
+      case "OAUTH_USED":
+        return this.error("Please continue with Google instead");
       case "WRONG_TOKEN":
         return this.error("This link is invalid");
       case "TOKEN_EXPIRED":

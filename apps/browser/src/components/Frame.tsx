@@ -18,6 +18,7 @@ function Frame({ withMotion, children, dark, dispatch, onLoaded, ...props }) {
   useEffect(() => {
     if (!contentRef || frameLoading) return;
     contentRef.contentWindow.document.head.appendChild(getStyleTag());
+    contentRef.contentWindow.document.head.appendChild(getFontTag());
   }, [frameLoading, contentRef]);
 
   useEffect(() => {
@@ -51,6 +52,27 @@ function Frame({ withMotion, children, dark, dispatch, onLoaded, ...props }) {
     css.onload = () => {
       setCssLoading(false);
     };
+    return css;
+  }
+
+  function getFontTag() {
+    let innerHTML = "";
+    for (let i = 1; i <= 9; i++) {
+      const weight = i * 100;
+      innerHTML += `
+        @font-face {
+          font-family: "Inter";
+          src: url("${chrome.runtime.getURL(
+            `assets/fonts/Inter-${weight}.ttf`
+          )}") format("truetype");
+          font-weight: ${weight};
+          font-style: normal;
+        }
+      `;
+    }
+
+    const css = document.createElement("style");
+    css.innerHTML = innerHTML;
     return css;
   }
 

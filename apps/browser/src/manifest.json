@@ -16,6 +16,7 @@
     "assets/*.svg",
     "assets/indicator/*.png",
     "assets/icon/*.png",
+    "assets/fonts/*.ttf",
     "css/*.css"
   ],
   "content_scripts": [

@@ -10,9 +10,6 @@ module.exports = {
   content: ["./apps/browser/src/**/*.tsx"],
   darkMode: "class",
   theme: {
-    fontFamily: {
-      inter: ["Inter", "sans-serif"],
-    },
     extend: {
       colors: {
         background: {
