@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import { XIcon } from "@heroicons/react/solid";
 import { ISnackbar, IModal } from "@browser/actions/dialog";
 import { connect, IRootState } from "@browser/state/index";
-import { Snackbar, level, Modal } from "@browser/util/dialog";
+import { Snackbar, Modal } from "@browser/util/dialog";
 import { useAnimation } from "framer-motion";
 import Frame from "@browser/components/Frame";
-import App from "@browser/util/app";
 
 interface IWrapperProps {
   snackbars: ISnackbar[];
@@ -25,9 +24,7 @@ function Wrapper(props: IWrapperProps) {
   );
 }
 
-interface IModalProps extends IModal {}
-
-function ModalComponent(props: IModalProps) {
+function ModalComponent(props: IModal) {
   const animation = useAnimation();
   const [isOpen, setIsOpen] = useState(true);
   const [loading, setLoading] = useState(true);
@@ -127,9 +124,7 @@ function ModalComponent(props: IModalProps) {
   );
 }
 
-interface ISnackbarProps extends ISnackbar {}
-
-function SnackbarComponent(props: ISnackbarProps) {
+function SnackbarComponent(props: ISnackbar) {
   const animation = useAnimation();
   const [loading, setLoading] = useState(true);
 

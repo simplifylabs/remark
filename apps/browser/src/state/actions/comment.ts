@@ -7,6 +7,7 @@ import { SHOW_SIDEBAR } from "./render";
 import { IAuthor } from "@browser/reducers/comment";
 import Registry from "../registry";
 import App from "@browser/util/app";
+import Render from "@browser/util/render";
 
 export const SET_TYPING = "SET_TYPING";
 export const SET_SHARED = "SET_SHARED";
@@ -92,7 +93,7 @@ export const postComment =
   };
 
 export const fetchComments =
-  (page = 0) =>
+  (page = 0, fromPageChange = false) =>
   async (dispatch: Dispatch) => {
     let autoOpenSidebar = false;
     const url = encodeURIComponent(window.location.href);
@@ -143,4 +144,6 @@ export const fetchComments =
       setTimeout(() => {
         dispatch({ type: SHOW_SIDEBAR });
       }, 500);
+
+    if (fromPageChange && res.body.total == 0) Render.autoHideFab();
   };

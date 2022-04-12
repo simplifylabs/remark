@@ -7,8 +7,8 @@
     "db": "libs/db",
     "middleware": "libs/middleware",
     "queue": "libs/queue",
-    "wss": "apps/wss",
     "util": "libs/util",
-    "web": "apps/web"
+    "web": "apps/web",
+    "wss": "apps/wss"
   }
 }

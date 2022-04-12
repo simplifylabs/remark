@@ -155,7 +155,6 @@ export default class Events {
         Indicator.check();
         break;
       case "url:change":
-        Render.autoHideFab();
         URL.update();
         break;
     }

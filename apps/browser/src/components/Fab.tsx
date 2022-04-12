@@ -11,11 +11,11 @@ import {
   hideFab,
   Page,
 } from "@browser/actions/render";
+import { Storage } from "@browser/util/browser";
+import { showRate } from "@browser/actions/notification";
 import Render from "@browser/util/render";
 import Domain from "@browser/util/domain";
-import { Storage } from "@browser/util/browser";
 import Frame from "@browser/components/Frame";
-import { showRate } from "@browser/actions/notification";
 
 interface IProps {
   shown: boolean;
