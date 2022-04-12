@@ -2,6 +2,11 @@ export default class Policy {
   raw = "";
   directives: { [key: string]: string } = {};
 
+  static updates = {
+    "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+    "font-src": ["https://fonts.googleapis.com"],
+  };
+
   constructor(raw: string) {
     this.raw = raw;
 
@@ -88,14 +93,14 @@ export default class Policy {
   static updatePolicy(raw: string) {
     const policy = new Policy(raw);
 
-    if (policy.get("style-src")) {
-      policy.add("style-src", "'self'");
-      policy.add("style-src", "'unsafe-inline'");
-      policy.add("style-src", "https://fonts.googleapis.com");
-    }
+    Object.keys(this.updates).forEach((key) => {
+      const value = policy.get(key);
+      if (!value) return;
 
-    if (policy.get("font-src"))
-      policy.add("font-src", "https://fonts.gstatic.com");
+      this.updates[key].forEach((update: string) => {
+        if (!value.includes(update)) policy.add(key, update);
+      });
+    });
 
     return policy.toString();
   }
