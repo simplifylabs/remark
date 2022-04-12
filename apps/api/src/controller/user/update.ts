@@ -6,7 +6,7 @@ import { Joi, prefabs, validate } from "@api/middleware/validation";
 import { User as UserType } from "@prisma/client";
 import { UpdateQuery } from "mongoose";
 
-const updateController = async (req: Request, res: Response) => {
+const updateUserController = async (req: Request, res: Response) => {
   const email = sanitize(req.body.email);
   const username = sanitize(req.body.username);
 
@@ -66,5 +66,5 @@ export default [
       username: prefabs.username.optional(),
     }),
   }),
-  updateController,
+  updateUserController,
 ];

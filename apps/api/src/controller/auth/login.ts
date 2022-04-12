@@ -11,8 +11,8 @@ const loginController = async (req: Request, res: Response) => {
     },
   });
 
-  if (!user || user.googleId)
-    return res.status(400).json({ error: "WRONG_EMAIL_OR_PASSWORD" });
+  if (!user) return res.status(400).json({ error: "WRONG_EMAIL_OR_PASSWORD" });
+  if (user.googleId) return res.status(400).json({ error: "OAUTH_USED" });
 
   const passwordsMatch = await comparePasswords(
     user.password,

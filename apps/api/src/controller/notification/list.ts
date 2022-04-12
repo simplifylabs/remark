@@ -26,7 +26,7 @@ async function listNotifications(req: Request, res: Response) {
   ]);
 
   res.status(200).json({
-    hasUnread: result[0]?.hasUnread || false,
+    hasUnread: result[0].hasUnread || false,
     total: result[1] || 0,
     list: result[2] || [],
   });
