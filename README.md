@@ -39,7 +39,7 @@ If you want to run any Remark application locally, follow these steps:
 
 1. Make sure all [Prequerities](README.md#Prequerities) are installed
 2. Follow [General Setup](README.md#General-Setup)
-3. Follow [API](README.md#API-Setup), [Web](README.md#Web-Setup), [Browser](SETUP.md#Browser-Setup) and/or [CDN](SETUP.md#CDN-Setup) - depending on your needs!
+3. Follow [API](README.md#API-Setup), [Web](README.md#Web-Setup), [Browser](README.md#Browser-Setup) and/or [CDN](README.md#CDN-Setup) - depending on your needs!
 4. Want to contribute? Check [CONTRIBUTING.md](CONTRIBUTING.md)
 
 <br />
