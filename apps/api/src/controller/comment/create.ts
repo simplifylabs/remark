@@ -23,22 +23,22 @@ const createComment = async (req: Request, res: Response) => {
     }
 
     const text = sanitize(req.body.comment);
+    const filteredUrl = filter(req.body.url);
 
-    const filtered = filter(req.body.url);
-    if (filtered.error)
+    if (filteredUrl.error)
       return res.status(500).json({ error: "INTERNAL_SERVER_ERROR" });
 
     let url = await URL.findUnique({
-      where: { filtered: filtered.url },
+      where: { filtered: filteredUrl.url },
     });
 
-    if (!url) url = await URL.create({ data: { filtered: filtered.url } });
+    if (!url) url = await URL.create({ data: { filtered: filteredUrl.url } });
 
     const comment = await Post.create({
       data: {
         authorId: req.user.id,
-        originalURL: filtered.original,
-        shareURL: filtered.share,
+        originalURL: filteredUrl.original,
+        shareURL: filteredUrl.share,
         urlId: url.id,
         replyId: req.body.replyTo || null,
         comment: text,

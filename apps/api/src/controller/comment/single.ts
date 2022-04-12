@@ -4,9 +4,7 @@ import filter from "@util/filter";
 import { Post, commentSelect } from "@db";
 
 const singleComments = async (req: Request, res: Response) => {
-  // Using any to be able to easily overwrite the replies
-  // eslint-disable-next-line
-  const comment: any = await Post.findUnique({
+  const comment = await Post.findUnique({
     where: { id: String(req.params.id) },
     select: {
       ...commentSelect,
@@ -46,10 +44,15 @@ const singleComments = async (req: Request, res: Response) => {
 
     parent.replies = [comment];
     return res.status(200).json({ comment: parent });
-  } else comment.replies = [];
+  }
 
   delete comment.url;
-  res.status(200).json({ comment });
+  res.status(200).json({
+    comment: {
+      ...comment,
+      replies: [],
+    },
+  });
 };
 
 export default [

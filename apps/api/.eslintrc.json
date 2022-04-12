@@ -5,9 +5,13 @@
     {
       "files": ["*.ts"],
       "rules": {
-        "@typescript-eslint/no-var-requires": "off",
-        "@typescript-eslint/ban-ts-comment": "off",
         "@nrwl/nx/enforce-module-boundaries": "off"
+      }
+    },
+    {
+      "files": ["app.ts"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
       }
     }
   ]

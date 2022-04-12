@@ -4,7 +4,6 @@ import {
   ValidationError,
 } from "express-validation";
 
-// Validate with options
 export function validate(validation: object) {
   return validateOriginal(validation, {}, {});
 }
@@ -27,7 +26,6 @@ export function getValidationMessage(err: ValidationError) {
   return message;
 }
 
-// Custom username validation
 const username = Joi.string()
   .regex(/^[a-zA-Z0-9_.]*$/)
   .message(
@@ -36,7 +34,6 @@ const username = Joi.string()
   .min(3)
   .max(20);
 
-// Often used validation models
 export const prefabs = {
   id: Joi.string().uuid(),
   email: Joi.string().email(),
