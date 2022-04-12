@@ -71,16 +71,6 @@ function toV3(manifest) {
     },
   ];
 
-  manifest.declarative_net_request = {
-    rule_resources: [
-      {
-        id: "CSP Change",
-        path: "rules/csp.json",
-        enabled: true,
-      },
-    ],
-  };
-
   manifest.permissions = manifest.permissions.filter(
     (p) =>
       ![
@@ -92,7 +82,6 @@ function toV3(manifest) {
       ].includes(p)
   );
 
-  manifest.permissions.push("declarativeNetRequest");
   manifest.permissions.push("scripting");
 
   delete manifest.background.scripts;

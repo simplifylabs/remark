@@ -31,17 +31,6 @@ if (App.isDev()) require("crx-hotreload");
     });
   }
 
-  if (chrome.webRequest && !App.isManifestV3()) {
-    chrome.webRequest.onHeadersReceived.addListener(
-      Events.onHttpRequest,
-      {
-        urls: ["<all_urls>"],
-        types: ["main_frame", "sub_frame"],
-      },
-      ["blocking", "responseHeaders"]
-    );
-  }
-
   if (chrome.runtime) {
     chrome.runtime.setUninstallURL(`${App.webUrl}uninstall`);
     chrome.runtime.onInstalled.addListener(Events.onInstalled);

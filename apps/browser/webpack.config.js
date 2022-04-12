@@ -80,7 +80,6 @@ module.exports = function (_, env) {
             to: "manifest.json",
           },
           { from: path.join(__dirname, "assets"), to: "assets" },
-          { from: path.join(__dirname, "rules"), to: "rules" },
           {
             from: path.join(__dirname, "src", "styles", "global.css"),
             to: "css",
