@@ -154,8 +154,8 @@
   "_moduleAliases": {
     "@db": "libs/db/src/index",
     "@queue": "libs/db/queue/index",
-    "@util/": "libs/util/src",
-    "@middleware/": "libs/middleware/src",
+    "@util": "libs/util/src",
+    "@middleware": "libs/middleware/src",
     "@api/router": "dist/apps/api/router",
     "@api/controller": "dist/apps/api/controller",
     "@api/util": "dist/apps/api/util",
