@@ -12,8 +12,23 @@ import Browser from "@web/util/browser";
 import Extension from "@web/util/extension";
 import useTitle from "@web/hooks/useTitle";
 import useMediaQuery from "@web/hooks/useMediaQuery";
+import { Post } from "@db";
+import { Server } from "@web/util/api";
 
-export default function Home() {
+interface IPost {
+  id: string;
+  author: {
+    id: string;
+    username: string;
+  };
+  comment: string;
+}
+
+interface IPostsProps {
+  posts: IPost[];
+}
+
+export default function Home({ posts }: IPostsProps) {
   useTitle("Uncensored Comments, anywhere. | Remark");
 
   return (
@@ -21,7 +36,7 @@ export default function Home() {
       <div className="relative flex flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
         <Navigation transparent />
         <Hero />
-        <Features />
+        <Features posts={posts} />
         <Download />
         <Contact />
         <Footer hideLinks />
@@ -75,7 +90,7 @@ function Hero() {
   );
 }
 
-function Features() {
+function Features({ posts }: IPostsProps) {
   return (
     <LazyShow>
       <section
@@ -114,26 +129,9 @@ function Features() {
         <div className="relative hidden h-full w-1/2 flex-col justify-start pr-[2rem] pl-[3rem] xl:flex 2xl:pr-[4rem] 2xl:pl-[6rem]">
           <div className="dotted absolute right-0 top-1/2 z-[-1] h-[40rem] w-[25rem] -translate-y-1/2 transform"></div>
           <div className="flex flex-col gap-3 rounded-2xl">
-            <Comment
-              image="1.jpg"
-              author="simonsmith"
-              text="Always love to see a funny @remark when surfing the web."
-            />
-            <Comment
-              image="2.jpg"
-              author="emiliagopp"
-              text="Loved @remark the very moment I used it!"
-            />
-            <Comment
-              image="3.jpg"
-              author="lindaernstson"
-              text="Just found out about @remark, can recommend."
-            />
-            <Comment
-              image="4.jpg"
-              author="julianzengerle"
-              text="It's finally possible to comment anywhere, with @remark."
-            />
+            {posts.map((post) => (
+              <Comment comment={post} key={post.id} />
+            ))}
           </div>
         </div>
       </section>
@@ -142,24 +140,22 @@ function Features() {
 }
 
 interface ICommentProps {
-  image: string;
-  text: string;
-  author: string;
+  comment: IPost;
 }
 
-function Comment(props: ICommentProps) {
+function Comment({ comment }: ICommentProps) {
   return (
     <div className="flex w-full flex-row items-center justify-start gap-6 rounded-xl bg-white p-5 shadow-lg">
-      <Image
-        src={`/images/person/${props.image}`}
+      <img
+        src={`${Server.cdn}avatar/light/50x50/${comment.author.id}`}
         className="rounded-full"
         width={50}
         height={50}
-        alt={props.author}
+        alt={comment.author.username}
       />
       <div className="flex flex-col items-start justify-center">
-        <p className="text-gray-500">@{props.author}</p>
-        <p className="text-md text-gray-800 2xl:text-lg">{props.text}</p>
+        <p className="text-gray-500">@{comment.author.username}</p>
+        <p className="text-md text-gray-800 2xl:text-lg">{comment.comment}</p>
       </div>
     </div>
   );
@@ -373,4 +369,28 @@ function Contact() {
       <hr className="absolute bottom-0 left-1/2 h-[2px] w-[90vw] -translate-x-1/2 transform bg-[rgba(0,0,0,0.08)]"></hr>
     </section>
   );
+}
+
+export async function getStaticProps() {
+  // Fetches the 4 top-voted posts
+  const posts = await Post.findMany({
+    orderBy: { upvotes: "desc" },
+    take: 4,
+    select: {
+      id: true,
+      author: {
+        select: {
+          id: true,
+          username: true,
+        },
+      },
+      comment: true,
+    },
+  });
+
+  return {
+    props: {
+      posts,
+    },
+  };
 }
