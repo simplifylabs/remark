@@ -211,6 +211,7 @@ export default class User {
       return Error.error("Passwords do not match");
 
     const res = await API.post(["auth", "register"], {
+      token: data.token,
       username: data.username,
       email: data.email,
       password: data.password,

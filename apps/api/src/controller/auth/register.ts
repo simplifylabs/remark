@@ -4,9 +4,14 @@ import { generateAccessToken, generateRefreshToken } from "@util/auth";
 import { validate, Joi, prefabs } from "@api/middleware/validation";
 import sanitize from "sanitize-html";
 import { User } from "@db";
+import { verifyToken } from "@api/util/captcha";
 
 const registerController = async (req: Request, res: Response) => {
   try {
+    const captchaSuccess = await verifyToken(req.body.token);
+    if (!captchaSuccess)
+      return res.status(400).json({ error: "INVALID_CAPTCHA" });
+
     const email = sanitize(req.body.email);
     const username = sanitize(req.body.username);
 
@@ -45,6 +50,7 @@ const registerController = async (req: Request, res: Response) => {
 export default [
   validate({
     body: Joi.object({
+      token: prefabs.captchaToken.optional(),
       username: prefabs.username.required(),
       email: prefabs.email.required(),
       password: prefabs.password.required(),

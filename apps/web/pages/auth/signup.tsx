@@ -101,7 +101,7 @@ export default function SignUp() {
                 ? "10000000-ffff-ffff-ffff-000000000001"
                 : "3482105b-57a8-4dae-9f27-0c4aced276ff"
             }
-            onVerify={setToken}
+            onVerify={(token) => setToken(token)}
             onLoad={() => captcha.current.execute()}
             ref={captcha}
           />

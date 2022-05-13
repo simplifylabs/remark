@@ -44,6 +44,8 @@ export default class Error {
         return this.error("Cannot update email");
       case "INVALID_ID_TOKEN":
         return this.error("Failed to login with Google");
+      case "INVALID_CAPTCHA":
+        return this.error("Captcha failed! Try refreshing the page");
       case "USER_NOT_FOUND":
         return User.logout();
       case "INVALID_REFRESH_TOKEN":

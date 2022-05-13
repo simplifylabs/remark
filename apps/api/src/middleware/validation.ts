@@ -41,6 +41,7 @@ export const prefabs = {
   comment: Joi.string().min(1).max(200),
   refreshToken: Joi.string().min(1),
   googleToken: Joi.string().min(1),
+  captchaToken: Joi.string(),
   url: Joi.string().uri().min(1),
   page: Joi.number().min(0).max(1000),
   username,
