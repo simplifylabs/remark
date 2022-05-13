@@ -1,43 +1,47 @@
 import Footer from "@web/components/Footer";
 import Navigation from "@web/components/Navigation";
-import useTitle from "@web/hooks/useTitle";
+import { NextSeo } from "next-seo";
 
 export default function Welcome() {
-  useTitle("Get Started");
-
   return (
-    <div className="h-full w-full">
-      <Navigation hideLinks closeIcon />
-      <Hero />
-      <Spacer />
-      <Section title="Action Icon" image="action">
-        You can use the action icon, usually shown in the top right of your
-        browser, to toggle the Sidebar - even if the Remark button isn&apos;t
-        shown.
-        <br />
-        <br />
-        Furthermore, you can set Hotkeys to toggle the sidebar and/or button for
-        even quicker access to Remark.
-      </Section>
-      <Section title="The Remark Button" image="button" flip>
-        The button in bottom right allows you toggle the sidebar. It will be
-        automatically shown when a Remark has been posted on the current site.{" "}
-        <br />
-        <br />
-        If the button is distracting you, you can always hover on it and press
-        the X or disable Remark for this domain.
-        <br />
-      </Section>
-      <Section title="Show Modes" image="modes">
-        The different Show Modes allow you to control when the button should be
-        automatically shown for this <b className="text-lg">Domain.</b>
-        <br />
-        <br />
-        &quot;Smart&quot; will only show if a Remark has been posted on that
-        site. You can change the default behaviour in the settings.
-      </Section>
-      <Footer />
-    </div>
+    <>
+      <NextSeo
+        title="Get Started"
+        description="All you need to know to get started with Remark"
+      />
+      <div className="h-full w-full">
+        <Navigation hideLinks closeIcon />
+        <Hero />
+        <Spacer />
+        <Section title="Action Icon" image="action">
+          You can use the action icon, usually shown in the top right of your
+          browser, to toggle the Sidebar - even if the Remark button isn&apos;t
+          shown.
+          <br />
+          <br />
+          Furthermore, you can set Hotkeys to toggle the sidebar and/or button
+          for even quicker access to Remark.
+        </Section>
+        <Section title="The Remark Button" image="button" flip>
+          The button in bottom right allows you toggle the sidebar. It will be
+          automatically shown when a Remark has been posted on the current site.{" "}
+          <br />
+          <br />
+          If the button is distracting you, you can always hover on it and press
+          the X or disable Remark for this domain.
+          <br />
+        </Section>
+        <Section title="Show Modes" image="modes">
+          The different Show Modes allow you to control when the button should
+          be automatically shown for this <b className="text-lg">Domain.</b>
+          <br />
+          <br />
+          &quot;Smart&quot; will only show if a Remark has been posted on that
+          site. You can change the default behaviour in the settings.
+        </Section>
+        <Footer />
+      </div>
+    </>
   );
 }
 

@@ -1,13 +1,15 @@
-import useTitle from "@web/hooks/useTitle";
 import Navigation from "@web/components/Navigation";
 import Footer from "@web/components/Footer";
 import { Server } from "@web/util/api";
+import { NextSeo } from "next-seo";
 
 export default function Terms() {
-  useTitle("Terms of Service");
-
   return (
     <>
+      <NextSeo
+        title="Terms of Service"
+        description="The terms of service for Remark"
+      />
       <Navigation />
       <div className="flex min-h-screen w-screen items-center justify-center p-12 py-8 pt-32 xl:py-[10rem]">
         <article className="prose">
@@ -373,13 +375,13 @@ export default function Terms() {
             Before either party may seek arbitration, the party must first send
             to the other party a written Notice of Dispute describing the nature
             and basis of the claim or dispute, and the requested relief. A
-            Notice to the Company should be sent to: Weinberggasse 53. After
-            the Notice is received, you and the Company may attempt to resolve
-            the claim or dispute informally. If you and the Company do not
-            resolve the claim or dispute within thirty (30) days after the
-            Notice is received, either party may begin an arbitration
-            proceeding. The amount of any settlement offer made by any party may
-            not be disclosed to the arbitrator until after the arbitrator has
+            Notice to the Company should be sent to: Weinberggasse 53. After the
+            Notice is received, you and the Company may attempt to resolve the
+            claim or dispute informally. If you and the Company do not resolve
+            the claim or dispute within thirty (30) days after the Notice is
+            received, either party may begin an arbitration proceeding. The
+            amount of any settlement offer made by any party may not be
+            disclosed to the arbitrator until after the arbitrator has
             determined the amount of the award to which either party is
             entitled.
           </p>

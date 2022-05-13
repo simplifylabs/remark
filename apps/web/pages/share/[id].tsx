@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Toast } from "@web/util/dialog";
+import { NextSeo } from "next-seo";
 import useExtension from "@web/hooks/useExtension";
-import useTitle from "@web/hooks/useTitle";
 import Loader from "@web/components/Loader";
 import Title from "@web/components/Title";
 import AddButton from "@web/components/AddButton";
-import API from "@web/util/api";
+import API, { Server } from "@web/util/api";
 
 export default function Share() {
-  useTitle("Share");
   const router = useRouter();
 
   const { installed, loading: checking } = useExtension({ required: false });
@@ -34,22 +33,49 @@ export default function Share() {
     router.push("/");
   }
 
-  if (loading)
-    return (
-      <div className="flex h-screen w-screen items-center justify-center">
-        <Loader />
-      </div>
-    );
+  function getID() {
+    const path = router.asPath;
+    const split = path.split("/");
+    return split[split.length - 1];
+  }
+
   return (
-    <div className="flex h-screen w-screen items-center justify-center">
-      <div className="flex flex-col items-center text-center">
-        <Title title="Not Installed" subtitle="Required Extension" primary />
-        <p className="mb-10 max-w-[80vw] whitespace-pre-wrap break-words text-lg text-gray-700 sm:max-w-[30em]">
-          It seems like Remark isn&apos;t installed in your browser. Please
-          install the Browser Extension to view the shared comment.
-        </p>
-        <AddButton className="md:py-4" />
-      </div>
-    </div>
+    <>
+      <NextSeo
+        title="Shared Remark"
+        openGraph={{
+          url: `${Server.url}share/${getID()}`,
+          images: [
+            {
+              url: `${Server.cdn}og/comment?id=${getID()}`,
+              width: 1200,
+              height: 630,
+              alt: "Shared Remark",
+            },
+          ],
+        }}
+        noindex
+      />
+      {loading ? (
+        <div className="flex h-screen w-screen items-center justify-center">
+          <Loader />
+        </div>
+      ) : (
+        <div className="flex h-screen w-screen items-center justify-center">
+          <div className="flex flex-col items-center text-center">
+            <Title
+              title="Not Installed"
+              subtitle="Required Extension"
+              primary
+            />
+            <p className="mb-10 max-w-[80vw] whitespace-pre-wrap break-words text-lg text-gray-700 sm:max-w-[30em]">
+              It seems like Remark isn&apos;t installed in your browser. Please
+              install the Browser Extension to view the shared comment.
+            </p>
+            <AddButton className="md:py-4" />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

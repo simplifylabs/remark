@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import useTitle from "@web/hooks/useTitle";
+import { NextSeo } from "next-seo";
 import useExtension from "@web/hooks/useExtension";
 import Link from "next/link";
 import Alert from "@web/components/Alert";
 import Input from "@web/components/Input";
 
 export default function Reset() {
-  useTitle("Reset");
   const { send } = useExtension();
 
   const router = useRouter();
@@ -39,39 +38,45 @@ export default function Reset() {
   }
 
   return (
-    <div className="flex min-h-screen w-screen flex-col items-center justify-center gap-10">
-      <div className="flex flex-col items-center justify-center gap-3">
-        <h1 className="text-5xl font-extrabold">Reset</h1>
-        <p className="text-lg text-gray-700">
-          Already know your password?{" "}
-          <Link href="/auth/signin">
-            <a className="text-lg">Sign In</a>
-          </Link>
-        </p>
+    <>
+      <NextSeo
+        title="Reset Password"
+        description="Forgot your password? Reset it here"
+      />
+      <div className="flex min-h-screen w-screen flex-col items-center justify-center gap-10">
+        <div className="flex flex-col items-center justify-center gap-3">
+          <h1 className="text-5xl font-extrabold">Reset</h1>
+          <p className="text-lg text-gray-700">
+            Already know your password?{" "}
+            <Link href="/auth/signin">
+              <a className="text-lg">Sign In</a>
+            </Link>
+          </p>
+        </div>
+        <form
+          onSubmit={submit}
+          className="flex w-[90vw] flex-col gap-2 rounded-xl bg-white p-8 shadow sm:w-[22rem]"
+        >
+          <Input
+            type="password"
+            name="New Password"
+            autoComplete="new-password"
+            set={setPassword}
+            min={6}
+            max={128}
+          />
+          <Input
+            type="password"
+            name="Confirm Password"
+            autoComplete="new-password"
+            set={setConfirm}
+            min={6}
+            max={128}
+          />
+          {error && <Alert type="ERROR" text={error} />}
+          <input className="btn-primary mt-2" type="submit" value="Send" />
+        </form>
       </div>
-      <form
-        onSubmit={submit}
-        className="flex w-[90vw] flex-col gap-2 rounded-xl bg-white p-8 shadow sm:w-[22rem]"
-      >
-        <Input
-          type="password"
-          name="New Password"
-          autoComplete="new-password"
-          set={setPassword}
-          min={6}
-          max={128}
-        />
-        <Input
-          type="password"
-          name="Confirm Password"
-          autoComplete="new-password"
-          set={setConfirm}
-          min={6}
-          max={128}
-        />
-        {error && <Alert type="ERROR" text={error} />}
-        <input className="btn-primary mt-2" type="submit" value="Send" />
-      </form>
-    </div>
+    </>
   );
 }
