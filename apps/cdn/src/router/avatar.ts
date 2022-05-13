@@ -1,8 +1,8 @@
 import path from "path";
 import express, { Router, Request, Response } from "express";
 import { avatar } from "@util/avatar";
-import uploadController from "@cdn/controller/upload";
-import existsController from "@cdn/controller/exists";
+import uploadController from "@cdn/controller/avatar/upload";
+import existsController from "@cdn/controller/avatar/exists";
 
 const router = Router();
 

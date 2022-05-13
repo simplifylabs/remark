@@ -4,6 +4,7 @@ require("@util/logger")();
 
 import express from "express";
 import avatar from "@cdn/router/avatar";
+import og from "@cdn/router/og";
 import env from "@util/env";
 
 const app = express();
@@ -16,6 +17,7 @@ app.set("trust proxy", true);
 app.use(express.json());
 
 app.use("/avatar", avatar);
+app.use("/og", og);
 
 app.listen(env("PORT"), () => {
   console.info(`Remark CDN is listening on port ${env("PORT")}`);

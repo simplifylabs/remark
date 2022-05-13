@@ -24,7 +24,8 @@
     "release": "release-it"
   },
   "dependencies": {
-    "@prisma/client": "^3.7.0",
+    "@hcaptcha/react-hcaptcha": "^1.1.1",
+    "@prisma/client": "3.14.0",
     "@tailwindcss/forms": "^0.4.0",
     "@tailwindcss/typography": "^0.5.0",
     "amqplib": "^0.8.0",
@@ -50,8 +51,10 @@
     "nanoid": "^3.3.1",
     "next": "12.1.0",
     "next-redux-wrapper": "^7.0.5",
+    "next-seo": "^5.4.0",
     "nodemailer": "^6.7.2",
     "process": "^0.11.10",
+    "puppeteer-core": "^14.0.0",
     "rate-limit-redis": "^3.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -65,7 +68,7 @@
     "regenerator-runtime": "0.13.9",
     "request": "^2.88.2",
     "sanitize-html": "^2.6.1",
-    "sharp": "^0.29.3",
+    "sharp": "^0.30.4",
     "socket.io": "^4.4.1",
     "socket.io-client": "^4.4.1",
     "tslib": "^2.0.0",
@@ -134,7 +137,7 @@
     "postcss-loader": "^6.2.1",
     "prettier": "^2.5.1",
     "prettier-plugin-tailwindcss": "^0.1.5",
-    "prisma": "^3.7.0",
+    "prisma": "3.14.0",
     "query-string": "^7.0.1",
     "react-test-renderer": "17.0.2",
     "release-it": "^14.12.2",
@@ -163,6 +166,7 @@
     "@cdn/controller": "dist/apps/cdn/controller",
     "@cdn/router": "dist/apps/cdn/router",
     "@cdn/middleware": "dist/apps/cdn/middleware",
+    "@cdn/util": "dist/apps/cdn/util",
     "@wss/consumers": "dist/apps/wss/consumers"
   }
 }
