@@ -51,14 +51,14 @@ export default class Render {
 
   static find(query: string): boolean {
     const element = document.querySelector(query);
-    if (element != null) return true;
+    if (element !== null) return true;
 
     let found = null;
     document.querySelectorAll("iframe").forEach((iframe) => {
       if (!this.canAccessIFrame(iframe)) return;
 
       const iframeElement = iframe.contentWindow.document.querySelector(query);
-      if (iframeElement != null) found = true;
+      if (iframeElement !== null) found = true;
     });
     return found !== null;
   }
@@ -99,7 +99,7 @@ export default class Render {
   }
 
   static async checkFullscreen() {
-    if (document.fullscreenElement != null) return this.showFab(false);
+    if (document.fullscreenElement !== null) return this.showFab(false);
   }
 
   static toggleSidebar() {
