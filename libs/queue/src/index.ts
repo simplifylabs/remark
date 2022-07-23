@@ -39,7 +39,7 @@ export async function consume(
     channel.consume(
       `REMARK:${queue}`,
       (msg) => {
-        if (msg == null) return;
+        if (msg === null) return;
         const data = JSON.parse(msg.content.toString());
         cb(data);
       },
