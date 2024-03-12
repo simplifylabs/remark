@@ -47,7 +47,7 @@
   }
 
   button {
-    @apply cursor-pointer select-none font-medium outline-none focus:outline-none;
+    @apply cursor-pointer select-none font-medium outline-none;
   }
 
   .link {
@@ -75,7 +75,7 @@
   }
 
   .btn {
-    @apply fade flex cursor-pointer select-none flex-row items-center justify-center gap-2 rounded-md px-7 py-2.5 focus:outline-none;
+    @apply fade flex cursor-pointer select-none flex-row items-center justify-center gap-2 rounded-md px-7 py-2.5 outline-none;
   }
 
   .text-default {
