@@ -38,7 +38,7 @@ export const prefabs = {
   id: Joi.string().uuid(),
   email: Joi.string().email(),
   password: Joi.string().min(6).max(128),
-  comment: Joi.string().min(1).max(200),
+  comment: Joi.string().min(1).max(1000),
   refreshToken: Joi.string().min(1),
   googleToken: Joi.string().min(1),
   captchaToken: Joi.string(),

@@ -8,48 +8,48 @@ datasource db {
 }
 
 model User {
-  id String @id @default(uuid()) 
+  id String @id @default(uuid())
   username String @unique
   email String @unique
-  password String?  
+  password String?
   googleId String?
-  resetToken String? 
+  resetToken String?
   resetExp DateTime?
   posts Post[]
   votes Vote[]
   notifcations Notification[]
   hasUnread Boolean @default(false)
-  updatedAt DateTime @updatedAt  
-  createdAt DateTime @default(now())  
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
 }
 
 model Post {
-  id String @id @default(uuid()) 
+  id String @id @default(uuid())
   slug String?
   author   User @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  authorId String 
-  comment String @db.VarChar(200) 
+  authorId String
+  comment String @db.VarChar(1000)
   url Url @relation(fields: [urlId], references: [id], onDelete: Cascade)
-  urlId String 
+  urlId String
   upvotes Int @default(0)
   downvotes Int @default(0)
   votes Vote[]
   originalURL String @db.VarChar(2000)
   shareURL String
   replies Post[] @relation("Reply")
-  replyId String? 
+  replyId String?
   reply Post? @relation("Reply", fields: [replyId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
 }
 
 model Url {
-  id String @id @default(uuid()) 
+  id String @id @default(uuid())
   filtered String @unique
   posts Post[]
 }
 
 enum VoteType {
-  UP 
+  UP
   DOWN
 }
 
@@ -64,9 +64,9 @@ model Vote {
 }
 
 enum NotificationType {
-  MENTION 
+  MENTION
   VOTES
-  REPLY 
+  REPLY
 }
 
 model Notification {
@@ -80,7 +80,7 @@ model Notification {
 }
 
 model Feedback {
-  id String @id @default(uuid()) 
+  id String @id @default(uuid())
   statements Json
   comment String?
   createdAt DateTime @default(now())
