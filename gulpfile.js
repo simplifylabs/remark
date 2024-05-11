@@ -7,7 +7,7 @@ const gulp = require("gulp"),
 
 function dist(browser, merge) {
   return gulp
-    .src("./apps/browser/build/**/*")
+   .src("./apps/browser/build/**/*")
     .pipe(gulpif(/^manifest.json$/, jeditor(merge)))
     .pipe(
       zip(`${manifest.name.toLowerCase()}-${browser}-${package.version}.zip`)

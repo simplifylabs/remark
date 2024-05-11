@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import { useFilePicker } from "use-file-picker";
 import { PlusIcon, PencilIcon } from "@heroicons/react/outline";
 import { Server } from "@web/util/api";
+import { NextSeo } from "next-seo";
 import useExtension from "@web/hooks/useExtension";
-import useTitle from "@web/hooks/useTitle";
 import { Toast } from "@web/util/dialog";
 import Alert from "@web/components/Alert";
 import Input from "@web/components/Input";
@@ -20,7 +20,6 @@ interface IMe {
 }
 
 export default function Profile() {
-  useTitle("Profile");
   const { loading: checking, send } = useExtension();
   const router = useRouter();
 
@@ -126,82 +125,85 @@ export default function Profile() {
     setChanged(tmp);
   }
 
-  if (loading)
-    return (
-      <div className="flex h-screen w-screen items-center justify-center">
-        <Loader />
-      </div>
-    );
   return (
-    <div className="flex min-h-screen w-screen flex-col items-center justify-center gap-10">
-      <div className="flex flex-col items-center justify-center gap-1">
-        <h1 className="text-5xl font-extrabold">Profile</h1>
-        <p className="text-lg text-gray-700">Update your Profile</p>
-      </div>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (changed.length > 0) submit();
-        }}
-        className="flex w-[90vw] flex-col gap-2 rounded-xl bg-white p-8 shadow sm:w-[22rem]"
-      >
-        <div className="mb-4 flex w-full justify-center">
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              openFileSelector();
-            }}
-            style={{
-              backgroundImage: avatar
-                ? `url("${avatar}")`
-                : initial?.avatar
-                ? `url("${Server.cdn}avatar/light/100x100/${id}${
-                    process.env.NODE_ENV == "development" ? ".jpg" : ""
-                  }")`
-                : undefined,
-            }}
-            className="group flex h-24 w-24 items-center justify-center rounded-full border border-gray-300 bg-cover bg-center bg-no-repeat shadow-sm"
-          >
-            {!avatar && !initial?.avatar && (
-              <PlusIcon className="h-5 w-5 text-gray-500" />
-            )}
-
-            {(avatar || initial?.avatar) && (
-              <PencilIcon className="h-5 w-5 text-white opacity-0 drop-shadow-md transition-opacity group-hover:opacity-100" />
-            )}
-          </button>
+    <>
+      <NextSeo title="Profile" description="Manage your Remark profile" />
+      {loading ? (
+        <div className="flex h-screen w-screen items-center justify-center">
+          <Loader />
         </div>
-        <Input
-          type="text"
-          name="Username"
-          initial={username}
-          autoComplete="off"
-          set={(value) => {
-            change("USERNAME", "username", value);
-            setUsername(value);
-          }}
-        />
-        <Input
-          type="email"
-          name="Email"
-          initial={email}
-          autoComplete="off"
-          disabled={isGoogle}
-          set={(value) => {
-            change("EMAIL", "email", value);
-            setEmail(value);
-          }}
-        />
-        {error && <Alert type="ERROR" text={error} />}
-        {success && <Alert type="SUCCESS" text={success} />}
-        <input
-          className={`mt-2 ${
-            changed.length > 0 ? "btn-primary" : "btn-disabled"
-          }`}
-          type="submit"
-          value="Save"
-        />
-      </form>
-    </div>
-  );
+      ) : (
+        <div className="flex min-h-screen w-screen flex-col items-center justify-center gap-10">
+          <div className="flex flex-col items-center justify-center gap-1">
+            <h1 className="text-5xl font-extrabold">Profile</h1>
+            <p className="text-lg text-gray-700">Update your Profile</p>
+          </div>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (changed.length > 0) submit();
+            }}
+            className="flex w-[90vw] flex-col gap-2 rounded-xl bg-white p-8 shadow sm:w-[22rem]"
+          >
+            <div className="mb-4 flex w-full justify-center">
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  openFileSelector();
+                }}
+                style={{
+                  backgroundImage: avatar
+                    ? `url("${avatar}")`
+                    : initial?.avatar
+                    ? `url("${Server.cdn}avatar/light/100x100/${id}${
+                        process.env.NODE_ENV == "development" ? ".jpg" : ""
+                      }")`
+                    : undefined,
+                }}
+                className="group flex h-24 w-24 items-center justify-center rounded-full border border-gray-300 bg-cover bg-center bg-no-repeat shadow-sm"
+              >
+                {!avatar && !initial?.avatar && (
+                  <PlusIcon className="h-5 w-5 text-gray-500" />
+                )}
+
+                {(avatar || initial?.avatar) && (
+                  <PencilIcon className="h-5 w-5 text-white opacity-0 drop-shadow-md transition-opacity group-hover:opacity-100" />
+                )}
+              </button>
+            </div>
+            <Input
+              type="text"
+              name="Username"
+              initial={username}
+              autoComplete="off"
+              set={(value) => {
+                change("USERNAME", "username", value);
+                setUsername(value);
+              }}
+            />
+            <Input
+              type="email"
+              name="Email"
+              initial={email}
+              autoComplete="off"
+              disabled={isGoogle}
+              set={(value) => {
+                change("EMAIL", "email", value);
+                setEmail(value);
+              }}
+            />
+            {error && <Alert type="ERROR" text={error} />}
+            {success && <Alert type="SUCCESS" text={success} />}
+            <input
+              className={`mt-2 ${
+                changed.length > 0 ? "btn-primary" : "btn-disabled"
+              }`}
+              type="submit"
+              value="Save"
+            />
+          </form>
+        </div>
+      )}
+    </>
+  ;
 }

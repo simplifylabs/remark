@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useGoogleLogout } from "react-google-login";
 import { useRouter } from "next/router";
 import { Toast } from "@web/util/dialog";
+import { NextSeo } from "next-seo";
 import useExtension from "@web/hooks/useExtension";
-import useTitle from "@web/hooks/useTitle";
 import Loader from "@web/components/Loader";
 import Alert from "@web/components/Alert";
 
@@ -14,7 +14,6 @@ interface ISettings {
 }
 
 export default function Settings() {
-  useTitle("Settings");
   const { loading: checking, send } = useExtension();
   const router = useRouter();
 
@@ -109,79 +108,82 @@ export default function Settings() {
     router.push(`auth/signin`);
   }
 
-  if (loading)
-    return (
-      <div className="flex h-screen w-screen items-center justify-center">
-        <Loader />
-      </div>
-    );
   return (
-    <div className="flex min-h-screen w-screen flex-col items-center justify-center gap-10">
-      <div className="flex flex-col items-center justify-center gap-1">
-        <h1 className="text-5xl font-extrabold">Settings</h1>
-        <p className="text-lg text-gray-700">Update the Remark Settings</p>
-      </div>
-      <form
-        onSubmit={(e) => e.preventDefault()}
-        className="flex w-[90vw] flex-col gap-4 rounded-xl bg-white p-8 shadow sm:w-[23rem]"
-      >
-        <Option>
-          <Label>Show by Default</Label>
-          <select
-            defaultValue={mode}
-            onChange={(e) => updateMode(e.target.value as Mode)}
-            className="focus:ring-brand rounded-md border border-gray-200 bg-white py-[0.4rem] pl-3 pr-10 text-black shadow-sm focus:outline-none focus:ring-2"
+    <>
+      <NextSeo title="Settings" description="Modify Remark to your needs" />
+      {loading ? (
+        <div className="flex h-screen w-screen items-center justify-center">
+          <Loader />
+        </div>
+      ) : (
+        <div className="flex min-h-screen w-screen flex-col items-center justify-center gap-10">
+          <div className="flex flex-col items-center justify-center gap-1">
+            <h1 className="text-5xl font-extrabold">Settings</h1>
+            <p className="text-lg text-gray-700">Update the Remark Settings</p>
+          </div>
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            className="flex w-[90vw] flex-col gap-4 rounded-xl bg-white p-8 shadow sm:w-[23rem]"
           >
-            <option value="SHOW">Always</option>
-            <option value="SMART">Smart</option>
-            <option value="HIDE">Never</option>
-          </select>
-        </Option>
-        <Option>
-          <Label>Clear Whitelist</Label>
-          <button
-            onClick={clearWhite}
-            className={`${
-              clearedWhite ? "btn-disabled" : "btn-primary"
-            } px-4 py-2 text-sm`}
-          >
-            Clear
-          </button>
-        </Option>
-        <Option>
-          <Label>Clear Smartlist</Label>
-          <button
-            onClick={clearSmart}
-            className={`${
-              clearedSmart ? "btn-disabled" : "btn-primary"
-            } px-4 py-2 text-sm`}
-          >
-            Clear
-          </button>
-        </Option>
-        <Option>
-          <Label>Clear Blacklist</Label>
-          <button
-            onClick={clearBlack}
-            className={`${
-              clearedBlack ? "btn-disabled" : "btn-primary"
-            } px-4 py-2 text-sm`}
-          >
-            Clear
-          </button>
-        </Option>
-        <Option>
-          <Label>{signedOut ? "Sign In" : "Sign Out"}</Label>
-          <button
-            onClick={signedOut ? signIn : signOut}
-            className={`btn-primary px-4 py-2 text-sm`}
-          >
-            {signedOut ? "Sign In" : "Sign Out"}
-          </button>
-        </Option>
-        {error && <Alert type="ERROR" text={error} />}
-      </form>
-    </div>
+            <Option>
+              <Label>Show by Default</Label>
+              <select
+                defaultValue={mode}
+                onChange={(e) => updateMode(e.target.value as Mode)}
+                className="focus:ring-brand rounded-md border border-gray-200 bg-white py-[0.4rem] pl-3 pr-10 text-black shadow-sm focus:outline-none focus:ring-2"
+              >
+                <option value="SHOW">Always</option>
+                <option value="SMART">Smart</option>
+                <option value="HIDE">Never</option>
+              </select>
+            </Option>
+            <Option>
+              <Label>Clear Whitelist</Label>
+              <button
+                onClick={clearWhite}
+                className={`${
+                  clearedWhite ? "btn-disabled" : "btn-primary"
+                } px-4 py-2 text-sm`}
+              >
+                Clear
+              </button>
+            </Option>
+            <Option>
+              <Label>Clear Smartlist</Label>
+              <button
+                onClick={clearSmart}
+                className={`${
+                  clearedSmart ? "btn-disabled" : "btn-primary"
+                } px-4 py-2 text-sm`}
+              >
+                Clear
+              </button>
+            </Option>
+            <Option>
+              <Label>Clear Blacklist</Label>
+              <button
+                onClick={clearBlack}
+                className={`${
+                  clearedBlack ? "btn-disabled" : "btn-primary"
+                } px-4 py-2 text-sm`}
+              >
+                Clear
+              </button>
+            </Option>
+            <Option>
+              <Label>{signedOut ? "Sign In" : "Sign Out"}</Label>
+              <button
+                onClick={signedOut ? signIn : signOut}
+                className={`btn-primary px-4 py-2 text-sm`}
+              >
+                {signedOut ? "Sign In" : "Sign Out"}
+              </button>
+            </Option>
+            {error && <Alert type="ERROR" text={error} />}
+          </form>
+        </div>
+      )}
+    </>
   );
 }
 

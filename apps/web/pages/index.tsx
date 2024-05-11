@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { ThumbUpIcon, GlobeAltIcon, EyeIcon } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
+import { NextSeo } from "next-seo";
 import Navigation from "@web/components/Navigation";
 import Footer from "@web/components/Footer";
 import Title from "@web/components/Title";
@@ -10,14 +11,12 @@ import Image from "next/image";
 import Link from "next/link";
 import Browser from "@web/util/browser";
 import Extension from "@web/util/extension";
-import useTitle from "@web/hooks/useTitle";
 import useMediaQuery from "@web/hooks/useMediaQuery";
 
 export default function Home() {
-  useTitle("Uncensored Comments, anywhere. | Remark");
-
   return (
     <>
+      <NextSeo title="Uncensored Comments, anywhere." />
       <div className="relative flex flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
         <Navigation transparent />
         <Hero />

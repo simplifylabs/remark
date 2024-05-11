@@ -1,13 +1,15 @@
-import useTitle from "@web/hooks/useTitle";
 import Navigation from "@web/components/Navigation";
 import Footer from "@web/components/Footer";
+import { NextSeo } from "next-seo";
 import { Server } from "@web/util/api";
 
 export default function Privacy() {
-  useTitle("Privacy Policy");
-
   return (
     <>
+      <NextSeo
+        title="Privacy Policy"
+        description="The privacy policy for Remark"
+      />
       <Navigation />
       <div className="flex min-h-screen w-screen items-center justify-center p-12 py-8 pt-32 xl:py-[10rem]">
         <article className="prose">
@@ -121,6 +123,12 @@ export default function Privacy() {
           </p>
 
           <h2>Third Party Privacy Policies</h2>
+
+          <p>
+            This site is protected by hCaptcha and its{" "}
+            <a href="https://www.hcaptcha.com/privacy">Privacy Policy</a> and{" "}
+            <a href="https://www.hcaptcha.com/terms">Terms of Service</a> apply.
+          </p>
 
           <p>
             Remark&apos;s Privacy Policy does not apply to other advertisers or

@@ -4,7 +4,7 @@
   "short_name": "Remark",
   "version": "0.0.0",
   "description": "Uncensored Comments, anywhere.",
-  "author": "Simplify Software",
+  "author": "Simplify Labs",
   "homepage_url": "https://remark.surf/",
   "icons": {
     "64": "assets/icon/64.png",

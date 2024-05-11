@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import useTitle from "@web/hooks/useTitle";
+import { NextSeo } from "next-seo";
 import useExtension from "@web/hooks/useExtension";
 import Alert from "@web/components/Alert";
 import Input from "@web/components/Input";
 import Link from "next/link";
 
 export default function Google() {
-  useTitle("Sign Up");
   const { send } = useExtension();
 
   const router = useRouter();
@@ -40,39 +39,42 @@ export default function Google() {
   }
 
   return (
-    <div className="flex min-h-screen w-screen flex-col items-center justify-center gap-10">
-      <div className="flex flex-col items-center justify-center gap-3">
-        <h1 className="text-5xl font-extrabold">Sign Up</h1>
-        <p className="text-lg text-gray-700">
-          Want to use another account?{" "}
-          <Link href="/auth/signin">
-            <a className="text-lg">Sign In</a>
-          </Link>
-        </p>
+    <>
+      <NextSeo title="Sign Up" description="Sign Up with Google" />
+      <div className="flex min-h-screen w-screen flex-col items-center justify-center gap-10">
+        <div className="flex flex-col items-center justify-center gap-3">
+          <h1 className="text-5xl font-extrabold">Sign Up</h1>
+          <p className="text-lg text-gray-700">
+            Want to use another account?{" "}
+            <Link href="/auth/signin">
+              <a className="text-lg">Sign In</a>
+            </Link>
+          </p>
+        </div>
+        <form
+          onSubmit={submit}
+          className="flex w-[90vw] flex-col gap-2 rounded-xl bg-white p-8 shadow sm:w-[22rem]"
+        >
+          <Input
+            type="text"
+            name="Email"
+            autoComplete="off"
+            value={email}
+            set={() => null}
+            disabled
+          />
+          <Input
+            type="text"
+            name="Username"
+            autoComplete="nickname"
+            set={setUsername}
+            min={3}
+            max={20}
+          />
+          {error && <Alert type="ERROR" text={error} />}
+          <input className="btn-primary mt-2" type="submit" value="Submit" />
+        </form>
       </div>
-      <form
-        onSubmit={submit}
-        className="flex w-[90vw] flex-col gap-2 rounded-xl bg-white p-8 shadow sm:w-[22rem]"
-      >
-        <Input
-          type="text"
-          name="Email"
-          autoComplete="off"
-          value={email}
-          set={() => null}
-          disabled
-        />
-        <Input
-          type="text"
-          name="Username"
-          autoComplete="nickname"
-          set={setUsername}
-          min={3}
-          max={20}
-        />
-        {error && <Alert type="ERROR" text={error} />}
-        <input className="btn-primary mt-2" type="submit" value="Submit" />
-      </form>
-    </div>
+    </>
   );
 }

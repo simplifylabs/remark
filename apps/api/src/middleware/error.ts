@@ -1,8 +1,9 @@
 import { getValidationMessage } from "@api/middleware/validation";
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { ValidationError } from "express-validation";
 
-function error(err: Error, _: Request, res: Response) {
+// eslint-disable-next-line
+function error(err: Error, _: Request, res: Response, _2: NextFunction) {
   if (err instanceof ValidationError) {
     const message = getValidationMessage(err);
 

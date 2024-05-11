@@ -157,9 +157,10 @@ function FabComponent(props: IProps) {
           className={`fixed z-[1] flex h-6 w-6 cursor-pointer items-center justify-center rounded-full bg-red-500 shadow-xl transition-all ${
             (props.total > 0 || fabHover || labelHover || props.unread) &&
             !props.typing &&
-            !props.sidebar
-              ? "opacity-1"
-              : "pointer-events-none opacity-0"
+            !props.sidebar &&
+            props.shown
+              ? "scale-100"
+              : "pointer-events-none scale-0"
           }`}
         >
           {labelHover || fabHover ? (
